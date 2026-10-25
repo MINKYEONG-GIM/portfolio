@@ -15,7 +15,7 @@ export const JOBS: JobPortfolio[] = [
   {
     key: "service-planning",
     label: "서비스기획",
-    description: "고객·시장 인사이트 → 데이터·AI 서비스 구축 → 전사 AI 플랫폼과 AX. 프로젝트 10개.",
+    description: "노아 플랫폼 → 인원관리·AX 인재 양성 → 전사 에이전트 통합 → 데이터·AI 서비스 → 고객·시장 인사이트. 프로젝트 12개.",
     href: "/",
     status: "공개 중"
   },

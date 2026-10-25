@@ -17,6 +17,10 @@
   --part-2-soft: #e9eefc;
   --part-3: #0f8a5f;
   --part-3-soft: #e3f5ec;
+  --part-4: #b45309;
+  --part-4-soft: #fdf1e3;
+  --part-5: #6d28d9;
+  --part-5-soft: #efe9fb;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,6 +39,10 @@
     --part-2-soft: #1f2742;
     --part-3: #4fd3a0;
     --part-3-soft: #16332a;
+    --part-4: #f5a35c;
+    --part-4-soft: #3a2a16;
+    --part-5: #b596f5;
+    --part-5-soft: #2a2040;
   }
 }
 
@@ -58,6 +66,8 @@ body {
 .part-1 { --tone: var(--part-1); --tone-soft: var(--part-1-soft); }
 .part-2 { --tone: var(--part-2); --tone-soft: var(--part-2-soft); }
 .part-3 { --tone: var(--part-3); --tone-soft: var(--part-3-soft); }
+.part-4 { --tone: var(--part-4); --tone-soft: var(--part-4-soft); }
+.part-5 { --tone: var(--part-5); --tone-soft: var(--part-5-soft); }
 
 .tone-text { color: var(--tone); }
 .tone-bg { background: var(--tone); }

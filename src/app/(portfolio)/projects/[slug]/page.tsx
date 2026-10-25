@@ -136,7 +136,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
 
       {project.features ? (
         <Block>
-          <SectionTitle id="features" eyebrow="CORE FEATURES" title="핵심 기능 세 가지" />
+          <SectionTitle id="features" eyebrow="CORE FEATURES" title="핵심 기능" />
           <FeatureSections features={project.features} />
         </Block>
       ) : null}

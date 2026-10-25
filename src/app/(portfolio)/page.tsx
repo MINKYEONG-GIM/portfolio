@@ -21,7 +21,7 @@ export default function HomePage() {
         </div>
 
         {/* 대분류 3개 요약 */}
-        <div className="oy-grid grid-cols-1 sm:grid-cols-3">
+        <div className="oy-grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5">
           {PARTS.map((part) => (
             <a key={part.no} href={`#part-${part.no}`} className={`part-${part.no} flex flex-col gap-1 bg-paper px-5 py-5 transition hover:bg-surface`}>
               <span className="tone-text text-xs font-black tracking-[0.18em]">{part.code}</span>
