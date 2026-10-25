@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { CatalogItem, FeatureSection, Insight, Metric, VisionStep } from "@/data/projects";
+import type { CatalogItem, FeatureSection, Insight, Metric, SystemArchitecture, VisionStep } from "@/data/projects";
 
 export function SectionTitle({ eyebrow, title, id }: { eyebrow: string; title: string; id?: string }) {
   return (
@@ -132,5 +132,59 @@ export function VisionSteps({ steps }: { steps: VisionStep[] }) {
         </li>
       ))}
     </ol>
+  );
+}
+
+/** 레이어별 구성 요소까지 보여 주는 상세 시스템 구조도 + 처리 흐름 + 원칙 */
+export function SystemDiagram({ system }: { system: SystemArchitecture }) {
+  return (
+    <div className="grid gap-8">
+      <p className="ko-keep max-w-4xl text-base leading-8 text-ink">{system.intro}</p>
+
+      <div className="grid gap-0 border border-line">
+        {system.layers.map((layer, index) => (
+          <div key={layer.name} className={`grid gap-3 p-5 lg:grid-cols-[15rem_1fr] lg:gap-6 ${index < system.layers.length - 1 ? "border-b border-line" : ""} ${index === system.layers.length - 1 ? "tone-soft" : index % 2 === 1 ? "bg-surface" : "bg-paper"}`}>
+            <div>
+              <h3 className="ko-keep text-lg font-black text-ink">{layer.name}</h3>
+              <p className="ko-keep mt-1 text-sm font-semibold leading-6 text-muted">{layer.role}</p>
+              {index < system.layers.length - 1 ? <p className="mt-2 hidden text-xs font-black text-muted lg:block">↓ 다음 층으로</p> : null}
+            </div>
+            <ul className="grid gap-2 sm:grid-cols-2">
+              {layer.items.map((item) => (
+                <li key={item.label} className="border border-line bg-paper px-3 py-2">
+                  <p className="text-sm font-extrabold text-ink">{item.label}</p>
+                  {item.note ? <p className="ko-keep mt-0.5 text-xs font-semibold leading-5 text-muted">{item.note}</p> : null}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid gap-4">
+        <h3 className="ko-keep text-xl font-extrabold text-ink">질문 한 번이 처리되는 순서</h3>
+        <ol className="oy-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+          {system.flow.map((step, index) => (
+            <li key={step.title} className="bg-paper p-4">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-sm font-black text-paper">{index + 1}</span>
+              <h4 className="ko-keep mt-3 text-base font-extrabold text-ink">{step.title}</h4>
+              <p className="ko-keep mt-1 text-sm leading-6 text-ink">{step.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <div className="grid gap-4">
+        <h3 className="ko-keep text-xl font-extrabold text-ink">구조를 지키는 원칙</h3>
+        <div className="grid gap-3 md:grid-cols-2">
+          {system.principles.map((principle) => (
+            <div key={principle.title} className="border border-line bg-paper p-5">
+              <h4 className="ko-keep text-base font-extrabold text-ink">{principle.title}</h4>
+              <p className="ko-keep mt-2 text-sm leading-6 text-ink">{principle.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

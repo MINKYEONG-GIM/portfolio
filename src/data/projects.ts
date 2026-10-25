@@ -4,6 +4,14 @@ export type FeatureItem = { title: string; body: string };
 export type FeatureSection = { eyebrow: string; title: string; summary: string; items: FeatureItem[] };
 export type VisionStep = { title: string; body: string };
 export type Vision = { lead: string; note: string; steps: VisionStep[]; jobs: string[] };
+export type SystemLayer = { name: string; role: string; items: { label: string; note?: string }[] };
+export type SystemArchitecture = {
+  intro: string;
+  layers: SystemLayer[];
+  /** 질문 한 번이 처리되는 순서 */
+  flow: { title: string; body: string }[];
+  principles: { title: string; body: string }[];
+};
 export type CatalogItem = { name: string; trigger?: string; body: string };
 export type ProjectImage = { src: string; alt: string; caption?: string; width: number; height: number };
 
@@ -25,6 +33,8 @@ export type Project = {
   insightsLabel?: string;
   features?: FeatureSection[];
   architecture?: { layers: string[]; sources: string[]; gateway: string };
+  /** 레이어별 구성 요소까지 적은 상세 시스템 구조 */
+  system?: SystemArchitecture;
   vision?: Vision;
   /** 카드와 상단에 붙는 상태 배지 (예: 진행 중, 준비 중) */
   status?: string;
@@ -114,10 +124,91 @@ export const PROJECTS: Project[] = [
     ],
     background:
       "AI 에이전트로 생산성을 높이려 했지만, AI가 사내 시스템에 연결되지 않아 매번 데이터를 수기로 넣어야 했습니다. 사내 데이터와 시스템을 LLM 에이전트와 직접 연동하는 구조가 필요했습니다.",
-    architecture: {
-      layers: ["Client Layer", "Agent Layer · Policy & Context · Agent Runtime", "Capability Layer", "Tool Binding Layer"],
-      gateway: "NoA MCP Gateway (중앙 원격 MCP 서버군)",
-      sources: ["Snowflake DW", "M365 Graph", "HR Link", "Neo4j 지식그래프"]
+    system: {
+      intro:
+        "노아는 ‘Claude 위에 회사를 얹는’ 구조입니다. 사용자는 Claude 데스크톱·코드에서 질문만 하고, 아래 여섯 층이 조직 지침 → 훅 → 스킬 → MCP 도구 → 게이트웨이 → 사내 데이터 순서로 질문을 받아 처리합니다. 모든 층은 읽기 전용과 본인 권한 원칙을 지킵니다.",
+      layers: [
+        {
+          name: "1. Client Layer",
+          role: "직원이 쓰는 입구. Claude 데스크톱·Claude Code·Cowork에서 noa 플러그인을 켜면 아래 층이 전부 붙습니다.",
+          items: [
+            { label: "Claude 데스크톱 · Code · Cowork" },
+            { label: "noa 플러그인", note: "스킬·훅·MCP 커넥터 묶음" },
+            { label: "조직 커넥터 등록", note: "관리자가 조직 단위로 배포" },
+            { label: "SSO 로그인", note: "본인 권한으로만 조회" }
+          ]
+        },
+        {
+          name: "2. Policy & Context Layer",
+          role: "질문이 모델에 닿기 전에 회사 규칙과 맥락을 끼워 넣는 층. 조직 지침과 훅(hook)으로 동작합니다.",
+          items: [
+            { label: "조직 지침", note: "MCP 연결 실패 시 안내 절차 등 전원 공통 규칙" },
+            { label: "SessionStart 훅", note: "개인화·메모리 규칙, NoA Vibe 개발 규칙(문서 먼저 읽기)" },
+            { label: "UserPromptSubmit 훅", note: "컨텍스트 그래프에서 과거 교정·골든 SQL·회사 결정을 찾아 질문에 붙임" },
+            { label: "안전 원칙", note: "읽기 전용 · 본인 권한 · 개인정보 컬럼 조회 금지 · 담당자 재직 확인" }
+          ]
+        },
+        {
+          name: "3. Agent Runtime",
+          role: "Claude 모델이 질문을 이해하고, 호출 조건이 맞는 스킬을 골라 절차대로 도구를 부릅니다.",
+          items: [
+            { label: "Claude 모델", note: "추론·SQL 작성·답변 작성" },
+            { label: "스킬 트리거", note: "키워드·요청 유형으로 스킬 자동 선택" },
+            { label: "메모리", note: "사용자별 선호·팀 규칙을 파일로 기억" }
+          ]
+        },
+        {
+          name: "4. Capability Layer (스킬)",
+          role: "잘 쓰는 사람의 업무 절차를 스킬로 만든 층. 스킬은 규칙을 직접 들고 있지 않고 ‘어떤 도구를 어떤 순서로 쓸지’만 정합니다.",
+          items: [
+            { label: "noa-bi", note: "자연어 KPI 질의: 지식그래프 1회 조회 → SQL → DW 실행" },
+            { label: "noa-1p", note: "브랜드 주간보고 RAG: 벡터 검색으로 원문 청크 회수" },
+            { label: "noa-ebg", note: "고객조사 기준(EBG) 판정·가이드" },
+            { label: "noa-onboarding", note: "경비·규정·총무 등 사내 행정 안내" },
+            { label: "noa-hr-attend", note: "연차 조회·신청·결재" },
+            { label: "noa-outlook", note: "메일·일정 조회·작성" },
+            { label: "noa-vibe", note: "사내 표준으로 앱 개발·배포 준비" },
+            { label: "usage-guide-writer · tacit-rule-interview · monthly-submit-helper", note: "플랫폼 제출 지원 인터뷰형 스킬" }
+          ]
+        },
+        {
+          name: "5. Tool Binding Layer (MCP 도구)",
+          role: "스킬이 실제로 부르는 도구. 시스템마다 MCP 서버 하나이고, 도구 이름이 곧 허용된 동작의 전부입니다.",
+          items: [
+            { label: "neo4j-mcp", note: "resolve · read_cypher · search_1p_report · ebg_search · onboarding_search" },
+            { label: "snowflake-mcp", note: "run_snowflake_query (읽기 전용)" },
+            { label: "hrlink-mcp", note: "연차 정보·신청·결재선·승인·취소" },
+            { label: "outlook-mcp", note: "메일 조회·발송·회신, 일정 생성·수정" }
+          ]
+        },
+        {
+          name: "6. NoA MCP Gateway → 사내 데이터·시스템",
+          role: "중앙 원격 MCP 서버군이 모든 도구 호출을 한곳에서 받아 인증·권한을 확인하고 사내 시스템에 전달합니다.",
+          items: [
+            { label: "Snowflake DW (EDW)", note: "표준 모델 KF_* · *_AGGR, DaaS 개인·브랜드 스키마" },
+            { label: "Neo4j 지식그래프", note: "지표 정의·산식·조인·골든 SQL, EBG, 온보딩, 1P 보고서 벡터 인덱스, 컨텍스트 그래프(교정·결정)" },
+            { label: "M365 Graph", note: "메일·일정" },
+            { label: "HR Link", note: "근태·결재" },
+            { label: "NoA Vibe (PaaS)", note: "직원이 만든 앱의 원클릭 배포" }
+          ]
+        }
+      ],
+      flow: [
+        { title: "질문", body: "“스파오 강남점 올해 5월 매출 알려줘”처럼 평소 말로 묻습니다." },
+        { title: "맥락 주입", body: "UserPromptSubmit 훅이 컨텍스트 그래프에서 관련 교정(예: 26SS 시작일은 1월 25일)·골든 SQL·회사 결정을 찾아 질문 앞에 붙입니다." },
+        { title: "스킬 선택", body: "‘매출’ 키워드로 noa-bi 스킬이 켜지고, 스킬이 정한 절차대로 진행합니다." },
+        { title: "의미 해석", body: "지식그래프 resolve 한 번으로 지표 정의(매출액 = SUM(SALEAMT))·측정 컬럼·조인 조건·매장 코드를 가져옵니다. 모델이 짐작하지 않습니다." },
+        { title: "SQL 작성", body: "그래프가 준 재료로만 SQL을 씁니다. 날짜·시즌 규칙은 주입된 교정을 우선합니다." },
+        { title: "읽기 전용 실행", body: "snowflake-mcp가 본인 권한으로 DW를 조회합니다. 쓰기는 도구 자체에 없습니다." },
+        { title: "출처와 함께 답변", body: "정의·범위·출처(테이블, 산식 출처)를 답에 붙여 숫자를 검증할 수 있게 합니다." },
+        { title: "교정 학습", body: "사용자가 “아니, 1월 25일부터”처럼 고치면 컨텍스트 그래프에 교정으로 남아 다음 질문부터 자동 적용됩니다." }
+      ],
+      principles: [
+        { title: "규칙은 그래프에, 절차는 스킬에", body: "지표 정의·불문율은 지식그래프에만 두고 스킬은 호출 순서만 정합니다. 기준이 바뀌면 그래프만 고치면 전 스킬에 반영됩니다." },
+        { title: "읽기 전용 · 본인 권한", body: "DW 도구는 조회만 가능하고, 모든 호출은 SSO로 로그인한 본인 권한으로 나갑니다. 인사 데이터는 허용 컬럼만 읽습니다." },
+        { title: "정확도가 먼저", body: "데이터가 두세 번 틀리면 신뢰가 무너집니다. 모델의 추측 대신 그래프 조회와 출처 표기로 정확도를 지킵니다." },
+        { title: "한 곳에서 배포", body: "스킬·훅·커넥터를 플러그인 하나로 묶어 조직 단위로 배포합니다. 잘 쓰는 사람의 방법이 전원에게 같은 날 퍼집니다." }
+      ]
     },
     steps: ["DW 통합 및 지식그래프 구축", "사내 시스템 연결용 MCP 서버 개발", "스킬 및 훅 제작", "플러그인 배포 및 오프라인 교육", "매주 전 계열사 엘리베이터·로비 영상 송출"],
     insights: [

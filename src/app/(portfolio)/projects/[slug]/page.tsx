@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
-import { ArchitectureDiagram, Block, CatalogList, FeatureSections, InsightList, MetricGrid, SectionTitle, StepFlow, VisionSteps } from "@/components/project-sections";
+import { ArchitectureDiagram, Block, CatalogList, FeatureSections, InsightList, MetricGrid, SectionTitle, StepFlow, SystemDiagram, VisionSteps } from "@/components/project-sections";
 import { HarnessDiagram } from "@/components/harness-diagram";
 import { PARTS, PROJECTS, findProject, neighbors } from "@/data/projects";
 
@@ -33,7 +33,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
     { id: "purpose", label: "목적", show: true },
     { id: "result", label: "성과", show: project.metrics.length > 0 },
     { id: "background", label: "배경", show: Boolean(project.background) },
-    { id: "architecture", label: "구조", show: Boolean(project.architecture) },
+    { id: "architecture", label: "시스템 구조", show: Boolean(project.architecture || project.system) },
     { id: "features", label: "핵심 기능", show: Boolean(project.features) },
     { id: "catalog", label: project.catalog?.title ?? "목록", show: Boolean(project.catalog) },
     { id: "role", label: "역할", show: true },
@@ -127,7 +127,12 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
         </Block>
       ) : null}
 
-      {project.architecture ? (
+      {project.system ? (
+        <Block>
+          <SectionTitle id="architecture" eyebrow="ARCHITECTURE" title="시스템 구조" />
+          <SystemDiagram system={project.system} />
+        </Block>
+      ) : project.architecture ? (
         <Block>
           <SectionTitle id="architecture" eyebrow="ARCHITECTURE" title="구조" />
           <ArchitectureDiagram {...project.architecture} />
