@@ -1,57 +1,70 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { ProjectCard } from "@/components/project-card";
+import { PartIcon } from "@/components/part-icon";
 import { PARTS, PROFILE, PROJECTS, groupsOfPart, projectsByPart } from "@/data/projects";
 
 export default function HomePage() {
   let counter = 0;
   return (
     <div className="grid gap-14">
-      {/* 배너: 한 줄 소개 */}
-      <section className="grid gap-5">
-        <div className="flex flex-wrap items-end justify-between gap-3">
-          <h1 className="text-3xl font-extrabold text-ink">서비스기획 포트폴리오</h1>
-          <p className="text-base font-extrabold text-muted">2024.01 - 진행 중</p>
-        </div>
-        <div className="bg-[color:var(--accent)] px-6 py-10 text-ink sm:px-10 sm:py-14">
-          <p className="text-xs font-black tracking-[0.22em]">PROJECT PORTFOLIO</p>
-          <h2 className="ko-keep mt-3 text-3xl font-black leading-tight sm:text-5xl">{PROFILE.tagline}</h2>
-          <p className="mt-5 text-xl font-extrabold">{PROFILE.name}</p>
-          <p className="ko-keep mt-2 max-w-3xl text-base font-semibold leading-7">{PROFILE.intro}</p>
-        </div>
+      {/* 1. 한 줄 소개 (짧게) */}
+      <section className="bg-[color:var(--accent)] px-6 py-8 text-ink sm:px-10 sm:py-10">
+        <p className="text-xs font-black tracking-[0.22em]">SERVICE PLANNING PORTFOLIO</p>
+        <h1 className="ko-keep mt-2 text-3xl font-black leading-tight sm:text-4xl">
+          {PROFILE.name} · {PROFILE.tagline}
+        </h1>
+        <p className="ko-keep mt-3 max-w-3xl text-base font-semibold leading-7">{PROFILE.intro}</p>
+      </section>
 
-        {/* 대분류 3개 요약 */}
-        <div className="oy-grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5">
-          {PARTS.map((part) => (
-            <a key={part.no} href={`#part-${part.no}`} className={`part-${part.no} flex flex-col gap-1 bg-paper px-5 py-5 transition hover:bg-surface`}>
-              <span className="tone-text text-xs font-black tracking-[0.18em]">{part.code}</span>
-              <span className="ko-keep text-lg font-extrabold text-ink">{part.title}</span>
-              <span className="ko-keep text-sm font-semibold text-muted">{part.tagline}</span>
-              <span className="tone-text mt-2 text-3xl font-black leading-none">{projectsByPart(part.no).length}</span>
-            </a>
-          ))}
+      {/* 2. 어디를 누를지 바로 보이는 타일 */}
+      <section className="grid gap-4">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 className="text-2xl font-black text-ink">어떤 걸 보고 싶으세요?</h2>
+          <p className="text-sm font-bold text-muted">프로젝트 {PROJECTS.length}개 · 주제 {PARTS.length}개</p>
         </div>
-
-        {/* 전체 프로젝트 격자 인덱스 */}
-        <div className="oy-grid grid-cols-2 lg:grid-cols-4">
-          <span className="flex items-center justify-between gap-2 bg-surface px-4 py-4 text-base font-extrabold text-ink">전체 ({PROJECTS.length})</span>
-          {PROJECTS.map((project) => (
-            <Link
-              key={project.slug}
-              href={`/projects/${project.slug}`}
-              className="ko-keep flex items-center justify-between gap-2 bg-paper px-4 py-4 text-base font-semibold text-ink transition hover:bg-surface"
-            >
-              <span className="line-clamp-2">{project.title}</span>
-              <ChevronRight className="h-4 w-4 shrink-0 text-muted" />
-            </Link>
-          ))}
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          {PARTS.map((part) => {
+            const projects = projectsByPart(part.no);
+            return (
+              <div key={part.no} className={`part-${part.no} flex flex-col border-2 border-line bg-paper transition hover:border-[color:var(--tone)]`}>
+                <a href={`#part-${part.no}`} className="tone-soft flex items-start gap-3 p-5">
+                  <span className="tone-bg flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-white">
+                    <PartIcon no={part.no} className="h-5 w-5" />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="tone-text block text-xs font-black tracking-[0.18em]">{part.code}</span>
+                    <span className="ko-keep block text-xl font-black leading-7 text-ink">{part.short}</span>
+                    <span className="ko-keep block text-sm font-bold leading-6 text-ink">{part.question}</span>
+                  </span>
+                  <ArrowRight className="tone-text mt-1 h-5 w-5 shrink-0" />
+                </a>
+                <ul className="flex flex-1 flex-col divide-y divide-line">
+                  {projects.map((project) => (
+                    <li key={project.slug}>
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        className="ko-keep flex items-center justify-between gap-2 px-5 py-3 text-base font-semibold text-ink transition hover:bg-surface"
+                      >
+                        <span className="line-clamp-1">{project.title}</span>
+                        <ChevronRight className="h-4 w-4 shrink-0 text-muted" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
         </div>
       </section>
 
-      {/* 대분류 → 중분류 → 프로젝트 카드 */}
+      {/* 3. 주제별 카드 (대분류 → 중분류 → 프로젝트) */}
       {PARTS.map((part) => (
-        <section key={part.no} id={`part-${part.no}`} className={`part-${part.no} grid gap-6 scroll-mt-6`}>
-          <div className="oy-band flex flex-wrap items-baseline gap-3">
+        <section key={part.no} id={`part-${part.no}`} className={`part-${part.no} grid gap-6 scroll-mt-28`}>
+          <div className="oy-band flex flex-wrap items-center gap-3">
+            <span className="tone-bg flex h-9 w-9 items-center justify-center rounded-full text-white">
+              <PartIcon no={part.no} className="h-4 w-4" />
+            </span>
             <span className="tone-text text-sm font-black tracking-[0.18em]">{part.code}</span>
             <h2 className="ko-keep text-ink">{part.title}</h2>
             <span className="ko-keep text-base font-bold text-muted">{part.tagline}</span>
@@ -75,7 +88,8 @@ export default function HomePage() {
         </section>
       ))}
 
-      <section id="timeline" className="grid gap-6 scroll-mt-6">
+      {/* 4. 타임라인 */}
+      <section id="timeline" className="grid gap-6 scroll-mt-28">
         <div className="oy-band flex items-baseline gap-3">
           <h2 className="text-ink">타임라인</h2>
           <span className="text-base font-bold text-muted">시작 시점 순</span>
@@ -89,7 +103,7 @@ export default function HomePage() {
                   <th scope="row">{project.period}</th>
                   <td>
                     <Link href={`/projects/${project.slug}`} className="ko-keep text-base font-extrabold text-ink hover:underline">
-                      <span className="tone-text mr-2 text-xs font-black">{PARTS[project.part - 1].code}</span>
+                      <span className="tone-text mr-2 text-xs font-black">{PARTS[project.part - 1].short}</span>
                       {project.title}
                     </Link>
                   </td>

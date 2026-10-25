@@ -37,11 +37,13 @@ export type Project = {
   tags: string[];
 };
 
-export const PARTS: { no: 1 | 2 | 3 | 4 | 5; code: string; title: string; tagline: string; summary: string }[] = [
+export const PARTS: { no: 1 | 2 | 3 | 4 | 5; code: string; title: string; short: string; question: string; tagline: string; summary: string }[] = [
   {
     no: 1,
     code: "Part 01",
     title: "노아: 전사 AI 에이전트 플랫폼",
+    short: "노아 플랫폼",
+    question: "사내 AI 에이전트 플랫폼이 어떻게 돌아가는지",
     tagline: "사내 데이터와 시스템을 AI 에이전트에 연결한 일",
     summary: "데이터·배포 인프라 위에 MCP 기반 에이전트 플랫폼을 세우고, 직원이 만든 Agent를 모아 추천·제출하는 운영 포털까지 이었습니다. 에이전트 플랫폼 → 운영 포털 → 인프라 → 다음 단계 순서입니다."
   },
@@ -49,6 +51,8 @@ export const PARTS: { no: 1 | 2 | 3 | 4 | 5; code: string; title: string; taglin
     no: 2,
     code: "Part 02",
     title: "인원관리 및 AX 인재 양성",
+    short: "인원관리·인재 양성",
+    question: "사람을 어떻게 평가하고 제작자로 키웠는지",
     tagline: "사람을 공정하게 재고, 제작자로 키운 일",
     summary: "결과물(Agent)과 사람(참여)을 따로 재는 100점 평가 체계로 AI 인재풀을 만들고, 과제 발굴·교육·제작 지원으로 전사에 제작자를 늘렸습니다."
   },
@@ -56,6 +60,8 @@ export const PARTS: { no: 1 | 2 | 3 | 4 | 5; code: string; title: string; taglin
     no: 3,
     code: "Part 03",
     title: "전사 에이전트 통합",
+    short: "전사 통합",
+    question: "브랜드별 에이전트를 어떻게 하나로 합칠지",
     tagline: "브랜드별 에이전트를 전사 하나로 합치는 일",
     summary: "브랜드마다 만들어지는 Agent를 브랜드 단위 에이전트로 묶고, 공통 계약·지식그래프·평가 게이트로 표준화해 최종적으로 전사 하나의 중심 하네스로 통합합니다."
   },
@@ -63,6 +69,8 @@ export const PARTS: { no: 1 | 2 | 3 | 4 | 5; code: string; title: string; taglin
     no: 4,
     code: "Part 04",
     title: "데이터·AI 서비스 구축",
+    short: "데이터 서비스",
+    question: "흩어진 데이터를 어떻게 쓰게 만들었는지",
     tagline: "흩어진 사내 데이터를 쓸 수 있게 만든 일",
     summary: "이미지로만 남아 있던 전략자료는 검색 가능한 지식으로, 시스템마다 흩어진 상품 데이터는 하나의 데이터 허브로 바꿨습니다."
   },
@@ -70,6 +78,8 @@ export const PARTS: { no: 1 | 2 | 3 | 4 | 5; code: string; title: string; taglin
     no: 5,
     code: "Part 05",
     title: "고객·시장 인사이트",
+    short: "고객·시장",
+    question: "분석으로 매출을 어떻게 바꿨는지",
     tagline: "분석으로 매출을 바꾼 일",
     summary: "데이터와 현장을 교차검증해 매출 문제를 고객 구조의 문제로 다시 정의하고, 채널·상품 전략으로 성과를 냈습니다."
   }

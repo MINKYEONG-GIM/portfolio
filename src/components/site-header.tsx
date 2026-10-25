@@ -1,39 +1,37 @@
 import Link from "next/link";
+import { PartIcon } from "@/components/part-icon";
 import { PARTS, PROFILE, PROJECTS } from "@/data/projects";
 
-const NAV = [
-  { href: "/", label: "전체 프로젝트" },
-  ...PARTS.map((part) => ({ href: `/#part-${part.no}`, label: part.title })),
-  { href: "/#timeline", label: "타임라인" }
-];
-
+/** 상단 고정 내비게이션: 어느 화면에서든 5개 주제로 바로 갑니다. */
 export function SiteHeader() {
   return (
-    <header className="border-b-2 border-ink bg-paper">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="flex items-center justify-end gap-3 border-b border-line py-2 text-xs font-semibold text-muted">
-          <span>서비스기획</span>
-          <span className="text-line">|</span>
-          <span>프로젝트 {PROJECTS.length}개</span>
-        </div>
-        <div className="flex flex-col gap-2 py-5 sm:flex-row sm:items-center sm:justify-between">
-          <Link href="/" className="text-3xl font-black tracking-tight text-ink">
-            MINKYEONG KIM
-          </Link>
-          <p className="ko-keep text-sm font-bold text-ink">{PROFILE.tagline}</p>
-        </div>
+    <header className="sticky top-0 z-20 border-b-2 border-ink bg-paper">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+        <Link href="/" className="text-2xl font-black tracking-tight text-ink">
+          MINKYEONG KIM
+        </Link>
+        <p className="hidden text-sm font-bold text-muted sm:block">
+          서비스기획 · 프로젝트 {PROJECTS.length}개
+        </p>
       </div>
       <nav className="border-t border-line">
-        <div className="mx-auto flex max-w-6xl overflow-x-auto px-2 sm:px-4">
-          {NAV.map((item, index) => (
+        <div className="no-scrollbar mx-auto flex max-w-6xl overflow-x-auto px-2 sm:px-4">
+          <Link href="/" className="shrink-0 border-r border-line px-4 py-3 text-base font-extrabold text-ink hover:bg-surface">
+            홈
+          </Link>
+          {PARTS.map((part) => (
             <Link
-              key={item.href}
-              href={item.href}
-              className={`ko-keep shrink-0 px-4 py-4 text-base font-extrabold text-ink transition hover:text-[color:var(--part-2)] sm:px-6 sm:text-lg ${index === 0 ? "border-r border-line" : ""}`}
+              key={part.no}
+              href={`/#part-${part.no}`}
+              className={`part-${part.no} ko-keep flex shrink-0 items-center gap-2 px-4 py-3 text-base font-extrabold text-ink hover:bg-surface`}
             >
-              {item.label}
+              <PartIcon no={part.no} className="tone-text h-4 w-4" />
+              {part.short}
             </Link>
           ))}
+          <Link href="/#timeline" className="shrink-0 px-4 py-3 text-base font-extrabold text-ink hover:bg-surface">
+            타임라인
+          </Link>
         </div>
       </nav>
     </header>

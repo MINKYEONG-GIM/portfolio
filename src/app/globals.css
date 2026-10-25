@@ -167,3 +167,7 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* 가로 스크롤은 되지만 스크롤바는 숨깁니다 (상단 탭) */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
