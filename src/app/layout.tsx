@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
-import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { PROFILE } from "@/data/projects";
 
 export const metadata: Metadata = {
@@ -21,11 +20,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
         />
       </head>
-      <body className="min-h-screen font-sans">
-        <SiteHeader />
-        <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">{children}</main>
-        <SiteFooter />
-      </body>
+      <body className="min-h-screen font-sans">{children}</body>
     </html>
   );
 }
