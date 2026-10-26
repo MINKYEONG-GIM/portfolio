@@ -4,25 +4,31 @@
  */
 export type JobPortfolio = {
   key: string;
-  label: string;
-  description: string;
+  label: { ko: string; en: string };
+  description: { ko: string; en: string };
   /** 공개 화면 경로. 아직 없으면 비웁니다. */
   href?: string;
-  status: "공개 중" | "준비 중";
+  status: "live" | "planned";
 };
 
 export const JOBS: JobPortfolio[] = [
   {
     key: "service-planning",
-    label: "서비스기획",
-    description: "노아 플랫폼 → 인원관리·AX 인재 양성 → 전사 에이전트 통합 → 데이터·AI 서비스 → 고객·시장 인사이트. 프로젝트 12개.",
+    label: { ko: "서비스기획", en: "Service Planning" },
+    description: {
+      ko: "노아 플랫폼 → 인원관리·AX 인재 양성 → 고객·시장 인사이트. 프로젝트 12개, 한국어·영어.",
+      en: "NoA Platform → People & Talent → Customer & Market Insight. 12 projects, Korean and English."
+    },
     href: "/",
-    status: "공개 중"
+    status: "live"
   },
   {
     key: "recsys",
-    label: "추천 시스템 · ML 서빙",
-    description: "개인화 추천 모델 서빙 파이프라인, 평가·실험 플랫폼 중심으로 재구성한 포트폴리오.",
-    status: "준비 중"
+    label: { ko: "추천 시스템 · ML 서빙", en: "Recommender Systems · ML Serving" },
+    description: {
+      ko: "개인화 추천 모델 서빙 파이프라인, 평가·실험 플랫폼 중심으로 재구성한 포트폴리오.",
+      en: "A portfolio reframed around recommendation-model serving pipelines and evaluation/experimentation platforms."
+    },
+    status: "planned"
   }
 ];

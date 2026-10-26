@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { CatalogItem, FeatureSection, Insight, Metric, SystemArchitecture, VisionStep } from "@/data/projects";
+import type { UIStrings } from "@/data/i18n";
 
 export function SectionTitle({ eyebrow, title, id }: { eyebrow: string; title: string; id?: string }) {
   return (
@@ -42,12 +43,14 @@ export function StepFlow({ steps }: { steps: string[] }) {
   );
 }
 
-export function InsightList({ insights }: { insights: Insight[] }) {
+export function InsightList({ insights, label }: { insights: Insight[]; label: string }) {
   return (
     <div className="grid gap-3 md:grid-cols-3">
       {insights.map((insight, index) => (
         <div key={insight.title} className="border border-line bg-paper p-5">
-          <span className="pill pill-green">INSIGHT {String(index + 1).padStart(2, "0")}</span>
+          <span className="pill pill-green">
+            {label} {String(index + 1).padStart(2, "0")}
+          </span>
           <h3 className="ko-keep mt-3 text-lg font-extrabold leading-7 text-ink">{insight.title}</h3>
           <p className="ko-keep mt-2 text-base leading-7 text-ink">{insight.body}</p>
         </div>
@@ -68,7 +71,10 @@ export function FeatureSections({ features }: { features: FeatureSection[] }) {
           <p className="ko-keep border-b border-line px-6 py-5 text-base leading-7 text-ink">{feature.summary}</p>
           <div className="grid md:grid-cols-2">
             {feature.items.map((item, index) => (
-              <div key={item.title} className={`p-6 ${index % 2 === 0 ? "md:border-r md:border-line" : ""} ${index < feature.items.length - 2 ? "border-b border-line" : index === feature.items.length - 2 ? "border-b border-line md:border-b-0" : ""}`}>
+              <div
+                key={item.title}
+                className={`p-6 ${index % 2 === 0 ? "md:border-r md:border-line" : ""} ${index < feature.items.length - 2 ? "border-b border-line" : index === feature.items.length - 2 ? "border-b border-line md:border-b-0" : ""}`}
+              >
                 <h4 className="ko-keep text-lg font-extrabold text-ink">{item.title}</h4>
                 <p className="ko-keep mt-2 text-base leading-7 text-ink">{item.body}</p>
               </div>
@@ -80,7 +86,7 @@ export function FeatureSections({ features }: { features: FeatureSection[] }) {
   );
 }
 
-export function ArchitectureDiagram({ layers, gateway, sources }: { layers: string[]; gateway: string; sources: string[] }) {
+export function ArchitectureDiagram({ layers, gateway, sources, flowLabel }: { layers: string[]; gateway: string; sources: string[]; flowLabel: string }) {
   return (
     <div className="grid gap-3 border border-line bg-surface p-5 sm:p-6">
       <div className="grid gap-2">
@@ -90,7 +96,7 @@ export function ArchitectureDiagram({ layers, gateway, sources }: { layers: stri
           </div>
         ))}
       </div>
-      <div className="text-center text-sm font-extrabold text-muted">↓ 데이터 흐름 ↓</div>
+      <div className="text-center text-sm font-extrabold text-muted">{flowLabel}</div>
       <div className="bg-ink px-4 py-3 text-center text-base font-black text-paper">{gateway}</div>
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
         {sources.map((source) => (
@@ -103,7 +109,7 @@ export function ArchitectureDiagram({ layers, gateway, sources }: { layers: stri
   );
 }
 
-export function CatalogList({ items }: { items: CatalogItem[] }) {
+export function CatalogList({ items, triggerLabel }: { items: CatalogItem[]; triggerLabel: string }) {
   return (
     <table className="oy-table">
       <tbody>
@@ -112,7 +118,11 @@ export function CatalogList({ items }: { items: CatalogItem[] }) {
             <th scope="row">{item.name}</th>
             <td>
               <p className="ko-keep text-base leading-7 text-ink">{item.body}</p>
-              {item.trigger ? <p className="ko-keep mt-1 text-sm font-bold text-muted">호출: {item.trigger}</p> : null}
+              {item.trigger ? (
+                <p className="ko-keep mt-1 text-sm font-bold text-muted">
+                  {triggerLabel} {item.trigger}
+                </p>
+              ) : null}
             </td>
           </tr>
         ))}
@@ -136,18 +146,21 @@ export function VisionSteps({ steps }: { steps: VisionStep[] }) {
 }
 
 /** 레이어별 구성 요소까지 보여 주는 상세 시스템 구조도 + 처리 흐름 + 원칙 */
-export function SystemDiagram({ system }: { system: SystemArchitecture }) {
+export function SystemDiagram({ system, ui }: { system: SystemArchitecture; ui: UIStrings }) {
   return (
     <div className="grid gap-8">
       <p className="ko-keep max-w-4xl text-base leading-8 text-ink">{system.intro}</p>
 
       <div className="grid gap-0 border border-line">
         {system.layers.map((layer, index) => (
-          <div key={layer.name} className={`grid gap-3 p-5 lg:grid-cols-[15rem_1fr] lg:gap-6 ${index < system.layers.length - 1 ? "border-b border-line" : ""} ${index === system.layers.length - 1 ? "tone-soft" : index % 2 === 1 ? "bg-surface" : "bg-paper"}`}>
+          <div
+            key={layer.name}
+            className={`grid gap-3 p-5 lg:grid-cols-[15rem_1fr] lg:gap-6 ${index < system.layers.length - 1 ? "border-b border-line" : ""} ${index === system.layers.length - 1 ? "tone-soft" : index % 2 === 1 ? "bg-surface" : "bg-paper"}`}
+          >
             <div>
               <h3 className="ko-keep text-lg font-black text-ink">{layer.name}</h3>
               <p className="ko-keep mt-1 text-sm font-semibold leading-6 text-muted">{layer.role}</p>
-              {index < system.layers.length - 1 ? <p className="mt-2 hidden text-xs font-black text-muted lg:block">↓ 다음 층으로</p> : null}
+              {index < system.layers.length - 1 ? <p className="mt-2 hidden text-xs font-black text-muted lg:block">{ui.project.nextLayer}</p> : null}
             </div>
             <ul className="grid gap-2 sm:grid-cols-2">
               {layer.items.map((item) => (
@@ -162,7 +175,7 @@ export function SystemDiagram({ system }: { system: SystemArchitecture }) {
       </div>
 
       <div className="grid gap-4">
-        <h3 className="ko-keep text-xl font-extrabold text-ink">질문 한 번이 처리되는 순서</h3>
+        <h3 className="ko-keep text-xl font-extrabold text-ink">{ui.project.flowTitle}</h3>
         <ol className="oy-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           {system.flow.map((step, index) => (
             <li key={step.title} className="bg-paper p-4">
@@ -175,7 +188,7 @@ export function SystemDiagram({ system }: { system: SystemArchitecture }) {
       </div>
 
       <div className="grid gap-4">
-        <h3 className="ko-keep text-xl font-extrabold text-ink">구조를 지키는 원칙</h3>
+        <h3 className="ko-keep text-xl font-extrabold text-ink">{ui.project.principlesTitle}</h3>
         <div className="grid gap-3 md:grid-cols-2">
           {system.principles.map((principle) => (
             <div key={principle.title} className="border border-line bg-paper p-5">

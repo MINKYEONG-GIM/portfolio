@@ -2,16 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import type { Project } from "@/data/projects";
+import { groupLabel, statusOf } from "@/data/content";
+import type { UIStrings } from "@/data/i18n";
 
 const PILL_TONES = ["pill-red", "pill-blue", "pill-purple"];
-
-export function statusOf(project: Project) {
-  return project.status ?? (project.period.includes("진행 중") ? "진행 중" : "완료");
-}
-
-export function groupLabel(project: Project) {
-  return project.group.replace(/^[①-⑩] /, "");
-}
 
 /** 썸네일 자리. 이미지가 없으면 파트 색 바탕에 번호를 크게 씁니다. */
 export function Thumb({ project, index, className = "" }: { project: Project; index: number; className?: string }) {
@@ -39,9 +33,9 @@ export function Thumb({ project, index, className = "" }: { project: Project; in
  * 가로 행: 썸네일 | 중분류 · 제목 · 설명 · 태그 | 핵심 수치 · 기간 · 상태.
  * 파트에 프로젝트가 하나뿐이어도 폭이 같아 어색하지 않습니다.
  */
-export function ProjectRow({ project, index }: { project: Project; index: number }) {
+export function ProjectRow({ project, index, ui }: { project: Project; index: number; ui: UIStrings }) {
   const lead = project.metrics[0];
-  const status = statusOf(project);
+  const status = statusOf(project, ui.status);
   return (
     <Link
       href={`/projects/${project.slug}`}
@@ -71,45 +65,11 @@ export function ProjectRow({ project, index }: { project: Project; index: number
               <p className="ko-keep mt-1 text-sm font-bold text-ink">{lead.label}</p>
             </>
           ) : (
-            <span className={`pill ${status === "준비 중" ? "pill-gray" : "pill-green"}`}>{status}</span>
+            <span className={`pill ${status === ui.status.planned ? "pill-gray" : "pill-green"}`}>{status}</span>
           )}
           {project.period !== status ? <p className="mt-1 text-xs font-bold text-muted">{project.period}</p> : null}
         </div>
         <ChevronRight className="h-5 w-5 shrink-0 text-muted group-hover:text-ink" />
-      </div>
-    </Link>
-  );
-}
-
-/** 대표 프로젝트: 이미지 왼쪽, 설명·수치 오른쪽의 큰 카드 */
-export function FeaturedProject({ project, index }: { project: Project; index: number }) {
-  return (
-    <Link href={`/projects/${project.slug}`} className={`part-${project.part} group grid border-2 border-ink bg-paper transition hover:bg-surface lg:grid-cols-[1.1fr_1fr]`}>
-      <Thumb project={project} index={index} className="aspect-[16/10] w-full border-0 border-b-2 border-ink lg:border-b-0 lg:border-r-2" />
-      <div className="flex flex-col justify-between gap-6 p-6 sm:p-8">
-        <div>
-          <p className="flex items-center gap-2 text-xs font-black">
-            <span className="pill pill-green">대표 프로젝트</span>
-            <span className="tone-text">{groupLabel(project)}</span>
-          </p>
-          <h3 className="ko-keep mt-3 text-2xl font-black leading-tight text-ink group-hover:underline sm:text-3xl">{project.title}</h3>
-          <p className="ko-keep mt-3 text-base leading-7 text-ink">{project.subtitle}</p>
-        </div>
-        <div className="grid grid-cols-2 gap-3">
-          {project.metrics.slice(0, 2).map((metric) => (
-            <div key={metric.label} className="border border-line bg-paper p-4">
-              <p className="text-2xl font-black leading-none text-[color:var(--price)] sm:text-3xl">{metric.value}</p>
-              <p className="ko-keep mt-2 text-sm font-bold text-ink">{metric.label}</p>
-              {metric.note ? <p className="text-xs font-semibold text-muted">{metric.note}</p> : null}
-            </div>
-          ))}
-        </div>
-        <p className="flex items-center justify-between text-sm font-bold text-muted">
-          <span>{project.period}</span>
-          <span className="inline-flex items-center gap-1 text-ink">
-            자세히 보기 <ChevronRight className="h-4 w-4" />
-          </span>
-        </p>
       </div>
     </Link>
   );
