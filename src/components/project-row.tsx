@@ -10,7 +10,7 @@ const PILL_TONES = ["pill-red", "pill-blue", "pill-purple"];
 /** 썸네일 자리. 이미지가 없으면 파트 색 바탕에 번호를 크게 씁니다. */
 export function Thumb({ project, index, className = "" }: { project: Project; index: number; className?: string }) {
   return (
-    <div className={`relative overflow-hidden border border-line bg-surface ${className}`}>
+    <div className={`relative overflow-hidden rounded-xl border border-line bg-surface ${className}`}>
       {project.image ? (
         <Image
           src={project.image.src}
@@ -39,7 +39,8 @@ export function ProjectRow({ project, index, ui }: { project: Project; index: nu
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className={`part-${project.part} group grid grid-cols-[6rem_1fr] gap-x-4 gap-y-3 border-b border-line py-5 transition hover:bg-surface sm:grid-cols-[9rem_1fr_auto] sm:items-center sm:gap-6 sm:px-3`}
+      data-project-slug={project.slug}
+      className={`part-${project.part} group grid grid-cols-[6rem_1fr] gap-x-4 gap-y-3 rounded-2xl border border-line bg-paper p-4 shadow-soft transition hover:-translate-y-0.5 hover:border-[color:var(--tone)] sm:grid-cols-[9rem_1fr_auto] sm:items-center sm:gap-6 sm:p-5`}
     >
       <Thumb project={project} index={index} className="aspect-square w-full" />
       <div className="min-w-0">
