@@ -1,93 +1,61 @@
-import Link from "next/link";
-import { PartHero } from "@/components/part-hero";
 import { PartIcon } from "@/components/part-icon";
-import { ProjectRow } from "@/components/project-row";
-import { byPart, getContent } from "@/data/content";
+import { StoreHeading, StorePartCard, StoreProjectCard } from "@/components/store-cards";
+import { byPart, getContent, visibleProjects } from "@/data/content";
 import { t } from "@/data/i18n";
+import { isAdmin } from "@/lib/hub-auth";
 import { getLang } from "@/lib/lang";
 
-/** 언어 쿠키를 읽으므로 요청마다 그립니다. */
+/** 언어·관리자 쿠키를 읽으므로 요청마다 그립니다. */
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const lang = await getLang();
+  const [lang, admin] = await Promise.all([getLang(), isAdmin()]);
   const ui = t(lang);
-  const { parts, profile, projects } = getContent(lang);
+  const { parts, profile, projects: allProjects } = getContent(lang);
+  const projects = visibleProjects(allProjects, admin);
   const numberOf = new Map(projects.map((project, index) => [project.slug, index + 1]));
-  const harnessJobs = projects.find((project) => project.vision)?.vision?.jobs;
 
   return (
-    <div className="grid gap-12">
-      {/* 1. 한 줄 소개 */}
-      <section className="bg-[color:var(--accent)] px-6 py-8 text-ink sm:px-10 sm:py-10">
-        <p className="text-xs font-black tracking-[0.22em]">{ui.home.eyebrow}</p>
-        <h1 className="ko-keep mt-2 text-3xl font-black leading-tight sm:text-4xl">
-          {profile.name} · {profile.tagline}
-        </h1>
-        <p className="ko-keep mt-3 max-w-3xl text-base font-semibold leading-7">{profile.intro}</p>
-      </section>
-
-      {/* 2. 주제 한 줄 (어디로 갈지) */}
-      <section className="grid gap-3">
-        <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <h2 className="text-2xl font-black text-ink">{ui.home.ask}</h2>
-          <p className="text-sm font-bold text-muted">{ui.home.counts(projects.length, parts.length)}</p>
-        </div>
-        <div className="oy-grid grid-cols-1 sm:grid-cols-3">
-          {parts.map((part) => (
-            <a key={part.no} href={`#part-${part.no}`} className={`part-${part.no} flex flex-col gap-2 bg-paper p-4 transition hover:bg-surface`}>
-              <span className="flex items-center justify-between">
-                <span className="tone-bg flex h-9 w-9 items-center justify-center rounded-full text-white">
-                  <PartIcon no={part.no} className="h-4 w-4" />
-                </span>
-                <span className="tone-text text-2xl font-black leading-none">{byPart(projects, part.no).length}</span>
-              </span>
-              <span className="ko-keep text-base font-black leading-6 text-ink">{part.short}</span>
-              <span className="ko-keep text-xs font-semibold leading-5 text-muted">{part.question}</span>
-            </a>
-          ))}
+    <div className="grid gap-16">
+      {/* 1. 스토어식 머리: 왼쪽 큰 제목, 오른쪽 한 줄 소개 */}
+      <section className="grid gap-8 rounded-3xl bg-surface px-6 py-10 sm:px-10 sm:py-14 lg:grid-cols-[1fr_auto] lg:items-end">
+        <h1 className="text-6xl font-black tracking-tight text-ink sm:text-7xl">{ui.home.title}</h1>
+        <div className="grid gap-3 lg:max-w-md lg:text-right">
+          <p className="ko-keep text-2xl font-black leading-snug text-ink">{profile.tagline}</p>
+          <p className="text-base font-extrabold text-ink">{profile.name}</p>
+          <p className="ko-keep text-sm font-semibold leading-6 text-muted">{profile.intro}</p>
         </div>
       </section>
 
-      {/* 3. 주제별: 소개 블록(큰 비주얼 + 무엇인지) → 프로젝트 행 */}
+      {/* 2. 파트 아이콘 행 (제품 이미지 대신 아이콘) */}
+      <section className="no-scrollbar flex gap-4 overflow-x-auto px-2 sm:justify-center sm:gap-12">
+        {parts.map((part) => (
+          <a key={part.no} href={`#part-${part.no}`} className={`part-${part.no} group flex w-40 shrink-0 flex-col items-center gap-3 text-center`}>
+            <span className="tone-soft flex h-24 w-24 items-center justify-center rounded-full transition group-hover:scale-105">
+              <PartIcon no={part.no} className="tone-text h-11 w-11" />
+            </span>
+            <span className="ko-keep text-base font-extrabold text-ink">{part.short}</span>
+            <span className="text-xs font-bold text-muted">{ui.home.projectCount(byPart(projects, part.no).length)}</span>
+          </a>
+        ))}
+      </section>
+
+
+      {/* 3. 파트마다: 애플식 제목 + 가로 스냅 카드 (첫 장은 파트 소개, 이후 프로젝트 한 장씩) */}
       {parts.map((part) => {
         const list = byPart(projects, part.no);
         return (
-          <section key={part.no} id={`part-${part.no}`} className={`part-${part.no} grid gap-5 scroll-mt-28`}>
-            <PartHero part={part} projects={list} lang={lang} ui={ui} harnessJobs={harnessJobs} />
-            <div className="border-t border-line">
+          <section key={part.no} id={`part-${part.no}`} className={`part-${part.no} grid gap-5 scroll-mt-32`}>
+            <StoreHeading part={part} hint={ui.home.swipeHint} />
+            <div id={`part-${part.no}-list`} className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6">
+              <StorePartCard part={part} />
               {list.map((project) => (
-                <ProjectRow key={project.slug} project={project} index={numberOf.get(project.slug) ?? 0} ui={ui} />
+                <StoreProjectCard key={project.slug} project={project} index={numberOf.get(project.slug) ?? 0} />
               ))}
             </div>
           </section>
         );
       })}
-
-      {/* 4. 타임라인 */}
-      <section id="timeline" className="grid gap-5 scroll-mt-28">
-        <div className="oy-band flex items-baseline gap-3">
-          <h2 className="text-ink">{ui.home.timeline}</h2>
-          <span className="text-base font-bold text-muted">{ui.home.timelineNote}</span>
-        </div>
-        <table className="oy-table">
-          <tbody>
-            {[...projects]
-              .sort((a, b) => a.period.localeCompare(b.period))
-              .map((project) => (
-                <tr key={project.slug} className={`part-${project.part}`}>
-                  <th scope="row">{project.period}</th>
-                  <td>
-                    <Link href={`/projects/${project.slug}`} className="ko-keep text-base font-extrabold text-ink hover:underline">
-                      <span className="tone-text mr-2 text-xs font-black">{parts[project.part - 1].short}</span>
-                      {project.title}
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      </section>
     </div>
   );
 }

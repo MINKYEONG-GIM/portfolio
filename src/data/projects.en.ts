@@ -19,7 +19,7 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
     question: "What NoA is and how it was built",
     tagline: "Data foundation → Knowledge search → Agent platform → Enterprise integration → Next step",
     summary:
-      "NoA standardizes the DW, M365, HR and the knowledge graph as MCP servers connected to Claude, and turns power users' habits into skills distributed to everyone. Employees ask in plain language, build agents for their own work, publish them, and submit results every month. As of September 2026: 116 agents and 8,180 hours saved per month. The six projects below are the pieces of NoA, from data foundation to enterprise integration.",
+      "NoA standardizes the DW, M365, HR and the knowledge graph as MCP servers connected to Claude, and turns power users' habits into skills distributed to everyone. Employees ask in plain language, build agents for their own work, publish them, and submit results every month. As of September 2026: 116 agents and 8,180 hours saved per month. The projects below are the pieces of NoA, from data foundation to enterprise integration.",
     visual: {
       type: "image",
       src: "/projects/noa-bi.png",

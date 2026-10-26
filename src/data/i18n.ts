@@ -4,9 +4,12 @@ import type { Lang } from "@/lib/lang";
 const UI = {
   ko: {
     siteTitle: "프로젝트 리스트",
-    nav: { home: "홈", timeline: "타임라인", summary: (n: number) => `서비스기획 · 프로젝트 ${n}개` },
+    nav: { home: "홈", timeline: "타임라인", contents: "목차", summary: (n: number) => `서비스기획 · 프로젝트 ${n}개` },
     home: {
       eyebrow: "SERVICE PLANNING PORTFOLIO",
+      title: "프로젝트",
+      viewTimeline: "타임라인 보기",
+      swipeHint: "옆으로 넘겨 보세요",
       ask: "어떤 걸 보고 싶으세요?",
       counts: (n: number, m: number) => `프로젝트 ${n}개 · 주제 ${m}개`,
       projectCount: (n: number) => `프로젝트 ${n}개`,
@@ -58,6 +61,17 @@ const UI = {
       next: "다음 프로젝트"
     },
     footer: { note: "각 프로젝트의 수치는 당시 기준입니다." },
+    admin: {
+      login: "관리자로 로그인하기",
+      title: "관리자 로그인",
+      hint: "비밀번호가 맞으면 준비 중인 항목까지 보이는 관리자 모드로 들어갑니다. 일반 방문은 로그인 없이 그대로 볼 수 있습니다.",
+      mode: "관리자 모드",
+      modeHint: "준비 중 항목 표시 중",
+      hub: "허브",
+      logout: "로그아웃",
+      back: "돌아가기",
+      draftOnlyAdmin: "이 항목은 관리자에게만 보입니다."
+    },
     hub: {
       password: "비밀번호",
       enter: "들어가기",
@@ -73,9 +87,12 @@ const UI = {
   },
   en: {
     siteTitle: "Project List",
-    nav: { home: "Home", timeline: "Timeline", summary: (n: number) => `Service Planning · ${n} projects` },
+    nav: { home: "Home", timeline: "Timeline", contents: "Contents", summary: (n: number) => `Service Planning · ${n} projects` },
     home: {
       eyebrow: "SERVICE PLANNING PORTFOLIO",
+      title: "Projects",
+      viewTimeline: "View timeline",
+      swipeHint: "Swipe to see more",
       ask: "What would you like to see?",
       counts: (n: number, m: number) => `${n} projects · ${m} topics`,
       projectCount: (n: number) => `${n} projects`,
@@ -127,6 +144,17 @@ const UI = {
       next: "Next project"
     },
     footer: { note: "Figures are as of each project's period." },
+    admin: {
+      login: "Admin login",
+      title: "Admin login",
+      hint: "With the right password you enter admin mode, which also shows planned items. Regular visitors can browse without logging in.",
+      mode: "Admin mode",
+      modeHint: "showing planned items",
+      hub: "Hub",
+      logout: "Log out",
+      back: "Back",
+      draftOnlyAdmin: "This item is visible to admins only."
+    },
     hub: {
       password: "Password",
       enter: "Enter",

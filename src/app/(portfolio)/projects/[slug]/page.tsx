@@ -5,7 +5,8 @@ import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
 import { ArchitectureDiagram, Block, CatalogList, FeatureSections, InsightList, MetricGrid, SectionTitle, StepFlow, SystemDiagram, VisionSteps } from "@/components/project-sections";
 import { HarnessDiagram } from "@/components/harness-diagram";
-import { getContent, neighborsOf, statusOf } from "@/data/content";
+import { getContent, neighborsOf, statusOf, visibleProjects } from "@/data/content";
+import { isAdmin } from "@/lib/hub-auth";
 import { t } from "@/data/i18n";
 import { getLang } from "@/lib/lang";
 
@@ -24,9 +25,10 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 
 export default async function ProjectPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const lang = await getLang();
+  const [lang, admin] = await Promise.all([getLang(), isAdmin()]);
   const ui = t(lang);
-  const { parts, projects } = getContent(lang);
+  const { parts, projects: allProjects } = getContent(lang);
+  const projects = visibleProjects(allProjects, admin);
   const project = projects.find((item) => item.slug === slug);
   if (!project) notFound();
   const part = parts[project.part - 1];
@@ -107,7 +109,11 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
         </div>
       </header>
 
-      {project.draft ? <p className="ko-keep border border-dashed border-ink bg-surface px-5 py-4 text-base font-bold leading-7 text-ink">{P.draftNotice}</p> : null}
+      {project.draft ? (
+        <p className="ko-keep border border-dashed border-ink bg-surface px-5 py-4 text-base font-bold leading-7 text-ink">
+          {ui.admin.draftOnlyAdmin} {P.draftNotice}
+        </p>
+      ) : null}
 
       <Block>
         <SectionTitle id="purpose" eyebrow="PURPOSE" title={P.titles.purpose} />
