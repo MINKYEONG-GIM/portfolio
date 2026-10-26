@@ -14,7 +14,7 @@ export const PROFILE_EN = {
 
 export const PARTS_EN: Record<number, Partial<Part>> = {
   1: {
-    title: "NoA: the company-wide AI agent platform that connects internal data and systems to Claude, so every employee can build and use agents for their own work",
+    title: "MCP-based Enterprise AI Agent Platform",
     short: "NoA Platform",
     question: "What NoA is and how it was built",
     tagline: "Data foundation → Knowledge search → Agent platform → Enterprise integration → Next step",

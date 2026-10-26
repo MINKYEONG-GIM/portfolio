@@ -70,7 +70,7 @@ export const PARTS: Part[] = [
   {
     no: 1,
     code: "Part 01",
-    title: "노아: 사내 데이터와 업무 시스템을 Claude에 연결해, 전 직원이 자기 업무 Agent를 만들고 쓰는 전사 AI 에이전트 플랫폼",
+    title: "MCP 기반 사내 AI 에이전트 통합 플랫폼",
     short: "노아 플랫폼",
     question: "노아가 무엇이고 어떻게 만들어졌는지",
     tagline: "데이터 기반 → 지식 검색 → 에이전트 플랫폼 → 전사 통합 → 다음 단계",
