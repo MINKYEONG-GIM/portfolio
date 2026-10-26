@@ -5,8 +5,8 @@ import { PROFILE } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: {
-    default: `${PROFILE.name} Portfolio`,
-    template: `%s · ${PROFILE.name} Portfolio`
+    default: "프로젝트 리스트",
+    template: "%s · 프로젝트 리스트"
   },
   description: PROFILE.tagline
 };
