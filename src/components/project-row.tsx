@@ -9,14 +9,15 @@ const PILL_TONES = ["pill-red", "pill-blue", "pill-purple"];
 
 /** 썸네일 자리. 이미지가 없으면 파트 색 바탕에 번호를 크게 씁니다. */
 export function Thumb({ project, index, className = "" }: { project: Project; index: number; className?: string }) {
+  const picture = project.thumb ?? project.image;
   return (
     <div className={`relative overflow-hidden rounded-xl border border-line bg-surface ${className}`}>
-      {project.image ? (
+      {picture ? (
         <Image
-          src={project.image.src}
-          alt={project.image.alt}
-          width={project.image.width}
-          height={project.image.height}
+          src={picture.src}
+          alt={picture.alt}
+          width={picture.width}
+          height={picture.height}
           sizes="(min-width: 1024px) 320px, 40vw"
           className="h-full w-full object-cover"
         />

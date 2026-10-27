@@ -83,37 +83,63 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "pim-data-integration": {
     group: "Data hub",
     title: "PIM Data Integration System",
-    subtitle: "Reframing why business automation failed, from the field, the systems and the environment",
+    subtitle: "A product-information hub that manages every product attribute in one place and lets AI generate channel-ready listings published straight to online channels",
     period: "2025.09 – 2026.03",
-    purpose: "Reframed an RPA automation request as a data-structure project and systematized online MD operations.",
+    purpose:
+      "Upload product information once into PIM: product name, price, materials, model shots, flat-lay shots, thumbnails. AI then adapts it to each online channel's listing rules (naming conventions, promotional copy, categories, image specs) and publishes through the OMS. The goal is to end re-entering the same product data channel by channel.",
     metrics: [
       { value: "30% → 70%", label: "Structure that enables staffing efficiency" },
-      { value: "10+", label: "Brands' data integrated" },
+      { value: "10+", label: "Brands' product data integrated" },
       { value: "SAP · BI · OMS", label: "Systems connected" }
     ],
     roles: [
-      "Mapped where data is created and how it flows across BI, SAP, local storage, Google Drive and email",
-      "Mapped product code, image, price, inventory and sales data fields",
-      "Designed the Snowflake-based storage structure and the OMS integration schema",
-      "Designed the generative-AI workflow for preprocessing, classification and enrichment"
+      "Defined what PIM manages: product code, name, material, color, size, price, inventory and images (model, flat-lay, thumbnail) as the single source of product truth",
+      "Mapped where data is created and how it flows across SAP, BI, local storage, Google Drive and email",
+      "Designed the Snowflake-based PIM storage structure and the OMS integration schema",
+      "Designed the generative-AI workflow: per-item keyword extraction, channel-specific names and promotional copy, image spec adaptation",
+      "Turned interviews with MD, photo and ops teams into requirements for listing procedures and per-channel rules"
     ],
     background:
-      "When customer, product and channel data are scattered, the job is to design a standard data structure and operating process and turn it into a service. The project began as a request to automate repetitive work, but the root of the problem was data structure.",
-    steps: ["Automation request", "Interviews with MD, photo and ops teams", "Mapping scattered data", "PIM / Snowflake schema design", "AI workflow / OMS integration"],
+      "Product information for 10+ brands lived in SAP, BI, local folders, drives and email, so every time a product went online an MD re-entered its name, price and images for each channel. The request was to automate this with RPA, but the root problem was that product information had no single source.",
+    features: [
+      {
+        eyebrow: "Core feature 01",
+        title: "Single source of product information",
+        summary: "Everything about a product lives in PIM. Entered once, the same values feed every channel.",
+        items: [
+          { title: "Core attributes", body: "Product code, name, material, color, size and other base attributes, standardized across brands that used to differ." },
+          { title: "Price and inventory", body: "List price, discount price and stock synced from SAP and BI so nothing is edited per channel." },
+          { title: "Image assets", body: "Model shots, flat-lay shots, thumbnails and detail images managed by purpose and spec. The photo team uploads once; channel-specific versions are derived." },
+          { title: "10+ brands unified", body: "Product data scattered across brand folders, sheets and email brought into one structure." }
+        ]
+      },
+      {
+        eyebrow: "Core feature 02",
+        title: "AI-powered channel listing",
+        summary: "Once product data is in, AI produces each channel's listing and publishes it through the OMS.",
+        items: [
+          { title: "Per-item keyword extraction", body: "Keywords for search and classification extracted from product data and images, usable inside PIM." },
+          { title: "Channel-specific listing copy", body: "Product names, promotional copy and categories generated to each platform's rules." },
+          { title: "Automatic image specs", body: "Images converted to each channel's thumbnail ratio, file size and background requirements." },
+          { title: "OMS-linked publishing", body: "Processed listings flow through the in-house OMS to each online channel, with no manual re-entry on channel screens." }
+        ]
+      }
+    ],
+    steps: ["Automation request", "Interviews with MD, photo and ops teams", "Mapping scattered product data", "PIM attributes & Snowflake schema", "AI processing → OMS → channel publishing"],
     insights: [
-      { title: "The target was judgment, not motion", body: "What needed automating was not the clicks but duplicated judgment and re-entry of data. A data hub must come before UI automation." },
-      { title: "Data standards are the precondition for AX", body: "Without data standards, AI and RPA increase maintenance cost. The core is data definitions and clear ownership boundaries between systems." },
-      { title: "PIM is a data product, not a store", body: "It is the central data product of an operating system that runs SAP → Snowflake → AI enrichment → OMS → channels." }
+      { title: "The target was re-entry, not clicks", body: "Typing the same product data into every channel was the problem. Building one source of product truth (PIM) comes before RPA that mimics clicks." },
+      { title: "Without product-data standards, AI can't publish either", body: "If naming rules, image types and price fields differ by brand, every AI transformation becomes an exception. PIM attribute standards and clear system boundaries are the precondition for automated listing." },
+      { title: "PIM is a data product, not a store", body: "It sits at the center of an operating system that runs SAP → Snowflake → PIM → AI processing → OMS → channels. Enter product data once and every channel uses the same values." }
     ],
     image: {
       src: "/projects/pim-pipeline.png",
       alt: "Pipeline design: SAP BI → Snowflake → PIM DB → PIM system → in-house OMS → online channels, with AI handling keyword extraction and channel-specific listing copy",
-      caption: "Generative-AI preprocessing and OMS integration pipeline design",
+      caption: "PIM pipeline: product data in → AI processing (keywords, channel listings) → OMS → online channels",
       width: 1667,
       height: 784
     },
     stack: ["Snowflake", "SAP", "OMS", "Generative AI"],
-    tags: ["Data hub", "PIM", "AI workflow"]
+    tags: ["PIM", "Product information", "AI channel listing"]
   },
   "daas-paas-operations": {
     group: "② Infrastructure",
@@ -168,6 +194,12 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       caption: "Finding strategy documents in plain language",
       width: 1871,
       height: 1245
+    },
+    thumb: {
+      src: "/projects/rag-search-thumb.png",
+      alt: "The assistant character searching the knowledge bank",
+      width: 800,
+      height: 800
     },
     stack: ["OCR", "Vector DB", "GPT API"],
     tags: ["RAG", "Vector search", "Knowledge management"]
