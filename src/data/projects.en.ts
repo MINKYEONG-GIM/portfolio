@@ -19,7 +19,7 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
     question: "What NoA is and how it was built",
     tagline: "Snowflake → Knowledge graph → MCP / Skills → Agent platform",
     summary:
-      "NoA standardizes the DW, M365, HR and the knowledge graph as MCP servers connected to Claude, and turns power users' habits into skills distributed to everyone. Employees ask in plain language, build agents for their own work, publish them, and submit results every month. As of September 2026: 116 agents and 8,180 hours saved per month. The projects below are the pieces of NoA, from data foundation to enterprise integration.",
+      "NoA standardizes the DW, M365, HR and the knowledge graph as MCP servers connected to Claude, and turns power users' habits into skills distributed to everyone. Employees ask in plain language, build agents for their own work, publish them, and submit results every month. As of September 2026: 116 agents and 8,180 hours saved per month. The projects below are the pieces of this platform, from infrastructure to enterprise integration.",
     visual: {
       type: "image",
       src: "/projects/noa-bi.png",
@@ -30,7 +30,7 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
     }
   },
   2: {
-    title: "Talent Management: growing builders through training, gathering them on the AI platform, and measuring them fairly with AI talent evaluation",
+    title: "Talent Management",
     short: "Talent Management",
     question: "How people were trained, gathered and evaluated",
     tagline: "① Training → ② AI Platform → ③ AI Talent Evaluation",
@@ -46,6 +46,22 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
     }
   },
   3: {
+    title: "Service Planning, Build & Operations",
+    short: "Service Build",
+    question: "Services I planned, built and operated end to end",
+    tagline: "Problem definition → Data structure design → Build → Operate & improve",
+    summary:
+      "Projects where I did not stop at requirements: I designed the data structure and service logic, built the service and ran it. PIM pulled scattered product data into one hub; the RAG search service turned image-only strategy decks into searchable knowledge.",
+    visual: {
+      type: "image",
+      src: "/projects/pim-pipeline.png",
+      alt: "Pipeline design: SAP BI → Snowflake → PIM DB → PIM system → in-house OMS → online channels, with generative AI preprocessing",
+      width: 1667,
+      height: 784,
+      caption: "PIM data integration: generative-AI preprocessing and OMS integration pipeline"
+    }
+  },
+  4: {
     title: "Customer & Market Insight",
     short: "Customer & Market",
     question: "How analysis changed sales",
@@ -65,7 +81,7 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
 
 export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "pim-data-integration": {
-    group: "① Data foundation",
+    group: "Data hub",
     title: "PIM Data Integration System",
     subtitle: "Reframing why business automation failed, from the field, the systems and the environment",
     period: "2025.09 – 2026.03",
@@ -100,7 +116,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     tags: ["Data hub", "PIM", "AI workflow"]
   },
   "daas-paas-operations": {
-    group: "① Data foundation",
+    group: "② Infrastructure",
     title: "DaaS · PaaS Service Operations",
     subtitle: "A self-service structure where non-developers build and deploy data apps themselves",
     period: "2026.03 – ongoing",
@@ -121,7 +137,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     tags: ["DaaS", "PaaS", "Self-service"]
   },
   "strategy-rag-search": {
-    group: "② Knowledge search",
+    group: "Knowledge search",
     title: "Internal Strategy-Document RAG Search",
     subtitle: "Not a search feature but the organization's decision memory",
     period: "2025.01 – 2025.07",
@@ -157,7 +173,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     tags: ["RAG", "Vector search", "Knowledge management"]
   },
   "noa-mcp-agent-platform": {
-    group: "③ Agent platform",
+    group: "① Agent platform",
     title: "NoA: MCP-based Enterprise AI Agent Platform",
     subtitle: "Internal data and business systems standardized as MCP servers and connected to Claude",
     period: "2026.06 – ongoing",
@@ -348,7 +364,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     tags: ["Personalization", "Registration & submission", "Next.js"]
   },
   "enterprise-agent-integration": {
-    group: "④ Enterprise integration",
+    group: "③ Enterprise integration",
     title: "Enterprise Agent Integration: From Per-Brand to One",
     subtitle: "Group agents built per brand into brand-level agents, then integrate them into one central harness for the whole company",
     period: "2026 – ongoing",
@@ -420,7 +436,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     tags: ["Enterprise integration", "Central harness", "Knowledge graph"]
   },
   "recsys-serving-pipeline": {
-    group: "⑤ Next step",
+    group: "④ Next step",
     title: "Personalized Recommendation Serving Pipeline",
     subtitle: "From rule-based recommendation to model-based real-time serving",
     period: "Planned",
@@ -502,6 +518,15 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         ]
       }
     ],
+    catalog: {
+      title: "Agent evaluation criteria",
+      items: [
+        { name: "1. Is the domain clear", body: "1-1. Is the work area and problem whose productivity it raises clearly defined" },
+        { name: "2. Did it deliver results", body: "2-1. How many work steps and hours did the agent save · 2-2. Did it deliver quantitative outcomes (sell-through, sell-through value, cost savings, etc.)" },
+        { name: "3. Can it spread", body: "3-1. Is it a tool others can adopt, not just the builder (within the team / to other teams)" },
+        { name: "4. Is there a next step", body: "4-1. Is the next stage of improvement concrete" }
+      ]
+    },
     insightsLabel: "Design principles",
     insights: [
       { title: "Measure outputs and people separately", body: "The agent score looks at outputs, the participation score at people. Merged, one agent would hide everything or frequent visitors would float to the top." },

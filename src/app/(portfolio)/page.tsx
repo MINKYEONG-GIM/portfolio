@@ -11,24 +11,18 @@ export const dynamic = "force-dynamic";
 export default async function HomePage() {
   const [lang, admin] = await Promise.all([getLang(), isAdmin()]);
   const ui = t(lang);
-  const { parts, profile, projects: allProjects } = getContent(lang);
+  const { parts, projects: allProjects } = getContent(lang);
   const projects = visibleProjects(allProjects, admin);
   const numberOf = new Map(projects.map((project, index) => [project.slug, index + 1]));
 
   return (
     <div className="grid gap-14">
-      {/* 1. 머리: 한 줄 소개 + 이름 (압축) */}
-      <section className="grid gap-6 rounded-3xl bg-surface px-6 py-8 sm:px-10 sm:py-10 lg:grid-cols-[1fr_auto] lg:items-center">
-        <div>
-          <p className="text-xs font-black tracking-[0.22em] text-muted">{ui.home.eyebrow}</p>
-          <h1 className="ko-keep mt-2 text-3xl font-black leading-tight text-ink sm:text-4xl">{profile.tagline}</h1>
-          <p className="mt-2 text-base font-extrabold text-ink">{profile.name}</p>
-          <p className="ko-keep mt-3 max-w-3xl text-sm font-semibold leading-6 text-muted">{profile.intro}</p>
-        </div>
-        {/* 파트 아이콘 (제품 아이콘 자리) */}
-        <div className="flex gap-6 lg:gap-8">
+      {/* 1. 머리: 라벨 + 파트 아이콘 (소개 문단 없음) */}
+      <section className="grid gap-6 rounded-3xl bg-surface px-6 py-8 sm:px-10 sm:py-10">
+        <p className="text-xs font-black tracking-[0.22em] text-muted">{ui.home.eyebrow}</p>
+        <div className="flex flex-wrap justify-center gap-6 sm:gap-10">
           {parts.map((part) => (
-            <a key={part.no} href={`#part-${part.no}`} className={`part-${part.no} group flex w-24 flex-col items-center gap-2 text-center`}>
+            <a key={part.no} href={`#part-${part.no}`} className={`part-${part.no} group flex w-32 flex-col items-center gap-2 text-center sm:w-36`}>
               <span className="tone-soft flex h-16 w-16 items-center justify-center rounded-full transition group-hover:scale-105">
                 <PartIcon no={part.no} className="tone-text h-7 w-7" />
               </span>

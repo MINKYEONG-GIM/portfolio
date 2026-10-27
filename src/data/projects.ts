@@ -17,7 +17,7 @@ export type ProjectImage = { src: string; alt: string; caption?: string; width: 
 
 export type Project = {
   slug: string;
-  part: 1 | 2 | 3;
+  part: 1 | 2 | 3 | 4;
   /** 중분류 (파트 안에서 묶는 이름) */
   group: string;
   title: string;
@@ -53,7 +53,7 @@ export type PartVisual =
   | { type: "harness"; caption: string };
 
 export type Part = {
-  no: 1 | 2 | 3;
+  no: 1 | 2 | 3 | 4;
   code: string;
   /** 파트가 무엇인지 설명하는 제목 */
   title: string;
@@ -75,7 +75,7 @@ export const PARTS: Part[] = [
     question: "노아가 무엇이고 어떻게 만들어졌는지",
     tagline: "Snowflake → 지식그래프 → MCP / 스킬 → 에이전트 플랫폼",
     summary:
-      "노아는 DW·M365·HR·지식그래프를 MCP 서버로 표준화해 Claude에 연결하고, 잘 쓰는 사람의 방법을 스킬로 만들어 전원에게 배포하는 플랫폼입니다. 직원은 평소 말로 묻고, 자기 업무 Agent를 만들어 올리고, 매달 성과를 제출합니다. 2026년 9월 기준 Agent 116개, 월 8,180시간 절감. 아래 프로젝트들이 데이터 기반부터 전사 통합까지 노아를 이루는 조각들입니다.",
+      "노아는 DW·M365·HR·지식그래프를 MCP 서버로 표준화해 Claude에 연결하고, 잘 쓰는 사람의 방법을 스킬로 만들어 전원에게 배포하는 플랫폼입니다. 직원은 평소 말로 묻고, 자기 업무 Agent를 만들어 올리고, 매달 성과를 제출합니다. 2026년 9월 기준 Agent 116개, 월 8,180시간 절감. 아래 프로젝트들이 인프라부터 전사 통합까지 이 플랫폼을 이루는 조각들입니다.",
     visual: {
       type: "image",
       src: "/projects/noa-bi.png",
@@ -88,7 +88,7 @@ export const PARTS: Part[] = [
   {
     no: 2,
     code: "Part 02",
-    title: "인재관리: 교육으로 제작자를 키우고, AI 플랫폼으로 모으고, AI 인재 평가로 공정하게 재는 체계",
+    title: "인재관리",
     short: "인재관리",
     question: "사람을 어떻게 키우고, 모으고, 평가했는지",
     tagline: "① 교육 → ② AI 플랫폼 → ③ AI 인재 평가",
@@ -106,6 +106,24 @@ export const PARTS: Part[] = [
   {
     no: 3,
     code: "Part 03",
+    title: "서비스 기획·구축·운영 프로젝트",
+    short: "서비스 기획·구축",
+    question: "기획부터 구축·운영까지 직접 맡은 서비스",
+    tagline: "문제 정의 → 데이터 구조 설계 → 구축 → 운영·개선",
+    summary:
+      "기획자가 요구사항만 정리하고 끝내지 않고, 데이터 구조와 서비스 로직을 직접 설계해 구축하고 운영까지 맡은 프로젝트입니다. 흩어진 상품 데이터를 하나의 허브로 묶은 PIM과, 이미지뿐이던 전략자료를 검색 가능한 지식으로 바꾼 RAG 검색 서비스입니다.",
+    visual: {
+      type: "image",
+      src: "/projects/pim-pipeline.png",
+      alt: "SAP BI → Snowflake → PIM DB → PIM 시스템 → 사내 OMS → 온라인 채널로 이어지는 생성형 AI 기반 데이터 파이프라인 설계도",
+      width: 1667,
+      height: 784,
+      caption: "PIM 데이터 통합: 생성형 AI 전처리와 OMS 연계 파이프라인"
+    }
+  },
+  {
+    no: 4,
+    code: "Part 04",
     title: "고객·시장 인사이트",
     short: "고객·시장",
     question: "분석으로 매출을 어떻게 바꿨는지",
@@ -132,125 +150,9 @@ export const PROFILE = {
 
 export const PROJECTS: Project[] = [
   {
-    slug: "pim-data-integration",
-    part: 1,
-    group: "① 데이터 기반",
-    title: "PIM 데이터 통합 시스템",
-    subtitle: "업무 자동화의 실패 원인을 현업·시스템·외부환경 관점에서 재정의",
-    period: "2025.09 ~ 2026.03",
-    purpose: "RPA 자동화 요구를 데이터 구조 개선 프로젝트로 재정의하고 온라인 MD 운영 구조를 시스템화",
-    metrics: [
-      { value: "30% → 70%", label: "인력 효율화 가능 구조" },
-      { value: "10여 개", label: "브랜드 데이터 통합" },
-      { value: "SAP · BI · OMS", label: "시스템 연계" }
-    ],
-    roles: [
-      "BI·SAP·로컬 저장소·구글 드라이브·이메일의 데이터 생성 위치와 흐름 정리",
-      "상품 코드·이미지·가격·재고·판매 데이터 항목 매핑",
-      "Snowflake 기반 데이터 저장 구조와 OMS 연계 스키마 설계",
-      "생성형 AI 기반 전처리·분류·가공 Workflow 설계"
-    ],
-    background:
-      "고객·상품·채널 데이터가 흩어져 있을 때 표준 데이터 구조와 운영 프로세스를 설계해 서비스화하는 프로젝트였습니다. 반복 업무 자동화 요구에서 출발했지만, 문제의 뿌리는 데이터 구조에 있었습니다.",
-    steps: ["반복업무 자동화 요구", "현업·포토팀·MD 업무 인터뷰", "분산 데이터 구조 파악", "PIM / Snowflake 스키마 설계", "AI Workflow / OMS 연계"],
-    insights: [
-      {
-        title: "자동화 대상은 동작이 아니라 판단이었다",
-        body: "자동화해야 할 것은 ‘업무 동작’이 아니라 ‘중복 판단과 데이터 재입력’이었습니다. UI 자동화보다 데이터 허브가 선행돼야 합니다."
-      },
-      {
-        title: "데이터 표준이 AX의 선행조건",
-        body: "데이터 표준이 없으면 AI·RPA 도입이 오히려 유지보수 비용을 키웁니다. 핵심은 데이터 정의와 시스템 간 책임 경계입니다."
-      },
-      {
-        title: "PIM은 저장소가 아니라 데이터 제품",
-        body: "SAP → Snowflake → AI 가공 → OMS → 채널로 이어지는 운영체계의 중심 데이터 제품(Data Product)입니다."
-      }
-    ],
-    image: {
-      src: "/projects/pim-pipeline.png",
-      alt: "생성형 AI 기반 데이터 전처리 및 수요예측·발주 자동화 파이프라인 설계도. SAP BI → Snowflake → PIM DB → PIM 시스템 → 사내 OMS → 개별 판매 온라인 채널, AI가 키워드 추출과 채널별 판매정보 생성을 담당",
-      caption: "생성형 AI 기반 데이터 전처리 및 OMS 연계 파이프라인 설계",
-      width: 1667,
-      height: 784
-    },
-    stack: ["Snowflake", "SAP", "OMS", "생성형 AI"],
-    tags: ["데이터 허브", "PIM", "AI Workflow"]
-  },
-  {
-    slug: "daas-paas-operations",
-    part: 1,
-    group: "① 데이터 기반",
-    title: "DaaS · PaaS 기반 서비스 운영체계",
-    subtitle: "비개발자가 직접 데이터 앱을 만들고 배포하는 셀프서비스 구조",
-    period: "2026.03 ~ 진행 중",
-    purpose: "비개발자 직군 현업이 직접 데이터 기반 앱을 만들고 배포할 수 있도록 데이터 접근·배포·운영 지원 구조를 구축",
-    metrics: [
-      { value: "약 30%↓", label: "DaaS 비용 절감" },
-      { value: "90%", label: "배포 성공률" },
-      { value: "43%↓", label: "사내 데이터 조회 관련 문의 감소" }
-    ],
-    roles: [
-      "Snowflake DaaS 활용 지원 및 Materialized View·Query 성능 개선",
-      "Next.js 앱의 서버리스 배포 운영과 실패 원인 분석",
-      "Claude Code Skill 요구사항·호출 조건·동작 방식 설계",
-      "반복 문의를 Skill 기능으로 전환"
-    ],
-    steps: ["DaaS 데이터 접근", "API / Node.js 서비스 연동", "PaaS 원클릭 배포", "Claude Skill 자연어 자동화", "문의 감소 · 셀프서비스"],
-    stack: ["Snowflake", "Next.js", "Serverless", "Claude Code Skill"],
-    tags: ["DaaS", "PaaS", "셀프서비스"]
-  },
-  {
-    slug: "strategy-rag-search",
-    part: 1,
-    group: "② 지식 검색",
-    title: "사내 전략자료 RAG 검색 서비스",
-    subtitle: "‘검색 기능’이 아니라 ‘조직의 의사결정 기억’을 만드는 서비스",
-    period: "2025.01 ~ 2025.07",
-    purpose: "판매 데이터·상품정보·내부 프로젝트 자료를 AI 검색·요약 서비스로 전환",
-    metrics: [
-      { value: "98%", label: "예산 절감", note: "자체 벡터 DB 구성, 배정 예산 대비" },
-      { value: "90%+", label: "검색 정확도" },
-      { value: "4.9 / 5", label: "만족도", note: "N=68" },
-      { value: "주 6.8회", label: "핵심부서 사용 횟수", note: "N=68" }
-    ],
-    roles: [
-      "문서·도표 이미지를 텍스트화하고 검색 가능한 데이터로 구조화",
-      "벡터 DB 구축 및 GPT API 기반 맥락 검색 기능 구현",
-      "사용자 테스트를 반복하며 전처리 방식과 검색 로직 개선",
-      "전 계열사 교육 프로그램 메인 화면 노출까지 확장"
-    ],
-    background:
-      "15년간 고품질 전략자료가 축적돼 있었지만, 이미지 중심 PPT와 파일 단위 저장으로 검색이 불가능했습니다. 지식자산은 있었지만 활용 구조가 없는 상태였습니다.",
-    steps: ["조직 지식 비구조화 문제", "OCR / 이미지 텍스트화", "Vector DB 구축", "GPT API 자연어 검색", "사용자 테스트 반복 개선"],
-    insights: [
-      {
-        title: "정확도만으로는 Adoption이 생기지 않는다",
-        body: "‘질문 한 번으로 관련 장표와 맥락을 빠르게 찾는다’는 사용 경험이 핵심이었습니다."
-      },
-      {
-        title: "외부 솔루션보다 내부 데이터에 맞춘 설계",
-        body: "내부 데이터 특성에 맞춰 OCR·Vector DB 구조를 직접 설계하는 것이 비용 대비 효율적이었습니다."
-      },
-      {
-        title: "행동을 대체했다는 증거",
-        body: "주 6.8회 사용과 4.9/5 만족도는 기술적 성공이 아니라, 파일 열기·사람에게 묻기라는 기존 행동을 실제로 대체했다는 증거입니다."
-      }
-    ],
-    image: {
-      src: "/projects/rag-search.png",
-      alt: "지식뱅크 검색 화면. ‘MD 직무의 승진지식 자료 보여줘’라고 묻자 코코몽 캐릭터가 지식 뱅크를 찾는 중",
-      caption: "자연어로 전략자료를 찾는 검색 화면",
-      width: 1871,
-      height: 1245
-    },
-    stack: ["OCR", "Vector DB", "GPT API"],
-    tags: ["RAG", "벡터 검색", "지식 관리"]
-  },
-  {
     slug: "noa-mcp-agent-platform",
     part: 1,
-    group: "③ 에이전트 플랫폼",
+    group: "① 에이전트 플랫폼",
     title: "노아: MCP 기반 사내 AI 에이전트 통합 플랫폼",
     subtitle: "사내 데이터와 업무 시스템을 MCP 서버로 표준화해 Claude에 연결한 엔터프라이즈 AI 에이전트 플랫폼",
     period: "2026.06 ~ 진행 중",
@@ -410,9 +312,32 @@ export const PROJECTS: Project[] = [
     tags: ["MCP", "지식그래프", "스킬·훅"]
   },
   {
+    slug: "daas-paas-operations",
+    part: 1,
+    group: "② 인프라",
+    title: "DaaS · PaaS 기반 서비스 운영체계",
+    subtitle: "비개발자가 직접 데이터 앱을 만들고 배포하는 셀프서비스 구조",
+    period: "2026.03 ~ 진행 중",
+    purpose: "비개발자 직군 현업이 직접 데이터 기반 앱을 만들고 배포할 수 있도록 데이터 접근·배포·운영 지원 구조를 구축",
+    metrics: [
+      { value: "약 30%↓", label: "DaaS 비용 절감" },
+      { value: "90%", label: "배포 성공률" },
+      { value: "43%↓", label: "사내 데이터 조회 관련 문의 감소" }
+    ],
+    roles: [
+      "Snowflake DaaS 활용 지원 및 Materialized View·Query 성능 개선",
+      "Next.js 앱의 서버리스 배포 운영과 실패 원인 분석",
+      "Claude Code Skill 요구사항·호출 조건·동작 방식 설계",
+      "반복 문의를 Skill 기능으로 전환"
+    ],
+    steps: ["DaaS 데이터 접근", "API / Node.js 서비스 연동", "PaaS 원클릭 배포", "Claude Skill 자연어 자동화", "문의 감소 · 셀프서비스"],
+    stack: ["Snowflake", "Next.js", "Serverless", "Claude Code Skill"],
+    tags: ["DaaS", "PaaS", "셀프서비스"]
+  },
+  {
     slug: "enterprise-agent-integration",
     part: 1,
-    group: "④ 전사 통합",
+    group: "③ 전사 통합",
     title: "전사 에이전트 통합: 브랜드별에서 하나로",
     subtitle: "브랜드마다 만든 Agent를 브랜드 단위 에이전트로 묶고, 최종적으로 전사 하나의 중심 하네스로 통합",
     period: "2026 ~ 진행 중",
@@ -504,7 +429,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "recsys-serving-pipeline",
     part: 1,
-    group: "⑤ 다음 단계",
+    group: "④ 다음 단계",
     title: "개인화 추천 서빙 파이프라인",
     subtitle: "규칙 기반 추천에서 모델 기반 실시간 서빙으로",
     period: "준비 중",
@@ -801,6 +726,15 @@ export const PROJECTS: Project[] = [
         ]
       }
     ],
+    catalog: {
+      title: "Agent 평가 기준",
+      items: [
+        { name: "1. 영역이 명확한가", body: "1-1. 생산성을 높이려는 업무 영역과 문제가 명확한가" },
+        { name: "2. 실제로 성과를 내었는가", body: "2-1. 에이전트를 통해 업무 단계, 시간이 얼마나 절감되었는가 · 2-2. 실제 정량성과(정판율, 정판액, 비용절감 등)를 내었는가" },
+        { name: "3. 확산가능한가", body: "3-1. 개인만 사용하는 것이 아닌 확산 가능한 도구인가 (팀 내 확산 / 타팀 확산)" },
+        { name: "4. 다음 스텝이 있는가", body: "4-1. 고도화할 다음 단계가 구체적인가" }
+      ]
+    },
     insightsLabel: "설계 원칙",
     insights: [
       {
@@ -820,8 +754,101 @@ export const PROJECTS: Project[] = [
     tags: ["인재풀", "평가 체계", "대시보드"]
   },
   {
-    slug: "naver-channel-strategy",
+    slug: "pim-data-integration",
     part: 3,
+    group: "데이터 허브",
+    title: "PIM 데이터 통합 시스템",
+    subtitle: "업무 자동화의 실패 원인을 현업·시스템·외부환경 관점에서 재정의",
+    period: "2025.09 ~ 2026.03",
+    purpose: "RPA 자동화 요구를 데이터 구조 개선 프로젝트로 재정의하고 온라인 MD 운영 구조를 시스템화",
+    metrics: [
+      { value: "30% → 70%", label: "인력 효율화 가능 구조" },
+      { value: "10여 개", label: "브랜드 데이터 통합" },
+      { value: "SAP · BI · OMS", label: "시스템 연계" }
+    ],
+    roles: [
+      "BI·SAP·로컬 저장소·구글 드라이브·이메일의 데이터 생성 위치와 흐름 정리",
+      "상품 코드·이미지·가격·재고·판매 데이터 항목 매핑",
+      "Snowflake 기반 데이터 저장 구조와 OMS 연계 스키마 설계",
+      "생성형 AI 기반 전처리·분류·가공 Workflow 설계"
+    ],
+    background:
+      "고객·상품·채널 데이터가 흩어져 있을 때 표준 데이터 구조와 운영 프로세스를 설계해 서비스화하는 프로젝트였습니다. 반복 업무 자동화 요구에서 출발했지만, 문제의 뿌리는 데이터 구조에 있었습니다.",
+    steps: ["반복업무 자동화 요구", "현업·포토팀·MD 업무 인터뷰", "분산 데이터 구조 파악", "PIM / Snowflake 스키마 설계", "AI Workflow / OMS 연계"],
+    insights: [
+      {
+        title: "자동화 대상은 동작이 아니라 판단이었다",
+        body: "자동화해야 할 것은 ‘업무 동작’이 아니라 ‘중복 판단과 데이터 재입력’이었습니다. UI 자동화보다 데이터 허브가 선행돼야 합니다."
+      },
+      {
+        title: "데이터 표준이 AX의 선행조건",
+        body: "데이터 표준이 없으면 AI·RPA 도입이 오히려 유지보수 비용을 키웁니다. 핵심은 데이터 정의와 시스템 간 책임 경계입니다."
+      },
+      {
+        title: "PIM은 저장소가 아니라 데이터 제품",
+        body: "SAP → Snowflake → AI 가공 → OMS → 채널로 이어지는 운영체계의 중심 데이터 제품(Data Product)입니다."
+      }
+    ],
+    image: {
+      src: "/projects/pim-pipeline.png",
+      alt: "생성형 AI 기반 데이터 전처리 및 수요예측·발주 자동화 파이프라인 설계도. SAP BI → Snowflake → PIM DB → PIM 시스템 → 사내 OMS → 개별 판매 온라인 채널, AI가 키워드 추출과 채널별 판매정보 생성을 담당",
+      caption: "생성형 AI 기반 데이터 전처리 및 OMS 연계 파이프라인 설계",
+      width: 1667,
+      height: 784
+    },
+    stack: ["Snowflake", "SAP", "OMS", "생성형 AI"],
+    tags: ["데이터 허브", "PIM", "AI Workflow"]
+  },
+  {
+    slug: "strategy-rag-search",
+    part: 3,
+    group: "지식 검색",
+    title: "사내 전략자료 RAG 검색 서비스",
+    subtitle: "‘검색 기능’이 아니라 ‘조직의 의사결정 기억’을 만드는 서비스",
+    period: "2025.01 ~ 2025.07",
+    purpose: "판매 데이터·상품정보·내부 프로젝트 자료를 AI 검색·요약 서비스로 전환",
+    metrics: [
+      { value: "98%", label: "예산 절감", note: "자체 벡터 DB 구성, 배정 예산 대비" },
+      { value: "90%+", label: "검색 정확도" },
+      { value: "4.9 / 5", label: "만족도", note: "N=68" },
+      { value: "주 6.8회", label: "핵심부서 사용 횟수", note: "N=68" }
+    ],
+    roles: [
+      "문서·도표 이미지를 텍스트화하고 검색 가능한 데이터로 구조화",
+      "벡터 DB 구축 및 GPT API 기반 맥락 검색 기능 구현",
+      "사용자 테스트를 반복하며 전처리 방식과 검색 로직 개선",
+      "전 계열사 교육 프로그램 메인 화면 노출까지 확장"
+    ],
+    background:
+      "15년간 고품질 전략자료가 축적돼 있었지만, 이미지 중심 PPT와 파일 단위 저장으로 검색이 불가능했습니다. 지식자산은 있었지만 활용 구조가 없는 상태였습니다.",
+    steps: ["조직 지식 비구조화 문제", "OCR / 이미지 텍스트화", "Vector DB 구축", "GPT API 자연어 검색", "사용자 테스트 반복 개선"],
+    insights: [
+      {
+        title: "정확도만으로는 Adoption이 생기지 않는다",
+        body: "‘질문 한 번으로 관련 장표와 맥락을 빠르게 찾는다’는 사용 경험이 핵심이었습니다."
+      },
+      {
+        title: "외부 솔루션보다 내부 데이터에 맞춘 설계",
+        body: "내부 데이터 특성에 맞춰 OCR·Vector DB 구조를 직접 설계하는 것이 비용 대비 효율적이었습니다."
+      },
+      {
+        title: "행동을 대체했다는 증거",
+        body: "주 6.8회 사용과 4.9/5 만족도는 기술적 성공이 아니라, 파일 열기·사람에게 묻기라는 기존 행동을 실제로 대체했다는 증거입니다."
+      }
+    ],
+    image: {
+      src: "/projects/rag-search.png",
+      alt: "지식뱅크 검색 화면. ‘MD 직무의 승진지식 자료 보여줘’라고 묻자 코코몽 캐릭터가 지식 뱅크를 찾는 중",
+      caption: "자연어로 전략자료를 찾는 검색 화면",
+      width: 1871,
+      height: 1245
+    },
+    stack: ["OCR", "Vector DB", "GPT API"],
+    tags: ["RAG", "벡터 검색", "지식 관리"]
+  },
+  {
+    slug: "naver-channel-strategy",
+    part: 4,
     group: "온라인 채널 전략",
     title: "네이버 채널 판매 전략 재정의",
     subtitle: "왜 ‘채널 확장’이 아니라 ‘고객 구조 재설계’였는가",
@@ -848,7 +875,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "newbalance-padding-rebranding",
-    part: 3,
+    part: 4,
     group: "상품 포트폴리오 전략",
     title: "뉴발란스 패딩 리브랜딩 전략",
     subtitle: "빅데이터 기반 핵심 상품 설계",
@@ -871,7 +898,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "china-brand-churn-analysis",
-    part: 3,
+    part: 4,
     group: "상품 포트폴리오 전략",
     title: "중국 고급 브랜드 고객 이탈 분석",
     subtitle: "매장 인터뷰·검색 트렌드·SNS·상권 조사를 결합해 상품 포트폴리오 전략을 제안",
@@ -913,7 +940,7 @@ export const PROJECTS: Project[] = [
 ];
 
 /** 파트 안의 중분류를 등장 순서대로 돌려줍니다. */
-export function groupsOfPart(part: 1 | 2 | 3): { group: string; projects: Project[] }[] {
+export function groupsOfPart(part: 1 | 2 | 3 | 4): { group: string; projects: Project[] }[] {
   const result: { group: string; projects: Project[] }[] = [];
   for (const project of projectsByPart(part)) {
     const found = result.find((item) => item.group === project.group);
@@ -923,7 +950,7 @@ export function groupsOfPart(part: 1 | 2 | 3): { group: string; projects: Projec
   return result;
 }
 
-export function projectsByPart(part: 1 | 2 | 3) {
+export function projectsByPart(part: 1 | 2 | 3 | 4) {
   return PROJECTS.filter((project) => project.part === part);
 }
 

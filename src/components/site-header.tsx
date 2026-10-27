@@ -55,9 +55,6 @@ export function SiteHeader({ lang, parts, projectCount, admin }: HeaderProps) {
           <Link href="/" className="shrink-0 border-r border-line px-4 py-3 text-base font-extrabold text-ink hover:bg-surface">
             {ui.nav.home}
           </Link>
-          <Link href="/#timeline" className="shrink-0 px-4 py-3 text-base font-extrabold text-ink hover:bg-surface">
-            {ui.nav.timeline}
-          </Link>
           {parts.map((part) => (
             <Link
               key={part.no}
