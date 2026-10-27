@@ -627,6 +627,19 @@ export const PROJECTS: Project[] = [
         body: "월별 제출 전에 그 달 설문을 먼저 받습니다. 만족도·절감 시간·필요한 지원이 매달 자연스럽게 쌓입니다."
       }
     ],
+    image: {
+      src: "/projects/fashion-ai-platform.png",
+      alt: "패션 AI 플랫폼 홈: 우수 Agent 배너, 카테고리 아이콘, 김민경님을 위한 추천, 오른쪽 사이드바의 이번 달 할 일",
+      caption: "패션 AI 플랫폼 홈: 우수 Agent 배너 · 카테고리 · 개인화 추천 · 이번 달 할 일 사이드바",
+      width: 1777,
+      height: 1341
+    },
+    thumb: {
+      src: "/projects/fashion-ai-platform-thumb.png",
+      alt: "패션 AI 플랫폼 홈 화면",
+      width: 1000,
+      height: 1000
+    },
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Prisma", "Snowflake DaaS", "Redis", "Vitest"],
     tags: ["개인화", "등록·제출", "Next.js"]
   },

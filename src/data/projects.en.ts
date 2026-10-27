@@ -392,6 +392,19 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       { title: "Minimal personal data", body: "Only name, employee number, department, email and job are read from the HR DB. Address, birth date and phone are never read. Every screen requires login and is limited to the fashion business group." },
       { title: "Tie data collection to the submission flow", body: "The month's survey comes before the monthly submission, so satisfaction, hours saved and needed support accumulate naturally every month." }
     ],
+    image: {
+      src: "/projects/fashion-ai-platform.png",
+      alt: "Fashion AI Platform home: best-agent banner, category icons, personalized recommendations and the monthly to-do sidebar",
+      caption: "Fashion AI Platform home: best-agent banner · categories · personalized recommendations · monthly to-do sidebar",
+      width: 1777,
+      height: 1341
+    },
+    thumb: {
+      src: "/projects/fashion-ai-platform-thumb.png",
+      alt: "Fashion AI Platform home screen",
+      width: 1000,
+      height: 1000
+    },
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Prisma", "Snowflake DaaS", "Redis", "Vitest"],
     tags: ["Personalization", "Registration & submission", "Next.js"]
   },

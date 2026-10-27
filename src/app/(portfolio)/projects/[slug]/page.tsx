@@ -46,7 +46,6 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
     { id: "role", label: P.tabs.role, show: true },
     { id: "process", label: P.tabs.process, show: Boolean(project.steps) },
     { id: "insight", label: project.insightsLabel ?? P.tabs.insight, show: Boolean(project.insights) },
-    { id: "visual", label: P.tabs.visual, show: Boolean(project.image) },
     { id: "vision", label: P.tabs.vision, show: Boolean(project.vision) }
   ].filter((tab) => tab.show);
 
@@ -99,6 +98,21 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
             ) : null}
           </tbody>
         </table>
+
+        {project.image ? (
+          <figure className="overflow-hidden rounded-2xl border border-line bg-surface">
+            <Image
+              src={project.image.src}
+              alt={project.image.alt}
+              width={project.image.width}
+              height={project.image.height}
+              sizes="(min-width: 1152px) 1120px, 100vw"
+              priority
+              className="h-auto w-full"
+            />
+            {project.image.caption ? <figcaption className="ko-keep border-t border-line px-5 py-3 text-sm font-bold text-ink">{project.image.caption}</figcaption> : null}
+          </figure>
+        ) : null}
 
         <div className="no-scrollbar flex overflow-x-auto border-b-2 border-ink">
           {tabs.map((tab) => (
@@ -187,22 +201,6 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
         </Block>
       ) : null}
 
-      {project.image ? (
-        <Block>
-          <SectionTitle id="visual" eyebrow="VISUAL" title={P.titles.visual} />
-          <figure className="border border-line bg-surface">
-            <Image
-              src={project.image.src}
-              alt={project.image.alt}
-              width={project.image.width}
-              height={project.image.height}
-              sizes="(min-width: 1152px) 1120px, 100vw"
-              className="h-auto w-full"
-            />
-            {project.image.caption ? <figcaption className="ko-keep border-t border-line px-5 py-3 text-sm font-bold text-ink">{project.image.caption}</figcaption> : null}
-          </figure>
-        </Block>
-      ) : null}
 
       {project.vision ? (
         <Block>
