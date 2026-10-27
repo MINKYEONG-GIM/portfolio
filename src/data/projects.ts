@@ -71,7 +71,7 @@ export const PARTS: Part[] = [
     no: 1,
     code: "Part 01",
     title: "MCP 기반 사내 AI 에이전트 통합 플랫폼",
-    short: "노아 플랫폼",
+    short: "MCP 기반 사내 AI 에이전트 통합 플랫폼",
     question: "노아가 무엇이고 어떻게 만들어졌는지",
     tagline: "Snowflake → 지식그래프 → MCP / 스킬 → 에이전트 플랫폼",
     summary:

@@ -15,7 +15,7 @@ export const PROFILE_EN = {
 export const PARTS_EN: Record<number, Partial<Part>> = {
   1: {
     title: "MCP-based Enterprise AI Agent Platform",
-    short: "NoA Platform",
+    short: "MCP-based Enterprise AI Agent Platform",
     question: "What NoA is and how it was built",
     tagline: "Snowflake → Knowledge graph → MCP / Skills → Agent platform",
     summary:

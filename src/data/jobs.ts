@@ -16,8 +16,8 @@ export const JOBS: JobPortfolio[] = [
     key: "service-planning",
     label: { ko: "서비스기획", en: "Service Planning" },
     description: {
-      ko: "노아 플랫폼 → 인원관리·AX 인재 양성 → 고객·시장 인사이트. 프로젝트 12개, 한국어·영어.",
-      en: "NoA Platform → People & Talent → Customer & Market Insight. 12 projects, Korean and English."
+      ko: "MCP 기반 사내 AI 에이전트 통합 플랫폼 → 인재관리 → 고객·시장 인사이트. 프로젝트 12개, 한국어·영어.",
+      en: "MCP-based Enterprise AI Agent Platform → Talent Management → Customer & Market Insight. 12 projects, Korean and English."
     },
     href: "/",
     status: "live"
