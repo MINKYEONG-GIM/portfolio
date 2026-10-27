@@ -352,8 +352,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Next.js full-stack implementation and operations: Snowflake DaaS integration, caching, access policy, admin dashboards"
     ],
     background:
-      "As agents built with NoA 2.0 multiplied, who built what and what it achieved was scattered.
-Register → recommend and spread → submit monthly results → evaluate → train runs as one flow, automatically accumulating data on the company's AX status.",
+      "As agents built with NoA 2.0 multiplied, who built what and what it achieved was scattered.\nRegister → recommend and spread → submit monthly results → evaluate → train runs as one flow, automatically accumulating data on the company's AX status.",
     features: [
       {
         eyebrow: "Core feature 01",
@@ -381,6 +380,30 @@ Register → recommend and spread → submit monthly results → evaluate → tr
           { title: "Monthly submission", body: "Requires completing that month's NoA survey first. New agents reuse board values; version-ups must restate changes, users, hours saved, removed tasks, KPIs and the guide. One row per agent × month, editable within the month." },
           { title: "Getting started in 5 steps", body: "Account request → NoA access → DaaS token → first agent → this month's survey and submission. Completion is judged automatically from data." },
           { title: "Hide, don't delete", body: "Deleted posts are hidden, not removed from the DB, so build history and evaluation records keep the talent-pool figures stable." }
+        ]
+      },
+      {
+        eyebrow: "Core feature 03",
+        title: "Requests and inquiries that accumulate automatically",
+        summary:
+          "When the data someone wants to see in the in-house AI agent is missing, or they get stuck using NoA, they request or ask right inside the platform. Everything lands in the admin screens, and recurring questions accumulate into the FAQ so the same question comes back less often.",
+        items: [
+          {
+            title: "Data requests",
+            body: "When data is missing from the in-house AI agent (NoA), people request what they need and why. Requests accumulate in the admin screen with a status (received, in review, applied) and become DW and knowledge-graph integration tasks."
+          },
+          {
+            title: "1:1 NoA usage inquiries",
+            body: "Questions about access, installation, skills or errors are filed by type and answered by admins. Each inquiry and answer stays on that person's journey (member 360)."
+          },
+          {
+            title: "FAQ that builds itself",
+            body: "When the same question recurs, the answer is promoted to an FAQ item shown on the home page and the Help menu. As inquiries accumulate the FAQ grows and repeat questions fall."
+          },
+          {
+            title: "Offline help sessions",
+            body: "People who can't be helped in writing sign up for an offline session at a set time and place; sign-ups are managed on the same screen."
+          }
         ]
       }
     ],
