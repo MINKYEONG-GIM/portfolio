@@ -341,12 +341,9 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     subtitle: "Where employees publish agents built with NoA, get personalized recommendations, and submit results every month",
     period: "2026 – in operation",
     purpose:
-      "Gathers every agent built in the company in one place, recommends differently to each person, and collects monthly results in one format so that evaluation, the talent pool and training all run on the same data.",
+      "Employees upload the tools they built with the in-house AI agent (NoA). Staff browse agents by job function and check their own AI capability level, while the CAIO office reviews each person's agent capability and the logic inside their agents.",
     metrics: [
-      { value: "7", label: "Personalization signals", note: "job, brand, behavior" },
-      { value: "4 parts", label: "Agent registration form" },
-      { value: "7 items", label: "Usage-guide prompt", note: "incl. logic, tacit rules, KPIs" },
-      { value: "5 steps", label: "Getting-started checklist" }
+      { value: "119 / month", label: "Agents uploaded (monthly average)" }
     ],
     roles: [
       "Service planning and information architecture: four menus by intent (Browse · Build · Learn · Get help) and a sidebar shared by every screen",
@@ -355,7 +352,8 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Next.js full-stack implementation and operations: Snowflake DaaS integration, caching, access policy, admin dashboards"
     ],
     background:
-      "As agents built with NoA 2.0 multiplied, who built what and what it achieved was scattered. We needed a platform where register → recommend and spread → submit monthly results → evaluate → train runs as one flow.",
+      "As agents built with NoA 2.0 multiplied, who built what and what it achieved was scattered.
+Register → recommend and spread → submit monthly results → evaluate → train runs as one flow, automatically accumulating data on the company's AX status.",
     features: [
       {
         eyebrow: "Core feature 01",

@@ -72,6 +72,21 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
           <p className="ko-keep mt-3 max-w-3xl text-lg font-semibold leading-8 text-ink">{project.subtitle}</p>
         </div>
 
+        {project.image ? (
+          <figure className="overflow-hidden rounded-2xl border border-line bg-surface">
+            <Image
+              src={project.image.src}
+              alt={project.image.alt}
+              width={project.image.width}
+              height={project.image.height}
+              sizes="(min-width: 1152px) 1120px, 100vw"
+              priority
+              className="h-auto w-full"
+            />
+            {project.image.caption ? <figcaption className="ko-keep border-t border-line px-5 py-3 text-sm font-bold text-ink">{project.image.caption}</figcaption> : null}
+          </figure>
+        ) : null}
+
         <table className="oy-table">
           <tbody>
             <tr>
@@ -98,21 +113,6 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
             ) : null}
           </tbody>
         </table>
-
-        {project.image ? (
-          <figure className="overflow-hidden rounded-2xl border border-line bg-surface">
-            <Image
-              src={project.image.src}
-              alt={project.image.alt}
-              width={project.image.width}
-              height={project.image.height}
-              sizes="(min-width: 1152px) 1120px, 100vw"
-              priority
-              className="h-auto w-full"
-            />
-            {project.image.caption ? <figcaption className="ko-keep border-t border-line px-5 py-3 text-sm font-bold text-ink">{project.image.caption}</figcaption> : null}
-          </figure>
-        ) : null}
 
         <div className="no-scrollbar flex overflow-x-auto border-b-2 border-ink">
           {tabs.map((tab) => (
@@ -144,7 +144,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
       {project.background ? (
         <Block>
           <SectionTitle id="background" eyebrow="BACKGROUND" title={P.titles.background} />
-          <p className="ko-keep max-w-4xl text-base leading-8 text-ink">{project.background}</p>
+          <p className="ko-keep max-w-4xl whitespace-pre-line text-base leading-8 text-ink">{project.background}</p>
         </Block>
       ) : null}
 
