@@ -126,11 +126,6 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       }
     ],
     steps: ["Automation request", "Interviews with MD, photo and ops teams", "Mapping scattered product data", "PIM attributes & Snowflake schema", "AI processing → OMS → channel publishing"],
-    insights: [
-      { title: "The target was re-entry, not clicks", body: "Typing the same product data into every channel was the problem. Building one source of product truth (PIM) comes before RPA that mimics clicks." },
-      { title: "Without product-data standards, AI can't publish either", body: "If naming rules, image types and price fields differ by brand, every AI transformation becomes an exception. PIM attribute standards and clear system boundaries are the precondition for automated listing." },
-      { title: "PIM is a data product, not a store", body: "It sits at the center of an operating system that runs SAP → Snowflake → PIM → AI processing → OMS → channels. Enter product data once and every channel uses the same values." }
-    ],
     image: {
       src: "/projects/pim-pipeline.png",
       alt: "Pipeline design: SAP BI → Snowflake → PIM DB → PIM system → in-house OMS → online channels, with AI handling keyword extraction and channel-specific listing copy",
@@ -215,12 +210,67 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     ],
     background:
       "Fifteen years of high-quality strategy documents existed, but image-heavy slides stored as files made them unsearchable. The knowledge asset was there; the structure to use it was not.",
+    system: {
+      intro:
+        "Internal PPT, Excel, PDF and Word originals are converted into JSON with text and source information, vectorized with the OpenAI Embeddings API and stored in a separate vector DB. When a user asks a question, the question is vectorized the same way, similar document chunks are retrieved, and only the retrieved results are passed to the GPT API, which answers with the source document and page. Composition: JSON files → Embeddings API → vector DB → search code → GPT API.",
+      layers: [
+        {
+          name: "① Internal source files",
+          role: "Fifteen years of strategy material. Many are image-heavy PPTs that cannot be searched as they are.",
+          items: [{ label: "PPT · Excel · PDF · Word" }, { label: "OCR / image-to-text", note: "text inside charts and images" }]
+        },
+        {
+          name: "② Document processing and JSON conversion",
+          role: "Documents are split into search units and tagged with their source as JSON.",
+          items: [{ label: "Text extraction" }, { label: "Document splitting", note: "chunks per page or slide" }, { label: "Source metadata", note: "file name · page · owning department · date" }]
+        },
+        {
+          name: "③ Building the search data",
+          role: "Text in the JSON is converted into vectors with the embeddings API and stored in a vector DB. Documents must use the same model as questions for similarity search to work.",
+          items: [{ label: "Embedding generation", note: "OpenAI Embeddings API" }, { label: "Vector DB storage", note: "self-hosted vector DB (98% below the allocated budget)" }]
+        },
+        {
+          name: "④ User question",
+          role: "Employees ask in everyday words, e.g. “find last year's F/W sale strategy deck”.",
+          items: [{ label: "Natural-language question" }, { label: "User and department", note: "used for permission filters" }]
+        },
+        {
+          name: "⑤ Question search",
+          role: "Question embedding → related-document search → top results. Hand-written search code owns this stage.",
+          items: [
+            { label: "Python or TypeScript", note: "search-flow code that takes the question, calls the search API and organizes results" },
+            { label: "Embedding model", note: "e.g. OpenAI text-embedding-3-small — converts the question into a numeric vector" },
+            { label: "Vector DB or vector search service", note: "e.g. PostgreSQL + pgvector, Chroma, OpenAI Vector Store — returns similar chunks with source and relevance score" },
+            { label: "Result filtering and ranking", note: "keep only highly relevant documents; restrict by department, document date and access permission" }
+          ]
+        },
+        {
+          name: "⑥ GPT API call",
+          role: "Only the retrieved document content is sent to the model, with answer instructions so it does not invent anything outside the documents.",
+          items: [{ label: "User question + retrieved document content + answer instructions" }]
+        },
+        {
+          name: "⑦ Final answer",
+          role: "The answer is shown with its source documents and pages so the user can jump to the original.",
+          items: [{ label: "Answer" }, { label: "Source documents and pages" }]
+        }
+      ],
+      flow: [
+        { title: "Question", body: "Ask in everyday words, e.g. “find last year's F/W sale strategy deck”." },
+        { title: "Question embedding", body: "The question is vectorized with the same embedding model used for the documents." },
+        { title: "Similar-document search", body: "The vector DB returns the chunks closest to the question, each with content, source and relevance score." },
+        { title: "Filtering and ranking", body: "Only top results by relevance are kept, then filtered again by department, date and access permission." },
+        { title: "GPT API call", body: "Question + selected document content + answer instructions produce the summary or answer." },
+        { title: "Answer with sources", body: "Source documents and pages are attached below the answer so users can check the original immediately." }
+      ],
+      principles: [
+        { title: "Fine-grained control", body: "Search conditions, permission filters, score thresholds and source management are controlled in code. More work than a managed service, but it fits the organization's rules." },
+        { title: "No answer without a source", body: "Only retrieved documents go to the model, and every answer carries its source document and page." },
+        { title: "What you build yourself", body: "Search logic, data refresh and failure handling have to be developed in-house. Preprocessing and search logic were revised through repeated user testing." },
+        { title: "Preprocessing decides accuracy", body: "OCR quality on image PPTs and the chunking unit determined search accuracy. More time went into preprocessing than into the model." }
+      ]
+    },
     steps: ["Unstructured knowledge", "OCR / image-to-text", "Vector DB", "GPT API natural-language search", "Iterative user testing"],
-    insights: [
-      { title: "Accuracy alone does not create adoption", body: "The core was the experience of finding the right slides and their context with a single question." },
-      { title: "Design for internal data beats buying", body: "Designing OCR and vector-DB structure around our own data was more cost-effective than an external solution." },
-      { title: "Evidence that behavior changed", body: "6.8 uses a week and 4.9/5 satisfaction show it replaced opening files and asking colleagues, not just that the tech worked." }
-    ],
     image: {
       src: "/projects/rag-search.png",
       alt: "Knowledge-bank search screen: asked for MD promotion materials, the assistant character searches the knowledge bank",
@@ -345,24 +395,6 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       ]
     },
     steps: ["Ontology design and knowledge graph build", "MCP servers connecting the graph and the DW", "Skills and hooks", "Plugin rollout and offline training", "Weekly use-case broadcasts across affiliates"],
-    insights: [
-      {
-        title: "[Adoption] Accuracy builds trust",
-        body: "If sales or profit figures are wrong two or three times, trust collapses and usage drops sharply. Early on, raising basic query accuracy with the knowledge graph mattered most."
-      },
-      {
-        title: "[Ontology] Definitions before connections",
-        body: "Putting the company's agreed metric definitions in one graph did more than connecting more systems. With definitions in the graph, new skills and new agents do not shake the numbers."
-      },
-      {
-        title: "[Usage] Power users' methods as skills",
-        body: "Turning power users' methods into skills and distributing them to everyone brought high usage even from people unfamiliar with prompting."
-      },
-      {
-        title: "[Productivity] One task, end to end",
-        body: "A tool that handles one task from start to finish saved more time than tools that trim many tasks a little."
-      }
-    ],
     image: {
       src: "/projects/noa-bi.png",
       alt: "Asking SPAO Gangnam's May sales in natural language with the noa-bi skill: the metric definition is resolved from the knowledge graph, the DW is queried and the answer cites its sources",
@@ -784,11 +816,6 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     ],
     background: "The brand kept a heavy share of past hits such as glossy colored blouses from a decade earlier, and sales were falling 27% a year.",
     steps: ["Store customer interviews", "Tmall search-trend validation", "Shanghai office street-style survey", "Douyin content analysis", "Portfolio rebuild proposal"],
-    insights: [
-      { title: "Lifestyle changed, not age", body: "The issue was not customers' age but a change in the lifestyle and workwear norms of the same age group." },
-      { title: "Past bestsellers can cause churn", body: "The old success formula became an internal risk that locked the product portfolio in place." },
-      { title: "Never conclude from one dataset", body: "Cross-validating store interviews → search → social → street style made the strategy persuasive." }
-    ],
     image: {
       src: "/projects/scofield-store.png",
       alt: "A Scofield store inside a department store in China",
