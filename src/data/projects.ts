@@ -72,8 +72,8 @@ export const PARTS: Part[] = [
   {
     no: 1,
     code: "Part 01",
-    title: "MCP 기반 사내 AI 에이전트 통합 플랫폼",
-    short: "MCP 기반 사내 AI 에이전트 통합 플랫폼",
+    title: "전사 AI 플랫폼",
+    short: "전사 AI 플랫폼",
     question: "노아가 무엇이고 어떻게 만들어졌는지",
     tagline: "Snowflake → 지식그래프 → MCP / 스킬 → 에이전트 플랫폼",
     summary:
@@ -317,25 +317,45 @@ export const PROJECTS: Project[] = [
     slug: "daas-paas-operations",
     part: 1,
     group: "② 인프라",
-    title: "DaaS · PaaS 기반 서비스 운영체계",
-    subtitle: "비개발자가 직접 데이터 앱을 만들고 배포하는 셀프서비스 구조",
+    title: "PaaS 기반 서비스 운영체계",
+    subtitle: "비개발자가 만든 앱을 ZIP 업로드나 Git 연결로 원클릭 배포하고, 스케줄·DB·파일 스토리지까지 한 화면에서 운영하는 사내 PaaS",
     period: "2026.03 ~ 진행 중",
-    purpose: "비개발자 직군 현업이 직접 데이터 기반 앱을 만들고 배포할 수 있도록 데이터 접근·배포·운영 지원 구조를 구축",
-    metrics: [
-      { value: "약 30%↓", label: "DaaS 비용 절감" },
-      { value: "90%", label: "배포 성공률" },
-      { value: "43%↓", label: "사내 데이터 조회 관련 문의 감소" }
-    ],
+    purpose:
+      "현업이 직접 만든 Next.js 앱을 개발자 도움 없이 원클릭으로 배포하고 운영할 수 있는 사내 PaaS 운영체계를 구축합니다. 배포가 실패하는 원인을 줄여 배포 성공률을 높이고, 운영에 필요한 스케줄·DB·파일 스토리지를 같은 화면에서 쓰게 합니다.",
+    metrics: [{ value: "90%", label: "배포 성공률" }],
     roles: [
-      "Snowflake DaaS 활용 지원 및 Materialized View·Query 성능 개선",
-      "Next.js 앱의 서버리스 배포 운영과 실패 원인 분석",
-      "Claude Code Skill 요구사항·호출 조건·동작 방식 설계",
-      "반복 문의를 Skill 기능으로 전환"
+      "Next.js 앱의 서버리스 배포 운영과 배포 실패 원인 분석",
+      "원클릭 배포 가드레일 문서(AI 개발 도구용 규칙) 작성과 배포, 교육",
+      "Claude Code Skill 요구사항·호출 조건·동작 방식 설계: 배포 전에 프로젝트를 PaaS 기준에 맞게 점검",
+      "반복되는 배포·운영 문의를 Skill 기능으로 전환"
     ],
-    steps: ["DaaS 데이터 접근", "API / Node.js 서비스 연동", "PaaS 원클릭 배포", "Claude Skill 자연어 자동화", "문의 감소 · 셀프서비스"],
-    stack: ["Snowflake", "Next.js", "Serverless", "Claude Code Skill"],
-    tags: ["DaaS", "PaaS", "셀프서비스"]
-  },
+    features: [
+      {
+        eyebrow: "핵심 기능 01",
+        title: "원클릭 배포",
+        summary: "ZIP을 올리거나 Git 저장소를 연결하면 바로 배포됩니다. 배포 성공률을 높이려고 AI 개발 도구가 따르는 가드레일 규칙을 먼저 배포했습니다.",
+        items: [
+          { title: "ZIP · Git 연결 배포", body: "완성된 ZIP을 업로드하거나 Git 저장소를 연결해 배포합니다. 진행 중인 배포와 최근 성공 시각, 오류 건수를 프로젝트 카드에서 바로 봅니다." },
+          { title: "원클릭 배포 가드레일", body: "Cursor·Claude Code 같은 AI 개발 도구가 코드를 만들 때 지켜야 할 규칙(플랫폼·스택 선택, 안전 기본값)을 문서로 배포해 배포 실패를 줄입니다." },
+          { title: "배포 준비 스킬", body: "배포 전에 프로젝트 구조·환경변수·빌드 설정을 PaaS 기준으로 점검하는 Claude Code 스킬을 제공합니다." }
+        ]
+      },
+      {
+        eyebrow: "핵심 기능 02",
+        title: "운영 리소스 한 화면",
+        summary: "프로젝트·스케줄·DB·파일 스토리지와 생성 한도를 대시보드 한 화면에서 관리합니다.",
+        items: [
+          { title: "프로젝트", body: "배포된 앱 목록과 접속 가능 여부, 서비스 상태를 한눈에 봅니다." },
+          { title: "스케줄", body: "정해진 시간에 도는 작업을 등록하고 활성 여부를 관리합니다." },
+          { title: "DB · 파일 스토리지", body: "앱이 쓰는 DB와 파일 저장소를 만들고 상태를 확인합니다." },
+          { title: "생성 한도", body: "프로젝트·DB·스토리지 생성 한도를 보여 줘 자원을 계획적으로 씁니다." }
+        ]
+      }
+    ],
+    steps: ["ZIP · Git 연결 원클릭 배포", "원클릭 배포 가드레일 배포", "Claude Skill로 배포 준비 자동화", "스케줄 · DB · 스토리지 운영", "문의 감소 · 셀프서비스"],
+    stack: ["Next.js", "Serverless", "Claude Code Skill"],
+    tags: ["PaaS", "원클릭 배포", "셀프서비스"]
+  }
   {
     slug: "enterprise-agent-integration",
     part: 1,

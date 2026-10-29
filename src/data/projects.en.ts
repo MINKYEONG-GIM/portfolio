@@ -14,8 +14,8 @@ export const PROFILE_EN = {
 
 export const PARTS_EN: Record<number, Partial<Part>> = {
   1: {
-    title: "MCP-based Enterprise AI Agent Platform",
-    short: "MCP-based Enterprise AI Agent Platform",
+    title: "Enterprise AI Platform",
+    short: "Enterprise AI Platform",
     question: "What NoA is and how it was built",
     tagline: "Snowflake → Knowledge graph → MCP / Skills → Agent platform",
     summary:
@@ -143,24 +143,44 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   },
   "daas-paas-operations": {
     group: "② Infrastructure",
-    title: "DaaS · PaaS Service Operations",
-    subtitle: "A self-service structure where non-developers build and deploy data apps themselves",
+    title: "PaaS-based Service Operations",
+    subtitle: "An in-house PaaS where non-developers deploy their apps with one click via ZIP upload or Git, and run schedules, DBs and file storage from one screen",
     period: "2026.03 – ongoing",
-    purpose: "Built the data-access, deployment and operations support so that non-developer staff can build and deploy data-driven apps on their own.",
-    metrics: [
-      { value: "~30% ↓", label: "DaaS cost reduction" },
-      { value: "90%", label: "Deployment success rate" },
-      { value: "43% ↓", label: "Internal data-query inquiries" }
-    ],
+    purpose:
+      "Built an in-house PaaS operating model so that line staff can deploy and run the Next.js apps they build without developer help. The aim is to reduce the causes of failed deployments and raise the success rate, while keeping schedules, databases and file storage on the same screen.",
+    metrics: [{ value: "90%", label: "Deployment success rate" }],
     roles: [
-      "Supported Snowflake DaaS adoption and improved materialized views and query performance",
-      "Operated serverless deployment of Next.js apps and analyzed failure causes",
-      "Designed Claude Code skills: requirements, trigger conditions and behavior",
-      "Turned recurring inquiries into skill features"
+      "Operated serverless deployment of Next.js apps and analyzed deployment failures",
+      "Wrote, distributed and taught the one-click deployment guardrails (rules for AI coding tools)",
+      "Designed Claude Code skills (requirements, triggers, behavior) that check a project against PaaS rules before deployment",
+      "Turned recurring deployment and operations inquiries into skill features"
     ],
-    steps: ["DaaS data access", "API / Node.js integration", "PaaS one-click deploy", "Claude skill automation", "Fewer inquiries · self-service"],
-    stack: ["Snowflake", "Next.js", "Serverless", "Claude Code Skill"],
-    tags: ["DaaS", "PaaS", "Self-service"]
+    features: [
+      {
+        eyebrow: "Core feature 01",
+        title: "One-click deployment",
+        summary: "Upload a ZIP or connect a Git repository and the app deploys. Guardrail rules for AI coding tools were shipped first to raise the success rate.",
+        items: [
+          { title: "ZIP and Git deployment", body: "Deploy by uploading a finished ZIP or connecting a Git repository. Each project card shows deployments in progress, the last successful time and error counts." },
+          { title: "Deployment guardrails", body: "Rules that AI coding tools such as Cursor and Claude Code follow when generating code (platform and stack choices, safe defaults), distributed as a document to cut failed deployments." },
+          { title: "Pre-deployment skill", body: "A Claude Code skill checks project structure, environment variables and build settings against PaaS rules before deploying." }
+        ]
+      },
+      {
+        eyebrow: "Core feature 02",
+        title: "Operations on one screen",
+        summary: "Projects, schedules, databases, file storage and creation limits are managed from a single dashboard.",
+        items: [
+          { title: "Projects", body: "Deployed apps with reachability and service status at a glance." },
+          { title: "Schedules", body: "Register jobs that run at set times and manage whether they are active." },
+          { title: "DB and file storage", body: "Create the databases and file stores apps use and check their status." },
+          { title: "Creation limits", body: "Project, DB and storage limits are shown so resources are planned." }
+        ]
+      }
+    ],
+    steps: ["One-click deploy via ZIP or Git", "Ship deployment guardrails", "Automate pre-deploy checks with a Claude skill", "Run schedules, DBs and storage", "Fewer inquiries · self-service"],
+    stack: ["Next.js", "Serverless", "Claude Code Skill"],
+    tags: ["PaaS", "One-click deployment", "Self-service"]
   },
   "strategy-rag-search": {
     group: "Knowledge search",
