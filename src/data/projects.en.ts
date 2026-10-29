@@ -603,8 +603,8 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       src: "/projects/talent-pool-table.png",
       alt: "Admin agent-evaluation table: agent name, submission time, 2-1 steps and hours saved with score, 2-2 quantitative outcome before/after with score, 3-1 users and spread score",
       caption: "Admin agent-evaluation table: hours saved · quantitative outcome (before/after) · users and spread, each scored per criterion (builder names and URLs masked)",
-      width: 1077,
-      height: 1194
+      width: 1035,
+      height: 780
     },
     thumb: {
       src: "/projects/talent-pool-thumb.png",

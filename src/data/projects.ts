@@ -790,8 +790,8 @@ export const PROJECTS: Project[] = [
       src: "/projects/talent-pool-table.png",
       alt: "관리 화면 Agent 평가 표: Agent 이름, 제출 시각, 2-1 단계·시간(월 절감 시간과 점수), 2-2 정량 성과(전후 비교와 점수), 3-1 팀·확산(사용 인원·확산 점수)",
       caption: "관리 화면 Agent 평가 표: 절감 시간 · 정량 성과(전후) · 확산 인원을 기준별 점수와 함께 한 줄로 봅니다 (제작자 이름과 주소는 가림)",
-      width: 1077,
-      height: 1194
+      width: 1035,
+      height: 780
     },
     thumb: {
       src: "/projects/talent-pool-thumb.png",
