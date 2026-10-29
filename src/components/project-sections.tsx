@@ -146,7 +146,7 @@ export function VisionSteps({ steps }: { steps: VisionStep[] }) {
 }
 
 /** 레이어별 구성 요소까지 보여 주는 상세 시스템 구조도 + 처리 흐름 + 원칙 */
-export function SystemDiagram({ system, ui }: { system: SystemArchitecture; ui: UIStrings }) {
+export function SystemDiagram({ system, ui, showPrinciples = true }: { system: SystemArchitecture; ui: UIStrings; showPrinciples?: boolean }) {
   return (
     <div className="grid gap-8">
       <p className="ko-keep max-w-4xl text-base leading-8 text-ink">{system.intro}</p>
@@ -187,6 +187,7 @@ export function SystemDiagram({ system, ui }: { system: SystemArchitecture; ui: 
         </ol>
       </div>
 
+      {showPrinciples ? (
       <div className="grid gap-4">
         <h3 className="ko-keep text-xl font-extrabold text-ink">{ui.project.principlesTitle}</h3>
         <div className="grid gap-3 md:grid-cols-2">
@@ -198,6 +199,7 @@ export function SystemDiagram({ system, ui }: { system: SystemArchitecture; ui: 
           ))}
         </div>
       </div>
+      ) : null}
     </div>
   );
 }

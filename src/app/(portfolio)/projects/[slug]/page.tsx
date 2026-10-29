@@ -36,17 +36,18 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
   const status = statusOf(project, ui.status);
   const P = ui.project;
 
+  /** 설계 원칙: 프로젝트의 insights(설계 원칙) 또는 시스템 구조의 원칙 */
+  const principles = project.insights ?? project.system?.principles ?? null;
+  /** 프로젝트마다 다른 내용(시스템 구조·스킬 목록·진행·비전)은 '내용' 한 섹션에 모읍니다. */
+  const hasContents = Boolean(project.system || project.architecture || project.catalog || project.steps || project.vision);
   const tabs = [
     { id: "purpose", label: P.tabs.purpose, show: true },
     { id: "result", label: P.tabs.result, show: project.metrics.length > 0 },
     { id: "background", label: P.tabs.background, show: Boolean(project.background) },
-    { id: "architecture", label: P.tabs.architecture, show: Boolean(project.architecture || project.system) },
-    { id: "features", label: P.tabs.features, show: Boolean(project.features) },
-    { id: "catalog", label: project.catalog?.title ?? "", show: Boolean(project.catalog) },
+    { id: "contents", label: P.tabs.contents, show: hasContents },
     { id: "role", label: P.tabs.role, show: true },
-    { id: "process", label: P.tabs.process, show: Boolean(project.steps) },
-    { id: "insight", label: project.insightsLabel ?? P.tabs.insight, show: Boolean(project.insights) },
-    { id: "vision", label: P.tabs.vision, show: Boolean(project.vision) }
+    { id: "principles", label: P.tabs.principles, show: Boolean(principles) },
+    { id: "features", label: P.tabs.features, show: Boolean(project.features) }
   ].filter((tab) => tab.show);
 
   return (
@@ -148,29 +149,48 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
         </Block>
       ) : null}
 
-      {project.system ? (
+      {hasContents ? (
         <Block>
-          <SectionTitle id="architecture" eyebrow="ARCHITECTURE" title={P.titles.architecture} />
-          <SystemDiagram system={project.system} ui={ui} />
-        </Block>
-      ) : project.architecture ? (
-        <Block>
-          <SectionTitle id="architecture" eyebrow="ARCHITECTURE" title={P.titles.architectureSimple} />
-          <ArchitectureDiagram {...project.architecture} flowLabel={P.dataFlow} />
-        </Block>
-      ) : null}
+          <SectionTitle id="contents" eyebrow="CONTENTS" title={P.titles.contents} />
 
-      {project.features ? (
-        <Block>
-          <SectionTitle id="features" eyebrow="CORE FEATURES" title={P.titles.features} />
-          <FeatureSections features={project.features} />
-        </Block>
-      ) : null}
+          {project.system ? (
+            <section className="grid gap-5">
+              <h3 className="ko-keep border-l-4 border-ink pl-3 text-xl font-extrabold text-ink">{P.titles.architecture}</h3>
+              <SystemDiagram system={project.system} ui={ui} showPrinciples={false} />
+            </section>
+          ) : project.architecture ? (
+            <section className="grid gap-5">
+              <h3 className="ko-keep border-l-4 border-ink pl-3 text-xl font-extrabold text-ink">{P.titles.architectureSimple}</h3>
+              <ArchitectureDiagram {...project.architecture} flowLabel={P.dataFlow} />
+            </section>
+          ) : null}
 
-      {project.catalog ? (
-        <Block>
-          <SectionTitle id="catalog" eyebrow="CATALOG" title={project.catalog.title} />
-          <CatalogList items={project.catalog.items} triggerLabel={P.trigger} />
+          {project.catalog ? (
+            <section className="grid gap-5">
+              <h3 className="ko-keep border-l-4 border-ink pl-3 text-xl font-extrabold text-ink">{project.catalog.title}</h3>
+              <CatalogList items={project.catalog.items} triggerLabel={P.trigger} />
+            </section>
+          ) : null}
+
+          {project.steps ? (
+            <section className="grid gap-5">
+              <h3 className="ko-keep border-l-4 border-ink pl-3 text-xl font-extrabold text-ink">{P.titles.process}</h3>
+              <StepFlow steps={project.steps} />
+            </section>
+          ) : null}
+
+          {project.vision ? (
+            <section className="grid gap-5">
+              <h3 className="ko-keep border-l-4 border-ink pl-3 text-xl font-extrabold text-ink">{P.titles.vision}</h3>
+              <p className="ko-keep max-w-4xl text-base leading-8 text-ink">{project.vision.lead}</p>
+              <div className="border border-line bg-paper p-3 sm:p-5">
+                <HarnessDiagram jobs={project.vision.jobs} lang={lang} />
+              </div>
+              <h4 className="ko-keep text-lg font-extrabold text-ink">{P.titles.visionHow}</h4>
+              <VisionSteps steps={project.vision.steps} />
+              <p className="ko-keep bg-surface px-5 py-4 text-base font-semibold leading-7 text-ink">{project.vision.note}</p>
+            </section>
+          ) : null}
         </Block>
       ) : null}
 
@@ -187,31 +207,17 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
         </ol>
       </Block>
 
-      {project.steps ? (
+      {principles ? (
         <Block>
-          <SectionTitle id="process" eyebrow="PROCESS" title={P.titles.process} />
-          <StepFlow steps={project.steps} />
+          <SectionTitle id="principles" eyebrow="PRINCIPLES" title={P.titles.principles} />
+          <InsightList insights={principles} label={P.principleLabel} />
         </Block>
       ) : null}
 
-      {project.insights ? (
+      {project.features ? (
         <Block>
-          <SectionTitle id="insight" eyebrow="INSIGHT" title={project.insightsLabel ?? P.titles.insight} />
-          <InsightList insights={project.insights} label={P.insightLabel} />
-        </Block>
-      ) : null}
-
-
-      {project.vision ? (
-        <Block>
-          <SectionTitle id="vision" eyebrow="VISION" title={P.titles.vision} />
-          <p className="ko-keep max-w-4xl text-base leading-8 text-ink">{project.vision.lead}</p>
-          <div className="border border-line bg-paper p-3 sm:p-5">
-            <HarnessDiagram jobs={project.vision.jobs} lang={lang} />
-          </div>
-          <h3 className="ko-keep text-xl font-extrabold text-ink">{P.titles.visionHow}</h3>
-          <VisionSteps steps={project.vision.steps} />
-          <p className="ko-keep bg-surface px-5 py-4 text-base font-semibold leading-7 text-ink">{project.vision.note}</p>
+          <SectionTitle id="features" eyebrow="CORE FEATURES" title={P.titles.features} />
+          <FeatureSections features={project.features} />
         </Block>
       ) : null}
 

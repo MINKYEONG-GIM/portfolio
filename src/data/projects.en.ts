@@ -143,7 +143,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     period: "2026.03 – ongoing",
     purpose:
       "Built an in-house PaaS operating model so that line staff can deploy and run the Next.js apps they build without developer help. The aim is to reduce the causes of failed deployments and raise the success rate, while keeping schedules, databases and file storage on the same screen.",
-    metrics: [{ value: "90%", label: "Deployment success rate" }],
+    metrics: [{ value: "90%", label: "Deployment success rate", note: "n=235 deployments" }],
     roles: [
       "Operated serverless deployment of Next.js apps and analyzed deployment failures",
       "Wrote, distributed and taught the one-click deployment guardrails (rules for AI coding tools)",
@@ -163,12 +163,13 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       },
       {
         eyebrow: "Core feature 02",
-        title: "Operations on one screen",
-        summary: "Projects, schedules, databases, file storage and creation limits are managed from a single dashboard.",
+        title: "Operations, security and domains on one screen",
+        summary: "Usage of each deployed app (MAU and call counts), data-security checks, deployment domains, schedules, DBs and file storage are all managed from one dashboard.",
         items: [
-          { title: "Projects", body: "Deployed apps with reachability and service status at a glance." },
-          { title: "Schedules", body: "Register jobs that run at set times and manage whether they are active." },
-          { title: "DB and file storage", body: "Create the databases and file stores apps use and check their status." },
+          { title: "MAU and call counts per app", body: "Monthly active users and API call counts are shown for every deployed app, separating the apps that are really used from the ones to retire and putting operating results in numbers." },
+          { title: "Data-security check", body: "Company data must stay in the internal DB, so each app is checked before deployment for connections to any external database, closing the path for company data to leave." },
+          { title: "Deployment domain management", body: "Domains are issued, changed and revoked per app, and which domain belongs to which app and owner is managed in one place." },
+          { title: "Projects, schedules, DB and file storage", body: "Deployed apps with their service status, jobs that run at set times, and the databases and file stores apps use are created and monitored here." },
           { title: "Creation limits", body: "Project, DB and storage limits are shown so resources are planned." }
         ]
       }
@@ -187,7 +188,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       width: 1000,
       height: 1000
     },
-    stack: ["Next.js", "Serverless", "Claude Code Skill"],
+    stack: ["Next.js", "Serverless", "CloudFront", "Claude Code Skill"],
     tags: ["PaaS", "One-click deployment", "Self-service"]
   },
   "strategy-rag-search": {
@@ -633,7 +634,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     subtitle: "A 100-point system that measures outputs (agents) and people (participation) separately, building a talent pool for rewards, funding and placement",
     period: "2026.01 – in operation",
     purpose:
-      "Makes who uses AI well and what they have built visible in numbers rather than by feel. Agents are measured against public criteria, people by a participation score, and the results inform rewards, funding and placement decisions.",
+      "Instead of gut feel, we build quantitative criteria for who uses AI well and what they have produced, and show it as numbers. The results feed reward, funding and placement decisions, creating a virtuous cycle that expands AI talent.",
     metrics: [
       { value: "100 pts", label: "AI evaluation criteria built", note: "two axes: agents · people" },
       { value: "4 tiers", label: "Participation tiers", note: "Leading · Active · Entry · Watch" },
