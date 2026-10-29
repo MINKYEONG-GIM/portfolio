@@ -206,7 +206,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   },
   "noa-mcp-agent-platform": {
     group: "① Agent platform",
-    title: "NoA: MCP-based Enterprise AI Agent Platform",
+    title: "Ontology-based Enterprise AI Agent Platform",
     subtitle: "Internal data and business systems standardized as MCP servers and connected to Claude",
     period: "2026.06 – ongoing",
     purpose: "Connect internal data and business systems to LLM agents so that everyday work becomes AI tooling and productivity rises.",

@@ -155,7 +155,7 @@ export const PROJECTS: Project[] = [
     slug: "noa-mcp-agent-platform",
     part: 1,
     group: "① 에이전트 플랫폼",
-    title: "노아: MCP 기반 사내 AI 에이전트 통합 플랫폼",
+    title: "온톨로지 기반 사내 AI 에이전트 통합 플랫폼",
     subtitle: "사내 데이터와 업무 시스템을 MCP 서버로 표준화해 Claude에 연결한 엔터프라이즈 AI 에이전트 플랫폼",
     period: "2026.06 ~ 진행 중",
     purpose: "사내 데이터와 업무 시스템을 LLM 에이전트에 연결해, 사내 업무를 AI 도구화하고 생산성을 높입니다.",
