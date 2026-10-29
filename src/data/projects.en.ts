@@ -718,19 +718,16 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   },
   "ax-discovery-agent-training": {
     group: "① Training",
-    title: "Company-wide AX Task Discovery and AI Agent Training",
-    subtitle: "Small, step by step, repeatedly: finding AX tasks across the company and building agents hands-on",
+    title: "Company-wide AI Agent Training",
+    subtitle: "Small, step by step, repeatedly: employees build AI agents hands-on",
     period: "2026.02 – ongoing",
     purpose: "Designed training, onboarding and operational support to reach a 20% AX conversion rate across the organization.",
     metrics: [
-      { value: "21", label: "AX projects discovered" },
       { value: "~500", label: "People trained in AI agents" },
       { value: "6 steps", label: "Agent-building learning path" },
       { value: "85 slides", label: "Training decks", note: "literacy 14 · NoA sessions 41+30" }
     ],
     roles: [
-      "Analyzed field work to define tasks where AI can apply",
-      "Prioritized by impact, difficulty and data readiness",
       "Designed the curriculum and job-specific hands-on exercises",
       "Provided technical support through to building and deploying real agents after training",
       "Built the platform's learning features: AI literacy slides, leveled video lessons, 6-step build practice, NoA training decks, vibe-coding guide"
@@ -750,7 +747,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         ]
       }
     ],
-    steps: ["Work-process interviews", "AX candidate discovery", "Prioritization", "Hands-on agent training", "Build & deploy support"],
+    steps: ["Hands-on agent training", "Build & deploy support"],
     image: {
       src: "/projects/ax-training.jpg",
       alt: "Explaining the one-click deployment guide file from the podium at a training session",
@@ -758,7 +755,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       width: 2048,
       height: 1536
     },
-    tags: ["AX task discovery", "Training", "Onboarding"]
+    tags: ["AI agent training", "Training", "Onboarding"]
   },
   "naver-channel-strategy": {
     group: "Online channel strategy",
