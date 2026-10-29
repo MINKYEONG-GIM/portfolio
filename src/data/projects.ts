@@ -355,7 +355,7 @@ export const PROJECTS: Project[] = [
     steps: ["ZIP · Git 연결 원클릭 배포", "원클릭 배포 가드레일 배포", "Claude Skill로 배포 준비 자동화", "스케줄 · DB · 스토리지 운영", "문의 감소 · 셀프서비스"],
     stack: ["Next.js", "Serverless", "Claude Code Skill"],
     tags: ["PaaS", "원클릭 배포", "셀프서비스"]
-  }
+  },
   {
     slug: "enterprise-agent-integration",
     part: 1,
