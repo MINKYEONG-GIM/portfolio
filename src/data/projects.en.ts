@@ -139,7 +139,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "daas-paas-operations": {
     group: "② Infrastructure",
     title: "PaaS-based Service Operations",
-    subtitle: "An in-house PaaS where non-developers deploy their apps with one click via ZIP upload or Git, and run schedules, DBs and file storage from one screen",
+    subtitle: "An in-house PaaS where non-developers deploy the apps they build with one click, and run schedules, DBs and file storage from one screen",
     period: "2026.03 – ongoing",
     purpose:
       "Built an in-house PaaS operating model so that line staff can deploy and run the Next.js apps they build without developer help. The aim is to reduce the causes of failed deployments and raise the success rate, while keeping schedules, databases and file storage on the same screen.",
