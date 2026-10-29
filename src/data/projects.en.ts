@@ -198,7 +198,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "strategy-rag-search": {
     group: "Knowledge search",
     title: "Internal Strategy-Document RAG Search",
-    subtitle: "Not a search feature but the organization's decision memory",
+    subtitle: "Not simple search, but a service that searches the organization's decision criteria",
     period: "2025.01 – 2025.07",
     purpose: "Turned sales data, product information and internal project documents into an AI search and summary service.",
     metrics: [

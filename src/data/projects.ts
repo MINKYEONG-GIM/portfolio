@@ -919,7 +919,7 @@ export const PROJECTS: Project[] = [
     part: 3,
     group: "지식 검색",
     title: "사내 전략자료 RAG 검색 서비스",
-    subtitle: "‘검색 기능’이 아니라 ‘조직의 의사결정 기억’을 만드는 서비스",
+    subtitle: "‘단순 검색’이 아닌 ‘조직의 의사결정 기준’을 검색하는 서비스",
     period: "2025.01 ~ 2025.07",
     purpose: "판매 데이터·상품정보·내부 프로젝트 자료를 AI 검색·요약 서비스로 전환",
     metrics: [
