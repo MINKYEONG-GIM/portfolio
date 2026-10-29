@@ -599,6 +599,19 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       { title: "Criteria public, grades private", body: "Everyone sees what is evaluated; only admins see grades, rankings and comments." },
       { title: "Verify reported values", body: "Links are checked, and reported KPIs are being compared with DW actuals. Evaluation becomes the basis for what to trust and connect." }
     ],
+    image: {
+      src: "/projects/talent-pool-table.png",
+      alt: "Admin agent-evaluation table: agent name, submission time, 2-1 steps and hours saved with score, 2-2 quantitative outcome before/after with score, 3-1 users and spread score",
+      caption: "Admin agent-evaluation table: hours saved · quantitative outcome (before/after) · users and spread, each scored per criterion (builder names and URLs masked)",
+      width: 1077,
+      height: 1194
+    },
+    thumb: {
+      src: "/projects/talent-pool-thumb.png",
+      alt: "Admin agent-evaluation table",
+      width: 1000,
+      height: 1000
+    },
     stack: ["Next.js", "Prisma", "Snowflake DaaS", "HR DB integration"],
     tags: ["Talent pool", "Evaluation system", "Dashboard"]
   },
