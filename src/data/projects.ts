@@ -353,6 +353,19 @@ export const PROJECTS: Project[] = [
       }
     ],
     steps: ["ZIP · Git 연결 원클릭 배포", "원클릭 배포 가드레일 배포", "Claude Skill로 배포 준비 자동화", "스케줄 · DB · 스토리지 운영", "문의 감소 · 셀프서비스"],
+    image: {
+      src: "/projects/paas-dashboard.png",
+      alt: "PaaS 대시보드: 원클릭 배포 바로가기, 프로젝트·스케줄·DB·파일 스토리지·생성 한도 카드, 내 프로젝트 목록(ZIP 배포, 오류 수, 서비스 상태, 최종 성공 시각)",
+      caption: "PaaS 대시보드: 원클릭 배포 · 프로젝트/스케줄/DB/스토리지/생성 한도 · 내 프로젝트 상태",
+      width: 1553,
+      height: 746
+    },
+    thumb: {
+      src: "/projects/paas-dashboard-thumb.png",
+      alt: "PaaS 대시보드",
+      width: 1000,
+      height: 1000
+    },
     stack: ["Next.js", "Serverless", "Claude Code Skill"],
     tags: ["PaaS", "원클릭 배포", "셀프서비스"]
   },

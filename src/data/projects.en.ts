@@ -179,6 +179,19 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       }
     ],
     steps: ["One-click deploy via ZIP or Git", "Ship deployment guardrails", "Automate pre-deploy checks with a Claude skill", "Run schedules, DBs and storage", "Fewer inquiries · self-service"],
+    image: {
+      src: "/projects/paas-dashboard.png",
+      alt: "PaaS dashboard: one-click deploy shortcut, project/schedule/DB/file-storage/limit cards, and my projects with ZIP deployment, error counts, service status and last success time",
+      caption: "PaaS dashboard: one-click deploy · projects, schedules, DBs, storage and limits · my project status",
+      width: 1553,
+      height: 746
+    },
+    thumb: {
+      src: "/projects/paas-dashboard-thumb.png",
+      alt: "PaaS dashboard",
+      width: 1000,
+      height: 1000
+    },
     stack: ["Next.js", "Serverless", "Claude Code Skill"],
     tags: ["PaaS", "One-click deployment", "Self-service"]
   },
