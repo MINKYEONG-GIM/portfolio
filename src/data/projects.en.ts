@@ -30,8 +30,8 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
     }
   },
   2: {
-    title: "Talent Management",
-    short: "Talent Management",
+    title: "AI Talent Management",
+    short: "AI Talent Management",
     question: "How people were trained, gathered and evaluated",
     tagline: "① Training → ② AI Platform → ③ AI Talent Evaluation",
     summary:
@@ -240,85 +240,87 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "noa-mcp-agent-platform": {
     group: "① Agent platform",
     title: "Ontology-based Enterprise AI Agent Platform",
-    subtitle: "Internal data and business systems standardized as MCP servers and connected to Claude",
-    period: "2026.06 – ongoing",
-    purpose: "Connect internal data and business systems to LLM agents so that everyday work becomes AI tooling and productivity rises.",
+    subtitle: "An enterprise AI agent platform where internal data, metrics and business rules are defined as an ontology (knowledge graph), and every MCP server, skill and agent runs on that ontology",
+    period: "2025.11 – ongoing",
+    purpose:
+      "Load the company's metric definitions, formulas, join rules, season rules and unwritten rules into a Neo4j knowledge graph as an ontology, so that LLM agents query the graph before answering instead of guessing. Internal data and business systems are connected through MCP servers, but all meaning is resolved by the ontology, so every employee sees the same number from the same definition.",
     metrics: [
       { value: "116", label: "Agents completed", note: "as of Sept 2026" },
       { value: "8,180 h / month", label: "Work hours saved by agents", note: "as of Sept 2026" }
     ],
     roles: [
-      "DW integration and knowledge graph: defined official metrics and formulas, designed the graph, validated data consistency",
-      "MCP server development: chose the MCP connection structure and set security principles (read-only, own permissions)",
-      "Skills and hooks: mapped work procedures through field interviews, designed skills and shared rules (hooks)",
-      "Plugin rollout and in-person training: Claude org administration (connectors, org instructions, permissions), employee training",
-      "Company-wide promotion: weekly use-case content broadcast to all affiliates"
+      "Ontology design: a knowledge-graph schema with metrics, tables, columns, brands, stores and seasons as nodes, and formulas, joins, usage conditions and synonyms as relationships",
+      "Knowledge graph build: loaded official metric definitions and golden SQL into Neo4j, and used Cypher queries to find missing or conflicting definitions and validate them against the DW",
+      "MCP server development: packaged graph lookups (resolve, read_cypher) and DW queries as MCP tools, with read-only and own-permission security principles",
+      "Skills and hooks: fixed the procedure 'one graph lookup → SQL → read-only run' as skills, and designed hooks that store user corrections and company decisions in the context graph",
+      "Plugin rollout and offline training: Claude org administration (connectors, org instructions, permissions), employee training design and delivery",
+      "Company-wide promotion: weekly use-case content planned and broadcast across all affiliates"
     ],
     background:
-      "We wanted AI agents to raise productivity, but AI was not connected to internal systems, so data had to be entered by hand every time. We needed a structure that wires internal data and systems directly into LLM agents.",
+      "Even after connecting AI agents to internal data, the same 'sales' figure was computed differently by brand and by person, because the model guessed tables and formulas. After two or three wrong sales or profit numbers, trust collapsed and usage dropped.\nWhat was needed before more connections was a meaning the company had agreed on. Metric definitions, formulas, joins, season rules and unwritten rules were loaded into one ontology, and the structure was changed so that every agent queries that graph before writing any SQL.",
     system: {
       intro:
-        "NoA puts the company on top of Claude. Users only ask questions in Claude Desktop or Code; the six layers below take the question through org instructions → hooks → skills → MCP tools → gateway → internal data. Every layer keeps the read-only and own-permissions principles.",
+        "NoA puts agents on top of an ontology. A Neo4j knowledge graph sits in the middle; hooks, skills and MCP tools all query it before they act. Users only ask questions in Claude Desktop or Code, and the six layers below take the question through org instructions → hooks → skills → MCP tools → gateway → ontology and internal data. Every layer keeps the read-only and own-permissions principles.",
       layers: [
         {
           name: "1. Client Layer",
-          role: "Where employees start. Turning on the noa plugin in Claude Desktop, Claude Code or Cowork attaches every layer below.",
+          role: "Where employees enter. Turning on the noa plugin in Claude Desktop, Claude Code or Cowork attaches every layer below.",
           items: [
             { label: "Claude Desktop · Code · Cowork" },
             { label: "noa plugin", note: "bundle of skills, hooks and MCP connectors" },
-            { label: "Org connector registration", note: "deployed org-wide by admins" },
+            { label: "Org connector registration", note: "deployed per organization by admins" },
             { label: "SSO login", note: "queries run with the user's own permissions" }
           ]
         },
         {
           name: "2. Policy & Context Layer",
-          role: "Inserts company rules and context before the question reaches the model, via org instructions and hooks.",
+          role: "Inserts company rules and context before the question reaches the model. Org instructions and hooks read the context graph, the ontology's 'event layer'.",
           items: [
-            { label: "Org instructions", note: "shared rules for everyone, e.g. what to do when an MCP connection fails" },
-            { label: "SessionStart hook", note: "personalization and memory rules, NoA Vibe dev rules (read the docs first)" },
-            { label: "UserPromptSubmit hook", note: "pulls past corrections, golden SQL and company decisions from the context graph and attaches them to the question" },
-            { label: "Safety principles", note: "read-only · own permissions · no personal-data columns · verify a person is still employed before naming them" }
+            { label: "Org instructions", note: "rules for everyone, e.g. what to do when an MCP connection fails" },
+            { label: "SessionStart hook", note: "personalization and memory rules, NoA Vibe development rules (read the docs first)" },
+            { label: "UserPromptSubmit hook", note: "finds past corrections, golden SQL and company decisions in the context graph and prepends them to the question" },
+            { label: "Safety principles", note: "read-only · own permissions · no personal-data columns · verify the person in charge is still employed" }
           ]
         },
         {
           name: "3. Agent Runtime",
-          role: "The Claude model understands the question, picks the skill whose trigger matches, and calls tools in the skill's order.",
+          role: "The Claude model understands the question, picks the skill whose trigger matches and calls tools in order. Meaning is asked of the graph, never guessed.",
           items: [
-            { label: "Claude model", note: "reasoning, SQL writing, answer writing" },
-            { label: "Skill triggers", note: "skills selected by keywords and request type" },
-            { label: "Memory", note: "user preferences and team rules kept as files" }
+            { label: "Claude model", note: "reasoning · SQL writing · answer writing" },
+            { label: "Skill triggers", note: "skills selected by keyword and request type" },
+            { label: "Memory", note: "per-user preferences and team rules kept as files; new definitions are recommended for ontology registration" }
           ]
         },
         {
           name: "4. Capability Layer (skills)",
-          role: "Power users' procedures turned into skills. A skill holds no rules itself; it only says which tools to call in which order.",
+          role: "Power users' procedures turned into skills. A skill holds no rules itself; it only says how to query the graph and which tools to call in which order.",
           items: [
-            { label: "noa-bi", note: "natural-language KPI queries: one knowledge-graph lookup → SQL → DW" },
-            { label: "noa-1p", note: "brand weekly-report RAG: vector search returns source chunks" },
-            { label: "noa-ebg", note: "customer-research standards (EBG) guidance and review" },
-            { label: "noa-onboarding", note: "expenses, policies and general-affairs guidance" },
+            { label: "noa-bi", note: "natural-language KPI queries: one graph resolve → SQL → read-only DW run" },
+            { label: "noa-1p", note: "brand weekly-report RAG: original chunks retrieved via the graph's vector index" },
+            { label: "noa-ebg", note: "customer-research judgments and guidance from the EBG graph" },
+            { label: "noa-onboarding", note: "expenses, policies, general affairs and other internal knowledge search" },
             { label: "noa-hr-attend", note: "leave balance, requests and approvals" },
-            { label: "noa-outlook", note: "mail and calendar" },
-            { label: "noa-vibe", note: "build and prepare apps for deployment the company way" },
-            { label: "usage-guide-writer · tacit-rule-interview · monthly-submit-helper", note: "interview-style skills that help with platform submissions" }
+            { label: "noa-outlook", note: "mail and calendar reading and writing" },
+            { label: "noa-vibe", note: "building and preparing apps for deployment on the company standard" },
+            { label: "usage-guide-writer · tacit-rule-interview · monthly-submit-helper", note: "interview-style skills that draw out unwritten rules as ontology candidates" }
           ]
         },
         {
           name: "5. Tool Binding Layer (MCP tools)",
-          role: "The tools skills actually call. One MCP server per system; the tool names are the full list of allowed actions.",
+          role: "The tools skills actually call. One MCP server per system, and the tool names are the whole list of allowed actions. The ontology lookup tools come first.",
           items: [
-            { label: "neo4j-mcp", note: "resolve · read_cypher · search_1p_report · ebg_search · onboarding_search" },
+            { label: "neo4j-mcp", note: "resolve (meaning of metrics, stores, seasons) · read_cypher (read-only Cypher queries) · search_1p_report · ebg_search · onboarding_search" },
             { label: "snowflake-mcp", note: "run_snowflake_query (read-only)" },
             { label: "hrlink-mcp", note: "leave info, requests, approval lines, approve, cancel" },
             { label: "outlook-mcp", note: "read, send and reply to mail; create and update events" }
           ]
         },
         {
-          name: "6. NoA MCP Gateway → internal data & systems",
-          role: "A central group of remote MCP servers receives every tool call, checks authentication and permissions, and forwards it to internal systems.",
+          name: "6. Ontology & Data Layer (NoA MCP Gateway → ontology · internal data)",
+          role: "A central group of remote MCP servers receives every tool call in one place and checks authentication and permissions. The ontology (knowledge graph) sits in the middle; the DW, M365 and HR are sources read according to its definitions.",
           items: [
-            { label: "Snowflake DW (EDW)", note: "standard models KF_* · *_AGGR, DaaS personal and brand schemas" },
-            { label: "Neo4j knowledge graph", note: "metric definitions, formulas, joins, golden SQL, EBG, onboarding, weekly-report vector index, context graph (corrections and decisions)" },
+            { label: "Neo4j ontology · knowledge graph", note: "metric definitions, formulas, joins, golden SQL, brand/store/season dictionaries, EBG, onboarding, 1P report vector index, context graph (corrections and decisions)" },
+            { label: "Snowflake DW (EDW)", note: "standard models KF_* and *_AGGR — only the tables and columns the ontology points to are queried" },
             { label: "M365 Graph", note: "mail and calendar" },
             { label: "HR Link", note: "attendance and approvals" },
             { label: "NoA Vibe (PaaS)", note: "one-click deployment of employee-built apps" }
@@ -327,46 +329,79 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       ],
       flow: [
         { title: "Question", body: "Ask in everyday words, e.g. “What were SPAO Gangnam's sales this May?”" },
-        { title: "Context injection", body: "The UserPromptSubmit hook finds relevant corrections (e.g. the 26SS season starts Jan 25), golden SQL and company decisions in the context graph and prepends them." },
-        { title: "Skill selection", body: "The word “sales” triggers the noa-bi skill, which runs its defined procedure." },
-        { title: "Semantic resolution", body: "One knowledge-graph resolve returns the metric definition (sales = SUM(SALEAMT)), measure columns, join conditions and store codes. The model does not guess." },
-        { title: "SQL writing", body: "SQL is written only from what the graph returned. Date and season rules follow the injected corrections first." },
+        { title: "Context injection", body: "The UserPromptSubmit hook finds related corrections (e.g. 26SS starts on 25 January), golden SQL and company decisions in the context graph and prepends them." },
+        { title: "Skill selection", body: "The keyword ‘sales’ turns on the noa-bi skill, which proceeds by its fixed procedure." },
+        { title: "Ontology lookup", body: "One graph resolve returns the metric definition (sales = SUM(SALEAMT)), measure columns, join conditions, store codes and season ranges. The model does not guess." },
+        { title: "SQL writing", body: "SQL is written only from what the graph returned. If needed, read_cypher reads more of the graph; injected corrections take priority for dates and seasons." },
         { title: "Read-only execution", body: "snowflake-mcp queries the DW with the user's own permissions. The tool has no write capability." },
-        { title: "Answer with sources", body: "Definition, scope and sources (tables, formula origin) are attached so the number can be verified." },
-        { title: "Learning from corrections", body: "If the user says “no, from Jan 25”, it is stored in the context graph as a correction and applied automatically from the next question." }
+        { title: "Answer with sources", body: "Definition, scope and sources (tables, the graph node that holds the formula) are attached so numbers can be verified." },
+        { title: "Learning from corrections", body: "If the user corrects, e.g. “No, from 25 January”, it is stored in the context graph and applied automatically from the next question. If the definition itself must change, ontology registration is recommended." }
       ],
       principles: [
-        { title: "Rules in the graph, procedures in skills", body: "Metric definitions and tacit rules live only in the knowledge graph; skills define call order. Change the graph once and every skill follows." },
-        { title: "Read-only · own permissions", body: "DW tools can only read, and every call runs under the SSO-authenticated user's own permissions. HR data is limited to allowed columns." },
-        { title: "Accuracy first", body: "Two or three wrong numbers destroy trust. Graph lookups and source attribution replace model guesswork." },
-        { title: "Deploy from one place", body: "Skills, hooks and connectors ship as a single plugin rolled out org-wide, so a power user's method reaches everyone the same day." }
+        { title: "Meaning lives only in the ontology", body: "Metric definitions, formulas, joins and unwritten rules live only in the knowledge graph; skills only fix the order of calls. Change the graph once and every skill and agent follows the same day." },
+        { title: "Graph first, SQL second", body: "The model never guesses tables. SQL is written only after the graph lookup, and a metric missing from the graph is answered as ‘no definition’." },
+        { title: "Read-only, own permissions", body: "DW tools can only read, and every call goes out with the SSO-authenticated user's own permissions. HR data is read only from allowed columns." },
+        { title: "Corrections accumulate in the graph", body: "User corrections and company decisions do not vanish with the conversation; they stay in the context graph so the next person's question gets the same standard." }
       ]
     },
-    catalog: {
-      title: "Skills built and deployed",
-      items: [
-        { name: "usage-guide-writer", trigger: "“write a usage guide”, “agent registration guide”", body: "Interviews the builder and writes the agent's usage guide for the platform, including operating logic, company/team tacit rules and KPIs." },
-        { name: "tacit-rule-interview", trigger: "“organize tacit rules”, “document know-how”, “rules for the agent”", body: "Draws out the tacit rules practitioners follow from experience (thresholds, priorities, exceptions, gut-feel judgments) and writes them as rules both people and AI can use." },
-        { name: "monthly-submit-helper", trigger: "“help with the monthly submission”, “calculate hours saved”", body: "Fills in the monthly output submission (new or version-up) by interview and derives monthly hours saved with the reasoning." },
-        { name: "noa-bi", trigger: "any KPI question such as “SPAO Gangnam sales in May”", body: "Pulls metric definitions, formulas and joins from the knowledge graph in one call, writes SQL and queries the DW read-only. Answers include definition, scope and source." },
-        { name: "noa-1p", trigger: "“week 2 of February report”, “sell-through red flag”", body: "Finds brand weekly reports by vector search and answers only from the source text." }
-      ]
-    },
-    steps: ["DW integration & knowledge graph", "MCP servers for internal systems", "Skills & hooks", "Plugin rollout & in-person training", "Weekly video in elevators & lobbies across affiliates"],
+    steps: ["Ontology design and knowledge graph build", "MCP servers connecting the graph and the DW", "Skills and hooks", "Plugin rollout and offline training", "Weekly use-case broadcasts across affiliates"],
     insights: [
-      { title: "[Adoption] Accuracy builds trust", body: "If sales or profit figures are wrong two or three times, trust collapses and usage drops. Early on, raising basic query accuracy with the knowledge graph mattered most." },
-      { title: "[Usage] Turn power users' methods into skills", body: "Packaging how the best users work as skills and distributing them to everyone gave high usage even to people uncomfortable writing prompts." },
-      { title: "[Productivity] Finish one job end to end", body: "A tool that completes one task from start to finish saves far more time than tools that shave a little off many tasks." }
+      {
+        title: "[Adoption] Accuracy builds trust",
+        body: "If sales or profit figures are wrong two or three times, trust collapses and usage drops sharply. Early on, raising basic query accuracy with the knowledge graph mattered most."
+      },
+      {
+        title: "[Ontology] Definitions before connections",
+        body: "Putting the company's agreed metric definitions in one graph did more than connecting more systems. With definitions in the graph, new skills and new agents do not shake the numbers."
+      },
+      {
+        title: "[Usage] Power users' methods as skills",
+        body: "Turning power users' methods into skills and distributing them to everyone brought high usage even from people unfamiliar with prompting."
+      },
+      {
+        title: "[Productivity] One task, end to end",
+        body: "A tool that handles one task from start to finish saved more time than tools that trim many tasks a little."
+      }
     ],
     image: {
       src: "/projects/noa-bi.png",
-      alt: "The noa-bi skill answering a plain-language question about SPAO Gangnam's May sales: it checks the metric definition in the knowledge graph, queries the DW and answers with sources",
-      caption: "noa-bi skill: question → metric definition from the knowledge graph → DW query → sourced answer",
+      alt: "Asking SPAO Gangnam's May sales in natural language with the noa-bi skill: the metric definition is resolved from the knowledge graph, the DW is queried and the answer cites its sources",
+      caption: "noa-bi skill: natural-language question → metric definition resolved from the knowledge graph (ontology) → DW query → answer with sources",
       width: 1226,
       height: 1051
     },
-    stack: ["MCP", "Claude", "Snowflake", "Neo4j", "M365 Graph", "Claude Code Skill"],
-    tags: ["MCP", "Knowledge graph", "Skills & hooks"]
+    catalog: {
+      title: "Skills built and distributed",
+      items: [
+        {
+          name: "noa-bi",
+          trigger: "KPI questions such as “SPAO Gangnam sales in May”",
+          body: "Fetches the metric definition, formula and joins from the knowledge graph in one call, writes SQL and queries the DW read-only. Definition, scope and sources are attached to the answer."
+        },
+        {
+          name: "noa-1p",
+          trigger: "“Week 2 of February weekly report”, “sell-through red flag”",
+          body: "Finds brand weekly reports through the graph's vector index and answers only from the original text."
+        },
+        {
+          name: "tacit-rule-interview",
+          trigger: "“Write down the unwritten rules”, “document the know-how”, “rules to put into the agent”",
+          body: "Interviews practitioners to draw out the unwritten rules they follow from experience (thresholds, priorities, exceptions, gut-feel judgments) and organizes them as candidate rules for the ontology."
+        },
+        {
+          name: "usage-guide-writer",
+          trigger: "“Write the usage guide”, “Agent registration guide”",
+          body: "Writes the usage guide for an agent being published on the platform by interviewing its maker, covering the logic, company and team unwritten rules, and KPIs."
+        },
+        {
+          name: "monthly-submit-helper",
+          trigger: "“Help with the monthly submission”, “calculate hours saved”",
+          body: "Fills in the monthly output submission (new or version-up) through an interview and computes monthly hours saved with the basis for the calculation."
+        }
+      ]
+    },
+    stack: ["MCP", "Claude", "Snowflake", "Neo4j", "Cypher queries", "M365 Graph", "Claude Code Skill"],
+    tags: ["Ontology", "Knowledge graph", "MCP"]
   },
   "fashion-ai-platform": {
     group: "② AI Platform",
@@ -564,11 +599,11 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     group: "③ AI Talent Evaluation",
     title: "AI Talent Pool and People Evaluation System",
     subtitle: "A 100-point system that measures outputs (agents) and people (participation) separately, building a talent pool for rewards, funding and placement",
-    period: "2026 – in operation",
+    period: "2026.01 – in operation",
     purpose:
       "Makes who uses AI well and what they have built visible in numbers rather than by feel. Agents are measured against public criteria, people by a participation score, and the results inform rewards, funding and placement decisions.",
     metrics: [
-      { value: "100 pts", label: "Participation score", note: "agents · training · visits · NoA usage" },
+      { value: "100 pts", label: "AI evaluation criteria built", note: "two axes: agents · people" },
       { value: "4 tiers", label: "Participation tiers", note: "Leading · Active · Entry · Watch" },
       { value: "5", label: "Member-care signals" },
       { value: "10 stages", label: "Member 360 journey" }

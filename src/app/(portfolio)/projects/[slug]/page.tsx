@@ -17,8 +17,8 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
-  const lang = await getLang();
-  const project = getContent(lang).projects.find((item) => item.slug === slug);
+  const [lang, admin] = await Promise.all([getLang(), isAdmin()]);
+  const project = visibleProjects(getContent(lang).projects, admin).find((item) => item.slug === slug);
   if (!project) return {};
   return { title: project.title, description: project.subtitle };
 }
