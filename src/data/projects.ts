@@ -44,6 +44,8 @@ export type Project = {
   catalog?: { title: string; items: CatalogItem[] };
   stack?: string[];
   image?: ProjectImage;
+  /** 대표 이미지 아래에 이어서 보여 줄 추가 화면 */
+  images?: ProjectImage[];
   /** 목록 썸네일용 정사각 이미지. 없으면 image 를 씁니다. */
   thumb?: ProjectImage;
   tags: string[];
@@ -315,6 +317,15 @@ export const PROJECTS: Project[] = [
       width: 1553,
       height: 746
     },
+    images: [
+      {
+        src: "/projects/paas-my-dashboard.png",
+        alt: "개인 사용자 대시보드: 내 프로젝트 3건(배포 주소·최종 성공 시각·오류 수), 내 DB와 파일 스토리지 사용량, 내 스케줄, 최근 24시간 런타임 오류",
+        caption: "개인 사용자 대시보드: 본인이 배포한 웹의 상태·오류, 내 DB·파일 스토리지 사용량, 내 스케줄, 최근 24시간 런타임 오류를 한 화면에서 확인",
+        width: 1302,
+        height: 1062
+      }
+    ],
     thumb: {
       src: "/projects/paas-dashboard-thumb.png",
       alt: "PaaS 대시보드",

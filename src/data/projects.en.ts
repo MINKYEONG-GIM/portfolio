@@ -184,6 +184,15 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       width: 1553,
       height: 746
     },
+    images: [
+      {
+        src: "/projects/paas-my-dashboard.png",
+        alt: "Personal dashboard: my 3 projects with deployment URL, last success time and error count, my DB and file storage usage, my schedules, and runtime errors in the last 24 hours",
+        caption: "Personal dashboard: the status and errors of the apps I deployed, my DB and file storage usage, my schedules and the last 24 hours of runtime errors on one screen",
+        width: 1302,
+        height: 1062
+      }
+    ],
     thumb: {
       src: "/projects/paas-dashboard-thumb.png",
       alt: "PaaS dashboard",

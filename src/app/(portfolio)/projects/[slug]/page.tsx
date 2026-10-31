@@ -88,6 +88,13 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
           </figure>
         ) : null}
 
+        {project.images?.map((extra) => (
+          <figure key={extra.src} className="overflow-hidden rounded-2xl border border-line bg-surface">
+            <Image src={extra.src} alt={extra.alt} width={extra.width} height={extra.height} sizes="(min-width: 1152px) 1120px, 100vw" className="h-auto w-full" />
+            {extra.caption ? <figcaption className="ko-keep border-t border-line px-5 py-3 text-sm font-bold text-ink">{extra.caption}</figcaption> : null}
+          </figure>
+        ))}
+
         <table className="oy-table">
           <tbody>
             <tr>
