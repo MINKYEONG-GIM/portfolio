@@ -83,6 +83,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "pim-data-integration": {
     group: "Data hub",
     title: "PIM Data Integration System",
+    short: "PIM",
     subtitle: "A product-information hub that manages every product attribute in one place and lets AI generate channel-ready listings published straight to online channels",
     period: "2025.09 – 2026.03",
     purpose:
@@ -139,6 +140,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "daas-paas-operations": {
     group: "② Infrastructure",
     title: "PaaS-based Service Operations",
+    short: "PaaS operations",
     subtitle: "An in-house PaaS that deploys the apps non-developers build and provides the DB, file storage and schedules they need",
     period: "2026.03 – ongoing",
     purpose: 
@@ -205,6 +207,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "strategy-rag-search": {
     group: "Knowledge search",
     title: "Internal Strategy-Document RAG Search",
+    short: "RAG search",
     subtitle: "Not simple search, but a service that searches the organization's decision criteria",
     period: "2025.01 – 2025.07",
     purpose: "Turned sales data, product information and internal project documents into an AI search and summary service.",
@@ -302,6 +305,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "noa-mcp-agent-platform": {
     group: "① Agent platform",
     title: "Ontology-based Enterprise AI Agent Platform",
+    short: "AI agent platform (NoA)",
     subtitle: "An enterprise AI agent platform where internal data, metrics and business rules are defined as an ontology (knowledge graph) and every MCP server runs on that ontology. Known internally as NoA",
     period: "2025.11 – ongoing",
     purpose: 
@@ -450,6 +454,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "fashion-ai-platform": {
     group: "② AI Platform",
     title: "Fashion AI Platform: Agent Sharing, Recommendation & Submission Portal",
+    short: "Fashion AI platform",
     subtitle: "Where employees publish agents built with NoA (the in-house AI agent platform), get personalized recommendations, and submit results every month",
     period: "2026 – in operation",
     purpose:
@@ -468,6 +473,21 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     features: [
       {
         eyebrow: "Core feature 01",
+        title: "Home: tasks and recommendations the moment you arrive",
+        summary:
+          "One first screen shows both ‘what I have to do this month’ and ‘the agents that fit me’. Without opening any menu, the eye moves from the banner to the job filter, the recommendation cards and the task sidebar.",
+        items: [
+          { title: "Top menu and Agent registration", body: "Four menus (Browse agents · Build & submit · Learn · Get help), search, and an ‘Register agent’ button reachable from anywhere. Only admins see the ‘Admin’ menu." },
+          { title: "Recommended · Best · Popular · NoA news tabs", body: "Recommendations for me, top-rated agents, most-viewed agents and platform/NoA notices are separate tabs switched right on the home screen." },
+          { title: "Best agent banner", body: "Agents with the BEST AGENT badge rotate in a six-slide banner with name, one-liner, monthly hours saved and number of users, so the first thing shown is which agents deliver results." },
+          { title: "Job and category icon filter", body: "One row of icons: All · Fashion · Dashboard · Merchandising · Production · Online · Logistics · Sales · Automation · HR · Marketing · VMD and more. Tapping one switches the list below to that job's agents." },
+          { title: "Recommended for you", body: "My job, department and recently viewed agents are shown as criteria chips, followed by cards chosen on those criteria, each with category, creator and thumbnail." },
+          { title: "This month's tasks sidebar", body: "Days to the submission deadline, progress (e.g. 1 of 3 done), whether this month's survey is complete, monthly submissions and agents needing input stay pinned on the right as a reminder on every visit." },
+          { title: "Side recommendation card", body: "Below the sidebar, one agent close to my job is shown with its monthly hours saved so it can be tried right away." }
+        ]
+      },
+      {
+        eyebrow: "Core feature 02",
         title: "Personalization",
         summary:
           "The home screen differs for every person. Job and department from the HR DB plus in-platform behavior (recently viewed and liked agents) are scored, and every card carries a one-line reason.",
@@ -481,21 +501,23 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         ]
       },
       {
-        eyebrow: "Core feature 02",
+        eyebrow: "Core feature 03",
         title: "Agent registration and monthly submission",
         summary:
           "A registration form that makes people state what changed in numbers, and a monthly flow that re-reports results. Evaluation and the talent pool use this data as is.",
         items: [
           { title: "4-part form", body: "① Agent description (name, category, one-liner, URL) ② Usage guide ③ What NoA changed (users, monthly hours saved, removed tasks, at least one KPI) ④ Access (password, SSO or no security). Instead of browser validation, all missing fields are listed with reasons and jump links." },
           { title: "Co-creators and contribution", body: "Co-creators are found by company account; contributions must total 100%. When people change, the split resets to equal. Each co-creator is recorded separately so it counts toward their own participation." },
-          { title: "7-item usage-guide prompt", body: "① Task ② Access ③ Steps ④ Operating logic and company/team tacit rules (thresholds, priorities, exceptions) ⑤ Use ⑥ KPIs (metric, before/after, cadence) ⑦ Cautions. For logic and tacit rules, NoA asks the builder instead of guessing." },
+          { title: "Usage-guide prompt: eight questions that capture know-how", body: "Pressing ‘Copy prompt’ on the submission screen and pasting it into NoA produces a usage guide of 1,500+ characters that a first-time colleague can follow as is. Items: ① task ② access ③ steps ④ operating logic ⑤ use ⑥ KPIs ⑦ cautions and FAQs ⑧ work tips and sense. ④ and ⑧ matter most: judgment logic only the owner knows, such as deriving a reorder quantity, is written with real numbers (which figures, in what order, with which thresholds and adjustments such as remaining selling weeks, minimum order unit, end-of-season sell-out target), plus situational rules (‘when a figure crosses a threshold → state → action’) and ‘input → calculation → result’ in numbers. NoA must ask the builder one question at a time instead of guessing logic or tacit rules, and tools that only display figures are labeled ‘for viewing’ rather than invented. A separate optional field, ‘My tips · what makes this tool different’ (up to 1,000 characters), collects uses others don't know and how it differs from similar tools." },
+
+          { title: "Registration text written by a Claude Code skill", body: "The agent-output-writer skill in the NoA plugin reads the agent's source code first, interviews its maker, and produces the 4-part form, the 7-item usage guide and the monthly submission fields (logic, company and team unwritten rules, KPIs, basis for hours saved) as one block of text. Paste it into the submission screen and you are done, so people who put off registering because of the writing now publish." },
           { title: "Monthly submission", body: "Requires completing that month's NoA survey first. New agents reuse board values; version-ups must restate changes, users, hours saved, removed tasks, KPIs and the guide. One row per agent × month, editable within the month." },
           { title: "Getting started in 5 steps", body: "Account request → NoA access → DaaS token → first agent → this month's survey and submission. Completion is judged automatically from data." },
           { title: "Hide, don't delete", body: "Deleted posts are hidden, not removed from the DB, so build history and evaluation records keep the talent-pool figures stable." }
         ]
       },
       {
-        eyebrow: "Core feature 03",
+        eyebrow: "Core feature 04",
         title: "Requests and inquiries that accumulate automatically",
         summary:
           "When the data someone wants to see in the in-house AI agent is missing, or they get stuck using NoA, they request or ask right inside the platform. Everything lands in the admin screens, and recurring questions accumulate into the FAQ so the same question comes back less often.",
@@ -515,6 +537,10 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
           {
             title: "Offline help sessions",
             body: "People who can't be helped in writing sign up for an offline session at a set time and place; sign-ups are managed on the same screen."
+          },
+          {
+            title: "Admin morning digest email",
+            body: "Every day at 8 a.m., new accounts, monthly output submissions (new/version-up), new agent uploads and NoA survey responses received since 1 p.m. the previous day are sent to admins as counts and lists. Each item links to the admin screen, so admins know the day's work from the email without opening the platform."
           }
         ]
       }
@@ -544,6 +570,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "enterprise-agent-integration": {
     group: "③ Enterprise integration",
     title: "Enterprise Agent Integration: From Per-Brand to One",
+    short: "Enterprise agent integration",
     subtitle: "Group agents built per brand into brand-level agents, then integrate them into one central harness for the whole company",
     period: "2026 – ongoing",
     status: "Ongoing",
@@ -616,6 +643,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "recsys-serving-pipeline": {
     group: "④ Next step",
     title: "Personalized Recommendation Serving Pipeline",
+    short: "Recsys serving pipeline",
     subtitle: "From rule-based recommendation to model-based real-time serving",
     period: "Planned",
     status: "Planned",
@@ -642,6 +670,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "ai-talent-pool": {
     group: "③ AI Talent Evaluation",
     title: "AI Talent Pool and People Evaluation System",
+    short: "AI talent pool & evaluation",
     subtitle: "A 100-point system that measures outputs (agents) and people (participation) separately, building a talent pool for rewards, funding and placement",
     period: "2026.01 – in operation",
     purpose:
@@ -730,6 +759,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "ax-discovery-agent-training": {
     group: "① Training",
     title: "Company-wide AI Agent Training",
+    short: "AI agent training",
     subtitle: "Small, step by step, repeatedly: employees build AI agents hands-on",
     period: "2026.02 – ongoing",
     purpose: "Designed training, onboarding and operational support to reach a 20% AX conversion rate across the organization.",
@@ -769,6 +799,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "naver-channel-strategy": {
     group: "Online channel strategy",
     title: "Redefining the Naver Channel Sales Strategy",
+    short: "Naver channel strategy",
     subtitle: "Why it was customer-structure redesign, not channel expansion",
     period: "2024.01 – 2024.02",
     purpose: "Redesigned product, content and channel messaging from an analysis of each customer group's entry motives, lifting channel sales.",
@@ -796,6 +827,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "newbalance-padding-rebranding": {
     group: "Product portfolio strategy",
     title: "New Balance Padding Rebranding Strategy",
+    short: "Padded-jacket rebranding",
     subtitle: "Designing core products from big data",
     period: "2024.11 – 2024.12",
     purpose: "Redefined product strategy and marketing messages from sales, review and platform data by age group.",
@@ -815,6 +847,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "china-brand-churn-analysis": {
     group: "Product portfolio strategy",
     title: "Customer Churn Analysis for a Premium Brand in China",
+    short: "China brand churn analysis",
     subtitle: "Combining store interviews, search trends, social media and district surveys into a product-portfolio strategy",
     period: "2025.02 – 2025.03",
     purpose: "Cross-validated store customers, search trends, street-style observation and social data to identify the cause of market change.",

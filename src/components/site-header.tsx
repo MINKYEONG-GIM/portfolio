@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LockKeyhole, LogOut, ShieldCheck } from "lucide-react";
+import { FileDown, LockKeyhole, LogOut, ShieldCheck } from "lucide-react";
 import { LangToggle } from "@/components/lang-toggle";
 import { PartIcon } from "@/components/part-icon";
 import { adminLogout } from "@/app/actions";
@@ -41,6 +41,10 @@ export function SiteHeader({ lang, parts, projectCount, admin }: HeaderProps) {
         </Link>
         <div className="flex items-center gap-3">
           <p className="hidden text-sm font-bold text-muted md:block">{ui.nav.summary(projectCount)}</p>
+          <Link href="/print" className="inline-flex items-center gap-1 text-xs font-bold text-muted hover:text-ink">
+            <FileDown className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">{ui.nav.pdf}</span>
+          </Link>
           {!admin ? (
             <Link href="/admin-login" className="inline-flex items-center gap-1 text-xs font-bold text-muted hover:text-ink">
               <LockKeyhole className="h-3.5 w-3.5" />

@@ -4,7 +4,7 @@ import type { Lang } from "@/lib/lang";
 const UI = {
   ko: {
     siteTitle: "프로젝트 리스트",
-    nav: { home: "홈", timeline: "타임라인", contents: "목차", summary: (n: number) => `서비스기획 · 프로젝트 ${n}개` },
+    nav: { home: "홈", timeline: "타임라인", contents: "목차", pdf: "PDF 저장", summary: (n: number) => `서비스기획 · 프로젝트 ${n}개` },
     home: {
       eyebrow: "SERVICE PLANNING PORTFOLIO",
       title: "프로젝트",
@@ -66,6 +66,22 @@ const UI = {
       next: "다음 프로젝트"
     },
     footer: { note: "각 프로젝트의 수치는 당시 기준입니다." },
+    pdf: {
+      title: "포트폴리오 PDF",
+      button: "PDF로 저장",
+      hint: "버튼을 누르면 인쇄 창이 열립니다. 대상(프린터)을 ‘PDF로 저장’으로 고르면 파일로 받습니다. 표지 → 목차 → 전체 요약 → 프로젝트별 상세 순서입니다.",
+      back: "사이트로 돌아가기",
+      cover: "서비스기획 포트폴리오",
+      contents: "목차",
+      summary: "전체 요약",
+      projectCount: (n: number) => `프로젝트 ${n}개`,
+      generated: "생성일",
+      colNo: "No.",
+      colPart: "파트",
+      colProject: "프로젝트",
+      colPeriod: "기간",
+      colResult: "핵심 성과"
+    },
     admin: {
       login: "관리자로 로그인하기",
       title: "관리자 로그인",
@@ -92,7 +108,7 @@ const UI = {
   },
   en: {
     siteTitle: "Project List",
-    nav: { home: "Home", timeline: "Timeline", contents: "Contents", summary: (n: number) => `Service Planning · ${n} projects` },
+    nav: { home: "Home", timeline: "Timeline", contents: "Contents", pdf: "Save PDF", summary: (n: number) => `Service Planning · ${n} projects` },
     home: {
       eyebrow: "SERVICE PLANNING PORTFOLIO",
       title: "Projects",
@@ -154,6 +170,22 @@ const UI = {
       next: "Next project"
     },
     footer: { note: "Figures are as of each project's period." },
+    pdf: {
+      title: "Portfolio PDF",
+      button: "Save as PDF",
+      hint: "The button opens the print dialog. Choose ‘Save as PDF’ as the destination to download a file. Order: cover → contents → summary → project details.",
+      back: "Back to site",
+      cover: "Service Planning Portfolio",
+      contents: "Contents",
+      summary: "Summary",
+      projectCount: (n: number) => `${n} projects`,
+      generated: "Generated",
+      colNo: "No.",
+      colPart: "Part",
+      colProject: "Project",
+      colPeriod: "Period",
+      colResult: "Key result"
+    },
     admin: {
       login: "Admin login",
       title: "Admin login",
