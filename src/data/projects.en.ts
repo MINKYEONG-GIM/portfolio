@@ -186,6 +186,11 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       width: 1667,
       height: 784
     },
+    images: [
+      { src: "/projects/pim-image-hub-home.png", alt: "Image hub home: left menu (work status, style information, image information, detail pages, My Pocket, other materials, per-channel information, master data, permissions, trash, AI search), filters for upload date, uploader, brand and color with a registration-error badge, and a grid of 34,031 images", caption: "Image hub home: upload date, uploader, brand and color filters plus a ‘registration error’ badge locate any of tens of thousands of images in the grid", width: 1197, height: 903 },
+      { src: "/projects/pim-image-detail.png", alt: "List view with the image detail panel on the right: file name, brand, style code, colors, cut type, search keywords, size, uploader, upload time, and edit/download buttons", caption: "Image details: the file-name rule (style code_color_cut type) auto-matches style code, colors and cut type, with search keywords viewed and edited in one panel", width: 1197, height: 883 },
+      { src: "/projects/pim-style-status.png", alt: "Style status for one style code: style information review (pending) → image upload (2 flat-lay, 1 campaign, done) → channel image generation (done) → detail page generation (pending), with per-color detail-page status and retry buttons for failures", caption: "Style status: review → image upload → channel image generation → detail page generation per style on one screen, with ‘retry’ for colors whose page failed", width: 1381, height: 875 }
+    ],
     stack: ["Snowflake", "SAP", "OMS", "Generative AI"],
     tags: ["PIM", "Product information", "AI channel listing"]
   },
