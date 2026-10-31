@@ -523,6 +523,9 @@ export const PROJECTS: Project[] = [
       width: 2048,
       height: 1536
     },
+    images: [
+      { src: "/projects/ax-connector-slide.png", alt: "교육자료 ‘커넥터(Connector)란?’ 슬라이드: 클로드를 사내 시스템에 꽂아주는 전원 콘센트라는 비유, 꼭 알아둘 점 4가지(사내 커넥터 하나만 연결, 끊기면 ‘데이터가 없습니다’, 읽기 전용, 사내 계정 로그인 필요), 커넥터 안의 연결 4개(dw-mcp 사내 DW, graph-mcp 지식그래프, mail-mcp 메일·일정, hr-mcp 인사 시스템)", caption: "교육자료 중 ‘커넥터(Connector)란?’: 비유 → 꼭 알아둘 점 4가지 → 커넥터 안의 연결 4개 순서로, 개발 용어 대신 콘센트 비유로 설명하는 슬라이드 (시스템·브랜드명은 일반 명칭으로 바꿈)", width: 2400, height: 1400 }
+    ],
     tags: ["AI Agent 교육", "교육", "온보딩"]
   },
   {

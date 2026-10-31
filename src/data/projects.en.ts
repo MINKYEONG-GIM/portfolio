@@ -851,6 +851,9 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       width: 2048,
       height: 1536
     },
+    images: [
+      { src: "/projects/ax-connector-slide.png", alt: "Training slide ‘What is a connector?’: the power-outlet analogy for plugging Claude into company systems, four things to know (connect only the company connector, ‘no data’ when disconnected, read-only, company login required), and the four connections inside (dw-mcp company DW, graph-mcp knowledge graph, mail-mcp mail and calendar, hr-mcp HR system)", caption: "From the training deck, ‘What is a connector?’: analogy → four things to know → the four connections inside, explained with a power-outlet metaphor instead of developer terms (system and brand names generalized)", width: 2400, height: 1400 }
+    ],
     tags: ["AI agent training", "Training", "Onboarding"]
   },
   "naver-channel-strategy": {
