@@ -375,13 +375,10 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       { value: "8,180 h / month", label: "Work hours saved by agents", note: "as of Sept 2026" }
     ],
     roles: [
-      "Ontology design: a knowledge-graph schema with metrics, tables, columns, brands, stores and seasons as nodes, and formulas, joins, usage conditions and synonyms as relationships",
-      "Knowledge graph build: loaded official metric definitions and golden SQL into Neo4j, and used Cypher queries to find missing or conflicting definitions and validate them against the DW",
+      "Ontology design and knowledge graph build: designed the knowledge-graph schema from business-domain information, and loaded official metric definitions and golden SQL into Neo4j",
       "MCP server development: packaged graph lookups (resolve, read_cypher) and DW queries as MCP tools, with read-only and own-permission security principles",
       "Skills and hooks: fixed the procedure 'one graph lookup → SQL → read-only run' as skills, and designed hooks that store user corrections and company decisions in the context graph",
-      "Plugin rollout and offline training: Claude org administration (connectors, org instructions, permissions), employee training design and delivery",
-      "Company-wide promotion: weekly use-case content planned and broadcast across all affiliates"
-    ],
+      "Plugin rollout and offline training: Claude org administration (connectors, org instructions, permissions), employee training design and delivery"    ],
     background:
       "Even after connecting AI agents to internal data, the same 'sales' figure was computed differently by brand and by person, because the model guessed tables and formulas. After two or three wrong sales or profit numbers, trust collapsed and usage dropped.\nWhat was needed before more connections was a meaning the company had agreed on. Metric definitions, formulas, joins, season rules and unwritten rules were loaded into one ontology, and the structure was changed so that every agent queries that graph before writing any SQL.",
     system: {
