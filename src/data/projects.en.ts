@@ -884,7 +884,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     },
     tags: ["Customer analysis", "Channel strategy", "Live commerce"]
   },
-  "newbalance-padding-rebranding": {
+  "padding-rebranding-strategy": {
     group: "Product portfolio strategy",
     title: "the sports brand Padding Rebranding Strategy",
     short: "Padded-jacket rebranding",

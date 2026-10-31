@@ -1068,7 +1068,7 @@ export const PROJECTS: Project[] = [
     tags: ["고객 분석", "채널 전략", "라이브 커머스"]
   },
   {
-    slug: "newbalance-padding-rebranding",
+    slug: "padding-rebranding-strategy",
     part: 4,
     group: "상품 포트폴리오 전략",
     title: "스포츠 브랜드 패딩 리브랜딩 전략",
