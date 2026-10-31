@@ -252,7 +252,8 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         caption: "Personal dashboard: the status and errors of the apps I deployed, my DB and file storage usage, my schedules and the last 24 hours of runtime errors on one screen",
         width: 1302,
         height: 1062
-      }
+      },
+      { src: "/projects/paas-monitoring.png", alt: "Admin service-usage monitoring: usage summary (356 app runs, 0.00% error rate, 1854.9 ms average response, p95 2811.9 ms, p99 3358.1 ms, 0 throttles, 0.00% deployment failures, 264 of 281 apps measurable), a call/error trend chart, and a per-application table with calls, error rate, latency, p95, p99, throttles and MAU. User names and IDs blurred, MAU values are examples", caption: "Admin view of every deployed app (service-usage monitoring): overall runs, errors and response times, call/error trend over time, and per-app calls, error rate, latency (p95/p99), throttles and MAU. User names and IDs are blurred and MAU values are examples", width: 2000, height: 1186 }
     ],
     thumb: {
       src: "/projects/paas-dashboard-thumb.png",
