@@ -144,7 +144,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     purpose: 
       "An in-house PaaS where line staff deploy the web tools they build without developer help and get operations support. Overall deployment status, per-app MAU and call counts, and deployment domains are managed in one place.",
     background:
-      "Even when line staff built web apps with AI tools, there was nowhere to put them. Asking the development team meant a long wait; putting them on a personal PC or external hosting sent company data outside and left no record of who deployed what. Even after a successful deployment, a DB, file storage and scheduled jobs had to be found separately, and every failed deployment needed a person to diagnose it.\nAn in-house PaaS was needed: safe deployment without developers, and the resources for operations from one place.",
+      "As line staff put the web apps they built on external services one by one, problems piled up. Nobody could manage where or how company information was stored, company data leaked out through external DBs and hosting, and each person paid separately for domains and hosting.\nThe in-house PaaS was built to bring deployment inside the company, manage it in one place, and consolidate internal information, security and cost.",
     metrics: [{ value: "90%", label: "Deployment success rate", note: "n=235 deployments" }],
     roles: [
       "Operated serverless deployment of Next.js apps and analyzed deployment failures",
