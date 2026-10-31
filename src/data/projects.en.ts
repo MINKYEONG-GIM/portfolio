@@ -89,9 +89,10 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     purpose:
       "Upload product information once into PIM: product name, price, materials, model shots, flat-lay shots, thumbnails. AI then adapts it to each online channel's listing rules (naming conventions, promotional copy, categories, image specs) and publishes through the OMS. The goal is to end re-entering the same product data channel by channel.",
     metrics: [
-      { value: "30% → 70%", label: "Structure that enables staffing efficiency" },
-      { value: "10+", label: "Brands' product data integrated" },
-      { value: "SAP · BI · OMS", label: "Systems connected" }
+      {"value":"6 days → 1 hour","label":"Listing lead time","note":"from receiving to on sale"},
+      {"value":"100%","label":"Standard listings automated","note":"only events and promotions remain: 80% of time saved"},
+      {"value":"54%","label":"Non-value work spent on listing","note":"3-week MD/AMD census, 1,865 h per month"},
+      {"value":"30% → 70%","label":"Structure that enables staffing efficiency"}
     ],
     roles: [
       "Defined what PIM manages: product code, name, material, color, size, price, inventory and images (model, flat-lay, thumbnail) as the single source of product truth",
@@ -100,8 +101,8 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Designed the generative-AI workflow: per-item keyword extraction, channel-specific names and promotional copy, image spec adaptation",
       "Turned interviews with MD, photo and ops teams into requirements for listing procedures and per-channel rules"
     ],
-    background:
-      "Product information for 10+ brands lived in SAP, BI, local folders, drives and email, so every time a product went online an MD re-entered its name, price and images for each channel. The request was to automate this with RPA, but the root problem was that product information had no single source.",
+    background: 
+      "Three weeks of shadowing MDs and AMDs and doing their work showed that 54% of non-value-adding work was ‘product listing and management’ (1,865 hours a month). Three core bugs: ① product data was scattered across SAP, BI, local folders, drives and email; ② the process ran on habit; ③ every channel needed manual adjustment to its own format.\nSo a PIM (Product Information Management) system managing all product data in one place was needed. Global SPA brands and leading fashion companies already used one; the company had partial functions in the Elandmall back office and EHUB, but nothing complete, so no process had ever been established.",
     features: [
       {
         eyebrow: "Core feature 01",
@@ -124,9 +125,60 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
           { title: "Automatic image specs", body: "Images converted to each channel's thumbnail ratio, file size and background requirements." },
           { title: "OMS-linked publishing", body: "Processed listings flow through the in-house OMS to each online channel, with no manual re-entry on channel screens." }
         ]
+      },
+      {
+        eyebrow: "Core feature 03",
+        title: "Image hub UI: once a photo comes in, the product reaches the channels",
+        summary: "Images uploaded by the photo team are matched to style codes automatically, and each style's progress from review to channel images to detail pages is visible on one screen.",
+        items: [
+          { title: "Home: image grid and filters", body: "Upload date, uploader, brand (SPAO, SPAO Kids, MIXXO, ROEM, SHOOPEN and more), color filters and a ‘registration error’ badge locate any of tens of thousands of images (e.g. 34,031) at once. Grid and list views, drag-and-drop bulk upload." },
+          { title: "Image details", body: "File name, brand, style code, colors (multiple), cut type (campaign, tag/inner tag, flat-lay detail/front, model), search keywords, size, uploader and upload time in one panel, with edit and download. Files are matched automatically by the naming rule style code_color_cut type." },
+          { title: "Style status", body: "Search one style code to see each stage with its last update: style information review (pending/done) → image upload (count per cut type) → channel image generation → detail page generation. Colors whose detail page failed get a ‘retry’ button." },
+          { title: "Menu", body: "Work status, style information, image information, detail pages, My Pocket, other materials, per-channel information, master data, permissions, trash and AI search. Role-based permissions let the photo, listing and e-commerce teams use the same screens differently." }
+        ]
       }
     ],
-    steps: ["Automation request", "Interviews with MD, photo and ops teams", "Mapping scattered product data", "PIM attributes & Snowflake schema", "AI processing → OMS → channel publishing"],
+    system: {
+      intro:
+        "PIM completes the product flow after receiving in one line. When merchandising registers a product in PLM, receiving and inventory registration trigger a new-product alert; photographed (later 3D-generated) images enter the image hub via E-HUB upload or API. AI builds the detail page (Picasso) and thumbnails, a per-channel data-optimization agent fits each channel's format, and E-Hub sends to every channel. The six layers below are the image hub's structure.",
+      layers: [
+        { name: "1. Bulk upload", role: "Drag and drop many images at once. Re-uploads such as added model shots notify detail-page production (Picasso).", items: [{ label: "Drag-and-drop bulk upload", note: "style code, color and cut type recognized from the file name" }, { label: "Re-upload", note: "added model shots etc. → Picasso notified" }, { label: "Error badge", note: "unmatched files flagged on the home screen" }] },
+        { name: "2. Image management", role: "Each image gets its type, product traits and product information, becoming a searchable asset.", items: [{ label: "① Image type", note: "front/back/detail, product/model/concept shot" }, { label: "② Product traits", note: "material · mood" }, { label: "③ Style-code link", note: "SAP data (name, price) joined with PIM disclosure data" }] },
+        { name: "3. Auto-editing", role: "Images are adjusted automatically to channel specs.", items: [{ label: "① Resizing", note: "size · ratio" }, { label: "② Retouching", note: "brand logo removal, background removal and more" }] },
+        { name: "4. Search", role: "Find by product information or by similar image.", items: [{ label: "Product-information search", note: "style code · item name · color" }, { label: "Similar-image search", note: "find images with an image" }, { label: "AI search", note: "natural-language search for product images" }] },
+        { name: "5. Download", role: "Select the images you need and download them in bulk.", items: [{ label: "Select and bulk download", note: undefined }, { label: "My Pocket", note: "keep frequently used images" }] },
+        { name: "6. Share", role: "Like Google Maps, bundle only the images you want to share and edit.", items: [{ label: "Shared image bundles", note: undefined }, { label: "Edit inside a shared bundle", note: undefined }] }
+      ],
+      flow: [
+        { title: "PLM product registration", body: "Merchandising registers the product in PLM (planning and production) and the base data flows to PIM." },
+        { title: "Receiving and inventory → new-product alert", body: "When logistics registers receiving and inventory, the listing team is alerted automatically instead of digging through inventory to spot new products." },
+        { title: "Shooting · 3D generation → E-HUB upload / API", body: "Photo-team shots (later 3D renders) enter the image hub by E-HUB upload or API. The Google upload and email steps disappear." },
+        { title: "Detail page production (Picasso)", body: "AI generates models, proposes sales copy, builds the detail page and writes SEO tags. Sample requests, measuring, inner-tag checks and disclosure images are replaced by PIM data." },
+        { title: "Thumbnail and detail-page upload", body: "Generated thumbnails and detail pages attach to the style code automatically." },
+        { title: "Per-channel data-optimization agent", body: "An agent converts data to each channel's naming rules, categories, image specs and promotional copy: the step people used to adjust by hand." },
+        { title: "E-Hub listing → all channels", body: "One listing in E-Hub is sent to every channel (Elandmall, Sabangnet, Cafe24, Naver, Musinsa, Zigzag and more)." },
+        { title: "Monitoring dashboard", body: "Displayed styles are managed in one place, blocking the human error of ‘received but never on sale’. People become supervisors who review and improve AI logic." }
+      ],
+      principles: [
+        { title: "One source for product information", body: "Names, prices, materials, disclosure data and images originate only in PIM; channels consume them. Scattered data was core bug no. 1." },
+        { title: "Agents, not people, fit channel formats", body: "Per-channel rules live in the data-optimization agent; when a rule changes, only the agent changes. This removes core bug no. 3, manual adjustment." },
+        { title: "People supervise, they do not operate", body: "Standard listings are 100% automated. People review and feed back better AI logic, and only work that needs a platform MD, such as event listings and promotions, remains." },
+        { title: "Linked to PLM, from production to after-sales", body: "Connected with PLM, PIM gives integrated product analysis from production to post-sale service and becomes the system base for global channel expansion." }
+      ]
+    },
+    catalog: {
+      title: "Ways of working: AS-IS → TO-BE, and the four changes",
+      items: [
+        { name: "[AS-IS] The old way — seven core bugs", body: "Merchandising registers in SAP → logistics registers receiving and inventory → the listing team digs through inventory to find new products (bug) → lists without photos → requests samples from logistics → measures and checks inner tags (bug) → makes disclosure images (bug) → photo team shoots → Google upload and email (bug) → detail page production (bug) → thumbnails and pages entered → Elandmall image upload (bug) → e-commerce team lists separately in Elandmall, Sabangnet and E-Hub (bug) → sent to Cafe24, Naver, Musinsa, Zigzag. Five teams passed the same information along, re-typing it each time." },
+        { name: "[TO-BE] After the system — one PIM flow", body: "PLM registration → new-product alert on receiving → shooting / 3D generation → E-HUB upload / API → detail page (Picasso) → automatic thumbnail and page upload → per-channel optimization agent → E-Hub listing → all channels. Re-typing steps disappear; the listing team only reviews and handles exceptions." },
+        { name: "Change ① Lead time from 6 days to 1 hour", body: "Listing lead time from receiving to on sale drops from an average of 6 days to at most 1 hour." },
+        { name: "Change ② People no longer intervene", body: "Standard listings are 100% automated. People become supervisors who review and improve AI logic rather than operators, and only tasks that need a platform MD, such as event listings and promotions, remain, saving 80% of the time." },
+        { name: "Change ③ Take the photo and AI does the rest", body: "Model generation, sales copy, detail pages, channel-specific image conversion and SEO tags. The page is created and listed as the shot is taken; once 3D modeling is ready, products can go on sale at planning without a shoot." },
+        { name: "Change ④ No more ‘received but not on sale’", body: "A monitoring dashboard managing every displayed style completely blocks the human error of products received but never put on sale." },
+        { name: "Data as an asset, and what it enables", body: "All sales-side product information (images, names) becomes data that strengthens AI training. Products become searchable by image and natural language, and customer-facing data absent from production data enables new models such as AI merchandising, AI recommendations and AI short-form content. Linked to PLM, PIM provides integrated analysis from production to after-sales and underpins global channel expansion." }
+      ]
+    },
+    steps: ["3-week MD/AMD work census","Define the three core bugs","PIM attributes and data flow","Build the image hub","AI detail pages and channel-optimization agent","E-Hub → all channels automatically"],
     image: {
       src: "/projects/pim-pipeline.png",
       alt: "Pipeline design: SAP BI → Snowflake → PIM DB → PIM system → in-house OMS → online channels, with AI handling keyword extraction and channel-specific listing copy",
@@ -729,7 +781,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       title: "Agent evaluation criteria",
       items: [
         { name: "1. Is the domain clear", body: "1-1. Is the work area and problem whose productivity it raises clearly defined" },
-        { name: "2. Did it deliver results", body: "2-1. How many work steps and hours did the agent save · 2-2. Did it deliver quantitative outcomes (sell-through, sell-through value, cost savings, etc.)" },
+        { name: "2. Did it deliver results", body: "2-1. How many work steps and hours did the agent save\n2-2. Did it deliver quantitative outcomes (sell-through, sell-through value, cost savings, etc.)" },
         { name: "3. Can it spread", body: "3-1. Is it a tool others can adopt, not just the builder (within the team / to other teams)" },
         { name: "4. Is there a next step", body: "4-1. Is the next stage of improvement concrete" }
       ]
@@ -832,7 +884,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     period: "2024.11 – 2024.12",
     purpose: "Redefined product strategy and marketing messages from sales, review and platform data by age group.",
     background:
-      "Search volume for outerwear as a whole was falling and padded-jacket demand was shrinking, yet product planning still repeated last year's top-selling styles. What customers under 30 bought and why, and what the reviews of top items on competing platforms were saying, never reached the plan.\nThree years of sales, review and search data had to be read together to redefine the core products and the marketing message.",
+      "The economy was cooling. Korea's growth was expected to slow from 2.5% in 2024 to 1.9% in 2025, and consumer spending stood at 71% of disposable income, a ceiling where people could not spend more but were not spending less either. Buying better value for the same money showed up in padded jackets too. Looking into why the average price of top-ranked jackets had fallen, the share of costly goose and duck down fell from 82% in 2022 to 37% in 2024 while polyester and other synthetic fills rose to 63%. At the competitor, the down jackets Nuptse and Himalayan fell 38% and 37% while the synthetic-fill Onball grew 57%.\nOur own planning, meanwhile, carried over last year's top-selling styles, and what customers under 30 and men in their 30s bought and why never reached the plan. Three years of sales, review and search data had to be read together to redefine the core products and the marketing message.",
     metrics: [{ value: "100%", label: "Sales growth among customers under 30" }],
     roles: ["Analyzed men's and women's needs for padding items", "Analyzed three years of our own padding sales by item", "Analyzed reviews of top-selling items on the three key platforms"],
     image: {
@@ -842,24 +894,64 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       width: 1686,
       height: 1174
     },
+    images: [
+      { src: "/projects/padding-01-economy.webp", alt: "Market slide: IMF growth projection for Korea 2.5% in 2024 and 2.2% in 2025, Bank of Korea forecast cut from 2.1% to 1.9%, and a table showing consumer spending at 71% of disposable income", caption: "[Market] Slowing growth: 1.9% forecast for 2025, consumer spending at a 71% ceiling of disposable income", width: 1701, height: 1177 },
+      { src: "/projects/padding-02-synthetic-fill.png", alt: "Bar chart of fill materials among top-ranked padded jackets: natural fill 82% (36 styles) in 2022, 64% (28) in 2023, 37% (15) in 2024; synthetic fill 18% → 36% → 63% (26 styles)", caption: "[Market] Synthetic fill rising every year: natural (goose/duck) 82% → 64% → 37%, synthetic 18% → 36% → 63%", width: 1683, height: 1162 },
+      { src: "/projects/padding-03-nuptse-onball.png", alt: "Three-year trend by The North Face product: Nuptse -38%, Himalayan -37%, Onball +57%, Summit +6%, Matterhorn and Matier new", caption: "[Benchmark] Falling Nuptse, rising Onball: down jackets decline while the synthetic-fill Onball grows 57%, a value choice weighing warmth and price together", width: 1692, height: 1176 },
+      { src: "/projects/padding-04-30s-men.png", alt: "Gender share and age distribution for brands and lightweight jackets: National Geographic and Discovery centered on 40s with 70% women; The North Face and Arc'teryx lightweight jackets 46% and 67% men (+8%p, +9%p) centered on 30s", caption: "[Benchmark] Men in their 30s choose The North Face and Arc'teryx: the old benchmarks skew to 40s and women, the new ones to 25–39 and men", width: 1647, height: 1154 }
+    ],
+    catalog: {
+      title: "Four findings",
+      items: [
+        { name: "[Market] Growth slows, spending at its ceiling", body: "Korea's growth is forecast to slow from 2.5% in 2024 to 1.9% in 2025 (Bank of Korea cut on 28 November). Consumer spending is 71% of disposable income: people cannot spend more but are not spending less. They are not closing their wallets; they are choosing better value for the same money." },
+        { name: "[Market] Synthetic fill rising every year", body: "Among top-ranked padded jackets (44 in 2022, 44 in 2023, 41 in 2024), costly goose and duck down fell from 82% to 64% to 37%, while polyester and other synthetic fills rose from 18% to 36% to 63%. That is why prices came down." },
+        { name: "[Benchmark] Falling Nuptse, rising Onball", body: "The North Face's down jackets Nuptse and Himalayan fell 38% and 37% year on year, while the synthetic-fill Onball grew 57% and Matterhorn and Matier entered. Customers no longer insist on down; they weigh warmth and price together and choose value synthetic fill." },
+        { name: "[Benchmark] Men in their 30s choose The North Face and Arc'teryx", body: "The old benchmarks, National Geographic and Discovery, skewed to 40s with 70%+ women, much like New Balance lightweight-jacket customers. The North Face and Arc'teryx lightweight jackets are 46% and 67% men (+8%p, +9%p) with 30s the largest group, and their search volume is growing fast: a different customer base." }
+      ]
+    },
+    steps: ["Market: economy and spending","Market: fill materials of top-ranked jackets","Benchmark: competitor product trends","Benchmark: age and gender preference","Redefine core products and message"],
     tags: ["Product strategy", "Review analysis", "Search trends"]
   },
   "china-brand-churn-analysis": {
     group: "Product portfolio strategy",
     title: "Customer Churn Analysis for a Premium Brand in China",
     short: "China brand churn analysis",
-    subtitle: "Combining store interviews, search trends, social media and district surveys into a product-portfolio strategy",
-    period: "2025.02 – 2025.03",
-    purpose: "Cross-validated store customers, search trends, street-style observation and social data to identify the cause of market change.",
-    metrics: [{ value: "+8%", label: "Sales growth vs. same month last year", note: "from decline to growth" }],
+    subtitle: "Scofield China: six zero-base customer studies to find ‘Sco casual’ and localize the assortment for white-collar (白领) customers, as a product EBG validation project",
+    period: "2025.02 – 2025.04",
+    purpose:
+      "Built a process to validate Scofield China's products against customer-research rules (EBG), and cross-checked store customers, non-customer interviews, street-style surveys, review big data and social media to find the cause of falling sales, the customer to win, and item-level product principles, carried through to SS and FW product input.",
+    metrics: [
+      { value: "+8%", label: "Sales growth vs. same month last year", note: "from decline to growth" },
+      { value: "▲320%", label: "FW denim order value", note: "4 styles added" },
+      { value: "6", label: "Customer-research methods run from zero", note: "46 interviews · 11 shop-alongs · 98 surveys · 177 garments · 2,100 outfits · review big data" }
+    ],
     roleLead: "Proposed shrinking the formal-led assortment and rebuilding the portfolio around shirts, denim and comfortable business casual.",
     roles: [
       "Defined the cause of declining sales as a shift in customers' workwear norms, not the products",
-      "Confirmed the market shift from formal suiting to business casual",
-      "Found the client kept a portfolio centered on past hits, limiting new-customer inflow"
+      "Ran six customer-research methods from zero, revising questions and methods each round, and wrote them up as the product EBG validation process",
+      "Derived steady and trend types per item and customers' top needs and complaints from three years of Tmall top-20 sales data and review big data",
+      "Documented basics and differentiators for dresses, denim, knits/cardigans, shirts, tees and jackets by learning from benchmarks (Ralph Lauren, Edition, MO&Co., Uniqlo)",
+      "Decided SS and FW inputs (type, fit, color, fabric) with the local merchandising team"
     ],
-    background: "The brand kept a heavy share of past hits such as glossy colored blouses from a decade earlier, and sales were falling 27% a year.",
-    steps: ["Store customer interviews", "Tmall search-trend validation", "Shanghai office street-style survey", "Douyin content analysis", "Portfolio rebuild proposal"],
+    background:
+      "The brand kept a heavy share of past hits such as glossy colored blouses from a decade earlier, and sales were falling 27% a year. In non-customer interviews people said Scofield clothes could be worn only one day a week, so they felt like a waste of money. Office dress had become casual, yet Scofield still offered formal suiting; only 21% of interviewees wore formal clothes daily, while 70% said the brand had nothing but formal clothes.\nThe customer to win was different too: white-collar (白领) women aged 35–45 at large companies, familiar with the ‘old money’ look through Xiaohongshu and global brands (44% had bought them). The brand's gold trims and loud colors and patterns, tuned to general Chinese customers, read as ‘old’.",
+    catalog: {
+      title: "Findings and strategy",
+      items: [
+        { name: "[Research] Six customer studies from zero", body: "46 non-customer interviews, 11 shop-alongs, 98 surveys, a full count of 177 garments at premium dry cleaners and tailors, about 2,100 outfits observed in business districts and premium malls, Tmall review big data (millions of reviews) and 400 Xiaohongshu ‘classic / old money’ posts. Questions were revised each round, and the procedure became the product EBG validation process." },
+        { name: "[Diagnosis ①] Wearable one day a week, so a waste of money", body: "Office dress had gone casual while the brand kept fitting formal suiting, so customers felt there was nothing to buy. 21% wore formal clothes daily; 70% said the brand had only formal clothes." },
+        { name: "[Diagnosis ②] The customer to win: global-minded white-collar women", body: "Women aged 35–45 at large companies. 44% had bought global brands such as Sandro and Lemaire and saw simple, clean old-money design as premium. The brand's gold trims and loud colors read as something for people over 50." },
+        { name: "[PART ① Sco casual] Expand to the dual TPO of daily commute and weekend shopping", body: "Formal occasions 21%, dual occasions where both formality and comfort matter 52%, casual 27%. In the dual TPO, 69% of purchases were mid-to-high-priced brands: the opportunity area." },
+        { name: "[Type and fit] Relaxed fit for formal types, regular fit for the rest", body: "Among 2,013 outfits in business districts: loose-fit jackets 73%, regular-fit shirts 73%, regular-fit tees 76%, waisted dresses 60%, regular-fit cardigans 61%. Regular fit reads as formal and anything looser as casual, so type and fit must be decided together." },
+        { name: "[Heritage] Borrow RL signatures and show classic layering", body: "Knits, cardigans, jackets and shirts were read as heritage when they followed Ralph Lauren signatures (cable and logo knits, logo shirts); other types needed classic layered styling with jackets or vests, seen in 70% of classic outfit posts." },
+        { name: "[PART ② Localization] At this price, versatility and quality-led luxury", body: "For a mid-to-high-priced brand, good design is the baseline; frequent, long wear and luxury felt through quality decide the purchase (“Taobao lens finds look-alikes, so quality matters”). Sco casual sits between what SPA brands cannot offer (quality, feminine style) and what premium brands cannot offer (value, casual)." },
+        { name: "[Dresses] Brand concept from Ralph Lauren, product from Edition", body: "Input the steady slim type and the rising plain H-line type. Minimal with a twist through silhouette changes (60%) rather than trims, four fixed monotone colors varied by brightness, and ‘silk-like’ viscose, acetate and lyocell instead of real silk for a premium feel." },
+        { name: "[Item principles] Denim · knits/cardigans · shirts · tees · jackets", body: "Denim: feminine details, 3 cm longer legs, silk-like blends against fading. Knits: fit, texture and easy-care cotton together. Shirts: white and blue fixed every year with fit and fabric expanded, fabric matched to each occasion's complaints (creasing, breathability). Tees: 61–65 cm hip length for tucked or untucked wear, one silhouette per design. Jackets: basics varied in detail and fabric and styled with jeans to show the dual TPO." },
+        { name: "[Research TO-BE] Three years of data, not one point in time", body: "Moved from last season's bestsellers to three or more years of sales trends, classifying steady, trend and declining types. Trend types are added even at lower sales because they grow." },
+        { name: "[Execution] SS and FW inputs", body: "Added Sco casual types missing from SS (delivered 31 March). For FW, 4 denim styles (order value up 320%), 15 shirt styles, 6 basic shirt-dress styles, and a larger share of casual basic knits and cardigans, applying the semi-wide and straight fits and the white and sky-blue colors most worn by customers." }
+      ]
+    },
+    steps: ["Six non-customer studies", "Diagnosis: once-a-week wear · customer mismatch", "PART ① Sco casual principles", "PART ② Localizing to white-collar needs", "Basics and differentiators per item", "SS · FW product input"],
     image: {
       src: "/projects/scofield-store.png",
       alt: "A Scofield store inside a department store in China",
@@ -867,6 +959,6 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       width: 897,
       height: 581
     },
-    tags: ["Overseas market", "Cross-validation", "Portfolio strategy"]
+    tags: ["Overseas market", "EBG customer research", "Product localization"]
   }
 };

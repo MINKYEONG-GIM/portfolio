@@ -117,7 +117,7 @@ export function CatalogList({ items, triggerLabel }: { items: CatalogItem[]; tri
           <tr key={item.name}>
             <th scope="row">{item.name}</th>
             <td>
-              <p className="ko-keep text-base leading-7 text-ink">{item.body}</p>
+              <p className="ko-keep whitespace-pre-line text-base leading-7 text-ink">{item.body}</p>
               {item.trigger ? (
                 <p className="ko-keep mt-1 text-sm font-bold text-muted">
                   {triggerLabel} {item.trigger}
