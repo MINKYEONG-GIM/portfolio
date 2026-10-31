@@ -84,7 +84,7 @@ export const PARTS: Part[] = [
       "사내 AI 에이전트 통합 플랫폼는 DW·M365·HR·지식그래프를 MCP 서버로 표준화해 Claude에 연결하고, 잘 쓰는 사람의 방법을 스킬로 만들어 전원에게 배포하는 플랫폼입니다. 직원은 평소 말로 묻고, 자기 업무 Agent를 만들어 올리고, 매달 성과를 제출합니다. 2026년 9월 기준 Agent 116개, 월 8,180시간 절감. 아래 프로젝트들이 인프라부터 전사 통합까지 이 플랫폼을 이루는 조각들입니다.",
     visual: {
       type: "image",
-      src: "/projects/kpi-query.png",
+      src: "/projects/agent-kpi-demo.png",
       alt: "사내 AI 에이전트 플랫폼에서 자연어로 매장 매출을 물으면 지식그래프에서 지표 정의를 찾고 DW를 조회해 출처와 함께 답하는 화면",
       width: 1226,
       height: 1051,
@@ -260,7 +260,7 @@ export const PROJECTS: Project[] = [
     },
     steps: ["온톨로지 설계 및 지식그래프 구축", "그래프·DW 연결용 MCP 서버 개발", "스킬 및 훅 제작", "플러그인 배포 및 오프라인 교육", "매주 전 계열사 활용 사례 송출"],
     image: {
-      src: "/projects/kpi-query.png",
+      src: "/projects/agent-kpi-demo.png",
       alt: "kpi-query 스킬로 A브랜드 강남점 5월 매출을 자연어로 질문하자 지식그래프에서 지표 정의를 찾고 DW를 조회해 답하는 화면",
       caption: "kpi-query 스킬: 자연어 질문 → 지식그래프(온톨로지)에서 지표 정의 확인 → DW 조회 → 출처와 함께 답변",
       width: 1226,

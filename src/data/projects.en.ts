@@ -22,7 +22,7 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
       "the in-house AI agent platform standardizes the DW, M365, HR and the knowledge graph as MCP servers connected to Claude, and turns power users' habits into skills distributed to everyone. Employees ask in plain language, build agents for their own work, publish them, and submit results every month. As of September 2026: 116 agents and 8,180 hours saved per month. The projects below are the pieces of this platform, from infrastructure to enterprise integration.",
     visual: {
       type: "image",
-      src: "/projects/kpi-query.png",
+      src: "/projects/agent-kpi-demo.png",
       alt: "Asking the in-house AI agent platform for a store's monthly sales in plain language; it looks up the metric definition in the knowledge graph, queries the DW and answers with sources",
       width: 1226,
       height: 1051,
@@ -469,7 +469,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     },
     steps: ["Ontology design and knowledge graph build", "MCP servers connecting the graph and the DW", "Skills and hooks", "Plugin rollout and offline training", "Weekly use-case broadcasts across affiliates"],
     image: {
-      src: "/projects/kpi-query.png",
+      src: "/projects/agent-kpi-demo.png",
       alt: "Asking Brand A Gangnam's May sales in natural language with the kpi-query skill: the metric definition is resolved from the knowledge graph, the DW is queried and the answer cites its sources",
       caption: "kpi-query skill: natural-language question → metric definition resolved from the knowledge graph (ontology) → DW query → answer with sources",
       width: 1226,
