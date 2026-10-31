@@ -16,14 +16,14 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
   1: {
     title: "Enterprise AI Platform",
     short: "Enterprise AI Platform",
-    question: "What NoA is and how it was built",
+    question: "What NoA, the in-house AI agent platform, is and how it was built",
     tagline: "Snowflake → Knowledge graph → MCP / Skills → Agent platform",
     summary:
-      "NoA standardizes the DW, M365, HR and the knowledge graph as MCP servers connected to Claude, and turns power users' habits into skills distributed to everyone. Employees ask in plain language, build agents for their own work, publish them, and submit results every month. As of September 2026: 116 agents and 8,180 hours saved per month. The projects below are the pieces of this platform, from infrastructure to enterprise integration.",
+      "NoA, the in-house AI agent platform, standardizes the DW, M365, HR and the knowledge graph as MCP servers connected to Claude, and turns power users' habits into skills distributed to everyone. Employees ask in plain language, build agents for their own work, publish them, and submit results every month. As of September 2026: 116 agents and 8,180 hours saved per month. The projects below are the pieces of this platform, from infrastructure to enterprise integration.",
     visual: {
       type: "image",
       src: "/projects/noa-bi.png",
-      alt: "Asking NoA for a store's monthly sales in plain language; it looks up the metric definition in the knowledge graph, queries the DW and answers with sources",
+      alt: "Asking NoA (the in-house AI agent platform) for a store's monthly sales in plain language; it looks up the metric definition in the knowledge graph, queries the DW and answers with sources",
       width: 1226,
       height: 1051,
       caption: "NoA noa-bi skill: question → knowledge graph → DW query → sourced answer"
@@ -139,10 +139,12 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "daas-paas-operations": {
     group: "② Infrastructure",
     title: "PaaS-based Service Operations",
-    subtitle: "An in-house PaaS where non-developers deploy the apps they build with one click, and run schedules, DBs and file storage from one screen",
+    subtitle: "An in-house PaaS that deploys the apps non-developers build and provides the DB, file storage and schedules they need",
     period: "2026.03 – ongoing",
-    purpose:
-      "Built an in-house PaaS operating model so that line staff can deploy and run the Next.js apps they build without developer help. The aim is to reduce the causes of failed deployments and raise the success rate, while keeping schedules, databases and file storage on the same screen.",
+    purpose: 
+      "An in-house PaaS where line staff deploy the web tools they build without developer help and get operations support. Overall deployment status, per-app MAU and call counts, and deployment domains are managed in one place.",
+    background:
+      "Even when line staff built web apps with AI tools, there was nowhere to put them. Asking the development team meant a long wait; putting them on a personal PC or external hosting sent company data outside and left no record of who deployed what. Even after a successful deployment, a DB, file storage and scheduled jobs had to be found separately, and every failed deployment needed a person to diagnose it.\nAn in-house PaaS was needed: safe deployment without developers, and the resources for operations from one place.",
     metrics: [{ value: "90%", label: "Deployment success rate", note: "n=235 deployments" }],
     roles: [
       "Operated serverless deployment of Next.js apps and analyzed deployment failures",
@@ -291,10 +293,10 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "noa-mcp-agent-platform": {
     group: "① Agent platform",
     title: "Ontology-based Enterprise AI Agent Platform",
-    subtitle: "An enterprise AI agent platform where internal data, metrics and business rules are defined as an ontology (knowledge graph), and every MCP server, skill and agent runs on that ontology",
+    subtitle: "An enterprise AI agent platform where internal data, metrics and business rules are defined as an ontology (knowledge graph) and every MCP server runs on that ontology. Known internally as NoA",
     period: "2025.11 – ongoing",
-    purpose:
-      "Load the company's metric definitions, formulas, join rules, season rules and unwritten rules into a Neo4j knowledge graph as an ontology, so that LLM agents query the graph before answering instead of guessing. Internal data and business systems are connected through MCP servers, but all meaning is resolved by the ontology, so every employee sees the same number from the same definition.",
+    purpose: 
+      "Load the company's metric definitions and business rules into a Neo4j ontology (knowledge graph) so that LLM agents answer against that graph, giving every employee a work environment where they can build job-specific agents grounded in company data.",
     metrics: [
       { value: "116", label: "Agents completed", note: "as of Sept 2026" },
       { value: "8,180 h / month", label: "Work hours saved by agents", note: "as of Sept 2026" }
@@ -311,7 +313,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Even after connecting AI agents to internal data, the same 'sales' figure was computed differently by brand and by person, because the model guessed tables and formulas. After two or three wrong sales or profit numbers, trust collapsed and usage dropped.\nWhat was needed before more connections was a meaning the company had agreed on. Metric definitions, formulas, joins, season rules and unwritten rules were loaded into one ontology, and the structure was changed so that every agent queries that graph before writing any SQL.",
     system: {
       intro:
-        "NoA puts agents on top of an ontology. A Neo4j knowledge graph sits in the middle; hooks, skills and MCP tools all query it before they act. Users only ask questions in Claude Desktop or Code, and the six layers below take the question through org instructions → hooks → skills → MCP tools → gateway → ontology and internal data. Every layer keeps the read-only and own-permissions principles.",
+        "This platform (NoA) puts agents on top of an ontology. A Neo4j knowledge graph sits in the middle; hooks, skills and MCP tools all query it before they act. Users only ask questions in Claude Desktop or Code, and the six layers below take the question through org instructions → hooks → skills → MCP tools → gateway → ontology and internal data. Every layer keeps the read-only and own-permissions principles.",
       layers: [
         {
           name: "1. Client Layer",
@@ -439,7 +441,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "fashion-ai-platform": {
     group: "② AI Platform",
     title: "Fashion AI Platform: Agent Sharing, Recommendation & Submission Portal",
-    subtitle: "Where employees publish agents built with NoA, get personalized recommendations, and submit results every month",
+    subtitle: "Where employees publish agents built with NoA (the in-house AI agent platform), get personalized recommendations, and submit results every month",
     period: "2026 – in operation",
     purpose:
       "Employees upload the tools they built with the in-house AI agent (NoA). Staff browse agents by job function and check their own AI capability level, while the CAIO office reviews each person's agent capability and the logic inside their agents.",
@@ -550,7 +552,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Promotion gate: only agents that pass evaluation become skills the central harness can call"
     ],
     background:
-      "More than 100 per-brand, per-job agents were built on NoA, but the same sales metric came to be defined differently by brand and the same task was built separately per brand. To merge scattered agents into one, rules and metrics must be standardized first.",
+      "More than 100 per-brand, per-job agents were built on NoA, the in-house AI agent platform, but the same sales metric came to be defined differently by brand and the same task was built separately per brand. To merge scattered agents into one, rules and metrics must be standardized first.",
     features: [
       {
         eyebrow: "Phase 1",
@@ -643,7 +645,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     ],
     roles: [
       "Designed the four public agent-evaluation criteria and the agent score formula; criteria public, grades admin-only",
-      "Designed the 100-point participation weights and tiers, calibrating NoA usage thresholds to the real distribution (40 people)",
+      "Designed the 100-point participation weights and tiers, calibrating NoA (in-house AI agent platform) usage thresholds to the real distribution (40 people)",
       "Designed the talent-pool table, monthly-output popup and overall ranking rule (usage 35 : output 65)",
       "Designed the member 360 journey and care signals, recommended actions and follow-up drafts",
       "Designed and built the org-level AI usage dashboard (division → brand → department → person drill-down)"
@@ -722,15 +724,13 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     subtitle: "Small, step by step, repeatedly: employees build AI agents hands-on",
     period: "2026.02 – ongoing",
     purpose: "Designed training, onboarding and operational support to reach a 20% AX conversion rate across the organization.",
-    metrics: [
-      { value: "~500", label: "People trained in AI agents" },
-      { value: "6 steps", label: "Agent-building learning path" },
-      { value: "85 slides", label: "Training decks", note: "literacy 14 · NoA sessions 41+30" }
-    ],
+    background:
+      "People were told to use AI tools, but few knew where or what to start with. One-off lectures ended when they ended, and hardly anyone had turned a problem from their own work into an agent. Skill levels varied so much that one lecture was too hard for beginners and dull for experienced users.\nTraining had to be small, leveled and repeated, with one real agent built and published as the completion criterion.",
+    metrics: [{ value: "~500", label: "People trained in AI agents" }],
     roles: [
       "Designed the curriculum and job-specific hands-on exercises",
       "Provided technical support through to building and deploying real agents after training",
-      "Built the platform's learning features: AI literacy slides, leveled video lessons, 6-step build practice, NoA training decks, vibe-coding guide"
+      "Built the platform's learning features: AI literacy slides, leveled video lessons, 6-step build practice, training decks for NoA (the in-house AI agent platform), vibe-coding guide"
     ],
     features: [
       {
@@ -763,6 +763,8 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     subtitle: "Why it was customer-structure redesign, not channel expansion",
     period: "2024.01 – 2024.02",
     purpose: "Redesigned product, content and channel messaging from an analysis of each customer group's entry motives, lifting channel sales.",
+    background:
+      "The Naver channel was run on the assumption that more channels meant more sales, but growth had stalled. Live broadcasts stayed around 100 million KRW per show with a 0.8% purchase conversion rate, and exposure kept growing without anyone looking at who came in and why they left without buying.\nCustomer segments' entry motives and buying criteria had to come first, with products, content and pricing redesigned around them.",
     metrics: [
       { value: "137%", label: "Live-commerce conversion growth", note: "YoY, 0.8% → 1.9%" },
       { value: "190%", label: "Live-commerce sales per show", note: "YoY, ₩100M → ₩290M" }
@@ -788,6 +790,8 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     subtitle: "Designing core products from big data",
     period: "2024.11 – 2024.12",
     purpose: "Redefined product strategy and marketing messages from sales, review and platform data by age group.",
+    background:
+      "Search volume for outerwear as a whole was falling and padded-jacket demand was shrinking, yet product planning still repeated last year's top-selling styles. What customers under 30 bought and why, and what the reviews of top items on competing platforms were saying, never reached the plan.\nThree years of sales, review and search data had to be read together to redefine the core products and the marketing message.",
     metrics: [{ value: "100%", label: "Sales growth among customers under 30" }],
     roles: ["Analyzed men's and women's needs for padding items", "Analyzed three years of our own padding sales by item", "Analyzed reviews of top-selling items on the three key platforms"],
     image: {
