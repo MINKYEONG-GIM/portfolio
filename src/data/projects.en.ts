@@ -16,17 +16,17 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
   1: {
     title: "Enterprise AI Platform",
     short: "Enterprise AI Platform",
-    question: "What NoA, the in-house AI agent platform, is and how it was built",
+    question: "What the in-house AI agent platform is and how it was built",
     tagline: "Snowflake → Knowledge graph → MCP / Skills → Agent platform",
     summary:
-      "NoA, the in-house AI agent platform, standardizes the DW, M365, HR and the knowledge graph as MCP servers connected to Claude, and turns power users' habits into skills distributed to everyone. Employees ask in plain language, build agents for their own work, publish them, and submit results every month. As of September 2026: 116 agents and 8,180 hours saved per month. The projects below are the pieces of this platform, from infrastructure to enterprise integration.",
+      "the in-house AI agent platform standardizes the DW, M365, HR and the knowledge graph as MCP servers connected to Claude, and turns power users' habits into skills distributed to everyone. Employees ask in plain language, build agents for their own work, publish them, and submit results every month. As of September 2026: 116 agents and 8,180 hours saved per month. The projects below are the pieces of this platform, from infrastructure to enterprise integration.",
     visual: {
       type: "image",
-      src: "/projects/noa-bi.png",
-      alt: "Asking NoA (the in-house AI agent platform) for a store's monthly sales in plain language; it looks up the metric definition in the knowledge graph, queries the DW and answers with sources",
+      src: "/projects/kpi-query.png",
+      alt: "Asking the in-house AI agent platform for a store's monthly sales in plain language; it looks up the metric definition in the knowledge graph, queries the DW and answers with sources",
       width: 1226,
       height: 1051,
-      caption: "NoA noa-bi skill: question → knowledge graph → DW query → sourced answer"
+      caption: "the in-house AI agent kpi-query skill: question → knowledge graph → DW query → sourced answer"
     }
   },
   2: {
@@ -102,7 +102,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Turned interviews with MD, photo and ops teams into requirements for listing procedures and per-channel rules"
     ],
     background: 
-      "Three weeks of shadowing MDs and AMDs and doing their work showed that 54% of non-value-adding work was ‘product listing and management’ (1,865 hours a month). Three core bugs: ① product data was scattered across SAP, BI, local folders, drives and email; ② the process ran on habit; ③ every channel needed manual adjustment to its own format.\nSo a PIM (Product Information Management) system managing all product data in one place was needed. Global SPA brands and leading fashion companies already used one; the company had partial functions in the Elandmall back office and EHUB, but nothing complete, so no process had ever been established.",
+      "Three weeks of shadowing MDs and AMDs and doing their work showed that 54% of non-value-adding work was ‘product listing and management’ (1,865 hours a month). Three core bugs: ① product data was scattered across SAP, BI, local folders, drives and email; ② the process ran on habit; ③ every channel needed manual adjustment to its own format.\nSo a PIM (Product Information Management) system managing all product data in one place was needed. Global SPA brands and leading fashion companies already used one; the company had partial functions in the company mall's back office and the old hub, but nothing complete, so no process had ever been established.",
     features: [
       {
         eyebrow: "Core feature 01",
@@ -131,7 +131,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         title: "Image hub UI: once a photo comes in, the product reaches the channels",
         summary: "Images uploaded by the photo team are matched to style codes automatically, and each style's progress from review to channel images to detail pages is visible on one screen.",
         items: [
-          { title: "Home: image grid and filters", body: "Upload date, uploader, brand (SPAO, SPAO Kids, MIXXO, ROEM, SHOOPEN and more), color filters and a ‘registration error’ badge locate any of tens of thousands of images (e.g. 34,031) at once. Grid and list views, drag-and-drop bulk upload." },
+          { title: "Home: image grid and filters", body: "Upload date, uploader, brand (five brands), color filters and a ‘registration error’ badge locate any of tens of thousands of images (e.g. 34,031) at once. Grid and list views, drag-and-drop bulk upload." },
           { title: "Image details", body: "File name, brand, style code, colors (multiple), cut type (campaign, tag/inner tag, flat-lay detail/front, model), search keywords, size, uploader and upload time in one panel, with edit and download. Files are matched automatically by the naming rule style code_color_cut type." },
           { title: "Style status", body: "Search one style code to see each stage with its last update: style information review (pending/done) → image upload (count per cut type) → channel image generation → detail page generation. Colors whose detail page failed get a ‘retry’ button." },
           { title: "Menu", body: "Work status, style information, image information, detail pages, My Pocket, other materials, per-channel information, master data, permissions, trash and AI search. Role-based permissions let the photo, listing and e-commerce teams use the same screens differently." }
@@ -140,9 +140,9 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     ],
     system: {
       intro:
-        "PIM completes the product flow after receiving in one line. When merchandising registers a product in PLM, receiving and inventory registration trigger a new-product alert; photographed (later 3D-generated) images enter the image hub via E-HUB upload or API. AI builds the detail page (Picasso) and thumbnails, a per-channel data-optimization agent fits each channel's format, and E-Hub sends to every channel. The six layers below are the image hub's structure.",
+        "PIM completes the product flow after receiving in one line. When merchandising registers a product in PLM, receiving and inventory registration trigger a new-product alert; photographed (later 3D-generated) images enter the image hub via hub upload or API. AI builds the detail page (AI) and thumbnails, a per-channel data-optimization agent fits each channel's format, and the listing hub sends to every channel. The six layers below are the image hub's structure.",
       layers: [
-        { name: "1. Bulk upload", role: "Drag and drop many images at once. Re-uploads such as added model shots notify detail-page production (Picasso).", items: [{ label: "Drag-and-drop bulk upload", note: "style code, color and cut type recognized from the file name" }, { label: "Re-upload", note: "added model shots etc. → Picasso notified" }, { label: "Error badge", note: "unmatched files flagged on the home screen" }] },
+        { name: "1. Bulk upload", role: "Drag and drop many images at once. Re-uploads such as added model shots notify detail-page production (AI).", items: [{ label: "Drag-and-drop bulk upload", note: "style code, color and cut type recognized from the file name" }, { label: "Re-upload", note: "added model shots etc. → the page-generation AI notified" }, { label: "Error badge", note: "unmatched files flagged on the home screen" }] },
         { name: "2. Image management", role: "Each image gets its type, product traits and product information, becoming a searchable asset.", items: [{ label: "① Image type", note: "front/back/detail, product/model/concept shot" }, { label: "② Product traits", note: "material · mood" }, { label: "③ Style-code link", note: "SAP data (name, price) joined with PIM disclosure data" }] },
         { name: "3. Auto-editing", role: "Images are adjusted automatically to channel specs.", items: [{ label: "① Resizing", note: "size · ratio" }, { label: "② Retouching", note: "brand logo removal, background removal and more" }] },
         { name: "4. Search", role: "Find by product information or by similar image.", items: [{ label: "Product-information search", note: "style code · item name · color" }, { label: "Similar-image search", note: "find images with an image" }, { label: "AI search", note: "natural-language search for product images" }] },
@@ -152,11 +152,11 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       flow: [
         { title: "PLM product registration", body: "Merchandising registers the product in PLM (planning and production) and the base data flows to PIM." },
         { title: "Receiving and inventory → new-product alert", body: "When logistics registers receiving and inventory, the listing team is alerted automatically instead of digging through inventory to spot new products." },
-        { title: "Shooting · 3D generation → E-HUB upload / API", body: "Photo-team shots (later 3D renders) enter the image hub by E-HUB upload or API. The Google upload and email steps disappear." },
-        { title: "Detail page production (Picasso)", body: "AI generates models, proposes sales copy, builds the detail page and writes SEO tags. Sample requests, measuring, inner-tag checks and disclosure images are replaced by PIM data." },
+        { title: "Shooting · 3D generation → hub upload / API", body: "Photo-team shots (later 3D renders) enter the image hub by hub upload or API. The Google upload and email steps disappear." },
+        { title: "Detail page production (AI)", body: "AI generates models, proposes sales copy, builds the detail page and writes SEO tags. Sample requests, measuring, inner-tag checks and disclosure images are replaced by PIM data." },
         { title: "Thumbnail and detail-page upload", body: "Generated thumbnails and detail pages attach to the style code automatically." },
         { title: "Per-channel data-optimization agent", body: "An agent converts data to each channel's naming rules, categories, image specs and promotional copy: the step people used to adjust by hand." },
-        { title: "E-Hub listing → all channels", body: "One listing in E-Hub is sent to every channel (Elandmall, Sabangnet, Cafe24, Naver, Musinsa, Zigzag and more)." },
+        { title: "the listing hub listing → all channels", body: "One listing in the listing hub is sent to every channel (the company mall, Sabangnet, Cafe24, Naver, Musinsa, Zigzag and more)." },
         { title: "Monitoring dashboard", body: "Displayed styles are managed in one place, blocking the human error of ‘received but never on sale’. People become supervisors who review and improve AI logic." }
       ],
       principles: [
@@ -169,8 +169,8 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     catalog: {
       title: "Ways of working: AS-IS → TO-BE, and the four changes",
       items: [
-        { name: "[AS-IS] The old way — seven core bugs", body: "Merchandising registers in SAP → logistics registers receiving and inventory → the listing team digs through inventory to find new products (bug) → lists without photos → requests samples from logistics → measures and checks inner tags (bug) → makes disclosure images (bug) → photo team shoots → Google upload and email (bug) → detail page production (bug) → thumbnails and pages entered → Elandmall image upload (bug) → e-commerce team lists separately in Elandmall, Sabangnet and E-Hub (bug) → sent to Cafe24, Naver, Musinsa, Zigzag. Five teams passed the same information along, re-typing it each time." },
-        { name: "[TO-BE] After the system — one PIM flow", body: "PLM registration → new-product alert on receiving → shooting / 3D generation → E-HUB upload / API → detail page (Picasso) → automatic thumbnail and page upload → per-channel optimization agent → E-Hub listing → all channels. Re-typing steps disappear; the listing team only reviews and handles exceptions." },
+        { name: "[AS-IS] The old way — seven core bugs", body: "Merchandising registers in SAP → logistics registers receiving and inventory → the listing team digs through inventory to find new products (bug) → lists without photos → requests samples from logistics → measures and checks inner tags (bug) → makes disclosure images (bug) → photo team shoots → Google upload and email (bug) → detail page production (bug) → thumbnails and pages entered → the company mall image upload (bug) → e-commerce team lists separately in the company mall, Sabangnet and the listing hub (bug) → sent to Cafe24, Naver, Musinsa, Zigzag. Five teams passed the same information along, re-typing it each time." },
+        { name: "[TO-BE] After the system — one PIM flow", body: "PLM registration → new-product alert on receiving → shooting / 3D generation → hub upload / API → detail page (AI) → automatic thumbnail and page upload → per-channel optimization agent → the listing hub listing → all channels. Re-typing steps disappear; the listing team only reviews and handles exceptions." },
         { name: "Change ① Lead time from 6 days to 1 hour", body: "Listing lead time from receiving to on sale drops from an average of 6 days to at most 1 hour." },
         { name: "Change ② People no longer intervene", body: "Standard listings are 100% automated. People become supervisors who review and improve AI logic rather than operators, and only tasks that need a platform MD, such as event listings and promotions, remain, saving 80% of the time." },
         { name: "Change ③ Take the photo and AI does the rest", body: "Model generation, sales copy, detail pages, channel-specific image conversion and SEO tags. The page is created and listed as the shot is taken; once 3D modeling is ready, products can go on sale at planning without a shoot." },
@@ -178,7 +178,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         { name: "Data as an asset, and what it enables", body: "All sales-side product information (images, names) becomes data that strengthens AI training. Products become searchable by image and natural language, and customer-facing data absent from production data enables new models such as AI merchandising, AI recommendations and AI short-form content. Linked to PLM, PIM provides integrated analysis from production to after-sales and underpins global channel expansion." }
       ]
     },
-    steps: ["3-week MD/AMD work census","Define the three core bugs","PIM attributes and data flow","Build the image hub","AI detail pages and channel-optimization agent","E-Hub → all channels automatically"],
+    steps: ["3-week MD/AMD work census","Define the three core bugs","PIM attributes and data flow","Build the image hub","AI detail pages and channel-optimization agent","the listing hub → all channels automatically"],
     image: {
       src: "/projects/pim-pipeline.png",
       alt: "Pipeline design: SAP BI → Snowflake → PIM DB → PIM system → in-house OMS → online channels, with AI handling keyword extraction and channel-specific listing copy",
@@ -187,8 +187,8 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       height: 784
     },
     images: [
-      { src: "/projects/pim-asis-process.png", alt: "AS-IS listing process: merchandising (SAP registration) → logistics (receiving, inventory) → photo team (shooting, Google upload and email) → listing team (spotting new products from inventory, listing, sample requests, measuring and inner-tag checks, disclosure images, detail pages, thumbnails, Elandmall image upload) → e-commerce team (Elandmall, Sabangnet and E-Hub listings → Cafe24, Naver, Musinsa, Zigzag). Seven red boxes are the core bugs", caption: "[AS-IS] The old listing process: the same information re-typed by people across five teams. The seven red boxes are the core bugs", width: 1684, height: 1150 },
-      { src: "/projects/pim-tobe-process.png", alt: "TO-BE big picture after PLM: inside PIM, merchandising (PLM registration) → logistics (receiving, inventory) → listing team (new-product alert, listing) → photo team (shooting, 3D generation, E-HUB upload / API) → detail page production (Picasso) → thumbnail and page upload → per-channel data-optimization agent → E-Hub listing → all channels", caption: "[TO-BE] The PIM flow after PLM: new-product alerts go out automatically, shots and 3D renders enter through E-HUB, AI builds the pages, a per-channel agent fits each format and E-Hub sends to every channel. Every red box (core bug) is gone", width: 1720, height: 1204 },
+      { src: "/projects/pim-asis-process.png", alt: "AS-IS listing process: merchandising (SAP registration) → logistics (receiving, inventory) → photo team (shooting, Google upload and email) → listing team (spotting new products from inventory, listing, sample requests, measuring and inner-tag checks, disclosure images, detail pages, thumbnails, the company mall image upload) → e-commerce team (the company mall, Sabangnet and the listing hub listings → Cafe24, Naver, Musinsa, Zigzag). Seven red boxes are the core bugs", caption: "[AS-IS] The old listing process: the same information re-typed by people across five teams. The seven red boxes are the core bugs", width: 1684, height: 1150 },
+      { src: "/projects/pim-tobe-process.png", alt: "TO-BE big picture after PLM: inside PIM, merchandising (PLM registration) → logistics (receiving, inventory) → listing team (new-product alert, listing) → photo team (shooting, 3D generation, hub upload / API) → detail page production (AI) → thumbnail and page upload → per-channel data-optimization agent → the listing hub listing → all channels", caption: "[TO-BE] The PIM flow after PLM: new-product alerts go out automatically, shots and 3D renders enter through the hub, AI builds the pages, a per-channel agent fits each format and the listing hub sends to every channel. Every red box (core bug) is gone", width: 1720, height: 1204 },
       { src: "/projects/pim-image-hub-home.png", alt: "Image hub home: left menu (work status, style information, image information, detail pages, My Pocket, other materials, per-channel information, master data, permissions, trash, AI search), filters for upload date, uploader, brand and color with a registration-error badge, and a grid of 34,031 images", caption: "Image hub home: upload date, uploader, brand and color filters plus a ‘registration error’ badge locate any of tens of thousands of images in the grid", width: 1197, height: 903 },
       { src: "/projects/pim-image-detail.png", alt: "List view with the image detail panel on the right: file name, brand, style code, colors, cut type, search keywords, size, uploader, upload time, and edit/download buttons", caption: "Image details: the file-name rule (style code_color_cut type) auto-matches style code, colors and cut type, with search keywords viewed and edited in one panel", width: 1197, height: 883 },
       { src: "/projects/pim-style-status.png", alt: "Style status for one style code: style information review (pending) → image upload (2 flat-lay, 1 campaign, done) → channel image generation (done) → detail page generation (pending), with per-color detail-page status and retry buttons for failures", caption: "Style status: review → image upload → channel image generation → detail page generation per style on one screen, with ‘retry’ for colors whose page failed", width: 1381, height: 875 }
@@ -362,11 +362,11 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     stack: ["OCR", "Vector DB", "GPT API"],
     tags: ["RAG", "Vector search", "Knowledge management"]
   },
-  "noa-mcp-agent-platform": {
+  "ontology-agent-platform": {
     group: "① Agent platform",
     title: "Ontology-based Enterprise AI Agent Platform",
-    short: "AI agent platform (NoA)",
-    subtitle: "An enterprise AI agent platform where internal data, metrics and business rules are defined as an ontology (knowledge graph) and every MCP server runs on that ontology. Known internally as NoA",
+    short: "AI agent platform (the in-house AI agent)",
+    subtitle: "An enterprise AI agent platform where internal data, metrics and business rules are defined as an ontology (knowledge graph) and every MCP server runs on that ontology",
     period: "2025.11 – ongoing",
     purpose: 
       "Load the company's metric definitions and business rules into a Neo4j ontology (knowledge graph) so that LLM agents answer against that graph, giving every employee a work environment where they can build job-specific agents grounded in company data.",
@@ -383,14 +383,14 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Even after connecting AI agents to internal data, the same 'sales' figure was computed differently by brand and by person, because the model guessed tables and formulas. After two or three wrong sales or profit numbers, trust collapsed and usage dropped.\nWhat was needed before more connections was a meaning the company had agreed on. Metric definitions, formulas, joins, season rules and unwritten rules were loaded into one ontology, and the structure was changed so that every agent queries that graph before writing any SQL.",
     system: {
       intro:
-        "This platform (NoA) puts agents on top of an ontology. A Neo4j knowledge graph sits in the middle; hooks, skills and MCP tools all query it before they act. Users only ask questions in Claude Desktop or Code, and the six layers below take the question through org instructions → hooks → skills → MCP tools → gateway → ontology and internal data. Every layer keeps the read-only and own-permissions principles.",
+        "This platform puts agents on top of an ontology. A Neo4j knowledge graph sits in the middle; hooks, skills and MCP tools all query it before they act. Users only ask questions in Claude Desktop or Code, and the six layers below take the question through org instructions → hooks → skills → MCP tools → gateway → ontology and internal data. Every layer keeps the read-only and own-permissions principles.",
       layers: [
         {
           name: "1. Client Layer",
-          role: "Where employees enter. Turning on the noa plugin in Claude Desktop, Claude Code or Cowork attaches every layer below.",
+          role: "Where employees enter. Turning on the company plugin in Claude Desktop, Claude Code or Cowork attaches every layer below.",
           items: [
             { label: "Claude Desktop · Code · Cowork" },
-            { label: "noa plugin", note: "bundle of skills, hooks and MCP connectors" },
+            { label: "company plugin", note: "bundle of skills, hooks and MCP connectors" },
             { label: "Org connector registration", note: "deployed per organization by admins" },
             { label: "SSO login", note: "queries run with the user's own permissions" }
           ]
@@ -400,7 +400,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
           role: "Inserts company rules and context before the question reaches the model. Org instructions and hooks read the context graph, the ontology's 'event layer'.",
           items: [
             { label: "Org instructions", note: "rules for everyone, e.g. what to do when an MCP connection fails" },
-            { label: "SessionStart hook", note: "personalization and memory rules, NoA Vibe development rules (read the docs first)" },
+            { label: "SessionStart hook", note: "personalization and memory rules, the in-house PaaS development rules (read the docs first)" },
             { label: "UserPromptSubmit hook", note: "finds past corrections, golden SQL and company decisions in the context graph and prepends them to the question" },
             { label: "Safety principles", note: "read-only · own permissions · no personal-data columns · verify the person in charge is still employed" }
           ]
@@ -418,13 +418,13 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
           name: "4. Capability Layer (skills)",
           role: "Power users' procedures turned into skills. A skill holds no rules itself; it only says how to query the graph and which tools to call in which order.",
           items: [
-            { label: "noa-bi", note: "natural-language KPI queries: one graph resolve → SQL → read-only DW run" },
-            { label: "noa-1p", note: "brand weekly-report RAG: original chunks retrieved via the graph's vector index" },
-            { label: "noa-ebg", note: "customer-research judgments and guidance from the EBG graph" },
-            { label: "noa-onboarding", note: "expenses, policies, general affairs and other internal knowledge search" },
-            { label: "noa-hr-attend", note: "leave balance, requests and approvals" },
-            { label: "noa-outlook", note: "mail and calendar reading and writing" },
-            { label: "noa-vibe", note: "building and preparing apps for deployment on the company standard" },
+            { label: "kpi-query", note: "natural-language KPI queries: one graph resolve → SQL → read-only DW run" },
+            { label: "weekly-report", note: "brand weekly-report RAG: original chunks retrieved via the graph's vector index" },
+            { label: "customer-research", note: "customer-research judgments and guidance from the customer-research graph" },
+            { label: "onboarding", note: "expenses, policies, general affairs and other internal knowledge search" },
+            { label: "hr-attend", note: "leave balance, requests and approvals" },
+            { label: "mail-calendar", note: "mail and calendar reading and writing" },
+            { label: "paas-deploy", note: "building and preparing apps for deployment on the company standard" },
             { label: "usage-guide-writer · tacit-rule-interview · monthly-submit-helper", note: "interview-style skills that draw out unwritten rules as ontology candidates" }
           ]
         },
@@ -432,31 +432,31 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
           name: "5. Tool Binding Layer (MCP tools)",
           role: "The tools skills actually call. One MCP server per system, and the tool names are the whole list of allowed actions. The ontology lookup tools come first.",
           items: [
-            { label: "neo4j-mcp", note: "resolve (meaning of metrics, stores, seasons) · read_cypher (read-only Cypher queries) · search_1p_report · ebg_search · onboarding_search" },
-            { label: "snowflake-mcp", note: "run_snowflake_query (read-only)" },
-            { label: "hrlink-mcp", note: "leave info, requests, approval lines, approve, cancel" },
-            { label: "outlook-mcp", note: "read, send and reply to mail; create and update events" }
+            { label: "graph-mcp", note: "resolve (meaning of metrics, stores, seasons) · read_cypher (read-only Cypher queries) · search_1p_report · ebg_search · onboarding_search" },
+            { label: "dw-mcp", note: "run_snowflake_query (read-only)" },
+            { label: "hr-mcp", note: "leave info, requests, approval lines, approve, cancel" },
+            { label: "mail-mcp", note: "read, send and reply to mail; create and update events" }
           ]
         },
         {
-          name: "6. Ontology & Data Layer (NoA MCP Gateway → ontology · internal data)",
+          name: "6. Ontology & Data Layer (in-house MCP Gateway → ontology · internal data)",
           role: "A central group of remote MCP servers receives every tool call in one place and checks authentication and permissions. The ontology (knowledge graph) sits in the middle; the DW, M365 and HR are sources read according to its definitions.",
           items: [
-            { label: "Neo4j ontology · knowledge graph", note: "metric definitions, formulas, joins, golden SQL, brand/store/season dictionaries, EBG, onboarding, 1P report vector index, context graph (corrections and decisions)" },
-            { label: "Snowflake DW (EDW)", note: "standard models KF_* and *_AGGR — only the tables and columns the ontology points to are queried" },
+            { label: "Neo4j ontology · knowledge graph", note: "metric definitions, formulas, joins, golden SQL, brand/store/season dictionaries, customer-research golden rules, onboarding, weekly report vector index, context graph (corrections and decisions)" },
+            { label: "Snowflake DW", note: "standard data models (aggregate tables) — only the tables and columns the ontology points to are queried" },
             { label: "M365 Graph", note: "mail and calendar" },
-            { label: "HR Link", note: "attendance and approvals" },
-            { label: "NoA Vibe (PaaS)", note: "one-click deployment of employee-built apps" }
+            { label: "HR system", note: "attendance and approvals" },
+            { label: "the in-house PaaS (PaaS)", note: "one-click deployment of employee-built apps" }
           ]
         }
       ],
       flow: [
-        { title: "Question", body: "Ask in everyday words, e.g. “What were SPAO Gangnam's sales this May?”" },
+        { title: "Question", body: "Ask in everyday words, e.g. “What were Brand A Gangnam's sales this May?”" },
         { title: "Context injection", body: "The UserPromptSubmit hook finds related corrections (e.g. 26SS starts on 25 January), golden SQL and company decisions in the context graph and prepends them." },
-        { title: "Skill selection", body: "The keyword ‘sales’ turns on the noa-bi skill, which proceeds by its fixed procedure." },
+        { title: "Skill selection", body: "The keyword ‘sales’ turns on the kpi-query skill, which proceeds by its fixed procedure." },
         { title: "Ontology lookup", body: "One graph resolve returns the metric definition (sales = SUM(SALEAMT)), measure columns, join conditions, store codes and season ranges. The model does not guess." },
         { title: "SQL writing", body: "SQL is written only from what the graph returned. If needed, read_cypher reads more of the graph; injected corrections take priority for dates and seasons." },
-        { title: "Read-only execution", body: "snowflake-mcp queries the DW with the user's own permissions. The tool has no write capability." },
+        { title: "Read-only execution", body: "dw-mcp queries the DW with the user's own permissions. The tool has no write capability." },
         { title: "Answer with sources", body: "Definition, scope and sources (tables, the graph node that holds the formula) are attached so numbers can be verified." },
         { title: "Learning from corrections", body: "If the user corrects, e.g. “No, from 25 January”, it is stored in the context graph and applied automatically from the next question. If the definition itself must change, ontology registration is recommended." }
       ],
@@ -469,9 +469,9 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     },
     steps: ["Ontology design and knowledge graph build", "MCP servers connecting the graph and the DW", "Skills and hooks", "Plugin rollout and offline training", "Weekly use-case broadcasts across affiliates"],
     image: {
-      src: "/projects/noa-bi.png",
-      alt: "Asking SPAO Gangnam's May sales in natural language with the noa-bi skill: the metric definition is resolved from the knowledge graph, the DW is queried and the answer cites its sources",
-      caption: "noa-bi skill: natural-language question → metric definition resolved from the knowledge graph (ontology) → DW query → answer with sources",
+      src: "/projects/kpi-query.png",
+      alt: "Asking Brand A Gangnam's May sales in natural language with the kpi-query skill: the metric definition is resolved from the knowledge graph, the DW is queried and the answer cites its sources",
+      caption: "kpi-query skill: natural-language question → metric definition resolved from the knowledge graph (ontology) → DW query → answer with sources",
       width: 1226,
       height: 1051
     },
@@ -479,12 +479,12 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       title: "Skills built and distributed",
       items: [
         {
-          name: "noa-bi",
-          trigger: "KPI questions such as “SPAO Gangnam sales in May”",
+          name: "kpi-query",
+          trigger: "KPI questions such as “Brand A Gangnam sales in May”",
           body: "Fetches the metric definition, formula and joins from the knowledge graph in one call, writes SQL and queries the DW read-only. Definition, scope and sources are attached to the answer."
         },
         {
-          name: "noa-1p",
+          name: "weekly-report",
           trigger: "“Week 2 of February weekly report”, “sell-through red flag”",
           body: "Finds brand weekly reports through the graph's vector index and answers only from the original text."
         },
@@ -512,10 +512,10 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     group: "② AI Platform",
     title: "Fashion AI Platform: Agent Sharing, Recommendation & Submission Portal",
     short: "Fashion AI platform",
-    subtitle: "Where employees publish agents built with NoA (the in-house AI agent platform), get personalized recommendations, and submit results every month",
+    subtitle: "Where employees publish agents built with the in-house AI agent platform, get personalized recommendations, and submit results every month",
     period: "2026 – in operation",
     purpose:
-      "Employees upload the tools they built with the in-house AI agent (NoA). Staff browse agents by job function and check their own AI capability level, while the CAIO office reviews each person's agent capability and the logic inside their agents.",
+      "Employees upload the tools they built with the in-house AI agent. Staff browse agents by job function and check their own AI capability level, while the AI office reviews each person's agent capability and the logic inside their agents.",
     metrics: [
       { value: "119 / month", label: "Agents uploaded (monthly average)" }
     ],
@@ -526,7 +526,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Next.js full-stack implementation and operations: Snowflake DaaS integration, caching, access policy, admin dashboards"
     ],
     background:
-      "As agents built with NoA 2.0 multiplied, who built what and what it achieved was scattered.\nRegister → recommend and spread → submit monthly results → evaluate → train runs as one flow, automatically accumulating data on the company's AX status.",
+      "As agents built with in-house AI agent 2.0 multiplied, who built what and what it achieved was scattered.\nRegister → recommend and spread → submit monthly results → evaluate → train runs as one flow, automatically accumulating data on the company's AX status.",
     features: [
       {
         eyebrow: "Core feature 01",
@@ -535,7 +535,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
           "One first screen shows both ‘what I have to do this month’ and ‘the agents that fit me’. Without opening any menu, the eye moves from the banner to the job filter, the recommendation cards and the task sidebar.",
         items: [
           { title: "Top menu and Agent registration", body: "Four menus (Browse agents · Build & submit · Learn · Get help), search, and an ‘Register agent’ button reachable from anywhere. Only admins see the ‘Admin’ menu." },
-          { title: "Recommended · Best · Popular · NoA news tabs", body: "Recommendations for me, top-rated agents, most-viewed agents and platform/NoA notices are separate tabs switched right on the home screen." },
+          { title: "Recommended · Best · Popular · platform news tabs", body: "Recommendations for me, top-rated agents, most-viewed agents and platform/the in-house AI agent notices are separate tabs switched right on the home screen." },
           { title: "Best agent banner", body: "Agents with the BEST AGENT badge rotate in a six-slide banner with name, one-liner, monthly hours saved and number of users, so the first thing shown is which agents deliver results." },
           { title: "Job and category icon filter", body: "One row of icons: All · Fashion · Dashboard · Merchandising · Production · Online · Logistics · Sales · Automation · HR · Marketing · VMD and more. Tapping one switches the list below to that job's agents." },
           { title: "Recommended for you", body: "My job, department and recently viewed agents are shown as criteria chips, followed by cards chosen on those criteria, each with category, creator and thumbnail." },
@@ -550,7 +550,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
           "The home screen differs for every person. Job and department from the HR DB plus in-platform behavior (recently viewed and liked agents) are scored, and every card carries a one-line reason.",
         items: [
           { title: "Recommended for you", body: "+5 if the builder's job matches mine, +4 if the category matches my job, +3 if built by a colleague in my brand, +2 if in the same category as agents I viewed or liked, +1 each for views this week, a version-up this month, or registration within 14 days. −2 if already viewed; my own agents excluded. With no signal, it falls back to “agents colleagues use most”." },
-          { title: "Reasons and criteria chips", body: "Each card shows the strongest reason (e.g. “built by a colleague in Sales”), and chips above the list show the criteria used (Sales · SPAO · 3 recently viewed)." },
+          { title: "Reasons and criteria chips", body: "Each card shows the strongest reason (e.g. “built by a colleague in Sales”), and chips above the list show the criteria used (Sales · Brand A · 3 recently viewed)." },
           { title: "Job-pinned agent", body: "If the job title contains “online” or the department is the online BU, the online product-flow dashboard is always pinned at the top." },
           { title: "Agent of the day · Best agents", body: "One agent per day by Seoul date, identical for everyone, with a countdown to midnight. Best agents rotate in a banner by monthly hours saved, auto-advancing every 5 seconds." },
           { title: "My tasks sidebar", body: "Days left until the month's deadline, survey status, monthly submissions n/N, and my agents with empty fields, on the right of every screen, in survey → submission → blanks order." },
@@ -563,13 +563,13 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         summary:
           "A registration form that makes people state what changed in numbers, and a monthly flow that re-reports results. Evaluation and the talent pool use this data as is.",
         items: [
-          { title: "4-part form", body: "① Agent description (name, category, one-liner, URL) ② Usage guide ③ What NoA changed (users, monthly hours saved, removed tasks, at least one KPI) ④ Access (password, SSO or no security). Instead of browser validation, all missing fields are listed with reasons and jump links." },
+          { title: "4-part form", body: "① Agent description (name, category, one-liner, URL) ② Usage guide ③ What the in-house AI agent platform changed (users, monthly hours saved, removed tasks, at least one KPI) ④ Access (password, SSO or no security). Instead of browser validation, all missing fields are listed with reasons and jump links." },
           { title: "Co-creators and contribution", body: "Co-creators are found by company account; contributions must total 100%. When people change, the split resets to equal. Each co-creator is recorded separately so it counts toward their own participation." },
-          { title: "Usage-guide prompt: eight questions that capture know-how", body: "Pressing ‘Copy prompt’ on the submission screen and pasting it into NoA produces a usage guide of 1,500+ characters that a first-time colleague can follow as is. Items: ① task ② access ③ steps ④ operating logic ⑤ use ⑥ KPIs ⑦ cautions and FAQs ⑧ work tips and sense. ④ and ⑧ matter most: judgment logic only the owner knows, such as deriving a reorder quantity, is written with real numbers (which figures, in what order, with which thresholds and adjustments such as remaining selling weeks, minimum order unit, end-of-season sell-out target), plus situational rules (‘when a figure crosses a threshold → state → action’) and ‘input → calculation → result’ in numbers. NoA must ask the builder one question at a time instead of guessing logic or tacit rules, and tools that only display figures are labeled ‘for viewing’ rather than invented. A separate optional field, ‘My tips · what makes this tool different’ (up to 1,000 characters), collects uses others don't know and how it differs from similar tools." },
+          { title: "Usage-guide prompt: eight questions that capture know-how", body: "Pressing ‘Copy prompt’ on the submission screen and pasting it into the in-house AI agent produces a usage guide of 1,500+ characters that a first-time colleague can follow as is. Items: ① task ② access ③ steps ④ operating logic ⑤ use ⑥ KPIs ⑦ cautions and FAQs ⑧ work tips and sense. ④ and ⑧ matter most: judgment logic only the owner knows, such as deriving a reorder quantity, is written with real numbers (which figures, in what order, with which thresholds and adjustments such as remaining selling weeks, minimum order unit, end-of-season sell-out target), plus situational rules (‘when a figure crosses a threshold → state → action’) and ‘input → calculation → result’ in numbers. the AI must ask the builder one question at a time instead of guessing logic or tacit rules, and tools that only display figures are labeled ‘for viewing’ rather than invented. A separate optional field, ‘My tips · what makes this tool different’ (up to 1,000 characters), collects uses others don't know and how it differs from similar tools." },
 
-          { title: "Registration text written by a Claude Code skill", body: "The agent-output-writer skill in the NoA plugin reads the agent's source code first, interviews its maker, and produces the 4-part form, the 7-item usage guide and the monthly submission fields (logic, company and team unwritten rules, KPIs, basis for hours saved) as one block of text. Paste it into the submission screen and you are done, so people who put off registering because of the writing now publish." },
-          { title: "Monthly submission", body: "Requires completing that month's NoA survey first. New agents reuse board values; version-ups must restate changes, users, hours saved, removed tasks, KPIs and the guide. One row per agent × month, editable within the month." },
-          { title: "Getting started in 5 steps", body: "Account request → NoA access → DaaS token → first agent → this month's survey and submission. Completion is judged automatically from data." },
+          { title: "Registration text written by a Claude Code skill", body: "The agent-output-writer skill in the in-house AI agent plugin reads the agent's source code first, interviews its maker, and produces the 4-part form, the 7-item usage guide and the monthly submission fields (logic, company and team unwritten rules, KPIs, basis for hours saved) as one block of text. Paste it into the submission screen and you are done, so people who put off registering because of the writing now publish." },
+          { title: "Monthly submission", body: "Requires completing that month's AI-agent survey first. New agents reuse board values; version-ups must restate changes, users, hours saved, removed tasks, KPIs and the guide. One row per agent × month, editable within the month." },
+          { title: "Getting started in 5 steps", body: "Account request → AI-agent access → DaaS token → first agent → this month's survey and submission. Completion is judged automatically from data." },
           { title: "Hide, don't delete", body: "Deleted posts are hidden, not removed from the DB, so build history and evaluation records keep the talent-pool figures stable." }
         ]
       },
@@ -577,14 +577,14 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         eyebrow: "Core feature 04",
         title: "Requests and inquiries that accumulate automatically",
         summary:
-          "When the data someone wants to see in the in-house AI agent is missing, or they get stuck using NoA, they request or ask right inside the platform. Everything lands in the admin screens, and recurring questions accumulate into the FAQ so the same question comes back less often.",
+          "When the data someone wants to see in the in-house AI agent is missing, or they get stuck using the in-house AI agent, they request or ask right inside the platform. Everything lands in the admin screens, and recurring questions accumulate into the FAQ so the same question comes back less often.",
         items: [
           {
             title: "Data requests",
-            body: "When data is missing from the in-house AI agent (NoA), people request what they need and why. Requests accumulate in the admin screen with a status (received, in review, applied) and become DW and knowledge-graph integration tasks."
+            body: "When data is missing from the in-house AI agent, people request what they need and why. Requests accumulate in the admin screen with a status (received, in review, applied) and become DW and knowledge-graph integration tasks."
           },
           {
-            title: "1:1 NoA usage inquiries",
+            title: "1:1 AI-agent usage inquiries",
             body: "Questions about access, installation, skills or errors are filed by type and answered by admins. Each inquiry and answer stays on that person's journey (member 360)."
           },
           {
@@ -597,7 +597,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
           },
           {
             title: "Admin morning digest email",
-            body: "Every day at 8 a.m., new accounts, monthly output submissions (new/version-up), new agent uploads and NoA survey responses received since 1 p.m. the previous day are sent to admins as counts and lists. Each item links to the admin screen, so admins know the day's work from the email without opening the platform."
+            body: "Every day at 8 a.m., new accounts, monthly output submissions (new/version-up), new agent uploads and AI-agent survey responses received since 1 p.m. the previous day are sent to admins as counts and lists. Each item links to the admin screen, so admins know the day's work from the email without opening the platform."
           }
         ]
       }
@@ -632,7 +632,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     period: "2026 – ongoing",
     status: "Ongoing",
     purpose:
-      "Agents built separately by brands such as SPAO, MIXXO, New Balance, WHO.A.U, ROEM, SHOOPEN and EBLIN are grouped into brand-level agents, standardized with a common contract, knowledge graph and evaluation gate, and finally integrated into one company-wide agent.",
+      "Agents built separately by brands such as seven brands are grouped into brand-level agents, standardized with a common contract, knowledge graph and evaluation gate, and finally integrated into one company-wide agent.",
     metrics: [
       { value: "116", label: "Agents to integrate", note: "as of Sept 2026" },
       { value: "9", label: "Job functions to connect" },
@@ -645,7 +645,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Promotion gate: only agents that pass evaluation become skills the central harness can call"
     ],
     background:
-      "More than 100 per-brand, per-job agents were built on NoA, the in-house AI agent platform, but the same sales metric came to be defined differently by brand and the same task was built separately per brand. To merge scattered agents into one, rules and metrics must be standardized first.",
+      "More than 100 per-brand, per-job agents were built on the in-house AI agent platform but the same sales metric came to be defined differently by brand and the same task was built separately per brand. To merge scattered agents into one, rules and metrics must be standardized first.",
     features: [
       {
         eyebrow: "Phase 1",
@@ -683,7 +683,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       lead:
         "Usage-guide item ④ (operating logic and company/team tacit rules: thresholds, priorities, exceptions) and item ⑥ (KPIs: metric, before/after, cadence) are not just one agent's manual. They are a device for extracting the judgment criteria a job has followed by feel into a form machines can read. Accumulated across every job, this becomes a job knowledge graph, and the central AI harness looks up a job's rules and KPIs first, then calls the right agent.",
       note:
-        "The structure below is a roadmap. Data and system connections (NoA MCP Gateway) and the register → evaluate → recommend → train loop are in operation; loading rules and KPIs into the graph and promoting agents to skills proceed in stages.",
+        "The structure below is a roadmap. Data and system connections (in-house MCP Gateway) and the register → evaluate → recommend → train loop are in operation; loading rules and KPIs into the graph and promoting agents to skills proceed in stages.",
       jobs: ["Merchandising", "Sales", "Marketing", "Online", "IMC", "SCM", "Production", "Logistics", "CS"],
       steps: [
         { title: "Unify on one contract", body: "Every agent carries the same 7-item usage guide, and logic, tacit rules and KPIs are kept both as prose and as a machine-readable structure (inputs, outputs, rules [condition, threshold, priority, exception], KPIs [metric, before, after, cadence], data sources). Interview-style skills ask the builder on the platform's behalf." },
@@ -740,7 +740,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     ],
     roles: [
       "Designed the four public agent-evaluation criteria and the agent score formula; criteria public, grades admin-only",
-      "Designed the 100-point participation weights and tiers, calibrating NoA (in-house AI agent platform) usage thresholds to the real distribution (40 people)",
+      "Designed the 100-point participation weights and tiers, calibrating the in-house AI agent platform usage thresholds to the real distribution (40 people)",
       "Designed the talent-pool table, monthly-output popup and overall ranking rule (usage 35 : output 65)",
       "Designed the member 360 journey and care signals, recommended actions and follow-up drafts",
       "Designed and built the org-level AI usage dashboard (division → brand → department → person drill-down)"
@@ -764,10 +764,10 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         title: "People evaluation: measuring participation",
         summary: "Each account's AI usage level becomes one number. The weights live in a single file, so changing the standard means changing one place.",
         items: [
-          { title: "100-point participation score", body: "12 per uploaded agent (max 36) · advanced training 16 · basic training 8 · 1 per platform visit (max 20) · NoA 2.0 usage up to 20 (active days 8, messages 8, code sessions 4, each capped) so no single metric dominates." },
-          { title: "Four tiers", body: "60+ Leading, 35 Active, 15 Entry, below that Watch. NoA usage thresholds were calibrated to the real distribution of the 40 people who also have platform accounts (median 5 active days, top quartile 10, etc.)." },
+          { title: "100-point participation score", body: "12 per uploaded agent (max 36) · advanced training 16 · basic training 8 · 1 per platform visit (max 20) · in-house AI agent 2.0 usage up to 20 (active days 8, messages 8, code sessions 4, each capped) so no single metric dominates." },
+          { title: "Four tiers", body: "60+ Leading, 35 Active, 15 Entry, below that Watch. AI-agent usage thresholds were calibrated to the real distribution of the 40 people who also have platform accounts (median 5 active days, top quartile 10, etc.)." },
           { title: "Monthly output and a person's share of hours", body: "Clicking a name in the talent-pool table opens monthly new/version-up counts, change in hours saved, what changed and before/after screens. A person's share = agent hours saved × contribution (equal split by default)." },
-          { title: "Overall ranking rule", body: "Scope: this month's NoA licence holders. Usage score (active days 40, messages 30, code sessions 30) and output score (Σ monthly hours saved × contribution) are each converted to percentiles and combined 35 : 65. Adjustments: line staff ×1.0, leaders ×1.5, CAIO office ×0.7; types: output-led, usage-led, balanced. Admin-only." }
+          { title: "Overall ranking rule", body: "Scope: this month's AI-agent licence holders. Usage score (active days 40, messages 30, code sessions 30) and output score (Σ monthly hours saved × contribution) are each converted to percentiles and combined 35 : 65. Adjustments: line staff ×1.0, leaders ×1.5, AI office ×0.7; types: output-led, usage-led, balanced. Admin-only." }
         ]
       },
       {
@@ -826,7 +826,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     roles: [
       "Designed the curriculum and job-specific hands-on exercises",
       "Provided technical support through to building and deploying real agents after training",
-      "Built the platform's learning features: AI literacy slides, leveled video lessons, 6-step build practice, training decks for NoA (the in-house AI agent platform), vibe-coding guide"
+      "Built the platform's learning features: AI literacy slides, leveled video lessons, 6-step build practice, training decks for the in-house AI agent platform, vibe-coding guide"
     ],
     features: [
       {
@@ -837,9 +837,9 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
           { title: "AI literacy basics", body: "Fourteen slides on AI fundamentals and what matters at work. Security principles and one-click deployment guardrails rewritten in plain company language." },
           { title: "Leveled video lessons", body: "AI trends · common · sprout · basic · intermediate · advanced · applied, so people pick lessons at their level. Required videos are badged and play inside the platform." },
           { title: "6-step agent-building practice", body: "Understand AI → define the work problem → write a prompt spec → prototype with Claude Code → security check → prepare to share and deploy. Each step has an output and check questions, with first-agent scenarios for MD, sales, design and CS." },
-          { title: "NoA 2.0 training decks", body: "Session 1 (concepts, 41 slides) and session 2 (hands-on, 30 slides) available in the platform by course. Attendance counts toward the participation score." },
+          { title: "in-house AI agent 2.0 training decks", body: "Session 1 (concepts, 41 slides) and session 2 (hands-on, 30 slides) available in the platform by course. Attendance counts toward the participation score." },
           { title: "5-step vibe-coding guide", body: "Decide what to build → build screens by vibe coding → connect BI data → prepare code for deployment → deploy. A usage-guide prompt makes the builder state operating logic, team tacit rules and KPIs first." },
-          { title: "Getting-started checklist and help", body: "Account request → NoA access → DaaS token → first agent → this month's survey and submission, judged automatically. FAQ, 1:1 inquiries, data requests and offline help sign-up sit alongside." }
+          { title: "Getting-started checklist and help", body: "Account request → AI-agent access → DaaS token → first agent → this month's survey and submission, judged automatically. FAQ, 1:1 inquiries, data requests and offline help sign-up sit alongside." }
         ]
       }
     ],
@@ -877,7 +877,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     ],
     image: {
       src: "/projects/naver-live.png",
-      alt: "MIXXO official store on Naver Shopping Live",
+      alt: "Brand B official store on Naver Shopping Live",
       caption: "Naver Shopping Live channel",
       width: 1056,
       height: 820
@@ -886,7 +886,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   },
   "newbalance-padding-rebranding": {
     group: "Product portfolio strategy",
-    title: "New Balance Padding Rebranding Strategy",
+    title: "the sports brand Padding Rebranding Strategy",
     short: "Padded-jacket rebranding",
     subtitle: "Designing core products from big data",
     period: "2024.11 – 2024.12",
@@ -914,7 +914,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         { name: "[Market] Growth slows, spending at its ceiling", body: "Korea's growth is forecast to slow from 2.5% in 2024 to 1.9% in 2025 (Bank of Korea cut on 28 November). Consumer spending is 71% of disposable income: people cannot spend more but are not spending less. They are not closing their wallets; they are choosing better value for the same money." },
         { name: "[Market] Synthetic fill rising every year", body: "Among top-ranked padded jackets (44 in 2022, 44 in 2023, 41 in 2024), costly goose and duck down fell from 82% to 64% to 37%, while polyester and other synthetic fills rose from 18% to 36% to 63%. That is why prices came down." },
         { name: "[Benchmark] Falling Nuptse, rising Onball", body: "The North Face's down jackets Nuptse and Himalayan fell 38% and 37% year on year, while the synthetic-fill Onball grew 57% and Matterhorn and Matier entered. Customers no longer insist on down; they weigh warmth and price together and choose value synthetic fill." },
-        { name: "[Benchmark] Men in their 30s choose The North Face and Arc'teryx", body: "The old benchmarks, National Geographic and Discovery, skewed to 40s with 70%+ women, much like New Balance lightweight-jacket customers. The North Face and Arc'teryx lightweight jackets are 46% and 67% men (+8%p, +9%p) with 30s the largest group, and their search volume is growing fast: a different customer base." }
+        { name: "[Benchmark] Men in their 30s choose The North Face and Arc'teryx", body: "The old benchmarks, National Geographic and Discovery, skewed to 40s with 70%+ women, much like our lightweight-jacket customers. The North Face and Arc'teryx lightweight jackets are 46% and 67% men (+8%p, +9%p) with 30s the largest group, and their search volume is growing fast: a different customer base." }
       ]
     },
     steps: ["Market: economy and spending","Market: fill materials of top-ranked jackets","Benchmark: competitor product trends","Benchmark: age and gender preference","Redefine core products and message"],
@@ -924,10 +924,10 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     group: "Product portfolio strategy",
     title: "Customer Churn Analysis for a Premium Brand in China",
     short: "China brand churn analysis",
-    subtitle: "Scofield China: six zero-base customer studies to find ‘Sco casual’ and localize the assortment for white-collar (白领) customers, as a product EBG validation project",
+    subtitle: "a women's brand in China: six zero-base customer studies to find ‘brand casual’ and localize the assortment for white-collar (白领) customers, as a product customer-research validation project",
     period: "2025.02 – 2025.04",
     purpose:
-      "Built a process to validate Scofield China's products against customer-research rules (EBG), and cross-checked store customers, non-customer interviews, street-style surveys, review big data and social media to find the cause of falling sales, the customer to win, and item-level product principles, carried through to SS and FW product input.",
+      "Built a process to validate the brand's products against customer-research rules, and cross-checked store customers, non-customer interviews, street-style surveys, review big data and social media to find the cause of falling sales, the customer to win, and item-level product principles, carried through to SS and FW product input.",
     metrics: [
       { value: "+8%", label: "Sales growth vs. same month last year", note: "from decline to growth" },
       { value: "▲320%", label: "FW denim order value", note: "4 styles added" },
@@ -936,37 +936,37 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     roleLead: "Proposed shrinking the formal-led assortment and rebuilding the portfolio around shirts, denim and comfortable business casual.",
     roles: [
       "Defined the cause of declining sales as a shift in customers' workwear norms, not the products",
-      "Ran six customer-research methods from zero, revising questions and methods each round, and wrote them up as the product EBG validation process",
+      "Ran six customer-research methods from zero, revising questions and methods each round, and wrote them up as the product customer-research validation process",
       "Derived steady and trend types per item and customers' top needs and complaints from three years of Tmall top-20 sales data and review big data",
       "Documented basics and differentiators for dresses, denim, knits/cardigans, shirts, tees and jackets by learning from benchmarks (Ralph Lauren, Edition, MO&Co., Uniqlo)",
       "Decided SS and FW inputs (type, fit, color, fabric) with the local merchandising team"
     ],
     background:
-      "The brand kept a heavy share of past hits such as glossy colored blouses from a decade earlier, and sales were falling 27% a year. In non-customer interviews people said Scofield clothes could be worn only one day a week, so they felt like a waste of money. Office dress had become casual, yet Scofield still offered formal suiting; only 21% of interviewees wore formal clothes daily, while 70% said the brand had nothing but formal clothes.\nThe customer to win was different too: white-collar (白领) women aged 35–45 at large companies, familiar with the ‘old money’ look through Xiaohongshu and global brands (44% had bought them). The brand's gold trims and loud colors and patterns, tuned to general Chinese customers, read as ‘old’.",
+      "The brand kept a heavy share of past hits such as glossy colored blouses from a decade earlier, and sales were falling 27% a year. In non-customer interviews people said the brand clothes could be worn only one day a week, so they felt like a waste of money. Office dress had become casual, yet the brand still offered formal suiting; only 21% of interviewees wore formal clothes daily, while 70% said the brand had nothing but formal clothes.\nThe customer to win was different too: white-collar (白领) women aged 35–45 at large companies, familiar with the ‘old money’ look through Xiaohongshu and global brands (44% had bought them). The brand's gold trims and loud colors and patterns, tuned to general Chinese customers, read as ‘old’.",
     catalog: {
       title: "Findings and strategy",
       items: [
-        { name: "[Research] Six customer studies from zero", body: "46 non-customer interviews, 11 shop-alongs, 98 surveys, a full count of 177 garments at premium dry cleaners and tailors, about 2,100 outfits observed in business districts and premium malls, Tmall review big data (millions of reviews) and 400 Xiaohongshu ‘classic / old money’ posts. Questions were revised each round, and the procedure became the product EBG validation process." },
+        { name: "[Research] Six customer studies from zero", body: "46 non-customer interviews, 11 shop-alongs, 98 surveys, a full count of 177 garments at premium dry cleaners and tailors, about 2,100 outfits observed in business districts and premium malls, Tmall review big data (millions of reviews) and 400 Xiaohongshu ‘classic / old money’ posts. Questions were revised each round, and the procedure became the product customer-research validation process." },
         { name: "[Diagnosis ①] Wearable one day a week, so a waste of money", body: "Office dress had gone casual while the brand kept fitting formal suiting, so customers felt there was nothing to buy. 21% wore formal clothes daily; 70% said the brand had only formal clothes." },
         { name: "[Diagnosis ②] The customer to win: global-minded white-collar women", body: "Women aged 35–45 at large companies. 44% had bought global brands such as Sandro and Lemaire and saw simple, clean old-money design as premium. The brand's gold trims and loud colors read as something for people over 50." },
-        { name: "[PART ① Sco casual] Expand to the dual TPO of daily commute and weekend shopping", body: "Formal occasions 21%, dual occasions where both formality and comfort matter 52%, casual 27%. In the dual TPO, 69% of purchases were mid-to-high-priced brands: the opportunity area." },
+        { name: "[PART ① brand casual] Expand to the dual TPO of daily commute and weekend shopping", body: "Formal occasions 21%, dual occasions where both formality and comfort matter 52%, casual 27%. In the dual TPO, 69% of purchases were mid-to-high-priced brands: the opportunity area." },
         { name: "[Type and fit] Relaxed fit for formal types, regular fit for the rest", body: "Among 2,013 outfits in business districts: loose-fit jackets 73%, regular-fit shirts 73%, regular-fit tees 76%, waisted dresses 60%, regular-fit cardigans 61%. Regular fit reads as formal and anything looser as casual, so type and fit must be decided together." },
         { name: "[Heritage] Borrow RL signatures and show classic layering", body: "Knits, cardigans, jackets and shirts were read as heritage when they followed Ralph Lauren signatures (cable and logo knits, logo shirts); other types needed classic layered styling with jackets or vests, seen in 70% of classic outfit posts." },
-        { name: "[PART ② Localization] At this price, versatility and quality-led luxury", body: "For a mid-to-high-priced brand, good design is the baseline; frequent, long wear and luxury felt through quality decide the purchase (“Taobao lens finds look-alikes, so quality matters”). Sco casual sits between what SPA brands cannot offer (quality, feminine style) and what premium brands cannot offer (value, casual)." },
+        { name: "[PART ② Localization] At this price, versatility and quality-led luxury", body: "For a mid-to-high-priced brand, good design is the baseline; frequent, long wear and luxury felt through quality decide the purchase (“Taobao lens finds look-alikes, so quality matters”). brand casual sits between what SPA brands cannot offer (quality, feminine style) and what premium brands cannot offer (value, casual)." },
         { name: "[Dresses] Brand concept from Ralph Lauren, product from Edition", body: "Input the steady slim type and the rising plain H-line type. Minimal with a twist through silhouette changes (60%) rather than trims, four fixed monotone colors varied by brightness, and ‘silk-like’ viscose, acetate and lyocell instead of real silk for a premium feel." },
         { name: "[Item principles] Denim · knits/cardigans · shirts · tees · jackets", body: "Denim: feminine details, 3 cm longer legs, silk-like blends against fading. Knits: fit, texture and easy-care cotton together. Shirts: white and blue fixed every year with fit and fabric expanded, fabric matched to each occasion's complaints (creasing, breathability). Tees: 61–65 cm hip length for tucked or untucked wear, one silhouette per design. Jackets: basics varied in detail and fabric and styled with jeans to show the dual TPO." },
         { name: "[Research TO-BE] Three years of data, not one point in time", body: "Moved from last season's bestsellers to three or more years of sales trends, classifying steady, trend and declining types. Trend types are added even at lower sales because they grow." },
-        { name: "[Execution] SS and FW inputs", body: "Added Sco casual types missing from SS (delivered 31 March). For FW, 4 denim styles (order value up 320%), 15 shirt styles, 6 basic shirt-dress styles, and a larger share of casual basic knits and cardigans, applying the semi-wide and straight fits and the white and sky-blue colors most worn by customers." }
+        { name: "[Execution] SS and FW inputs", body: "Added brand casual types missing from SS (delivered 31 March). For FW, 4 denim styles (order value up 320%), 15 shirt styles, 6 basic shirt-dress styles, and a larger share of casual basic knits and cardigans, applying the semi-wide and straight fits and the white and sky-blue colors most worn by customers." }
       ]
     },
-    steps: ["Six non-customer studies", "Diagnosis: once-a-week wear · customer mismatch", "PART ① Sco casual principles", "PART ② Localizing to white-collar needs", "Basics and differentiators per item", "SS · FW product input"],
+    steps: ["Six non-customer studies", "Diagnosis: once-a-week wear · customer mismatch", "PART ① brand casual principles", "PART ② Localizing to white-collar needs", "Basics and differentiators per item", "SS · FW product input"],
     image: {
       src: "/projects/scofield-store.png",
-      alt: "A Scofield store inside a department store in China",
+      alt: "A the brand store inside a department store in China",
       caption: "Store in China",
       width: 897,
       height: 581
     },
-    tags: ["Overseas market", "EBG customer research", "Product localization"]
+    tags: ["Overseas market", "Customer research", "Product localization"]
   }
 };
