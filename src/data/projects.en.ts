@@ -196,8 +196,74 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     stack: ["Snowflake", "SAP", "OMS", "Generative AI"],
     tags: ["PIM", "Product information", "AI channel listing"]
   },
+  "md-ontology-design": {
+    group: "② Ontology",
+    title: "Building the MD Business Ontology: From Data Catalog to Concept Layer",
+    short: "MD business ontology",
+    subtitle: "Flipping the table-and-column semantic layer so that the merchandiser's weekly decisions (reorder, channel focus, markdown timing, PLC, next-season orders) and their causal relations sit on top",
+    period: "2026.11 – ongoing",
+    status: "ongoing",
+    purpose:
+      "What had been built in the order ‘table → column → value’ was not an ontology but a data catalog (semantic layer). The center moves from the DW to the merchandiser's world, the concepts and the causal relations between them, so the ontology answers judgment questions such as “Why isn't this style selling? Should we reorder?” rather than only “What is the sell-through?”",
+    metrics: [
+      { value: "5", label: "Weekly MD decisions", note: "reorder · channel focus · markdown timing · PLC · next-season orders" },
+      { value: "2 layers", label: "Business concepts on top, data links below" },
+      { value: "6 steps", label: "From interview answers to ontology" },
+      { value: "3", label: "Reorder-candidate criteria", note: "sell-out 40% · days-to-sell-out < lead time · full-price sell-through 40% (any one)" }
+    ],
+    roles: [
+      "As a former merchandiser, drew out the five weekly decisions in interview form, without looking at tables, and organized business concepts and causal relations first",
+      "Re-positioned the existing knowledge graph as the lower data-link layer and designed the two-layer structure joined by ‘seen in data as’ relations",
+      "Dug into decision 1 (reorder) with five questions and defined the concept-table and relation-table formats (direction, attributes, exceptions)",
+      "Separated the reorder app's calculation rules (days to sell-out, PLC curve, coverage) from MD judgment rules into their own ‘calculation rule (app)’ bucket",
+      "Recorded thresholds (40%, 2 weeks, 15/40/70%, ×1.30/×0.85, season end dates) as attributes rather than nodes, together with their scope (brand)"
+    ],
+    background:
+      "Building the knowledge graph around ‘which tables and columns the DW has and what the values mean’ produced a tool that is good at ‘question → SQL’. That is what the KPI query skill already does; following this path yields the same tool under another name. The instruction to model on the existing graph design was itself what led there.\nAn ontology must center on the business world, not the data: the concepts in a merchandiser's head (style, reorder, sell-out, full-price sell-through, fit complaints, size stock-outs) and the relations between them, above all ‘what causes what, and what do you look at to decide what’. Tables and columns are only the lower layer that says where a concept is visible in data. A data catalog answers “what is the sell-through?” and its knowledge comes from the DW schema; an ontology answers “why isn't it selling, should we reorder?” and its knowledge is MD experience written in no DW.",
+    system: {
+      intro:
+        "Flip the layers: the business-concept layer built from MD knowledge on top, the data-link layer built so far below. Relations such as ‘fit complaints → size issue → more returns → lower full-price sell-through’ and ‘a reorder decision rests on early sell-through, sell-out speed and customer response’ exist in no DW; they are the body of the ontology and the point where it parts from the KPI query skill. Dotted ‘seen in data as’ relations connect upper concepts to lower data.",
+      layers: [
+        { name: "1. Business-concept layer (MD knowledge)", role: "Nouns become concepts, verbs become relations. Concepts are grouped into buckets (labels) from the MD world, not the DW.", items: [{ label: "Metrics", note: "sell-out rate · full-price sell-through · days of stock · early sell-through" }, { label: "States / stages", note: "PLC early · growth · peak · decline" }, { label: "Decisions", note: "reorder · channel focus · markdown timing · next-season orders" }, { label: "Constraints", note: "available factory lines · fabric status · minimum order quantity · lead time" }, { label: "Timing / events", note: "season end · off-season sale · forecast peak passed" }, { label: "Calculation rules (app)", note: "days to sell-out · forecast curve · 2-week coverage — kept apart from MD rules" }] },
+        { name: "2. Data-link layer (existing knowledge graph)", role: "Says where each concept is visible in data. Nothing built so far is thrown away; it keeps the upper layer from misreading data.", items: [{ label: "Full-price sell-through → DW sales metrics", note: undefined }, { label: "Fit complaints → review text · platform detail ratings", note: undefined }, { label: "Guarding facts", note: "the repair/inspection CS channel is not customer reviews · company-mall photos are not collected · jewelry accumulates lines per receipt" }] }
+      ],
+      flow: [
+        { title: "Judgment question", body: "Not a number but a decision: “Should we reorder this style?”" },
+        { title: "Find the decision node", body: "Locate the ‘reorder decision’ node in the concept layer and first check the PLC stage. Just as you do not discount an early-stage product or reorder a declining one, all five decisions hang around the PLC stage." },
+        { title: "Candidate-making relations", body: "Sell-out rate ≥ 40% / days to sell-out < lead time / full-price sell-through ≥ 40%. Any one makes the style a candidate (OR)." },
+        { title: "Constraints to check", body: "Available factory lines, fabric status, days of stock, how long it can sell by expected PLC, season end." },
+        { title: "Blocking relations (exceptions)", body: "Low full-price sell-through (it sold on markdown) blocks a reorder; so do an ending PLC and a near off-season sale. An ontology with only general rules knows ‘it sells, so reorder’; with blocking relations it also knows ‘it sells, but on markdown, so no’." },
+        { title: "Set the quantity", body: "Average four weeks of sales, considering minimum order quantity and days of stock. Reorders are by color and size, but minimum order quantity is matched at style level." },
+        { title: "Seen in data as", body: "Only now the lower layer is opened: full-price sell-through from DW sales metrics, fit complaints from review text." },
+        { title: "Evaluate → next decision", body: "Judge the decision by sell-out rate, days of stock (20 days or less means ‘sold quickly’) and full-price sell-through. Because candidate criteria and evaluation criteria overlap, a decision → result → next decision loop forms: the start of an ontology that learns." }
+      ],
+      principles: [
+        { title: "Center on the business world, not the data", body: "Tables and columns are only the lower layer that says where a concept appears in data. Labels come from the MD world (metric, state, decision, constraint, timing), not Table and Column." },
+        { title: "Thresholds are attributes", body: "‘40% or more’, ‘four weeks’, ‘15/40/70%’, ‘×1.30/×0.85’, ‘30 Sep / 28 Feb’ are written as attributes of relations or concepts, not as nodes. Change a threshold and only a number changes; if brands differ, the scope is an attribute too." },
+        { title: "Exceptions as separate blocking relations", body: "‘Sells well but do not reorder’ is modeled as reverse-direction ‘blocks’ relations, never mixed with general rules. The most valuable knowledge lives here." },
+        { title: "Keep MD rules and app calculation rules apart", body: "Days to sell-out, the PLC curve and 2-week coverage come from the reorder app's logic and get their own ‘calculation rule (app)’ bucket. What exists only in MD knowledge (no reorder on low full-price sell-through, evaluation by days of stock, size-level reorders) is the core of the concept layer." },
+        { title: "Open the tables last", body: "Start with the interview and two tables (concepts, relations), with neither Neo4j nor Snowflake open. Move to Neo4j once the tables fill up, using the same MERGE approach as before." }
+      ]
+    },
+    catalog: {
+      title: "Design-note summary",
+      items: [
+        { name: "Five weekly MD decisions", body: "① Which products to reorder ② which products to push on which online channel ③ when to start discounting ④ how the PLC will unfold ⑤ which types to add for next season. The five form one loop along the product's life, and the central concept candidate is the PLC stage." },
+        { name: "Digging into the reorder decision (Q1–Q5)", body: "Q1 what makes a candidate: sell-out ≥ 40%, days to sell-out shorter than lead time, full-price sell-through ≥ 40%. Q2 checks before deciding: factory lines, fabric, days of stock, expected PLC, season end. Q3 when not to reorder even if it sells: low full-price sell-through, PLC about to end, off-season sale near. Q4 quantity: about four weeks of sales given minimum order quantity and days of stock. Q5 evaluation: sell-out rate → days of stock → full-price sell-through." },
+        { name: "Six steps from answers to ontology", body: "① circle the nouns (concept list) ② sort concepts into buckets (labels) ③ find the verbs between concepts (directed relations) ④ thresholds as attributes ⑤ exceptions as separate ‘blocks’ relations ⑥ connect evaluation back to the start (learning loop). Tables are opened afterwards, only to link where each concept appears in data." },
+        { name: "Concept table and relation table", body: "Concept table: name / bucket (label) / meaning / threshold (attribute). Relation table: what / relation / to what / condition (attribute). One row of the relation table becomes one arrow in the graph. Relations always have direction, thresholds go in the attribute column, exceptions get their own rows, and no table or column names yet." },
+        { name: "Metric definitions corrected", body: "Sell-out rate = cumulative units sold ÷ cumulative units received. Full-price sell-through = cumulative full-price units sold ÷ cumulative units received (full price includes discounts under 5%). Measured before the expected PLC peak. The first answer had numerator and denominator reversed and was corrected." },
+        { name: "Separating app calculation rules from MD rules", body: "Days to sell-out subtracts a weekly forecast shaped like last year's similar style from the ‘target-based available stock’ (order quantity × target sell-through − cumulative sales) until it hits zero. PLC stage labels split at 15/40/70% cumulative sell-through but do not affect quantities; the curve is ‘last year's shape, this year's height’. The only floor is two weeks of coverage; the ceiling is the target sell-through and the season end date. These are app logic and go in a different bucket from MD rules." },
+        { name: "Where code and explanation disagree (not to be copied as is)", body: "The detail panel's stage text (0–25/25–55/55–70%) differs from the actual thresholds (15/40/70%); the safety-stock sigma note and constant are unused in the current order formula; styles without a last-year mapping are spread evenly, so they have neither peak nor decline. Only the actual behavior goes into the ontology." },
+        { name: "Open items and scope", body: "Reference brand: our sports brand; category: carry-over apparel. The 2-week lead time is not fixed but varies by category and factory, so it becomes an attribute on category and factory. Days of stock of 20 or less is the MD's ‘sold quickly’; other brands manage days of stock as a day target (e.g. 85 days). Who sets minimum order quantity is still unanswered." }
+      ]
+    },
+    steps: ["Diagnose the data catalog", "Flip into two layers", "Interview: five weekly MD decisions", "Dig into the reorder decision", "Write concept and relation tables", "Migrate to Neo4j (planned)"],
+    stack: ["Neo4j", "Cypher queries", "Snowflake", "Reorder app logic"],
+    tags: ["Ontology", "MD knowledge", "Knowledge graph"]
+  },
   "daas-paas-operations": {
-    group: "② Infrastructure",
+    group: "③ Infrastructure",
     title: "PaaS-based Service Operations",
     short: "PaaS operations",
     subtitle: "An in-house PaaS that deploys the apps non-developers build and provides the DB, file storage and schedules they need",
@@ -625,7 +691,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     tags: ["Personalization", "Registration & submission", "Next.js"]
   },
   "enterprise-agent-integration": {
-    group: "③ Enterprise integration",
+    group: "④ Enterprise integration",
     title: "Enterprise Agent Integration: From Per-Brand to One",
     short: "Enterprise agent integration",
     subtitle: "Group agents built per brand into brand-level agents, then integrate them into one central harness for the whole company",
@@ -698,7 +764,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     tags: ["Enterprise integration", "Central harness", "Knowledge graph"]
   },
   "recsys-serving-pipeline": {
-    group: "④ Next step",
+    group: "⑤ Next step",
     title: "Personalized Recommendation Serving Pipeline",
     short: "Recsys serving pipeline",
     subtitle: "From rule-based recommendation to model-based real-time serving",
