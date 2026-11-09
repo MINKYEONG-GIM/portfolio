@@ -244,6 +244,12 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       { src: "/projects/pim-image-detail.png", alt: "List view with the image detail panel on the right: file name, brand, style code, colors, cut type, search keywords, size, uploader, upload time, and edit/download buttons", caption: "Image details: the file-name rule (style code_color_cut type) auto-matches style code, colors and cut type, with search keywords viewed and edited in one panel", width: 1197, height: 883 },
       { src: "/projects/pim-style-status.png", alt: "Style status for one style code: style information review (pending) → image upload (2 flat-lay, 1 campaign, done) → channel image generation (done) → detail page generation (pending), with per-color detail-page status and retry buttons for failures", caption: "Style status: review → image upload → channel image generation → detail page generation per style on one screen, with ‘retry’ for colors whose page failed", width: 1381, height: 875 }
     ],
+    thumb: {
+      src: "/projects/pim-thumb.png",
+      alt: "Image hub home: filters and image grid",
+      width: 1000,
+      height: 1000
+    },
     stack: ["Snowflake", "SAP", "OMS", "Generative AI"],
     tags: ["PIM", "Product information", "AI channel listing"]
   },
