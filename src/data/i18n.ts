@@ -55,7 +55,7 @@ const UI = {
         visionHow: "모든 직무를 중심 하네스에 연결하는 방법",
         stack: "기술과 도구"
       },
-      flowTitle: "질문 한 번이 처리되는 순서",
+      flowTitle: "질문 처리 과정",
       principlesTitle: "구조를 지키는 원칙",
       nextLayer: "↓ 다음 층으로",
       dataFlow: "↓ 데이터 흐름 ↓",
@@ -159,7 +159,7 @@ const UI = {
         visionHow: "How to connect every job to the central harness",
         stack: "Stack & tools"
       },
-      flowTitle: "How one question flows through",
+      flowTitle: "How a question is processed",
       principlesTitle: "Principles that hold the structure",
       nextLayer: "↓ to the next layer",
       dataFlow: "↓ data flow ↓",

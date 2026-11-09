@@ -255,7 +255,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   },
   "md-ontology-design": {
     group: "② Ontology",
-    title: "Building the MD Business Ontology: From Data Catalog to Concept Layer",
+    title: "Building the Ontology: Adding a Business-Concept Layer to the Data Catalog",
     short: "MD business ontology",
     subtitle: "From a semantic layer centered on DW tables and columns to a business ontology with business-judgment concepts added",
     period: "2026.11 – ongoing",
@@ -263,7 +263,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     purpose:
       "Extends the range of answers to judgment questions by building an ontology that holds business know-how on top of the existing data catalog (semantic layer)",
     metrics: [
-      { value: "Wider question scope", label: "Can also answer subjective judgment questions", note: "markdown rate · reorder quantity · reorder timing · allocation · main sales channel" }
+      { value: "markdown rate · reorder quantity · reorder timing · allocation · main sales channel", label: "Wider question scope" }
     ],
     roles: [
       "As a former merchandiser, drew out the five weekly decisions in interview form, without looking at tables, and organized business concepts and causal relations first",
@@ -275,17 +275,15 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "The company's unwritten rules and ways of working were not in it, so even with a semantic layer, users had to enter the company's judgment criteria again in every session.",
     system: {
       intro:
-        "Flip the layers: the business-concept layer built from MD knowledge on top, the data-link layer built so far below. A relation such as ‘fit complaints → size issue → more returns → lower full-price sell-through’ exists in no DW; it is the body of the ontology and the point where it parts from the KPI query skill. Dotted ‘seen in data as’ relations connect upper concepts to lower data.",
+        "The existing knowledge graph (semantic layer) serves as the DW data-link layer, while MD experience knowledge such as ‘fit complaints → size issue → more returns → lower full-price sell-through’ is added to support faster decisions",
       layers: [
-        { name: "1. Business-concept layer (MD knowledge)", role: "Nouns become concepts, verbs become relations. Concepts are grouped into buckets (labels) from the MD world, not the DW.", items: [{ label: "Metrics", note: "sell-out rate · full-price sell-through · days of stock · early sell-through" }, { label: "States / stages", note: "PLC early · growth · peak · decline" }, { label: "Decisions", note: "reorder · channel focus · markdown timing · next-season orders" }, { label: "Constraints", note: "days of stock · lead time" }, { label: "Timing / events", note: "season end · off-season sale · forecast peak passed" }] },
-        { name: "2. Data-link layer (existing knowledge graph)", role: "Says where each concept is visible in data. Nothing built so far is thrown away; it keeps the upper layer from misreading data.", items: [{ label: "Full-price sell-through → DW sales metrics", note: undefined }, { label: "Fit complaints → review text · platform detail ratings", note: undefined }, { label: "Guarding facts", note: "the repair/inspection CS channel is not customer reviews · company-mall photos are not collected · jewelry accumulates lines per receipt" }] }
+        { tint: true, name: "1. Ontology (upper concepts · schema)", role: "Nouns become concepts, verbs become relations. Concepts are grouped into buckets (labels) from the MD world, not the DW.", items: [{ label: "Metrics", note: "sell-out rate · full-price sell-through · days of stock · early sell-through" }, { label: "States / stages", note: "PLC early · growth · peak · decline" }, { label: "Decisions", note: "reorder · channel focus · markdown timing · next-season orders" }, { label: "Constraints", note: "days of stock · lead time" }, { label: "Timing / events", note: "season end · off-season sale · forecast peak passed" }] },
+        { name: "2. Knowledge graph (lower concepts · real data and relations)", role: "Says where each concept is visible in data. Nothing built so far is thrown away; it keeps the upper layer from misreading data.", items: [{ label: "Full-price sell-through → DW sales metrics", note: undefined }, { label: "Fit complaints → review text · platform detail ratings", note: undefined }, { label: "Guarding facts", note: "the repair/inspection CS channel is not customer reviews · company-mall photos are not collected · jewelry accumulates lines per receipt" }] }
       ],
       flow: [
-        { title: "Judgment question", body: "Not a number but a decision: “Why isn't this style selling? What should we do?”" },
-        { title: "Find the decision node", body: "Locate the relevant decision node in the concept layer and first check the PLC stage. Just as you do not discount an early-stage product or reorder a declining one, all five decisions hang around the PLC stage." },
-        { title: "Blocking relations (exceptions)", body: "Cases where something sells well but is still not acted on are kept out of the general rules and modeled as separate ‘blocks’ relations. An ontology with only general rules knows ‘it sells, so scale up’; with blocking relations it also knows ‘it sells, but on markdown, so no’." },
-        { title: "Seen in data as", body: "Only now the lower layer is opened: full-price sell-through from DW sales metrics, fit complaints from review text." },
-        { title: "Evaluate → next decision", body: "Judge the decision by sell-out rate, days of stock (20 days or less means ‘sold quickly’) and full-price sell-through. Because candidate criteria and evaluation criteria overlap, a decision → result → next decision loop forms: the start of an ontology that learns." }
+        { title: "User judgment query", body: "“Why isn't this style selling? What should we do?”" },
+        { title: "Find the decision node", body: "Check which PLC stage it is in, such as introduction or decline." },
+        { title: "Seen in data as", body: "Confirm exact numbers through the lower-level knowledge graph: full-price sell-through from sales metrics, fit complaints from review-text tables." }
       ],
       principles: [
         { title: "Center on the business world, not the data", body: "Tables and columns are only the lower layer that says where a concept appears in data. Labels come from the MD world (metric, state, decision, constraint, timing), not Table and Column." },
@@ -295,12 +293,12 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         { title: "Open the tables last", body: "Start with the interview and two tables (concepts, relations), with neither Neo4j nor Snowflake open. Move to Neo4j once the tables fill up, using the same MERGE approach as before." }
       ]
     },
-    steps: ["Diagnose the data catalog", "Flip into two layers", "Interview: five weekly MD decisions", "Write concept and relation tables", "Migrate to Neo4j (planned)"],
+    steps: ["Interview SO/MD staff (judgment criteria in the work)","Write concept and relation tables","Migrate to Neo4j","Connect the Neo4j MCP"],
     stack: ["Neo4j", "Cypher queries", "Snowflake"],
     image: {
       src: "/projects/md-ontology-overview.png",
       alt: "Business-concept layer graph: 30 nodes and 38 relations among decisions, metrics, states, events, restrictions and calculation rules",
-      caption: "Business-concept layer graph: decisions, metrics, states, events, restrictions and calculation rules linked as causes and grounds (30 nodes · 38 relations)",
+      caption: "Ontology (upper concepts): the business-concept layer where decisions, metrics, states, events, restrictions and calculation rules are linked as causes and grounds (30 nodes · 38 relations)",
       width: 1800,
       height: 1000
     },
@@ -322,7 +320,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       {
         src: "/projects/md-ontology-data-link.png",
         alt: "Two-layer graph with business-concept nodes joined by dotted lines to DW table and column nodes",
-        caption: "Seen in data as: SOURCED_FROM relations tie upper-layer business concepts to lower-layer DW columns (24 links)",
+        caption: "Seen in data as: SOURCED_FROM relations tie upper concepts (ontology) to lower concepts (knowledge graph) (24 links)",
         width: 1800,
         height: 1000
       }
@@ -345,7 +343,10 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "An in-house PaaS where line staff deploy the web tools they build without developer help and get operations support. Overall deployment status, per-app MAU and call counts, and deployment domains are managed in one place.",
     background:
       "Web services built by individual employees were deployed to individual servers, which made company information hard to manage and made it hard to see which company data left through external DBs and external hosting.\nThe in-house PaaS was built to bring deployment inside the company, manage it in one place, and consolidate internal information, security and cost.",
-    metrics: [{ value: "90%", label: "Deployment success rate", note: "n=235 deployments" }],
+    metrics: [
+      { value: "235", label: "Deployments", note: "At a 90% success rate: about 212 succeeded · about 23 failed" },
+      { value: "90%", label: "Deployment success rate", note: "About 212 of 235 deployments succeeded" }
+    ],
     roles: [
       "Wrote, distributed and taught the one-click deployment guardrails (rules for AI coding tools)",
       "Designed Claude Code skills (requirements, triggers, behavior) that check a project against PaaS rules before deployment",
@@ -949,7 +950,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     period: "2026.02 – ongoing",
     purpose: "Designed training, onboarding and operational support to reach a 20% AX conversion rate across the organization.",
     background:
-      "People were told to use AI tools, but few knew where or what to start with. One-off lectures ended when they ended, and hardly anyone had turned a problem from their own work into an agent. Skill levels varied so much that one lecture was too hard for beginners and dull for experienced users.\nTraining had to be small, leveled and repeated, with one real agent built and published as the completion criterion.",
+      "To reach 20% AX adoption in-house, small-group, level-based offline training is repeated for employees who do not know where to start. Employees sign up per session to attend, and by the end of every session each person completes one web-based tool of their own.",
     metrics: [{ value: "~500", label: "People trained in AI agents" }],
     roles: [
       "Designed the curriculum and job-specific hands-on exercises",
@@ -979,7 +980,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       height: 1536
     },
     images: [
-      { src: "/projects/ax-connector-slide.png", alt: "Training slide ‘What is a connector?’: the power-outlet analogy for plugging Claude into company systems, four things to know (connect only the company connector, ‘no data’ when disconnected, read-only, company login required), and the four connections inside (dw-mcp company DW, graph-mcp knowledge graph, mail-mcp mail and calendar, hr-mcp HR system)", caption: "From the training deck, ‘What is a connector?’: analogy → four things to know → the four connections inside, explained with a power-outlet metaphor instead of developer terms (system and brand names generalized)", width: 2400, height: 1400 }
+      { src: "/projects/ax-connector-slide.png", alt: "Training slide ‘What is a connector?’: the power-outlet analogy for plugging Claude into company systems, four things to know (connect only the company connector, ‘no data’ when disconnected, read-only, company login required), and the four connections inside (dw-mcp company DW, graph-mcp knowledge graph, mail-mcp mail and calendar, hr-mcp HR system)", caption: "Connector training material", width: 2400, height: 1400 }
     ],
     tags: ["AI agent training", "Training", "Onboarding"]
   },

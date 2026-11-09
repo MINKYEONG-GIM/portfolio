@@ -4,7 +4,7 @@ export type FeatureItem = { title: string; body: string };
 export type FeatureSection = { eyebrow: string; title: string; summary: string; items: FeatureItem[] };
 export type VisionStep = { title: string; body: string };
 export type Vision = { lead: string; note: string; steps: VisionStep[]; jobs: string[] };
-export type SystemLayer = { name: string; role: string; items: { label: string; note?: string }[] };
+export type SystemLayer = { name: string; role: string; items: { label: string; note?: string }[]; /** true 인 층을 색 바탕으로 강조 (없으면 마지막 층) */ tint?: boolean };
 export type SystemArchitecture = {
   intro: string;
   layers: SystemLayer[];
@@ -280,7 +280,7 @@ export const PROJECTS: Project[] = [
     slug: "md-ontology-design",
     part: 1,
     group: "② 온톨로지",
-    title: "MD 업무 온톨로지 구축: 데이터 카탈로그에서 업무 개념층으로",
+    title: "온톨로지 구축: 데이터 카탈로그에 업무 개념층 추가",
     short: "MD 업무 온톨로지",
     subtitle: "DW 테이블·컬럼 중심의 시맨틱 레이어에서 업무 판단 개념을 추가한 업무 온톨로지 재설계",
     period: "2026.11 ~ 진행 중",
@@ -288,7 +288,7 @@ export const PROJECTS: Project[] = [
     purpose:
       "기존 데이터 카탈로그(시맨틱 레이어)에서 업무 노하우를 담은 온톨로지 구축을 통한 판단 질문까지 답변 범위 확장",
     metrics: [
-      { value: "질문 범위 확대", label: "주관적인 판단 질문에도 응답할 수 있음", note: "할인율 · 리오더수량 · 리오더시점 · 분배 · 주력판매채널" }
+      { value: "할인율 · 리오더수량 · 리오더시점 · 분배 · 주력판매채널", label: "질문 범위 확대" }
     ],
     roles: [
       "MD 출신 당사자로서 테이블을 보지 않고 매주 내리던 판단 5가지를 인터뷰 형식으로 끌어내 업무 개념과 인과 관계부터 정리",
@@ -300,17 +300,15 @@ export const PROJECTS: Project[] = [
       "회사의 불문율·업무 방식이 들어 있지 않아, 시맨틱 레이어가 있더라도 사용자가 세션마다 회사의 판단 기준을 그때그때 넣어줘야 했음.",
     system: {
       intro:
-        "층 뒤집기. 위층에 MD 지식으로 만든 업무 개념층을, 아래층에 지금까지 만든 데이터 연결층을 배치. ‘핏 불만 → 사이즈 이슈 → 반품 증가 → 정판율 하락’ 같은 관계는 어떤 DW에도 적혀 있지 않은 MD 경험 지식이며, 이것이 온톨로지의 본체이자 KPI 질의 스킬과 결정적으로 갈리는 지점임. 점선 ‘데이터로는’ 관계가 위층 개념을 아래층 데이터에 연결.",
+        "기존 지식그래프(시맨틱 레이어)는 DW 데이터 연결층으로 ‘핏 불만 → 사이즈 이슈 → 반품 증가 → 정판율 하락’ 같은 MD 경험 지식을 담아 빠른 의사결정을 지원하고자 함",
       layers: [
-        { name: "1. 업무 개념층 (MD 지식)", role: "명사는 개념, 동사는 관계. 개념은 DW가 아니라 MD 세계에서 온 바구니(라벨)로 구분.", items: [{ label: "지표", note: "소진율 · 정판율 · 재고보유일수 · 초기 판매율" }, { label: "상태·단계", note: "PLC 도입 · 성장 · 피크 · 감소" }, { label: "판단", note: "리오더 · 채널 주력 · 할인 시점 · 다음 시즌 발주" }, { label: "제약", note: "재고보유일수 · 리드타임" }, { label: "시점·사건", note: "시즌 엔딩 · 시즌오프 · 예측 피크 통과" }] },
-        { name: "2. 데이터 연결층 (기존 지식그래프)", role: "개념이 ‘데이터로는 어디서 보이는가’를 알려주는 층. 지금까지의 작업은 버려지지 않고 위층이 데이터를 잘못 읽지 않게 보호.", items: [{ label: "정판율 → DW 매출 지표", note: undefined }, { label: "핏 불만 → 리뷰 텍스트 · 플랫폼 세부평가", note: undefined }, { label: "지켜 주는 사실", note: "수선·심의 CS 채널은 고객 리뷰가 아님 · 자사몰 사진은 미수집 · 주얼리는 입고마다 줄이 쌓임" }] }
+        { tint: true, name: "1. 온톨로지 (상위 개념 · 스키마)", role: "명사는 개념, 동사는 관계. 개념은 DW가 아니라 MD 세계에서 온 바구니(라벨)로 구분.", items: [{ label: "지표", note: "소진율 · 정판율 · 재고보유일수 · 초기 판매율" }, { label: "상태·단계", note: "PLC 도입 · 성장 · 피크 · 감소" }, { label: "판단", note: "리오더 · 채널 주력 · 할인 시점 · 다음 시즌 발주" }, { label: "제약", note: "재고보유일수 · 리드타임" }, { label: "시점·사건", note: "시즌 엔딩 · 시즌오프 · 예측 피크 통과" }] },
+        { name: "2. 지식그래프 (하위 개념 · 실제 데이터와 관계)", role: "개념이 ‘데이터로는 어디서 보이는가’를 알려주는 층. 지금까지의 작업은 버려지지 않고 위층이 데이터를 잘못 읽지 않게 보호.", items: [{ label: "정판율 → DW 매출 지표", note: undefined }, { label: "핏 불만 → 리뷰 텍스트 · 플랫폼 세부평가", note: undefined }, { label: "지켜 주는 사실", note: "수선·심의 CS 채널은 고객 리뷰가 아님 · 자사몰 사진은 미수집 · 주얼리는 입고마다 줄이 쌓임" }] }
       ],
       flow: [
-        { title: "판단 질문", body: "“이 스타일 왜 안 팔려? 어떻게 해야 해?”처럼 숫자가 아니라 판단을 물음." },
-        { title: "판단 노드 찾기", body: "개념층에서 해당 판단 노드를 찾고, 어느 PLC 단계인지부터 확인. 도입기 상품에 할인을 고민하지 않고 쇠퇴기 상품을 리오더하지 않듯, 다섯 판단은 모두 PLC 단계 주변에 매달림." },
-        { title: "막는 관계(예외)", body: "잘 팔리는데도 실행하지 않는 경우는 일반 규칙과 섞지 않고 ‘막는’ 관계로 따로 둠. 일반 규칙만 있는 온톨로지는 ‘팔리면 늘린다’밖에 모르지만, 막는 관계가 있으면 ‘팔리긴 하는데 할인으로 팔린 거라 안 된다’까지 앎." },
-        { title: "데이터로는", body: "여기서야 아래층을 엶. 정판율은 DW 매출 지표에서, 핏 불만은 리뷰 텍스트에서 읽음." },
-        { title: "결과 평가 → 다음 판단", body: "소진율, 재고보유일수(20일 이하면 ‘금방 팔렸다’), 정판율로 잘한 결정이었는지 확인. 후보 기준과 평가 기준이 겹치므로 판단 → 결과 → 다음 판단 고리가 생기고, 이것이 온톨로지가 ‘배우는’ 구조의 시작임." }
+        { title: "사용자 판단 질의", body: "“이 스타일 왜 안 팔려? 어떻게 해야 해?”" },
+        { title: "판단 노드 찾기", body: "도입기, 쇠퇴기 등 어느 PLC 단계인지 확인." },
+        { title: "데이터로는", body: "하위 개념인 지식그래프를 통해 정확한 숫자 확인. 정판율은 매출 지표에서, 핏 불만은 리뷰 텍스트 테이블 조회." }
       ],
       principles: [
         { title: "중심은 데이터가 아니라 업무 세계", body: "테이블·컬럼은 개념이 데이터로 어디서 보이는지 알려주는 아래층일 뿐입니다. 라벨도 Table·Column이 아니라 지표·상태·판단·제약·시점처럼 MD 세계에서 온 바구니로 만듭니다." },
@@ -320,12 +318,12 @@ export const PROJECTS: Project[] = [
         { title: "테이블은 마지막에 연다", body: "Neo4j도 Snowflake도 열지 않고 인터뷰와 표 두 개(개념 표·관계 표)로 시작합니다. 표가 차면 그때 Neo4j로 옮기고, 방법은 익힌 MERGE 그대로입니다." }
       ]
     },
-    steps: ["데이터 카탈로그 진단", "2층 구조로 뒤집기", "MD 주간 판단 5가지 인터뷰", "개념 표 · 관계 표 작성", "Neo4j로 이관(예정)"],
+    steps: ["SO/MD 직무 인터뷰 (업무 내 판단 기준)","개념 표 · 관계 표 작성","Neo4j로 이관","Neo4j MCP 연결"],
     stack: ["Neo4j", "Cypher 쿼리", "Snowflake"],
     image: {
       src: "/projects/md-ontology-overview.png",
       alt: "업무 개념층 그래프: 판단·지표·상태·사건·제약·계산 규칙 30개 노드와 38개 관계",
-      caption: "업무 개념층 그래프: 판단·지표·상태·사건·제약·계산 규칙이 원인과 근거로 이어진 구조 (노드 30 · 관계 38)",
+      caption: "온톨로지 (상위 개념): 판단·지표·상태·사건·제약·계산 규칙이 원인과 근거로 이어진 업무 개념층 (노드 30 · 관계 38)",
       width: 1800,
       height: 1000
     },
@@ -347,7 +345,7 @@ export const PROJECTS: Project[] = [
       {
         src: "/projects/md-ontology-data-link.png",
         alt: "업무 개념 노드가 DW 테이블과 컬럼 노드에 점선으로 연결된 2층 구조 그래프",
-        caption: "데이터로는: 위층 업무 개념과 아래층 DW 컬럼을 잇는 SOURCED_FROM 관계 (연결 24)",
+        caption: "데이터로는: 상위 개념(온톨로지)과 하위 개념(지식그래프)을 잇는 SOURCED_FROM 관계 (연결 24)",
         width: 1800,
         height: 1000
       }
@@ -372,7 +370,10 @@ export const PROJECTS: Project[] = [
       "현업이 직접 만든 웹도구를 개발자 도움 없이 배포하고 운영 지원하는 사내 PaaS. 전체 배포현황 및 웹별 MAU·호출 수, 배포 도메인 통합 관리",
     background:
       "개별 직원이 제작한 웹서비스를 개별 서버로 배포하니 회사 내부 정보 관리가 어렵고 외부 DB·외부 호스팅으로 회사 데이터 반출되는 현황 파악 어려움. 배포를 회사 안으로 모아 한곳에서 관리하고, 내부 정보·보안·비용을 통합하고자 제작",
-    metrics: [{ value: "90%", label: "배포 성공률", note: "n=235건" }],
+    metrics: [
+      { value: "235건", label: "배포 건수", note: "성공률 90% 반영 시 성공 약 212건 · 실패 약 23건" },
+      { value: "90%", label: "배포 성공률", note: "235건 중 약 212건 성공" }
+    ],
     roles: [
       "원클릭 배포 가드레일 문서(AI 개발 도구용 규칙) 작성과 배포, 교육",
       "Claude Code Skill 요구사항·호출 조건·동작 방식 설계: 배포 전에 프로젝트를 PaaS 기준에 맞게 점검",
@@ -554,7 +555,7 @@ export const PROJECTS: Project[] = [
     period: "2026.02 ~ 진행 중",
     purpose: "조직 내 AX 전환율 20% 달성을 위해 교육·온보딩·운영 지원을 설계",
     background:
-      "AI 도구를 쓰라고는 했지만 ‘어디서 무엇부터 시작해야 하는지’를 아는 직원이 적음. 일회성 강의는 듣고 끝났고, 자기 업무 문제를 Agent로 만들어 본 사람은 드묾. 수준 차이가 커서 같은 강의로는 초보에게는 어렵고 숙련자에게는 지루함.\n소규모로, 수준별로, 반복해서 가르치고, 교육이 끝나면 실제로 Agent 하나를 만들어 올리는 것까지를 완료 기준으로 삼는 교육이 필요함.",
+      "사내 AX 전환 20%를 위해 어디서부터 시작해야 할지 모르는 직원들을 위해 소규모로, 수준별 반복 오프라인 교육 진행하여 세션별로 인원이 신청해서 수강. 매 세션 종료 시 웹 형태의 본인 도구 하나 완성",
     metrics: [
       { value: "약 500명", label: "AI Agent 교육" }
     ],
@@ -605,7 +606,7 @@ export const PROJECTS: Project[] = [
       height: 1536
     },
     images: [
-      { src: "/projects/ax-connector-slide.png", alt: "교육자료 ‘커넥터(Connector)란?’ 슬라이드: 클로드를 사내 시스템에 꽂아주는 전원 콘센트라는 비유, 꼭 알아둘 점 4가지(사내 커넥터 하나만 연결, 끊기면 ‘데이터가 없습니다’, 읽기 전용, 사내 계정 로그인 필요), 커넥터 안의 연결 4개(dw-mcp 사내 DW, graph-mcp 지식그래프, mail-mcp 메일·일정, hr-mcp 인사 시스템)", caption: "교육자료 중 ‘커넥터(Connector)란?’: 비유 → 꼭 알아둘 점 4가지 → 커넥터 안의 연결 4개 순서로, 개발 용어 대신 콘센트 비유로 설명하는 슬라이드 (시스템·브랜드명은 일반 명칭으로 바꿈)", width: 2400, height: 1400 }
+      { src: "/projects/ax-connector-slide.png", alt: "교육자료 ‘커넥터(Connector)란?’ 슬라이드: 클로드를 사내 시스템에 꽂아주는 전원 콘센트라는 비유, 꼭 알아둘 점 4가지(사내 커넥터 하나만 연결, 끊기면 ‘데이터가 없습니다’, 읽기 전용, 사내 계정 로그인 필요), 커넥터 안의 연결 4개(dw-mcp 사내 DW, graph-mcp 지식그래프, mail-mcp 메일·일정, hr-mcp 인사 시스템)", caption: "커넥터 교육자료", width: 2400, height: 1400 }
     ],
     tags: ["AI Agent 교육", "교육", "온보딩"]
   },

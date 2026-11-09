@@ -1,25 +1,10 @@
-import Image from "next/image";
 import type { ReactNode } from "react";
-import type { CatalogItem, FeatureSection, Insight, Metric, ProjectImage, SystemArchitecture, VisionStep } from "@/data/projects";
+import { Figure } from "@/components/figure";
+import type { CatalogItem, FeatureSection, Insight, Metric, SystemArchitecture, VisionStep } from "@/data/projects";
 import type { UIStrings } from "@/data/i18n";
 
-/** 설명 글이 달린 그림 한 장 */
-export function Figure({ image, priority = false }: { image: ProjectImage; priority?: boolean }) {
-  return (
-    <figure className="overflow-hidden rounded-2xl border border-line bg-surface">
-      <Image
-        src={image.src}
-        alt={image.alt}
-        width={image.width}
-        height={image.height}
-        sizes="(min-width: 1152px) 1120px, 100vw"
-        priority={priority}
-        className="h-auto w-full"
-      />
-      {image.caption ? <figcaption className="ko-keep border-t border-line px-5 py-3 text-sm font-bold text-ink">{image.caption}</figcaption> : null}
-    </figure>
-  );
-}
+/** 클릭하면 확대되는 그림 (클라이언트 컴포넌트) */
+export { Figure };
 
 export function SectionTitle({ eyebrow, title, id }: { eyebrow?: string; title: string; id?: string }) {
   return (
@@ -35,12 +20,13 @@ export function Block({ children, className = "" }: { children: ReactNode; class
 }
 
 export function MetricGrid({ metrics }: { metrics: Metric[] }) {
-  const cols = metrics.length >= 4 ? "grid-cols-2 lg:grid-cols-4" : metrics.length === 3 ? "grid-cols-1 sm:grid-cols-3" : "grid-cols-1 sm:grid-cols-2";
+  const cols =
+    metrics.length >= 4 ? "grid-cols-2 lg:grid-cols-4" : metrics.length === 3 ? "grid-cols-1 sm:grid-cols-3" : metrics.length === 1 ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2";
   return (
     <div className={`grid gap-3 ${cols}`}>
       {metrics.map((metric) => (
         <div key={metric.label} className="border border-line bg-paper p-5">
-          <p className="text-3xl font-black leading-none text-[color:var(--price)] sm:text-4xl">{metric.value}</p>
+          <p className={`text-3xl font-black text-[color:var(--price)] sm:text-4xl ${metric.value.length > 14 ? "leading-snug" : "leading-none"}`}>{metric.value}</p>
           <p className="ko-keep mt-3 text-base font-extrabold text-ink">{metric.label}</p>
           {metric.note ? <p className="ko-keep mt-1 text-sm font-semibold text-muted">{metric.note}</p> : null}
         </div>
@@ -49,9 +35,11 @@ export function MetricGrid({ metrics }: { metrics: Metric[] }) {
   );
 }
 
+const STEP_COLS: Record<number, string> = { 1: "sm:grid-cols-1", 2: "sm:grid-cols-2", 3: "sm:grid-cols-3", 4: "sm:grid-cols-4", 5: "sm:grid-cols-5" };
+
 export function StepFlow({ steps }: { steps: string[] }) {
   return (
-    <ol className="oy-grid grid-cols-1 sm:grid-cols-5">
+    <ol className={`oy-grid grid-cols-1 ${STEP_COLS[Math.min(Math.max(steps.length, 1), 5)]}`}>
       {steps.map((step, index) => (
         <li key={step} className="flex items-start gap-3 bg-paper p-4 sm:flex-col sm:gap-3">
           <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink text-sm font-black text-paper">{index + 1}</span>
@@ -208,7 +196,7 @@ export function SystemDiagram({ system, ui, showPrinciples = true }: { system: S
         {system.layers.map((layer, index) => (
           <div
             key={layer.name}
-            className={`grid gap-3 p-5 lg:grid-cols-[15rem_1fr] lg:gap-6 ${index < system.layers.length - 1 ? "border-b border-line" : ""} ${index === system.layers.length - 1 ? "tone-soft" : index % 2 === 1 ? "bg-surface" : "bg-paper"}`}
+            className={`grid gap-3 p-5 lg:grid-cols-[15rem_1fr] lg:gap-6 ${index < system.layers.length - 1 ? "border-b border-line" : ""} ${(system.layers.some((l) => l.tint) ? layer.tint : index === system.layers.length - 1) ? "tone-soft" : index % 2 === 1 ? "bg-surface" : "bg-paper"}`}
           >
             <div>
               <h3 className="ko-keep text-lg font-black text-ink">{layer.name}</h3>
