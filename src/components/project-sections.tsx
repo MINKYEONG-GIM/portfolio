@@ -1,12 +1,31 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
-import type { CatalogItem, FeatureSection, Insight, Metric, SystemArchitecture, VisionStep } from "@/data/projects";
+import type { CatalogItem, FeatureSection, Insight, Metric, ProjectImage, SystemArchitecture, VisionStep } from "@/data/projects";
 import type { UIStrings } from "@/data/i18n";
 
-export function SectionTitle({ eyebrow, title, id }: { eyebrow: string; title: string; id?: string }) {
+/** 설명 글이 달린 그림 한 장 */
+export function Figure({ image, priority = false }: { image: ProjectImage; priority?: boolean }) {
+  return (
+    <figure className="overflow-hidden rounded-2xl border border-line bg-surface">
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={image.width}
+        height={image.height}
+        sizes="(min-width: 1152px) 1120px, 100vw"
+        priority={priority}
+        className="h-auto w-full"
+      />
+      {image.caption ? <figcaption className="ko-keep border-t border-line px-5 py-3 text-sm font-bold text-ink">{image.caption}</figcaption> : null}
+    </figure>
+  );
+}
+
+export function SectionTitle({ eyebrow, title, id }: { eyebrow?: string; title: string; id?: string }) {
   return (
     <div id={id} className="oy-title scroll-mt-24 flex items-baseline gap-3">
       <h2 className="ko-keep text-ink">{title}</h2>
-      <span className="tone-text text-xs font-black tracking-[0.18em]">{eyebrow}</span>
+      {eyebrow ? <span className="tone-text text-xs font-black tracking-[0.18em]">{eyebrow}</span> : null}
     </div>
   );
 }
@@ -113,19 +132,49 @@ export function CatalogList({ items, triggerLabel }: { items: CatalogItem[]; tri
   return (
     <table className="oy-table">
       <tbody>
-        {items.map((item) => (
-          <tr key={item.name}>
-            <th scope="row">{item.name}</th>
-            <td>
-              <p className="ko-keep whitespace-pre-line text-base leading-7 text-ink">{item.body}</p>
-              {item.trigger ? (
-                <p className="ko-keep mt-1 text-sm font-bold text-muted">
-                  {triggerLabel} {item.trigger}
-                </p>
-              ) : null}
-            </td>
-          </tr>
-        ))}
+        {items.map((item) =>
+          item.steps ? (
+            // 단계가 있는 항목은 표 칸에 가두지 않고 전체 폭으로 펼쳐 한눈에 보이게 합니다.
+            <tr key={item.name}>
+              <td colSpan={2} className="!p-0">
+                <div className="grid gap-4 p-5">
+                  <h4 className="ko-keep text-lg font-extrabold text-ink">{item.name}</h4>
+                  <ol className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+                    {item.steps.map((step, index) => (
+                      <li
+                        key={`${index}-${step.text}`}
+                        className={`flex items-start gap-2.5 border px-3 py-2.5 ${step.flag ? "border-[color:var(--price)] bg-paper" : "border-line bg-paper"}`}
+                      >
+                        <span
+                          className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-black text-paper ${step.flag ? "bg-[color:var(--price)]" : "bg-ink"}`}
+                        >
+                          {index + 1}
+                        </span>
+                        <span className="ko-keep min-w-0 text-sm font-bold leading-6 text-ink">
+                          {step.text}
+                          {step.flag ? <span className="pill pill-red ml-1.5 align-middle">{step.flag}</span> : null}
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                  <p className="ko-keep whitespace-pre-line bg-surface px-4 py-3 text-base font-semibold leading-7 text-ink">{item.body}</p>
+                </div>
+              </td>
+            </tr>
+          ) : (
+            <tr key={item.name}>
+              <th scope="row">{item.name}</th>
+              <td>
+                <p className="ko-keep whitespace-pre-line text-base leading-7 text-ink">{item.body}</p>
+                {item.trigger ? (
+                  <p className="ko-keep mt-1 text-sm font-bold text-muted">
+                    {triggerLabel} {item.trigger}
+                  </p>
+                ) : null}
+              </td>
+            </tr>
+          )
+        )}
       </tbody>
     </table>
   );
@@ -150,6 +199,10 @@ export function SystemDiagram({ system, ui, showPrinciples = true }: { system: S
   return (
     <div className="grid gap-8">
       <p className="ko-keep max-w-4xl text-base leading-8 text-ink">{system.intro}</p>
+
+      {system.figures?.map((figure) => (
+        <Figure key={figure.src} image={figure} />
+      ))}
 
       <div className="grid gap-0 border border-line">
         {system.layers.map((layer, index) => (

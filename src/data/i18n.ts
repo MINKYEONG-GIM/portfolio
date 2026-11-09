@@ -9,7 +9,7 @@ const UI = {
       eyebrow: "SERVICE PLANNING PORTFOLIO",
       title: "프로젝트",
       viewTimeline: "타임라인 보기",
-      swipeHint: "옆으로 넘겨 보세요",
+      swipeHint: "옆으로 넘겨 보기",
       ask: "어떤 걸 보고 싶으세요?",
       counts: (n: number, m: number) => `프로젝트 ${n}개 · 주제 ${m}개`,
       projectCount: (n: number) => `프로젝트 ${n}개`,
@@ -23,7 +23,7 @@ const UI = {
       period: "프로젝트 기간",
       area: "분야",
       stack: "기술·도구",
-      draftNotice: "내용을 채워 가는 섹션입니다. 구성만 먼저 잡아 두고 진행하면서 성과·역할·자료를 보강합니다.",
+      draftNotice: "내용을 채워 가는 섹션. 구성만 먼저 잡아 두고 진행하면서 성과·역할·자료 보강.",
       tabs: {
         purpose: "목적",
         result: "성과",
@@ -65,11 +65,11 @@ const UI = {
       prev: "이전 프로젝트",
       next: "다음 프로젝트"
     },
-    footer: { note: "각 프로젝트의 수치는 당시 기준입니다." },
+    footer: { note: "각 프로젝트의 수치는 당시 기준." },
     pdf: {
       title: "포트폴리오 PDF",
       button: "PDF로 저장",
-      hint: "버튼을 누르면 인쇄 창이 열립니다. 대상(프린터)을 ‘PDF로 저장’으로 고르면 파일로 받습니다. 표지 → 목차 → 전체 요약 → 프로젝트별 상세 순서입니다.",
+      hint: "버튼을 누르면 인쇄 창이 열림. 대상(프린터)을 ‘PDF로 저장’으로 고르면 파일로 저장됨. 표지 → 목차 → 전체 요약 → 프로젝트별 상세 순서.",
       back: "사이트로 돌아가기",
       cover: "서비스기획 포트폴리오",
       contents: "목차",
@@ -85,22 +85,22 @@ const UI = {
     admin: {
       login: "관리자로 로그인하기",
       title: "관리자 로그인",
-      hint: "비밀번호가 맞으면 준비 중인 항목까지 보이는 관리자 모드로 들어갑니다. 일반 방문은 로그인 없이 그대로 볼 수 있습니다.",
+      hint: "비밀번호가 맞으면 준비 중인 항목까지 보이는 관리자 모드로 진입. 일반 방문은 로그인 없이 그대로 볼 수 있음.",
       mode: "관리자 모드",
       modeHint: "준비 중 항목 표시 중",
       hub: "허브",
       logout: "로그아웃",
       back: "돌아가기",
-      draftOnlyAdmin: "이 항목은 관리자에게만 보입니다."
+      draftOnlyAdmin: "이 항목은 관리자에게만 보임."
     },
     hub: {
       password: "비밀번호",
       enter: "들어가기",
-      wrong: "비밀번호가 맞지 않습니다.",
-      notConfigured: "환경변수 HUB_PASSWORD 가 설정되지 않았습니다. 로컬은 .env.local, Vercel 은 Environment Variables 에 넣어 주세요.",
+      wrong: "비밀번호가 맞지 않음.",
+      notConfigured: "환경변수 HUB_PASSWORD 가 설정되지 않음. 로컬은 .env.local, Vercel 은 Environment Variables 에 입력 필요.",
       eyebrow: "MAIN",
       title: (name: string) => `${name} · 직무별 포트폴리오`,
-      hint: "직무를 고르면 그 직무용 공개 화면이 새 탭에서 열립니다.",
+      hint: "직무를 고르면 그 직무용 공개 화면이 새 탭에서 열림.",
       lock: "잠그기",
       live: "공개 중",
       planned: "준비 중"

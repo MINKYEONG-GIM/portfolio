@@ -97,7 +97,6 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     roles: [
       "Defined what PIM manages: product code, name, material, color, size, price, inventory and images (model, flat-lay, thumbnail) as the single source of product truth",
       "Mapped where data is created and how it flows across SAP, BI, local storage, Google Drive and email",
-      "Designed the Snowflake-based PIM storage structure and the OMS integration schema",
       "Designed the generative-AI workflow: per-item keyword extraction, channel-specific names and promotional copy, image spec adaptation",
       "Turned interviews with MD, photo and ops teams into requirements for listing procedures and per-channel rules"
     ],
@@ -141,6 +140,15 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     system: {
       intro:
         "PIM completes the product flow after receiving in one line. When merchandising registers a product in PLM, receiving and inventory registration trigger a new-product alert; photographed (later 3D-generated) images enter the image hub via hub upload or API. AI builds the detail page (AI) and thumbnails, a per-channel data-optimization agent fits each channel's format, and the listing hub sends to every channel. The six layers below are the image hub's structure.",
+      figures: [
+        {
+          src: "/projects/pim-pipeline.png",
+          alt: "Pipeline design: SAP BI → Snowflake → PIM DB → PIM system → in-house OMS → online channels, with AI handling keyword extraction and channel-specific listing copy",
+          caption: "PIM pipeline: product data in → AI processing (keywords, channel listings) → OMS → online channels",
+          width: 1667,
+          height: 784
+        }
+      ],
       layers: [
         { name: "1. Bulk upload", role: "Drag and drop many images at once. Re-uploads such as added model shots notify detail-page production (AI).", items: [{ label: "Drag-and-drop bulk upload", note: "style code, color and cut type recognized from the file name" }, { label: "Re-upload", note: "added model shots etc. → the page-generation AI notified" }, { label: "Error badge", note: "unmatched files flagged on the home screen" }] },
         { name: "2. Image management", role: "Each image gets its type, product traits and product information, becoming a searchable asset.", items: [{ label: "① Image type", note: "front/back/detail, product/model/concept shot" }, { label: "② Product traits", note: "material · mood" }, { label: "③ Style-code link", note: "SAP data (name, price) joined with PIM disclosure data" }] },
@@ -167,28 +175,71 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       ]
     },
     catalog: {
-      title: "Ways of working: AS-IS → TO-BE, and the four changes",
+      title: "Business process: AS-IS → TO-BE, and the five changes",
+      figures: [
+        { src: "/projects/pim-asis-process.png", alt: "AS-IS listing process: merchandising (SAP registration) → logistics (receiving, inventory) → photo team (shooting, Google upload and email) → listing team (spotting new products from inventory, listing, sample requests, measuring and inner-tag checks, disclosure images, detail pages, thumbnails, the company mall image upload) → e-commerce team (the company mall, Sabangnet and the listing hub listings → Cafe24, Naver, Musinsa, Zigzag). Seven red boxes are the core bugs", caption: "[AS-IS] The old listing process: the same information re-typed by people across five teams. The seven red boxes are the core bugs", width: 1684, height: 1150 },
+        { src: "/projects/pim-tobe-process.png", alt: "TO-BE big picture after PLM: inside PIM, merchandising (PLM registration) → logistics (receiving, inventory) → listing team (new-product alert, listing) → photo team (shooting, 3D generation, hub upload / API) → detail page production (AI) → thumbnail and page upload → per-channel data-optimization agent → the listing hub listing → all channels", caption: "[TO-BE] The PIM flow after PLM: new-product alerts go out automatically, shots and 3D renders enter through the hub, AI builds the pages, a per-channel agent fits each format and the listing hub sends to every channel. Every red box (core bug) is gone", width: 1720, height: 1204 }
+      ],
       items: [
-        { name: "[AS-IS] The old way — seven core bugs", body: "Merchandising registers in SAP → logistics registers receiving and inventory → the listing team digs through inventory to find new products (bug) → lists without photos → requests samples from logistics → measures and checks inner tags (bug) → makes disclosure images (bug) → photo team shoots → Google upload and email (bug) → detail page production (bug) → thumbnails and pages entered → the company mall image upload (bug) → e-commerce team lists separately in the company mall, Sabangnet and the listing hub (bug) → sent to Cafe24, Naver, Musinsa, Zigzag. Five teams passed the same information along, re-typing it each time." },
-        { name: "[TO-BE] After the system — one PIM flow", body: "PLM registration → new-product alert on receiving → shooting / 3D generation → hub upload / API → detail page (AI) → automatic thumbnail and page upload → per-channel optimization agent → the listing hub listing → all channels. Re-typing steps disappear; the listing team only reviews and handles exceptions." },
-        { name: "Change ① Lead time from 6 days to 1 hour", body: "Listing lead time from receiving to on sale drops from an average of 6 days to at most 1 hour." },
-        { name: "Change ② People no longer intervene", body: "Standard listings are 100% automated. People become supervisors who review and improve AI logic rather than operators, and only tasks that need a platform MD, such as event listings and promotions, remain, saving 80% of the time." },
-        { name: "Change ③ Take the photo and AI does the rest", body: "Model generation, sales copy, detail pages, channel-specific image conversion and SEO tags. The page is created and listed as the shot is taken; once 3D modeling is ready, products can go on sale at planning without a shoot." },
-        { name: "Change ④ No more ‘received but not on sale’", body: "A monitoring dashboard managing every displayed style completely blocks the human error of products received but never put on sale." },
-        { name: "Data as an asset, and what it enables", body: "All sales-side product information (images, names) becomes data that strengthens AI training. Products become searchable by image and natural language, and customer-facing data absent from production data enables new models such as AI merchandising, AI recommendations and AI short-form content. Linked to PLM, PIM provides integrated analysis from production to after-sales and underpins global channel expansion." }
+        {
+          name: "[AS-IS] The previous business process — seven core bugs",
+          steps: [
+            { text: "Merchandising registers the product in SAP" },
+            { text: "Logistics registers receiving and inventory" },
+            { text: "Listing team digs through inventory to find new products", flag: "Bug" },
+            { text: "Lists the product without photos" },
+            { text: "Requests samples from logistics" },
+            { text: "Measures and checks inner tags", flag: "Bug" },
+            { text: "Makes disclosure images", flag: "Bug" },
+            { text: "Photo team shoots" },
+            { text: "Google upload and email", flag: "Bug" },
+            { text: "Detail page production", flag: "Bug" },
+            { text: "Thumbnails and pages entered" },
+            { text: "Company mall image upload", flag: "Bug" },
+            { text: "E-commerce team lists separately in the company mall, Sabangnet and the listing hub", flag: "Bug" },
+            { text: "Sent to Cafe24, Naver, Musinsa, Zigzag" }
+          ],
+          body: "Five teams passed the same information along, re-typing it each time."
+        },
+        {
+          name: "[TO-BE] After the system — one PIM flow",
+          steps: [
+            { text: "PLM product registration" },
+            { text: "New-product alert as soon as receiving and inventory are registered" },
+            { text: "Shooting / 3D generation" },
+            { text: "Hub upload / API" },
+            { text: "Detail page production (AI)" },
+            { text: "Automatic thumbnail and detail upload" },
+            { text: "Per-channel data optimization agent" },
+            { text: "Listing hub registration" },
+            { text: "Sent to all channels" }
+          ],
+          body: "Re-typing steps disappear; the listing team only reviews and handles exceptions."
+        },
+        {
+          name: "Change ① Lead time from 6 days to 1 hour",
+          body: "Listing lead time from receiving to on sale drops from an average of 6 days to at most 1 hour."
+        },
+        {
+          name: "Change ② People no longer intervene",
+          body: "Standard listings are 100% automated. People become supervisors who review and improve AI logic rather than operators, and only tasks that need a platform MD, such as event listings and promotions, remain, saving 80% of the time."
+        },
+        {
+          name: "Change ③ Take the photo and AI does the rest",
+          body: "Model generation, sales copy, detail pages, channel-specific image conversion and SEO tags. The page is created and listed as the shot is taken; once 3D modeling is ready, products can go on sale at planning without a shoot."
+        },
+        {
+          name: "Change ④ No more ‘received but not on sale’",
+          body: "A monitoring dashboard managing every displayed style completely blocks the human error of products received but never put on sale."
+        },
+        {
+          name: "Change ⑤ Data as an asset, and what it enables",
+          body: "All sales-side product information (images, names) becomes data that strengthens AI training. Products become searchable by image and natural language, and customer-facing data absent from production data enables new models such as AI merchandising, AI recommendations and AI short-form content. Linked to PLM, PIM provides integrated analysis from production to after-sales and underpins global channel expansion."
+        }
       ]
     },
-    steps: ["3-week MD/AMD work census","Define the three core bugs","PIM attributes and data flow","Build the image hub","AI detail pages and channel-optimization agent","the listing hub → all channels automatically"],
-    image: {
-      src: "/projects/pim-pipeline.png",
-      alt: "Pipeline design: SAP BI → Snowflake → PIM DB → PIM system → in-house OMS → online channels, with AI handling keyword extraction and channel-specific listing copy",
-      caption: "PIM pipeline: product data in → AI processing (keywords, channel listings) → OMS → online channels",
-      width: 1667,
-      height: 784
-    },
+    steps: ["3-week MD/AMD work census","Define the three core bugs","PIM attributes and data flow","AI detail pages and channel-optimization agent","the listing hub → all channels automatically"],
     images: [
-      { src: "/projects/pim-asis-process.png", alt: "AS-IS listing process: merchandising (SAP registration) → logistics (receiving, inventory) → photo team (shooting, Google upload and email) → listing team (spotting new products from inventory, listing, sample requests, measuring and inner-tag checks, disclosure images, detail pages, thumbnails, the company mall image upload) → e-commerce team (the company mall, Sabangnet and the listing hub listings → Cafe24, Naver, Musinsa, Zigzag). Seven red boxes are the core bugs", caption: "[AS-IS] The old listing process: the same information re-typed by people across five teams. The seven red boxes are the core bugs", width: 1684, height: 1150 },
-      { src: "/projects/pim-tobe-process.png", alt: "TO-BE big picture after PLM: inside PIM, merchandising (PLM registration) → logistics (receiving, inventory) → listing team (new-product alert, listing) → photo team (shooting, 3D generation, hub upload / API) → detail page production (AI) → thumbnail and page upload → per-channel data-optimization agent → the listing hub listing → all channels", caption: "[TO-BE] The PIM flow after PLM: new-product alerts go out automatically, shots and 3D renders enter through the hub, AI builds the pages, a per-channel agent fits each format and the listing hub sends to every channel. Every red box (core bug) is gone", width: 1720, height: 1204 },
       { src: "/projects/pim-image-hub-home.png", alt: "Image hub home: left menu (work status, style information, image information, detail pages, My Pocket, other materials, per-channel information, master data, permissions, trash, AI search), filters for upload date, uploader, brand and color with a registration-error badge, and a grid of 34,031 images", caption: "Image hub home: upload date, uploader, brand and color filters plus a ‘registration error’ badge locate any of tens of thousands of images in the grid", width: 1197, height: 903 },
       { src: "/projects/pim-image-detail.png", alt: "List view with the image detail panel on the right: file name, brand, style code, colors, cut type, search keywords, size, uploader, upload time, and edit/download buttons", caption: "Image details: the file-name rule (style code_color_cut type) auto-matches style code, colors and cut type, with search keywords viewed and edited in one panel", width: 1197, height: 883 },
       { src: "/projects/pim-style-status.png", alt: "Style status for one style code: style information review (pending) → image upload (2 flat-lay, 1 campaign, done) → channel image generation (done) → detail page generation (pending), with per-color detail-page status and retry buttons for failures", caption: "Style status: review → image upload → channel image generation → detail page generation per style on one screen, with ‘retry’ for colors whose page failed", width: 1381, height: 875 }
@@ -200,40 +251,33 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     group: "② Ontology",
     title: "Building the MD Business Ontology: From Data Catalog to Concept Layer",
     short: "MD business ontology",
-    subtitle: "Flipping the table-and-column semantic layer so that the merchandiser's weekly decisions (reorder, channel focus, markdown timing, PLC, next-season orders) and their causal relations sit on top",
+    subtitle: "From a semantic layer centered on DW tables and columns to a business ontology with business-judgment concepts added",
     period: "2026.11 – ongoing",
     status: "ongoing",
     purpose:
-      "What had been built in the order ‘table → column → value’ was not an ontology but a data catalog (semantic layer). The center moves from the DW to the merchandiser's world, the concepts and the causal relations between them, so the ontology answers judgment questions such as “Why isn't this style selling? Should we reorder?” rather than only “What is the sell-through?”",
+      "Extends the range of answers to judgment questions by building an ontology that holds business know-how on top of the existing data catalog (semantic layer)",
     metrics: [
-      { value: "5", label: "Weekly MD decisions", note: "reorder · channel focus · markdown timing · PLC · next-season orders" },
-      { value: "2 layers", label: "Business concepts on top, data links below" },
-      { value: "6 steps", label: "From interview answers to ontology" },
-      { value: "3", label: "Reorder-candidate criteria", note: "sell-out 40% · days-to-sell-out < lead time · full-price sell-through 40% (any one)" }
+      { value: "Wider question scope", label: "Can also answer subjective judgment questions", note: "markdown rate · reorder quantity · reorder timing · allocation · main sales channel" }
     ],
     roles: [
       "As a former merchandiser, drew out the five weekly decisions in interview form, without looking at tables, and organized business concepts and causal relations first",
       "Re-positioned the existing knowledge graph as the lower data-link layer and designed the two-layer structure joined by ‘seen in data as’ relations",
-      "Dug into decision 1 (reorder) with five questions and defined the concept-table and relation-table formats (direction, attributes, exceptions)",
-      "Separated the reorder app's calculation rules (days to sell-out, PLC curve, coverage) from MD judgment rules into their own ‘calculation rule (app)’ bucket",
-      "Recorded thresholds (40%, 2 weeks, 15/40/70%, ×1.30/×0.85, season end dates) as attributes rather than nodes, together with their scope (brand)"
+      "Defined the concept-table and relation-table formats (direction, attributes, exceptions)",
+      "Recorded thresholds as attributes rather than nodes, together with their scope (brand)"
     ],
     background:
-      "Building the knowledge graph around ‘which tables and columns the DW has and what the values mean’ produced a tool that is good at ‘question → SQL’. That is what the KPI query skill already does; following this path yields the same tool under another name. The instruction to model on the existing graph design was itself what led there.\nAn ontology must center on the business world, not the data: the concepts in a merchandiser's head (style, reorder, sell-out, full-price sell-through, fit complaints, size stock-outs) and the relations between them, above all ‘what causes what, and what do you look at to decide what’. Tables and columns are only the lower layer that says where a concept is visible in data. A data catalog answers “what is the sell-through?” and its knowledge comes from the DW schema; an ontology answers “why isn't it selling, should we reorder?” and its knowledge is MD experience written in no DW.",
+      "The company's unwritten rules and ways of working were not in it, so even with a semantic layer, users had to enter the company's judgment criteria again in every session.",
     system: {
       intro:
-        "Flip the layers: the business-concept layer built from MD knowledge on top, the data-link layer built so far below. Relations such as ‘fit complaints → size issue → more returns → lower full-price sell-through’ and ‘a reorder decision rests on early sell-through, sell-out speed and customer response’ exist in no DW; they are the body of the ontology and the point where it parts from the KPI query skill. Dotted ‘seen in data as’ relations connect upper concepts to lower data.",
+        "Flip the layers: the business-concept layer built from MD knowledge on top, the data-link layer built so far below. A relation such as ‘fit complaints → size issue → more returns → lower full-price sell-through’ exists in no DW; it is the body of the ontology and the point where it parts from the KPI query skill. Dotted ‘seen in data as’ relations connect upper concepts to lower data.",
       layers: [
-        { name: "1. Business-concept layer (MD knowledge)", role: "Nouns become concepts, verbs become relations. Concepts are grouped into buckets (labels) from the MD world, not the DW.", items: [{ label: "Metrics", note: "sell-out rate · full-price sell-through · days of stock · early sell-through" }, { label: "States / stages", note: "PLC early · growth · peak · decline" }, { label: "Decisions", note: "reorder · channel focus · markdown timing · next-season orders" }, { label: "Constraints", note: "available factory lines · fabric status · minimum order quantity · lead time" }, { label: "Timing / events", note: "season end · off-season sale · forecast peak passed" }, { label: "Calculation rules (app)", note: "days to sell-out · forecast curve · 2-week coverage — kept apart from MD rules" }] },
+        { name: "1. Business-concept layer (MD knowledge)", role: "Nouns become concepts, verbs become relations. Concepts are grouped into buckets (labels) from the MD world, not the DW.", items: [{ label: "Metrics", note: "sell-out rate · full-price sell-through · days of stock · early sell-through" }, { label: "States / stages", note: "PLC early · growth · peak · decline" }, { label: "Decisions", note: "reorder · channel focus · markdown timing · next-season orders" }, { label: "Constraints", note: "days of stock · lead time" }, { label: "Timing / events", note: "season end · off-season sale · forecast peak passed" }] },
         { name: "2. Data-link layer (existing knowledge graph)", role: "Says where each concept is visible in data. Nothing built so far is thrown away; it keeps the upper layer from misreading data.", items: [{ label: "Full-price sell-through → DW sales metrics", note: undefined }, { label: "Fit complaints → review text · platform detail ratings", note: undefined }, { label: "Guarding facts", note: "the repair/inspection CS channel is not customer reviews · company-mall photos are not collected · jewelry accumulates lines per receipt" }] }
       ],
       flow: [
-        { title: "Judgment question", body: "Not a number but a decision: “Should we reorder this style?”" },
-        { title: "Find the decision node", body: "Locate the ‘reorder decision’ node in the concept layer and first check the PLC stage. Just as you do not discount an early-stage product or reorder a declining one, all five decisions hang around the PLC stage." },
-        { title: "Candidate-making relations", body: "Sell-out rate ≥ 40% / days to sell-out < lead time / full-price sell-through ≥ 40%. Any one makes the style a candidate (OR)." },
-        { title: "Constraints to check", body: "Available factory lines, fabric status, days of stock, how long it can sell by expected PLC, season end." },
-        { title: "Blocking relations (exceptions)", body: "Low full-price sell-through (it sold on markdown) blocks a reorder; so do an ending PLC and a near off-season sale. An ontology with only general rules knows ‘it sells, so reorder’; with blocking relations it also knows ‘it sells, but on markdown, so no’." },
-        { title: "Set the quantity", body: "Average four weeks of sales, considering minimum order quantity and days of stock. Reorders are by color and size, but minimum order quantity is matched at style level." },
+        { title: "Judgment question", body: "Not a number but a decision: “Why isn't this style selling? What should we do?”" },
+        { title: "Find the decision node", body: "Locate the relevant decision node in the concept layer and first check the PLC stage. Just as you do not discount an early-stage product or reorder a declining one, all five decisions hang around the PLC stage." },
+        { title: "Blocking relations (exceptions)", body: "Cases where something sells well but is still not acted on are kept out of the general rules and modeled as separate ‘blocks’ relations. An ontology with only general rules knows ‘it sells, so scale up’; with blocking relations it also knows ‘it sells, but on markdown, so no’." },
         { title: "Seen in data as", body: "Only now the lower layer is opened: full-price sell-through from DW sales metrics, fit complaints from review text." },
         { title: "Evaluate → next decision", body: "Judge the decision by sell-out rate, days of stock (20 days or less means ‘sold quickly’) and full-price sell-through. Because candidate criteria and evaluation criteria overlap, a decision → result → next decision loop forms: the start of an ontology that learns." }
       ],
@@ -245,21 +289,8 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         { title: "Open the tables last", body: "Start with the interview and two tables (concepts, relations), with neither Neo4j nor Snowflake open. Move to Neo4j once the tables fill up, using the same MERGE approach as before." }
       ]
     },
-    catalog: {
-      title: "Design-note summary",
-      items: [
-        { name: "Five weekly MD decisions", body: "① Which products to reorder ② which products to push on which online channel ③ when to start discounting ④ how the PLC will unfold ⑤ which types to add for next season. The five form one loop along the product's life, and the central concept candidate is the PLC stage." },
-        { name: "Digging into the reorder decision (Q1–Q5)", body: "Q1 what makes a candidate: sell-out ≥ 40%, days to sell-out shorter than lead time, full-price sell-through ≥ 40%. Q2 checks before deciding: factory lines, fabric, days of stock, expected PLC, season end. Q3 when not to reorder even if it sells: low full-price sell-through, PLC about to end, off-season sale near. Q4 quantity: about four weeks of sales given minimum order quantity and days of stock. Q5 evaluation: sell-out rate → days of stock → full-price sell-through." },
-        { name: "Six steps from answers to ontology", body: "① circle the nouns (concept list) ② sort concepts into buckets (labels) ③ find the verbs between concepts (directed relations) ④ thresholds as attributes ⑤ exceptions as separate ‘blocks’ relations ⑥ connect evaluation back to the start (learning loop). Tables are opened afterwards, only to link where each concept appears in data." },
-        { name: "Concept table and relation table", body: "Concept table: name / bucket (label) / meaning / threshold (attribute). Relation table: what / relation / to what / condition (attribute). One row of the relation table becomes one arrow in the graph. Relations always have direction, thresholds go in the attribute column, exceptions get their own rows, and no table or column names yet." },
-        { name: "Metric definitions corrected", body: "Sell-out rate = cumulative units sold ÷ cumulative units received. Full-price sell-through = cumulative full-price units sold ÷ cumulative units received (full price includes discounts under 5%). Measured before the expected PLC peak. The first answer had numerator and denominator reversed and was corrected." },
-        { name: "Separating app calculation rules from MD rules", body: "Days to sell-out subtracts a weekly forecast shaped like last year's similar style from the ‘target-based available stock’ (order quantity × target sell-through − cumulative sales) until it hits zero. PLC stage labels split at 15/40/70% cumulative sell-through but do not affect quantities; the curve is ‘last year's shape, this year's height’. The only floor is two weeks of coverage; the ceiling is the target sell-through and the season end date. These are app logic and go in a different bucket from MD rules." },
-        { name: "Where code and explanation disagree (not to be copied as is)", body: "The detail panel's stage text (0–25/25–55/55–70%) differs from the actual thresholds (15/40/70%); the safety-stock sigma note and constant are unused in the current order formula; styles without a last-year mapping are spread evenly, so they have neither peak nor decline. Only the actual behavior goes into the ontology." },
-        { name: "Open items and scope", body: "Reference brand: our sports brand; category: carry-over apparel. The 2-week lead time is not fixed but varies by category and factory, so it becomes an attribute on category and factory. Days of stock of 20 or less is the MD's ‘sold quickly’; other brands manage days of stock as a day target (e.g. 85 days). Who sets minimum order quantity is still unanswered." }
-      ]
-    },
-    steps: ["Diagnose the data catalog", "Flip into two layers", "Interview: five weekly MD decisions", "Dig into the reorder decision", "Write concept and relation tables", "Migrate to Neo4j (planned)"],
-    stack: ["Neo4j", "Cypher queries", "Snowflake", "Reorder app logic"],
+    steps: ["Diagnose the data catalog", "Flip into two layers", "Interview: five weekly MD decisions", "Write concept and relation tables", "Migrate to Neo4j (planned)"],
+    stack: ["Neo4j", "Cypher queries", "Snowflake"],
     tags: ["Ontology", "MD knowledge", "Knowledge graph"]
   },
   "daas-paas-operations": {
@@ -271,10 +302,9 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     purpose: 
       "An in-house PaaS where line staff deploy the web tools they build without developer help and get operations support. Overall deployment status, per-app MAU and call counts, and deployment domains are managed in one place.",
     background:
-      "As line staff put the web apps they built on external services one by one, problems piled up. Nobody could manage where or how company information was stored, company data leaked out through external DBs and hosting, and each person paid separately for domains and hosting.\nThe in-house PaaS was built to bring deployment inside the company, manage it in one place, and consolidate internal information, security and cost.",
+      "Web services built by individual employees were deployed to individual servers, which made company information hard to manage and made it hard to see which company data left through external DBs and external hosting.\nThe in-house PaaS was built to bring deployment inside the company, manage it in one place, and consolidate internal information, security and cost.",
     metrics: [{ value: "90%", label: "Deployment success rate", note: "n=235 deployments" }],
     roles: [
-      "Operated serverless deployment of Next.js apps and analyzed deployment failures",
       "Wrote, distributed and taught the one-click deployment guardrails (rules for AI coding tools)",
       "Designed Claude Code skills (requirements, triggers, behavior) that check a project against PaaS rules before deployment",
       "Turned recurring deployment and operations inquiries into skill features"
@@ -304,22 +334,15 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       }
     ],
     steps: ["One-click deploy via ZIP or Git", "Ship deployment guardrails", "Automate pre-deploy checks with a Claude skill", "Run schedules, DBs and storage", "Fewer inquiries · self-service"],
-    image: {
-      src: "/projects/paas-dashboard.png",
-      alt: "PaaS dashboard: one-click deploy shortcut, project/schedule/DB/file-storage/limit cards, and my projects with ZIP deployment, error counts, service status and last success time",
-      caption: "PaaS dashboard: one-click deploy · projects, schedules, DBs, storage and limits · my project status",
-      width: 1553,
-      height: 746
-    },
     images: [
       {
         src: "/projects/paas-my-dashboard.png",
         alt: "Personal dashboard: my 3 projects with deployment URL, last success time and error count, my DB and file storage usage, my schedules, and runtime errors in the last 24 hours",
-        caption: "Personal dashboard: the status and errors of the apps I deployed, my DB and file storage usage, my schedules and the last 24 hours of runtime errors on one screen",
+        caption: "The status of the web apps each person has deployed, as seen on their own dashboard",
         width: 1302,
         height: 1062
       },
-      { src: "/projects/paas-monitoring.png", alt: "Admin service-usage monitoring: usage summary (356 app runs, 0.00% error rate, 1854.9 ms average response, p95 2811.9 ms, p99 3358.1 ms, 0 throttles, 0.00% deployment failures, 264 of 281 apps measurable), a call/error trend chart, and a per-application table with calls, error rate, latency, p95, p99, throttles and MAU. User names and IDs blurred, MAU values are examples", caption: "Admin view of every deployed app (service-usage monitoring): overall runs, errors and response times, call/error trend over time, and per-app calls, error rate, latency (p95/p99), throttles and MAU. User names and IDs are blurred and MAU values are examples", width: 2000, height: 1186 }
+      { src: "/projects/paas-monitoring.png", alt: "Admin service-usage monitoring: usage summary (356 app runs, 0.00% error rate, 1854.9 ms average response, p95 2811.9 ms, p99 3358.1 ms, 0 throttles, 0.00% deployment failures, 264 of 281 apps measurable), a call/error trend chart, and a per-application table with calls, error rate, latency, p95, p99, throttles and MAU. User names and IDs blurred, MAU values are examples", caption: "Admin view of every deployed web app", width: 2000, height: 1186 }
     ],
     thumb: {
       src: "/projects/paas-dashboard-thumb.png",
@@ -344,13 +367,11 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       { value: "6.8× / week", label: "Usage in core teams", note: "N=68" }
     ],
     roles: [
-      "Converted document and chart images to text and structured them as searchable data",
-      "Built the vector DB and implemented contextual search on the GPT API",
       "Iterated on preprocessing and retrieval logic through repeated user tests",
       "Expanded to the main screen of the group-wide training program"
     ],
     background:
-      "Fifteen years of high-quality strategy documents existed, but image-heavy slides stored as files made them unsearchable. The knowledge asset was there; the structure to use it was not.",
+      "An asset without a way to use it: fifteen years of high-quality strategy material had accumulated, but image-heavy PPTs and file-level storage left it unsearchable.",
     system: {
       intro:
         "Internal PPT, Excel, PDF and Word originals are converted into JSON with text and source information, vectorized with the OpenAI Embeddings API and stored in a separate vector DB. When a user asks a question, the question is vectorized the same way, similar document chunks are retrieved, and only the retrieved results are passed to the GPT API, which answers with the source document and page. Composition: JSON files → Embeddings API → vector DB → search code → GPT API.",
@@ -428,28 +449,28 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     stack: ["OCR", "Vector DB", "GPT API"],
     tags: ["RAG", "Vector search", "Knowledge management"]
   },
-  "ontology-agent-platform": {
+  "knowledge graph-agent-platform": {
     group: "① Agent platform",
-    title: "Ontology-based Enterprise AI Agent Platform",
+    title: "Knowledge Graph-based Enterprise AI Agent Platform",
     short: "AI agent platform (the in-house AI agent)",
-    subtitle: "An enterprise AI agent platform where internal data, metrics and business rules are defined as an ontology (knowledge graph) and every MCP server runs on that ontology",
+    subtitle: "An enterprise AI agent platform where internal data, metrics and business rules are defined as an knowledge graph and every MCP server runs on that knowledge graph",
     period: "2025.11 – ongoing",
     purpose: 
-      "Load the company's metric definitions and business rules into a Neo4j ontology (knowledge graph) so that LLM agents answer against that graph, giving every employee a work environment where they can build job-specific agents grounded in company data.",
+      "Load the company's metric definitions and business rules into a Neo4j knowledge graph so that LLM agents answer against that graph, giving every employee a work environment where they can build job-specific agents grounded in company data.",
     metrics: [
       { value: "116", label: "Agents completed", note: "as of Sept 2026" },
       { value: "8,180 h / month", label: "Work hours saved by agents", note: "as of Sept 2026" }
     ],
     roles: [
-      "Ontology design and knowledge graph build: designed the knowledge-graph schema from business-domain information, and loaded official metric definitions and golden SQL into Neo4j",
-      "MCP server development: packaged graph lookups (resolve, read_cypher) and DW queries as MCP tools, with read-only and own-permission security principles",
-      "Skills and hooks: fixed the procedure 'one graph lookup → SQL → read-only run' as skills, and designed hooks that store user corrections and company decisions in the context graph",
-      "Plugin rollout and offline training: Claude org administration (connectors, org instructions, permissions), employee training design and delivery"    ],
+      "Knowledge graph design: designed the schema from business-domain information and defined official metric definitions and golden SQL",
+      "Skill procedure planning: designed the 'one graph lookup → SQL → read-only run' procedure",
+      "Employee training design and delivery"
+    ],
     background:
-      "Even after connecting AI agents to internal data, the same 'sales' figure was computed differently by brand and by person, because the model guessed tables and formulas. After two or three wrong sales or profit numbers, trust collapsed and usage dropped.\nWhat was needed before more connections was a meaning the company had agreed on. Metric definitions, formulas, joins, season rules and unwritten rules were loaded into one ontology, and the structure was changed so that every agent queries that graph before writing any SQL.",
+      "Even after connecting AI agents to internal data, the same 'sales' figure was computed differently by brand and by person, because the model guessed tables and formulas. After two or three wrong sales or profit numbers, trust collapsed and usage dropped.\nWhat was needed before more connections was a meaning the company had agreed on. Metric definitions, formulas, joins, season rules and unwritten rules were loaded into one knowledge graph, and the structure was changed so that every agent queries that graph before writing any SQL.",
     system: {
       intro:
-        "This platform puts agents on top of an ontology. A Neo4j knowledge graph sits in the middle; hooks, skills and MCP tools all query it before they act. Users only ask questions in Claude Desktop or Code, and the six layers below take the question through org instructions → hooks → skills → MCP tools → gateway → ontology and internal data. Every layer keeps the read-only and own-permissions principles.",
+        "This platform puts agents on top of a knowledge graph. A Neo4j knowledge graph sits in the middle; hooks, skills and MCP tools all query it before they act. Users only ask questions in Claude Desktop or Code, and the six layers below take the question through org instructions → hooks → skills → MCP tools → gateway → knowledge graph and internal data. Every layer keeps the read-only and own-permissions principles.",
       layers: [
         {
           name: "1. Client Layer",
@@ -463,7 +484,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         },
         {
           name: "2. Policy & Context Layer",
-          role: "Inserts company rules and context before the question reaches the model. Org instructions and hooks read the context graph, the ontology's 'event layer'.",
+          role: "Inserts company rules and context before the question reaches the model. Org instructions and hooks read the context graph.",
           items: [
             { label: "Org instructions", note: "rules for everyone, e.g. what to do when an MCP connection fails" },
             { label: "SessionStart hook", note: "personalization and memory rules, the in-house PaaS development rules (read the docs first)" },
@@ -477,7 +498,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
           items: [
             { label: "Claude model", note: "reasoning · SQL writing · answer writing" },
             { label: "Skill triggers", note: "skills selected by keyword and request type" },
-            { label: "Memory", note: "per-user preferences and team rules kept as files; new definitions are recommended for ontology registration" }
+            { label: "Memory", note: "per-user preferences and team rules kept as files; new definitions are recommended for knowledge graph registration" }
           ]
         },
         {
@@ -491,12 +512,12 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
             { label: "hr-attend", note: "leave balance, requests and approvals" },
             { label: "mail-calendar", note: "mail and calendar reading and writing" },
             { label: "paas-deploy", note: "building and preparing apps for deployment on the company standard" },
-            { label: "usage-guide-writer · tacit-rule-interview · monthly-submit-helper", note: "interview-style skills that draw out unwritten rules as ontology candidates" }
+            { label: "usage-guide-writer · tacit-rule-interview · monthly-submit-helper", note: "interview-style skills that draw out unwritten rules as knowledge graph candidates" }
           ]
         },
         {
           name: "5. Tool Binding Layer (MCP tools)",
-          role: "The tools skills actually call. One MCP server per system, and the tool names are the whole list of allowed actions. The ontology lookup tools come first.",
+          role: "The tools skills actually call. One MCP server per system, and the tool names are the whole list of allowed actions. The knowledge graph lookup tools come first.",
           items: [
             { label: "graph-mcp", note: "resolve (meaning of metrics, stores, seasons) · read_cypher (read-only Cypher queries) · search_1p_report · ebg_search · onboarding_search" },
             { label: "dw-mcp", note: "run_snowflake_query (read-only)" },
@@ -505,11 +526,11 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
           ]
         },
         {
-          name: "6. Ontology & Data Layer (in-house MCP Gateway → ontology · internal data)",
-          role: "A central group of remote MCP servers receives every tool call in one place and checks authentication and permissions. The ontology (knowledge graph) sits in the middle; the DW, M365 and HR are sources read according to its definitions.",
+          name: "6. Knowledge Graph & Data Layer (in-house MCP Gateway → knowledge graph · internal data)",
+          role: "A central group of remote MCP servers receives every tool call in one place and checks authentication and permissions. The knowledge graph sits in the middle; the DW, M365 and HR are sources read according to its definitions.",
           items: [
-            { label: "Neo4j ontology · knowledge graph", note: "metric definitions, formulas, joins, golden SQL, brand/store/season dictionaries, customer-research golden rules, onboarding, weekly report vector index, context graph (corrections and decisions)" },
-            { label: "Snowflake DW", note: "standard data models (aggregate tables) — only the tables and columns the ontology points to are queried" },
+            { label: "Neo4j knowledge graph", note: "metric definitions, formulas, joins, golden SQL, brand/store/season dictionaries, customer-research golden rules, onboarding, weekly report vector index, context graph (corrections and decisions)" },
+            { label: "Snowflake DW", note: "standard data models (aggregate tables) — only the tables and columns the knowledge graph points to are queried" },
             { label: "M365 Graph", note: "mail and calendar" },
             { label: "HR system", note: "attendance and approvals" },
             { label: "the in-house PaaS (PaaS)", note: "one-click deployment of employee-built apps" }
@@ -520,24 +541,24 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         { title: "Question", body: "Ask in everyday words, e.g. “What were Brand A Gangnam's sales this May?”" },
         { title: "Context injection", body: "The UserPromptSubmit hook finds related corrections (e.g. 26SS starts on 25 January), golden SQL and company decisions in the context graph and prepends them." },
         { title: "Skill selection", body: "The keyword ‘sales’ turns on the kpi-query skill, which proceeds by its fixed procedure." },
-        { title: "Ontology lookup", body: "One graph resolve returns the metric definition (sales = SUM(SALEAMT)), measure columns, join conditions, store codes and season ranges. The model does not guess." },
+        { title: "Knowledge graph lookup", body: "One graph resolve returns the metric definition (sales = SUM(SALEAMT)), measure columns, join conditions, store codes and season ranges. The model does not guess." },
         { title: "SQL writing", body: "SQL is written only from what the graph returned. If needed, read_cypher reads more of the graph; injected corrections take priority for dates and seasons." },
         { title: "Read-only execution", body: "dw-mcp queries the DW with the user's own permissions. The tool has no write capability." },
         { title: "Answer with sources", body: "Definition, scope and sources (tables, the graph node that holds the formula) are attached so numbers can be verified." },
-        { title: "Learning from corrections", body: "If the user corrects, e.g. “No, from 25 January”, it is stored in the context graph and applied automatically from the next question. If the definition itself must change, ontology registration is recommended." }
+        { title: "Learning from corrections", body: "If the user corrects, e.g. “No, from 25 January”, it is stored in the context graph and applied automatically from the next question. If the definition itself must change, knowledge graph registration is recommended." }
       ],
       principles: [
-        { title: "Meaning lives only in the ontology", body: "Metric definitions, formulas, joins and unwritten rules live only in the knowledge graph; skills only fix the order of calls. Change the graph once and every skill and agent follows the same day." },
+        { title: "Meaning lives only in the knowledge graph", body: "Metric definitions, formulas, joins and unwritten rules live only in the knowledge graph; skills only fix the order of calls. Change the graph once and every skill and agent follows the same day." },
         { title: "Graph first, SQL second", body: "The model never guesses tables. SQL is written only after the graph lookup, and a metric missing from the graph is answered as ‘no definition’." },
         { title: "Read-only, own permissions", body: "DW tools can only read, and every call goes out with the SSO-authenticated user's own permissions. HR data is read only from allowed columns." },
         { title: "Corrections accumulate in the graph", body: "User corrections and company decisions do not vanish with the conversation; they stay in the context graph so the next person's question gets the same standard." }
       ]
     },
-    steps: ["Ontology design and knowledge graph build", "MCP servers connecting the graph and the DW", "Skills and hooks", "Plugin rollout and offline training", "Weekly use-case broadcasts across affiliates"],
+    steps: ["Knowledge graph design and build", "MCP servers connecting the graph and the DW", "Skills and hooks", "Plugin rollout and offline training", "Weekly use-case broadcasts across affiliates"],
     image: {
       src: "/projects/agent-kpi-demo.png",
       alt: "Asking Brand A Gangnam's May sales in natural language with the kpi-query skill: the metric definition is resolved from the knowledge graph, the DW is queried and the answer cites its sources",
-      caption: "kpi-query skill: natural-language question → metric definition resolved from the knowledge graph (ontology) → DW query → answer with sources",
+      caption: "kpi-query skill: natural-language question → metric definition resolved from the knowledge graph → DW query → answer with sources",
       width: 1226,
       height: 1051
     },
@@ -557,7 +578,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         {
           name: "tacit-rule-interview",
           trigger: "“Write down the unwritten rules”, “document the know-how”, “rules to put into the agent”",
-          body: "Interviews practitioners to draw out the unwritten rules they follow from experience (thresholds, priorities, exceptions, gut-feel judgments) and organizes them as candidate rules for the ontology."
+          body: "Interviews practitioners to draw out the unwritten rules they follow from experience (thresholds, priorities, exceptions, gut-feel judgments) and organizes them as candidate rules for the knowledge graph."
         },
         {
           name: "usage-guide-writer",
@@ -572,7 +593,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       ]
     },
     stack: ["MCP", "Claude", "Snowflake", "Neo4j", "Cypher queries", "M365 Graph", "Claude Code Skill"],
-    tags: ["Ontology", "Knowledge graph", "MCP"]
+    tags: ["Knowledge graph", "MCP"]
   },
   "fashion-ai-platform": {
     group: "② AI Platform",
@@ -589,7 +610,6 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Service planning and information architecture: four menus by intent (Browse · Build · Learn · Get help) and a sidebar shared by every screen",
       "Personalized recommendation logic: scoring on job, brand, recently viewed and liked signals, with a reason on every card",
       "Registration and monthly-submission flow: 4-part form, co-creator contribution split, 7-item usage-guide prompt, survey-before-submission order",
-      "Next.js full-stack implementation and operations: Snowflake DaaS integration, caching, access policy, admin dashboards"
     ],
     background:
       "As agents built with in-house AI agent 2.0 multiplied, who built what and what it achieved was scattered.\nRegister → recommend and spread → submit monthly results → evaluate → train runs as one flow, automatically accumulating data on the company's AX status.",
@@ -809,7 +829,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Designed the 100-point participation weights and tiers, calibrating the in-house AI agent platform usage thresholds to the real distribution (40 people)",
       "Designed the talent-pool table, monthly-output popup and overall ranking rule (usage 35 : output 65)",
       "Designed the member 360 journey and care signals, recommended actions and follow-up drafts",
-      "Designed and built the org-level AI usage dashboard (division → brand → department → person drill-down)"
+      "Designed the org-level AI usage dashboard (division → brand → department → person drill-down)"
     ],
     background:
       "As more people took training and built agents, we needed grounds for deciding whom to reward, where to add budget and whom to place in which team. Rather than trusting reported values alone, we built a system that measures outputs and participation separately.",
@@ -891,7 +911,6 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     metrics: [{ value: "~500", label: "People trained in AI agents" }],
     roles: [
       "Designed the curriculum and job-specific hands-on exercises",
-      "Provided technical support through to building and deploying real agents after training",
       "Built the platform's learning features: AI literacy slides, leveled video lessons, 6-step build practice, training decks for the in-house AI agent platform, vibe-coding guide"
     ],
     features: [

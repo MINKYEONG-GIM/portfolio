@@ -14,9 +14,9 @@ export function getContent(lang: Lang): Content {
   };
 }
 
-/** 일반 방문자에게는 준비 중(draft) 프로젝트를 숨깁니다. 관리자는 전부 봅니다. */
+/** 일반 방문자에게는 준비 중(draft)·관리자 전용(adminOnly) 프로젝트를 숨깁니다. 관리자는 전부 봅니다. */
 export function visibleProjects(projects: Project[], admin: boolean) {
-  return admin ? projects : projects.filter((project) => !project.draft);
+  return admin ? projects : projects.filter((project) => !project.draft && !project.adminOnly);
 }
 
 export function byPart(projects: Project[], part: number) {

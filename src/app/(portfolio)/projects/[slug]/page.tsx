@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
-import { ProjectFigures, ProjectInfoTable, ProjectSections, hasContentsOf, principlesOf } from "@/components/project-body";
+import { ProjectFigures, ProjectInfoTable, ProjectSections, hasContentsOf } from "@/components/project-body";
 import { getContent, neighborsOf, statusOf, visibleProjects } from "@/data/content";
 import { isAdmin } from "@/lib/hub-auth";
 import { t } from "@/data/i18n";
@@ -34,7 +34,6 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
   const status = statusOf(project, ui.status);
   const P = ui.project;
 
-  const principles = principlesOf(project);
   const hasContents = hasContentsOf(project);
   const tabs = [
     { id: "purpose", label: P.tabs.purpose, show: true },
@@ -42,7 +41,6 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
     { id: "background", label: P.tabs.background, show: Boolean(project.background) },
     { id: "contents", label: P.tabs.contents, show: hasContents },
     { id: "role", label: P.tabs.role, show: true },
-    { id: "principles", label: P.tabs.principles, show: Boolean(principles) },
     { id: "features", label: P.tabs.features, show: Boolean(project.features) }
   ].filter((tab) => tab.show);
 
@@ -82,9 +80,10 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
         </div>
       </header>
 
-      {project.draft ? (
+      {project.draft || project.adminOnly ? (
         <p className="ko-keep border border-dashed border-ink bg-surface px-5 py-4 text-base font-bold leading-7 text-ink">
-          {ui.admin.draftOnlyAdmin} {P.draftNotice}
+          {ui.admin.draftOnlyAdmin}
+          {project.draft ? ` ${P.draftNotice}` : ""}
         </p>
       ) : null}
 
