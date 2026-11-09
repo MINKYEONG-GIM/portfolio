@@ -297,6 +297,42 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     },
     steps: ["Diagnose the data catalog", "Flip into two layers", "Interview: five weekly MD decisions", "Write concept and relation tables", "Migrate to Neo4j (planned)"],
     stack: ["Neo4j", "Cypher queries", "Snowflake"],
+    image: {
+      src: "/projects/md-ontology-overview.png",
+      alt: "Business-concept layer graph: 30 nodes and 38 relations among decisions, metrics, states, events, restrictions and calculation rules",
+      caption: "Business-concept layer graph: decisions, metrics, states, events, restrictions and calculation rules linked as causes and grounds (30 nodes · 38 relations)",
+      width: 1800,
+      height: 1000
+    },
+    images: [
+      {
+        src: "/projects/md-ontology-judgment.png",
+        alt: "Graph around the reorder decision node with candidate-making, checking and blocking relations",
+        caption: "Reorder decision: metrics, restrictions, events and states make it a candidate (MAKES_CANDIDATE), are checked (CHECKS) and block it (BLOCKS)",
+        width: 1800,
+        height: 1000
+      },
+      {
+        src: "/projects/md-ontology-quantity-eval.png",
+        alt: "Graph from quantity-deciding and evaluating metrics to reorder quantity and reorder result",
+        caption: "Quantity and evaluation: the same metrics serve as candidate criteria and evaluation criteria, forming a decision → result → next decision loop",
+        width: 1800,
+        height: 1000
+      },
+      {
+        src: "/projects/md-ontology-data-link.png",
+        alt: "Two-layer graph with business-concept nodes joined by dotted lines to DW table and column nodes",
+        caption: "Seen in data as: SOURCED_FROM relations tie upper-layer business concepts to lower-layer DW columns (24 links)",
+        width: 1800,
+        height: 1000
+      }
+    ],
+    thumb: {
+      src: "/projects/md-ontology-thumb.png",
+      alt: "Center of the business-concept layer graph",
+      width: 1000,
+      height: 1000
+    },
     tags: ["Ontology", "MD knowledge", "Knowledge graph"]
   },
   "daas-paas-operations": {

@@ -322,6 +322,42 @@ export const PROJECTS: Project[] = [
     },
     steps: ["데이터 카탈로그 진단", "2층 구조로 뒤집기", "MD 주간 판단 5가지 인터뷰", "개념 표 · 관계 표 작성", "Neo4j로 이관(예정)"],
     stack: ["Neo4j", "Cypher 쿼리", "Snowflake"],
+    image: {
+      src: "/projects/md-ontology-overview.png",
+      alt: "업무 개념층 그래프: 판단·지표·상태·사건·제약·계산 규칙 30개 노드와 38개 관계",
+      caption: "업무 개념층 그래프: 판단·지표·상태·사건·제약·계산 규칙이 원인과 근거로 이어진 구조 (노드 30 · 관계 38)",
+      width: 1800,
+      height: 1000
+    },
+    images: [
+      {
+        src: "/projects/md-ontology-judgment.png",
+        alt: "리오더 판단 노드를 중심으로 후보로 만드는 관계, 확인하는 관계, 막는 관계가 이어진 그래프",
+        caption: "리오더 판단: 지표·제약·사건·상태가 후보로 만들고(MAKES_CANDIDATE), 확인하고(CHECKS), 막는(BLOCKS) 세 종류의 관계",
+        width: 1800,
+        height: 1000
+      },
+      {
+        src: "/projects/md-ontology-quantity-eval.png",
+        alt: "수량 결정 지표와 평가 지표가 리오더 수량과 리오더 성과로 이어지는 그래프",
+        caption: "수량 결정과 평가: 같은 지표가 후보 기준이자 평가 기준이 되어 판단 → 결과 → 다음 판단 고리 형성",
+        width: 1800,
+        height: 1000
+      },
+      {
+        src: "/projects/md-ontology-data-link.png",
+        alt: "업무 개념 노드가 DW 테이블과 컬럼 노드에 점선으로 연결된 2층 구조 그래프",
+        caption: "데이터로는: 위층 업무 개념과 아래층 DW 컬럼을 잇는 SOURCED_FROM 관계 (연결 24)",
+        width: 1800,
+        height: 1000
+      }
+    ],
+    thumb: {
+      src: "/projects/md-ontology-thumb.png",
+      alt: "업무 개념층 그래프의 중심부",
+      width: 1000,
+      height: 1000
+    },
     tags: ["온톨로지", "MD 지식", "지식그래프"]
   },
   {
