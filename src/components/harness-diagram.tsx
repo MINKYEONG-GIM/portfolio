@@ -13,7 +13,7 @@ const LABELS = {
     loop: ["① Agent 등록 + 사용 가이드", "② 평가 → 스킬 승격", "③ 개인화 추천·확산", "④ 교육 → 새 Agent"],
     govTitle: "거버넌스",
     gov: ["읽기 전용 · 본인 권한", "링크 검증 · AI 등급 게이트", "KPI 신고값 ↔ DW 실측 대조", "개인정보 최소 조회"],
-    legend: "모든 직무의 Agent는 같은 계약(입력·출력·규칙·KPI)으로 등록되고, 평가를 통과한 것만 하네스가 호출합니다."
+    legend: "모든 직무의 Agent는 같은 계약(입력·출력·규칙·KPI)으로 등록되고, 평가를 통과한 것만 하네스가 호출."
   },
   en: {
     aria: "Diagram connecting every job function to a central AI harness",
