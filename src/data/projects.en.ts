@@ -460,10 +460,10 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     group: "① Agent platform",
     title: "Knowledge Graph-based Enterprise AI Agent Platform",
     short: "AI agent platform (the in-house AI agent)",
-    subtitle: "An enterprise AI agent platform where internal data, metrics and business rules are defined as a knowledge graph and every MCP server runs on that knowledge graph",
+    subtitle: "A knowledge-graph-based enterprise AI agent platform where a plain-language request is enough to build a web app connected straight to the company EDW",
     period: "2025.11 – ongoing",
-    purpose: 
-      "Load the company's metric definitions and business rules into a Neo4j knowledge graph so that LLM agents answer against that graph, giving every employee a work environment where they can build job-specific agents grounded in company data.",
+    purpose:
+      "Build an environment where a plain-language request is enough to create a web dashboard connected directly to the company EDW. Metric definitions and business rules are loaded into a Neo4j knowledge graph and LLM agents answer against it, so every employee can build job-specific agents and web tools grounded in company data.",
     metrics: [
       { value: "116", label: "Agents completed", note: "as of Sept 2026" },
       { value: "8,180 h / month", label: "Work hours saved by agents", note: "as of Sept 2026" }
@@ -563,11 +563,26 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     },
     steps: ["Knowledge graph design and build", "MCP servers connecting the graph and the DW", "Skills and hooks", "Plugin rollout and offline training", "Weekly use-case broadcasts across affiliates"],
     image: {
-      src: "/projects/agent-kpi-demo.png",
-      alt: "Asking Brand A Gangnam's May sales in natural language with the kpi-query skill: the metric definition is resolved from the knowledge graph, the DW is queried and the answer cites its sources",
-      caption: "kpi-query skill: natural-language question → metric definition resolved from the knowledge graph → DW query → answer with sources",
-      width: 1226,
-      height: 1051
+      "src": "/projects/platform-edw-web-demo.png",
+      "alt": "A store-sales dashboard web app is created from one plain-language request and runs on a local server; the brand name and internal system name are blurred",
+      "caption": "One plain-language request creates a store-sales dashboard web app (brand and system names blurred)",
+      "width": 1374,
+      "height": 1942
+    },
+    images: [
+      {
+        "src": "/projects/agent-kpi-demo.png",
+        "alt": "Asking Brand A Gangnam's May sales in natural language with the kpi-query skill: the metric definition is resolved from the knowledge graph, the DW is queried and the answer cites its sources",
+        "caption": "kpi-query skill: natural-language question → metric definition resolved from the knowledge graph → DW query → answer with sources",
+        "width": 1226,
+        "height": 1051
+      }
+    ],
+    thumb: {
+      "src": "/projects/agent-kpi-demo.png",
+      "alt": "Asking Brand A Gangnam's May sales in natural language with the kpi-query skill: the metric definition is resolved from the knowledge graph, the DW is queried and the answer cites its sources",
+      "width": 1226,
+      "height": 1051
     },
     catalog: {
       title: "Skills built and distributed",

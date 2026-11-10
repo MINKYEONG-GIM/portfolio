@@ -25,7 +25,7 @@ export function Figure({ image, priority = false }: { image: ProjectImage; prior
 
   return (
     <>
-      <figure className="overflow-hidden rounded-2xl border border-line bg-surface">
+      <figure className={`overflow-hidden rounded-2xl border border-line bg-surface ${image.height > image.width * 1.2 ? "mx-auto w-full max-w-xl" : ""}`}>
         <button type="button" onClick={() => setOpen(true)} aria-label={image.alt} className="group relative block w-full cursor-zoom-in">
           <Image
             src={image.src}

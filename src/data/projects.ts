@@ -169,10 +169,10 @@ export const PROJECTS: Project[] = [
     group: "① 에이전트 플랫폼",
     title: "지식그래프 기반 사내 AI 에이전트 통합 플랫폼",
     short: "AI 에이전트 플랫폼(사내 AI 에이전트)",
-    subtitle: "사내 데이터·지표·업무 규칙을 지식그래프로 정의하고, 모든 MCP 서버가 해당 지식그래프를 기준으로 움직이는 엔터프라이즈 AI 에이전트 플랫폼",
+    subtitle: "자연어 요청만으로 사내 EDW에 바로 연결된 웹을 만들 수 있는, 지식그래프 기반 엔터프라이즈 AI 에이전트 플랫폼",
     period: "2025.11 ~ 진행 중",
     purpose:
-      "회사의 지표 정의·업무기준을 Neo4j 지식그래프로 적재하고, LLM 에이전트가 해당 그래프를 기준으로 답하여 전 직원이 회사 데이터를 근거로 직무별 에이전트 제작가능한 업무 환경 구축",
+      "자연어 요청만으로 사내 EDW에 바로 연결된 웹(대시보드)을 만들 수 있는 환경 구축. 회사의 지표 정의·업무기준을 Neo4j 지식그래프로 적재하고 LLM 에이전트가 이 그래프를 기준으로 답하여, 전 직원이 회사 데이터를 근거로 직무별 에이전트와 웹 도구를 직접 제작 가능",
     metrics: [
       { value: "116개", label: "완성된 에이전트 수", note: "2026년 9월 한 달 내 생성 기준" },
       { value: "월 8,180시간", label: "에이전트로 절감한 업무 시간", note: "2026년 9월 기준" }
@@ -268,11 +268,26 @@ export const PROJECTS: Project[] = [
     },
     steps: ["지식그래프 설계 및 구축", "그래프·DW 연결용 MCP 서버 개발", "스킬 및 훅 제작", "플러그인 배포 및 오프라인 교육", "매주 전 계열사 활용 사례 송출"],
     image: {
-      src: "/projects/agent-kpi-demo.png",
-      alt: "kpi-query 스킬로 A브랜드 강남점 5월 매출을 자연어로 질문하자 지식그래프에서 지표 정의를 찾고 DW를 조회해 답하는 화면",
-      caption: "kpi-query 스킬: 자연어 질문 → 지식그래프에서 지표 정의 확인 → DW 조회 → 출처와 함께 답변",
-      width: 1226,
-      height: 1051
+      "src": "/projects/platform-edw-web-demo.png",
+      "alt": "자연어로 매장별 매출 대시보드 웹 제작을 요청하자 대시보드가 만들어져 로컬 서버에서 실행되는 화면. 브랜드명과 사내 시스템 이름은 가림",
+      "caption": "자연어 한 줄 요청으로 매장별 매출 대시보드 웹 생성 (브랜드·시스템명은 가림)",
+      "width": 1374,
+      "height": 1942
+    },
+    images: [
+      {
+        "src": "/projects/agent-kpi-demo.png",
+        "alt": "kpi-query 스킬로 A브랜드 강남점 5월 매출을 자연어로 질문하자 지식그래프에서 지표 정의를 찾고 DW를 조회해 답하는 화면",
+        "caption": "kpi-query 스킬: 자연어 질문 → 지식그래프에서 지표 정의 확인 → DW 조회 → 출처와 함께 답변",
+        "width": 1226,
+        "height": 1051
+      }
+    ],
+    thumb: {
+      "src": "/projects/agent-kpi-demo.png",
+      "alt": "kpi-query 스킬로 A브랜드 강남점 5월 매출을 자연어로 질문하자 지식그래프에서 지표 정의를 찾고 DW를 조회해 답하는 화면",
+      "width": 1226,
+      "height": 1051
     },
    
     stack: ["MCP", "Claude", "Snowflake", "Neo4j", "Cypher 쿼리", "M365 Graph", "Claude Code Skill"],
