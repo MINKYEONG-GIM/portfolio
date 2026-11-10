@@ -52,7 +52,7 @@ export default async function PortfolioLayout({ children }: { children: ReactNod
   return (
     <>
       <SiteHeader lang={lang} parts={parts} projectCount={visible.length} admin={admin} />
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-8 sm:px-6 sm:py-10 lg:grid-cols-[17rem_minmax(0,1fr)]">
+      <div className="mx-auto grid max-w-[96rem] gap-8 px-4 py-8 sm:px-6 sm:py-10 lg:grid-cols-[17rem_minmax(0,1fr)]">
         <aside className="lg:sticky lg:top-32 lg:max-h-[calc(100vh-9rem)] lg:self-start lg:overflow-y-auto">
           <details className="border border-line bg-paper lg:hidden">
             <summary className="cursor-pointer px-4 py-3 text-sm font-extrabold text-ink">

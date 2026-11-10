@@ -565,18 +565,11 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         "title": "Screens showing that vibe coding works",
         "images": [
           {
-            "src": "/projects/platform-dw-web-demo.png",
-            "alt": "A store-sales dashboard web app is created from one plain-language request and runs on a local server; the brand name and internal system name are blurred",
-            "caption": "One plain-language request creates a store-sales dashboard web app (brand and system names blurred)",
-            "width": 1374,
-            "height": 1942
-          },
-          {
-            "src": "/projects/platform-snowflake-link.png",
-            "alt": "Next, asking to connect live Snowflake data: the agent fixes a query error itself and swaps in a real-data dashboard; internal tool names, table and column names, the brand name and amounts are blurred",
-            "caption": "One word, ‘connect it’, links the dashboard to live Snowflake data",
-            "width": 1255,
-            "height": 1576
+            "src": "/projects/platform-vibe-coding-flow.png",
+            "alt": "Three steps: one plain-language request creates a dashboard web app, then one word, ‘connect it’, swaps in live Snowflake data",
+            "caption": "Vibe-coding demo: ① one plain-language request → ② a dashboard web app appears right away → ③ one word, ‘connect it’, links it to live Snowflake data (brand, tool names, table/column names and amounts blurred)",
+            "width": 1300,
+            "height": 1305
           }
         ]
       },

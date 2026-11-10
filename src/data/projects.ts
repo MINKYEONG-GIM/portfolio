@@ -276,18 +276,11 @@ export const PROJECTS: Project[] = [
         "title": "바이브코딩이 된다는 것을 보여 주는 화면",
         "images": [
           {
-            "src": "/projects/platform-dw-web-demo.png",
-            "alt": "자연어로 매장별 매출 대시보드 웹 제작을 요청하자 대시보드가 만들어져 로컬 서버에서 실행되는 화면. 브랜드명과 사내 시스템 이름은 가림",
-            "caption": "자연어 한 줄 요청으로 매장별 매출 대시보드 웹 생성 (브랜드·시스템명은 가림)",
-            "width": 1374,
-            "height": 1942
-          },
-          {
-            "src": "/projects/platform-snowflake-link.png",
-            "alt": "이어서 Snowflake 실데이터 연동을 요청하자 쿼리 오류를 스스로 고치고 실데이터 대시보드로 교체하는 화면. 사내 도구명, 테이블·컬럼명, 브랜드명, 금액은 가림",
-            "caption": "‘연동해줘’ 한 마디로 Snowflake 실데이터에 연결",
-            "width": 1255,
-            "height": 1576
+            "src": "/projects/platform-vibe-coding-flow.png",
+            "alt": "자연어 한 줄 요청으로 대시보드 웹이 만들어지고, 이어서 ‘연동해줘’ 한 마디로 Snowflake 실데이터로 교체되는 과정을 세 단계로 보여 주는 화면",
+            "caption": "바이브코딩 시연: ① 자연어 한 줄 요청 → ② 대시보드 웹 즉시 생성 → ③ ‘연동해줘’ 한 마디로 Snowflake 실데이터에 연결 (브랜드·도구명·테이블/컬럼명·금액은 가림)",
+            "width": 1300,
+            "height": 1305
           }
         ]
       },

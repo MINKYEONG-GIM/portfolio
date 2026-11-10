@@ -14,7 +14,7 @@ export function hasContentsOf(project: Project) {
   return Boolean(project.system || project.architecture || project.catalog || project.steps || project.vision);
 }
 
-const GROUP_COLS: Record<number, string> = { 1: "", 2: "md:grid-cols-2", 3: "md:grid-cols-3" };
+const GROUP_COLS: Record<number, string> = { 1: "", 2: "", 3: "" };
 
 /** 대표 이미지와 추가 이미지. 묶음이 있으면 제목을 붙여 가로로 나란히 보여 줍니다. */
 export function ProjectFigures({ project, priority = false }: { project: Project; priority?: boolean }) {

@@ -16,7 +16,7 @@ export function SiteHeader({ lang, parts, projectCount, admin }: HeaderProps) {
     <header className="sticky top-0 z-20 border-b-2 border-ink bg-paper">
       {admin ? (
         <div className="bg-ink text-paper">
-          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-1.5 text-xs font-bold sm:px-6">
+          <div className="mx-auto flex max-w-[96rem] flex-wrap items-center justify-between gap-2 px-4 py-1.5 text-xs font-bold sm:px-6">
             <span className="inline-flex items-center gap-1.5">
               <ShieldCheck className="h-3.5 w-3.5" />
               {ui.admin.mode} · {ui.admin.modeHint}
@@ -35,7 +35,7 @@ export function SiteHeader({ lang, parts, projectCount, admin }: HeaderProps) {
           </div>
         </div>
       ) : null}
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+      <div className="mx-auto flex max-w-[96rem] items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <Link href="/" className="text-2xl font-black tracking-tight text-ink">
           MINKYEONG KIM
         </Link>
@@ -55,7 +55,7 @@ export function SiteHeader({ lang, parts, projectCount, admin }: HeaderProps) {
         </div>
       </div>
       <nav className="border-t border-line">
-        <div className="no-scrollbar mx-auto flex max-w-6xl overflow-x-auto px-2 sm:px-4">
+        <div className="no-scrollbar mx-auto flex max-w-[96rem] overflow-x-auto px-2 sm:px-4">
           <Link href="/" className="shrink-0 border-r border-line px-4 py-3 text-base font-extrabold text-ink hover:bg-surface">
             {ui.nav.home}
           </Link>
@@ -79,7 +79,7 @@ export function SiteFooter({ lang, profileName, tagline }: { lang: Lang; profile
   const ui = t(lang);
   return (
     <footer className="mt-20 border-t-2 border-ink">
-      <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-10 text-sm text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <div className="mx-auto flex max-w-[96rem] flex-col gap-2 px-4 py-10 text-sm text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <p className="font-extrabold text-ink">
           {profileName} · {tagline}
         </p>
