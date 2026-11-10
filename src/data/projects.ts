@@ -371,8 +371,8 @@ export const PROJECTS: Project[] = [
     background:
       "개별 직원이 제작한 웹서비스를 개별 서버로 배포하니 회사 내부 정보 관리가 어렵고 외부 DB·외부 호스팅으로 회사 데이터 반출되는 현황 파악 어려움. 배포를 회사 안으로 모아 한곳에서 관리하고, 내부 정보·보안·비용을 통합하고자 제작",
     metrics: [
-      { value: "235건", label: "배포 건수", note: "성공률 90% 반영 시 성공 약 212건 · 실패 약 23건" },
-      { value: "90%", label: "배포 성공률", note: "235건 중 약 212건 성공" }
+      { value: "311건", label: "배포 건수" },
+      { value: "90%", label: "배포 성공률", note: "n=235건" }
     ],
     roles: [
       "원클릭 배포 가드레일 문서(AI 개발 도구용 규칙) 작성과 배포, 교육",
@@ -400,7 +400,6 @@ export const PROJECTS: Project[] = [
         ]
       }
     ],
-    steps: ["ZIP · Git 연결 원클릭 배포", "원클릭 배포 가드레일 배포", "Claude Skill로 배포 준비 자동화", "스케줄 · DB · 스토리지 운영", "문의 감소 · 셀프서비스"],
     images: [
       {
         src: "/projects/paas-my-dashboard.png",

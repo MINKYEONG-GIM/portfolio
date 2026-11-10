@@ -344,8 +344,8 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     background:
       "Web services built by individual employees were deployed to individual servers, which made company information hard to manage and made it hard to see which company data left through external DBs and external hosting.\nThe in-house PaaS was built to bring deployment inside the company, manage it in one place, and consolidate internal information, security and cost.",
     metrics: [
-      { value: "235", label: "Deployments", note: "At a 90% success rate: about 212 succeeded · about 23 failed" },
-      { value: "90%", label: "Deployment success rate", note: "About 212 of 235 deployments succeeded" }
+      { value: "311", label: "Deployments" },
+      { value: "90%", label: "Deployment success rate", note: "n=235 deployments" }
     ],
     roles: [
       "Wrote, distributed and taught the one-click deployment guardrails (rules for AI coding tools)",
@@ -376,7 +376,6 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         ]
       }
     ],
-    steps: ["One-click deploy via ZIP or Git", "Ship deployment guardrails", "Automate pre-deploy checks with a Claude skill", "Run schedules, DBs and storage", "Fewer inquiries · self-service"],
     images: [
       {
         src: "/projects/paas-my-dashboard.png",
@@ -492,7 +491,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     stack: ["OCR", "Vector DB", "GPT API"],
     tags: ["RAG", "Vector search", "Knowledge management"]
   },
-  "knowledge graph-agent-platform": {
+  "ontology-agent-platform": {
     group: "① Agent platform",
     title: "Knowledge Graph-based Enterprise AI Agent Platform",
     short: "AI agent platform (the in-house AI agent)",

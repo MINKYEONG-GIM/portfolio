@@ -6,7 +6,7 @@ const UI = {
     siteTitle: "프로젝트 리스트",
     nav: { home: "홈", timeline: "타임라인", contents: "목차", pdf: "PDF 저장", summary: (n: number) => `서비스기획 · 프로젝트 ${n}개` },
     home: {
-      eyebrow: "SERVICE PLANNING PORTFOLIO",
+      eyebrow: "서비스기획 포트폴리오",
       title: "프로젝트",
       viewTimeline: "타임라인 보기",
       swipeHint: "옆으로 넘겨 보기",
@@ -98,7 +98,7 @@ const UI = {
       enter: "들어가기",
       wrong: "비밀번호가 맞지 않음.",
       notConfigured: "환경변수 HUB_PASSWORD 가 설정되지 않음. 로컬은 .env.local, Vercel 은 Environment Variables 에 입력 필요.",
-      eyebrow: "MAIN",
+      eyebrow: "메인",
       title: (name: string) => `${name} · 직무별 포트폴리오`,
       hint: "직무를 고르면 그 직무용 공개 화면이 새 탭에서 열림.",
       lock: "잠그기",

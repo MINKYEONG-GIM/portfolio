@@ -51,7 +51,7 @@ export default async function PrintPage() {
       {/* 1. 표지 */}
       <section className="print-page print-first flex min-h-[70vh] flex-col justify-between gap-12 border border-line bg-paper p-8 sm:p-12">
         <div>
-          <p className="text-xs font-black tracking-[0.2em] text-muted">{ui.home.eyebrow}</p>
+          {lang === "en" ? <p className="text-xs font-black tracking-[0.2em] text-muted">{ui.home.eyebrow}</p> : null}
           <h1 className="mt-6 text-5xl font-black leading-none tracking-tight text-ink sm:text-6xl">{profile.name}</h1>
           <p className="ko-keep mt-4 text-2xl font-extrabold leading-snug text-ink">{D.cover}</p>
           <p className="ko-keep mt-3 max-w-2xl text-base font-semibold leading-8 text-muted">{profile.tagline}</p>
@@ -79,7 +79,7 @@ export default async function PrintPage() {
       {/* 2. 목차: 프로젝트 성격(파트)별로 묶음 */}
       <section className="print-page mt-10 grid gap-10 border border-line bg-paper p-8 sm:p-12">
         <div>
-          <p className="text-xs font-black tracking-[0.2em] text-muted">CONTENTS</p>
+          {lang === "en" ? <p className="text-xs font-black tracking-[0.2em] text-muted">CONTENTS</p> : null}
           <h2 className="mt-2 text-3xl font-black text-ink">{D.contents}</h2>
         </div>
         <ol className="grid gap-8">
@@ -105,7 +105,7 @@ export default async function PrintPage() {
       {/* 3. 전체 요약 */}
       <section className="print-page mt-10 grid gap-8 border border-line bg-paper p-8 sm:p-12">
         <div>
-          <p className="text-xs font-black tracking-[0.2em] text-muted">SUMMARY</p>
+          {lang === "en" ? <p className="text-xs font-black tracking-[0.2em] text-muted">SUMMARY</p> : null}
           <h2 className="mt-2 text-3xl font-black text-ink">{D.summary}</h2>
           <p className="ko-keep mt-3 max-w-3xl text-base leading-8 text-ink">{profile.intro}</p>
         </div>
