@@ -10,6 +10,11 @@ import { HarnessDiagram } from "@/components/harness-diagram";
  * 두 화면의 내용이 항상 같습니다.
  */
 
+/** 관리자에게는 관리자 전용 역할을 역할 목록 끝에 붙여 보여 줍니다. */
+export function withAdminRoles(project: Project, admin: boolean): Project {
+  return admin && project.adminRoles?.length ? { ...project, roles: [...project.roles, ...project.adminRoles] } : project;
+}
+
 /** 맨 위 한눈 요약: 문제 → 한 일 → 결과 세 칸과 용어 풀이 */
 export function ProjectSummary({ summary, P }: { summary: ProjectSummaryText | null; P: UIStrings["project"] }) {
   if (!summary) return null;
@@ -89,7 +94,7 @@ export function ProjectFigures({ project, priority = false }: { project: Project
 /** 기간 · 분야 · 기술 표 */
 export function ProjectInfoTable({ project, P }: { project: Project; P: UIStrings["project"] }) {
   return (
-        <table className="oy-table">
+        <table className="oy-table oy-table-plain">
           <tbody>
             <tr>
               <th scope="row">{P.period}</th>
@@ -118,7 +123,7 @@ export function ProjectInfoTable({ project, P }: { project: Project; P: UIString
   );
 }
 
-/** 목적 → 성과 → 배경 → 내용 → 역할 → 핵심 기능 */
+/** 목적 → 성과 → 배경 → 내용 → 핵심 기능 → 역할 */
 export function ProjectSections({ project, ui, lang }: { project: Project; ui: UIStrings; lang: Lang }) {
   const P = ui.project;
   const hasContents = hasContentsOf(project);
@@ -128,7 +133,7 @@ export function ProjectSections({ project, ui, lang }: { project: Project; ui: U
     <>
       <Block>
         <SectionTitle id="purpose" eyebrow={eb("PURPOSE")} title={P.titles.purpose} />
-        <p className="ko-keep max-w-4xl text-xl font-bold leading-9 text-ink">{project.purpose}</p>
+        <p className="ko-keep max-w-4xl whitespace-pre-line text-xl font-bold leading-9 text-ink">{project.purpose}</p>
       </Block>
 
       {project.metrics.length > 0 ? (
@@ -193,6 +198,18 @@ export function ProjectSections({ project, ui, lang }: { project: Project; ui: U
         </Block>
       ) : null}
 
+      {project.features ? (
+        <Block>
+          <SectionTitle
+            id="features"
+            eyebrow={eb(project.featuresTitle ? project.featuresTitle.toUpperCase() : "CORE FEATURES")}
+            title={project.featuresTitle ?? P.titles.features}
+          />
+          <FeatureSections features={project.features} />
+        </Block>
+      ) : null}
+
+      {/* 역할과 기여는 모든 프로젝트에서 항상 맨 마지막 섹션 */}
       <Block>
         <SectionTitle id="role" eyebrow={eb("ROLE")} title={P.titles.role} />
         {project.roleLead ? <p className="ko-keep max-w-4xl text-lg font-bold leading-8 text-ink">{project.roleLead}</p> : null}
@@ -205,17 +222,6 @@ export function ProjectSections({ project, ui, lang }: { project: Project; ui: U
           ))}
         </ol>
       </Block>
-
-      {project.features ? (
-        <Block>
-          <SectionTitle
-            id="features"
-            eyebrow={eb(project.featuresTitle ? project.featuresTitle.toUpperCase() : "CORE FEATURES")}
-            title={project.featuresTitle ?? P.titles.features}
-          />
-          <FeatureSections features={project.features} />
-        </Block>
-      ) : null}
     </>
   );
 }

@@ -227,3 +227,12 @@ body {
     scroll-margin-top: 0;
   }
 }
+
+/* 프로젝트 맨 위 정보 표(기간·분야·기술): 테두리 없이 */
+.oy-table-plain {
+  border-top: 0;
+}
+.oy-table-plain th,
+.oy-table-plain td {
+  border-bottom: 0;
+}

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
-import { ProjectFigures, ProjectInfoTable, ProjectSections, ProjectSummary, hasContentsOf } from "@/components/project-body";
+import { ProjectFigures, ProjectInfoTable, ProjectSections, ProjectSummary, hasContentsOf, withAdminRoles } from "@/components/project-body";
 import { summaryOf } from "@/data/summaries";
 import { getContent, neighborsOf, statusOf, visibleProjects } from "@/data/content";
 import { isAdmin } from "@/lib/hub-auth";
@@ -41,8 +41,8 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
     { id: "result", label: P.tabs.result, show: project.metrics.length > 0 },
     { id: "background", label: P.tabs.background, show: Boolean(project.background) },
     { id: "contents", label: P.tabs.contents, show: hasContents },
-    { id: "role", label: P.tabs.role, show: true },
-    { id: "features", label: project.featuresTitle ?? P.tabs.features, show: Boolean(project.features) }
+    { id: "features", label: project.featuresTitle ?? P.tabs.features, show: Boolean(project.features) },
+    { id: "role", label: P.tabs.role, show: true }
   ].filter((tab) => tab.show);
 
   return (
@@ -90,7 +90,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
         </p>
       ) : null}
 
-      <ProjectSections project={project} ui={ui} lang={lang} />
+      <ProjectSections project={withAdminRoles(project, admin)} ui={ui} lang={lang} />
 
       <nav className="oy-grid grid-cols-1 sm:grid-cols-2">
         {prev ? (

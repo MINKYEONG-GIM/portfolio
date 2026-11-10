@@ -14,63 +14,13 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
       "problem": "AI 에이전트가 매출·이익 숫자를 틀려 신뢰와 사용률이 급락함",
       "action": "지표 정의를 지식그래프로 적재, 말로 사내 DW 연결 웹을 만드는 환경 구축",
       "result": "에이전트 116개 생성, 월 8,180시간 업무 절감(2026년 9월 기준)",
-      "glossary": [
-        {
-          "term": "지식그래프",
-          "desc": "개념과 관계를 이어서 저장한 데이터 지도"
-        },
-        {
-          "term": "MCP",
-          "desc": "AI가 사내 시스템을 쓰도록 잇는 표준 연결 방식"
-        },
-        {
-          "term": "스킬",
-          "desc": "업무 처리 절차를 묶은 AI용 작업 설명서"
-        },
-        {
-          "term": "사내 DW",
-          "desc": "회사 데이터를 한곳에 모은 분석용 저장소"
-        },
-        {
-          "term": "골든 SQL",
-          "desc": "회사가 정답으로 인정한 표준 데이터 조회문"
-        },
-        {
-          "term": "훅",
-          "desc": "질문할 때 자동으로 실행되는 규칙"
-        }
-      ]
+      "glossary": []
     },
     "en": {
       "problem": "The in-house AI agent got sales and profit numbers wrong, and trust and usage collapsed.",
       "action": "Put metric definitions in a knowledge graph so a plain request builds a DW-linked web app.",
       "result": "116 agents built and 8,180 work hours saved per month (Sept 2026).",
-      "glossary": [
-        {
-          "term": "Knowledge graph",
-          "desc": "A data map that stores concepts and how they relate"
-        },
-        {
-          "term": "MCP",
-          "desc": "A standard way to connect AI to company systems"
-        },
-        {
-          "term": "Skill",
-          "desc": "A packaged work procedure the AI follows"
-        },
-        {
-          "term": "DW",
-          "desc": "Data warehouse: one store of company data for analysis"
-        },
-        {
-          "term": "Golden SQL",
-          "desc": "A query the company accepts as the correct answer"
-        },
-        {
-          "term": "Hook",
-          "desc": "A rule that runs automatically when a question is asked"
-        }
-      ]
+      "glossary": []
     }
   },
   "md-ontology-design": {
@@ -79,14 +29,6 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
       "action": "MD의 주간 판단 5가지를 인터뷰로 꺼내 지식그래프 위 온톨로지 층 설계",
       "result": "할인율·리오더 수량·시점 등 판단 질문까지 답변 범위 확대",
       "glossary": [
-        {
-          "term": "온톨로지",
-          "desc": "업무 개념과 그 관계를 정의한 구조"
-        },
-        {
-          "term": "시맨틱 레이어",
-          "desc": "데이터 표·칸에 업무상 뜻을 붙인 층"
-        },
         {
           "term": "정판율",
           "desc": "할인 없이 정상가로 팔린 비율"
@@ -110,14 +52,6 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
       "action": "Drew out five weekly MD decisions in interviews and designed an ontology layer.",
       "result": "AI now answers judgment questions such as markdown rate and reorder quantity and timing.",
       "glossary": [
-        {
-          "term": "Ontology",
-          "desc": "A structure defining business concepts and their relations"
-        },
-        {
-          "term": "Semantic layer",
-          "desc": "A layer that gives business meaning to tables and columns"
-        },
         {
           "term": "Full-price sell-through",
           "desc": "Share of stock sold at full price, without discounts"
@@ -144,24 +78,8 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
       "result": "배포 311건, 배포 성공률 90%(n=235) 달성",
       "glossary": [
         {
-          "term": "PaaS",
-          "desc": "서버 관리 없이 앱을 배포·운영하는 플랫폼"
-        },
-        {
-          "term": "원클릭 배포",
-          "desc": "버튼 한 번으로 앱을 올리는 배포 방식"
-        },
-        {
-          "term": "가드레일",
-          "desc": "AI 개발 도구가 지켜야 할 코딩 규칙"
-        },
-        {
           "term": "MAU",
           "desc": "한 달 동안 실제로 쓴 사용자 수"
-        },
-        {
-          "term": "스킬",
-          "desc": "AI 개발 도구가 따르는 작업 절차 묶음"
         }
       ]
     },
@@ -171,24 +89,8 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
       "result": "311 deployments with a 90% deployment success rate (n=235).",
       "glossary": [
         {
-          "term": "PaaS",
-          "desc": "A platform to deploy and run apps without managing servers"
-        },
-        {
-          "term": "One-click deployment",
-          "desc": "Putting an app live with a single button"
-        },
-        {
-          "term": "Guardrails",
-          "desc": "Coding rules that AI development tools must follow"
-        },
-        {
           "term": "MAU",
           "desc": "Monthly active users: people who used an app in a month"
-        },
-        {
-          "term": "Skill",
-          "desc": "A packaged work procedure an AI coding tool follows"
         }
       ]
     }
@@ -202,18 +104,6 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
         {
           "term": "AX",
           "desc": "AI로 일하는 방식을 바꾸는 AI 전환"
-        },
-        {
-          "term": "Agent",
-          "desc": "업무를 대신 처리하도록 만든 AI 도구"
-        },
-        {
-          "term": "바이브코딩",
-          "desc": "말로 요청해 AI가 코드를 짜게 하는 개발"
-        },
-        {
-          "term": "커넥터",
-          "desc": "AI를 사내 시스템에 꽂아 주는 연결 장치"
         },
         {
           "term": "핸즈온 세션",
@@ -231,18 +121,6 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
           "desc": "AI transformation: changing how work is done with AI"
         },
         {
-          "term": "Agent",
-          "desc": "An AI tool built to handle a piece of work"
-        },
-        {
-          "term": "Vibe coding",
-          "desc": "Building software by asking AI in plain language"
-        },
-        {
-          "term": "Connector",
-          "desc": "A link that plugs AI into company systems"
-        },
-        {
           "term": "Hands-on session",
           "desc": "A practice class where people build things themselves"
         }
@@ -251,64 +129,24 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
   },
   "fashion-ai-platform": {
     "ko": {
-      "problem": "직원이 만든 Agent와 그 성과 정보가 여기저기 흩어져 있었음",
-      "action": "Agent 등록·개인화 추천·월별 성과 제출을 잇는 사내 포털 기획",
-      "result": "월 평균 119개 Agent 업로드, 사내 AX 현황 데이터 자동 축적",
+      "problem": "직원이 만든 업무용 웹앱과 성과 정보가 여기저기 흩어져 있었음",
+      "action": "웹앱 등록·월별 성과 제출을 잇는 사내 포털과 사용자 플로우 기획",
+      "result": "월 평균 119개 웹앱 업로드, 사내 AX 현황 데이터 자동 축적",
       "glossary": [
-        {
-          "term": "Agent",
-          "desc": "업무를 대신 처리하도록 만든 AI 도구"
-        },
         {
           "term": "AX",
           "desc": "AI로 일하는 방식을 바꾸는 AI 전환"
-        },
-        {
-          "term": "개인화 추천",
-          "desc": "직무·행동에 따라 사람마다 다르게 추천"
-        },
-        {
-          "term": "월별 제출",
-          "desc": "매달 Agent 성과를 다시 내는 절차"
-        },
-        {
-          "term": "사용 가이드",
-          "desc": "동료가 따라 쓰도록 쓴 Agent 설명서"
-        },
-        {
-          "term": "기여율",
-          "desc": "공동 제작 시 각자 몫을 나눈 비율"
         }
       ]
     },
     "en": {
-      "problem": "Who built which agent, and what it achieved, was scattered across the company.",
-      "action": "Planned a portal linking agent registration, personalized picks and monthly results.",
-      "result": "119 agents uploaded per month on average, with AX data building up automatically.",
+      "problem": "Business web apps built by employees, and their results, were scattered.",
+      "action": "Planned an in-house portal and user flow for web-app registration and monthly results.",
+      "result": "119 web apps uploaded per month on average, with AX data building up automatically.",
       "glossary": [
-        {
-          "term": "Agent",
-          "desc": "An AI tool built to handle a piece of work"
-        },
         {
           "term": "AX",
           "desc": "AI transformation: changing how work is done with AI"
-        },
-        {
-          "term": "Personalization",
-          "desc": "Different recommendations per person by job and behavior"
-        },
-        {
-          "term": "Monthly submission",
-          "desc": "Re-submitting each agent's results every month"
-        },
-        {
-          "term": "Usage guide",
-          "desc": "A how-to so colleagues can use an agent as built"
-        },
-        {
-          "term": "Contribution split",
-          "desc": "How credit is divided among co-creators"
         }
       ]
     }
@@ -320,28 +158,12 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
       "result": "상품등록 리드타임 6일→최대 1시간, 일반상품등록 100% 자동화",
       "glossary": [
         {
-          "term": "PIM",
-          "desc": "상품 정보를 한곳에서 관리하는 시스템"
-        },
-        {
-          "term": "PLM",
-          "desc": "상품 기획·생산 과정을 관리하는 시스템"
-        },
-        {
-          "term": "OMS",
-          "desc": "주문을 관리하고 판매 채널과 잇는 시스템"
-        },
-        {
           "term": "리드타임",
           "desc": "입고부터 판매 시작까지 걸리는 시간"
         },
         {
           "term": "스타일코드",
           "desc": "상품마다 붙는 고유 식별 번호"
-        },
-        {
-          "term": "이미지 허브",
-          "desc": "모든 상품 이미지를 모아 둔 저장소"
         }
       ]
     },
@@ -351,28 +173,12 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
       "result": "Listing lead time cut from 6 days to 1 hour; standard listings 100% automated.",
       "glossary": [
         {
-          "term": "PIM",
-          "desc": "Product Information Management: one home for product data"
-        },
-        {
-          "term": "PLM",
-          "desc": "A system that manages product planning and production"
-        },
-        {
-          "term": "OMS",
-          "desc": "Order management system that links to sales channels"
-        },
-        {
           "term": "Lead time",
           "desc": "Time from receiving stock to going on sale"
         },
         {
           "term": "Style code",
           "desc": "A unique ID number given to each product"
-        },
-        {
-          "term": "Image hub",
-          "desc": "One store that holds every product image"
         }
       ]
     }
@@ -382,55 +188,13 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
       "problem": "15년 치 전략자료가 이미지 중심 PPT라 검색이 불가능했음",
       "action": "OCR·벡터 DB 기반, 근거 문서와 함께 답하는 자연어 검색 구축",
       "result": "검색 정확도 90%+, 만족도 4.9/5, 배정 예산 대비 98% 절감",
-      "glossary": [
-        {
-          "term": "RAG",
-          "desc": "문서를 찾아 그 내용만으로 답하는 AI 방식"
-        },
-        {
-          "term": "벡터 DB",
-          "desc": "글의 의미를 숫자로 바꿔 저장한 DB"
-        },
-        {
-          "term": "임베딩",
-          "desc": "글을 의미가 담긴 숫자 벡터로 바꾸는 것"
-        },
-        {
-          "term": "OCR",
-          "desc": "이미지 속 글자를 텍스트로 읽는 기술"
-        },
-        {
-          "term": "청크",
-          "desc": "검색용으로 문서를 잘게 나눈 조각"
-        }
-      ]
+      "glossary": []
     },
     "en": {
       "problem": "15 years of strategy decks were image-heavy PPTs that no one could search.",
       "action": "Built natural-language search on OCR and a vector DB that answers with its sources.",
       "result": "90%+ search accuracy, 4.9/5 satisfaction and 98% of the allocated budget saved.",
-      "glossary": [
-        {
-          "term": "RAG",
-          "desc": "AI that finds documents and answers only from them"
-        },
-        {
-          "term": "Vector DB",
-          "desc": "A database storing the meaning of text as numbers"
-        },
-        {
-          "term": "Embedding",
-          "desc": "Turning text into a numeric vector that holds its meaning"
-        },
-        {
-          "term": "OCR",
-          "desc": "Reading the text inside images"
-        },
-        {
-          "term": "Chunk",
-          "desc": "A small piece of a document split for search"
-        }
-      ]
+      "glossary": []
     }
   },
   "naver-channel-strategy": {

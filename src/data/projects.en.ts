@@ -33,7 +33,7 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
     title: "AI Talent Management",
     short: "AI Talent Management",
     question: "How people were trained, gathered and evaluated",
-    tagline: "① Training → ② AI Platform → ③ AI Talent Evaluation",
+    tagline: "Training → AI talent development platform → AI talent evaluation",
     summary:
       "Training builds agent makers, the AI platform gathers their work, and a 100-point system evaluates it to build the AI talent pool: the basis for rewards, funding and placement.",
     visual: {
@@ -46,8 +46,8 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
     }
   },
   3: {
-    title: "Service Planning, Build & Operations",
-    short: "Service Build",
+    title: "Internal Business Systems Planning",
+    short: "Business Systems",
     question: "Services I planned, built and operated end to end",
     tagline: "Problem definition → Data structure design → Build → Operate & improve",
     summary:
@@ -471,7 +471,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     subtitle: "A knowledge-graph-based enterprise AI agent platform where a plain-language request is enough to build a web app connected straight to the company DW",
     period: "2025.11 – ongoing",
     purpose:
-      "Build an environment where a plain-language request is enough to create a web dashboard connected directly to the company DW. Metric definitions and business rules are loaded into a Neo4j knowledge graph and LLM agents answer against it, so every employee can build job-specific agents and web tools grounded in company data.",
+      "With plain-language requests alone:\n1. Build web apps connected straight to the company DW\n2. Query BI data",
     metrics: [
       { value: "116", label: "Agents completed", note: "as of Sept 2026" },
       { value: "8,180 h / month", label: "Work hours saved by agents", note: "as of Sept 2026" }
@@ -482,7 +482,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Employee training design and delivery"
     ],
     background:
-      "After two or three wrong sales or profit figures, trust in the in-house AI agent collapsed and usage dropped.\nMetric definitions, formulas, joins, season rules and unwritten rules went into a knowledge graph, with agent-building training for all staff.",
+      "The in-house AI agent didn't know metric definitions and rules that differ by brand and person, so it got sales and profit numbers wrong two or three times. Once the numbers couldn't be trusted, trust collapsed and usage dropped.\nThe AI needed one reference point for the company's agreed metric definitions and business rules, used the same way every time.",
     system: {
       intro:
         "This platform puts agents on top of a knowledge graph. Built on a Neo4j knowledge graph, it processes each question in the order organization instructions → hooks → skills → MCP tools → gateway → knowledge graph and internal data.",
@@ -562,19 +562,19 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     steps: ["Knowledge graph design and build", "MCP servers connecting the graph and the DW", "Skills and hooks", "Plugin rollout and offline training", "Weekly use-case broadcasts across affiliates"],
     figureGroups: [
       {
-        "title": "Screens showing that vibe coding works",
+        "title": "Building a dashboard by vibe coding with this tool",
         "images": [
           {
             "src": "/projects/platform-vibe-coding-flow.png",
             "alt": "Three steps: one plain-language request creates a dashboard web app, then one word, ‘connect it’, swaps in live Snowflake data",
-            "caption": "Vibe-coding demo: ① one plain-language request → ② a dashboard web app appears right away → ③ one word, ‘connect it’, links it to live Snowflake data (brand, tool names, table/column names and amounts blurred)",
+            "caption": "Vibe-coding demo: one word, ‘connect it’, links it to live Snowflake data",
             "width": 1300,
             "height": 1305
           }
         ]
       },
       {
-        "title": "Screen showing that simple lookups can be done quickly",
+        "title": "Querying BI data in plain language",
         "images": [
           {
             "src": "/projects/agent-kpi-demo.png",
@@ -592,92 +592,65 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "width": 1226,
       "height": 1051
     },
-    stack: ["MCP", "Claude", "Snowflake", "Neo4j", "Cypher queries", "M365 Graph", "Claude Code Skill"],
+    stack: ["MCP", "Claude Code Skill", "Snowflake", "Neo4j", "Cypher queries"],
     tags: ["Knowledge graph", "MCP"]
   },
   "fashion-ai-platform": {
     group: "② AI Platform",
-    title: "Fashion AI Platform: Agent Sharing, Recommendation & Submission Portal",
+    title: "Fashion AI Platform: Web-App Sharing, Recommendation & Submission Portal",
     short: "Fashion AI platform",
-    subtitle: "Where employees publish agents built with the in-house AI agent platform, get personalized recommendations, and submit results every month",
+    subtitle: "Where employees publish business web apps built with the in-house AI platform, get similar apps recommended by job, and submit results",
     period: "2026 – in operation",
     purpose:
-      "Employees upload the tools they built with the in-house AI agent. Staff browse agents by job function and check their own AI capability level, while the AI office reviews each person's agent capability and the logic inside their agents.",
+      "Employees upload the business web apps they built with the in-house AI platform and browse apps from the same job\nCheck AI learning materials\nCheck their own AI capability level",
     metrics: [
-      { value: "119 / month", label: "Agents uploaded (monthly average)" }
+      { value: "119 / month", label: "Web apps uploaded (monthly average)" }
     ],
     roles: [
       "Service planning and information architecture",
-      "Personalized recommendations: colleagues' agents by job, brand, recently viewed and liked",
-      "Monthly submission flow design",
+      "User flow design: UI/UX and menus such as issuing a PAT, so people use the site without friction",
+      "Monthly submission flow design"
+    ],
+    adminRoles: [
+      "Personalized recommendations: colleagues' tools by job, brand, recently viewed and liked"
     ],
     background:
-      "As agents built with in-house AI agent 2.0 multiplied, who built what and what it achieved was scattered.\nRegister → recommend → submit monthly results → evaluate → train now runs as one flow that records AX status automatically.",
+      "Business web apps built with the in-house AI platform multiplied, but who built what and what it achieved was scattered.\nRegister the web app → submit monthly results → evaluate → train now runs as one flow that records AX status automatically.",
     features: [
       {
         eyebrow: "Core feature 01",
         title: "Home: tasks and recommendations the moment you arrive",
-        summary:
-          "The first screen shows this month's tasks and the agents that fit me, together",
+        summary: "The first screen shows this month's tasks and the web apps that fit me, together",
         items: [
-          { title: "Best agent banner", body: "BEST AGENT agents rotate in a six-slide banner with monthly hours saved and users" },
-          { title: "Job and category icon filter", body: "One row of job icons (Fashion, Dashboard, Merchandising, Production…); tap to filter agents" },
-          { title: "This month's tasks sidebar", body: "Deadline D-day, progress and survey status pinned on the right of every screen" },
+          { title: "Best web-app banner", body: "Web apps with the BEST badge rotate in a six-slide banner with monthly hours saved and users" },
+          { title: "Job and category icon filter", body: "One row of job icons (Fashion, Dashboard, Merchandising, Production…); tap to filter web apps" },
+          { title: "This month's tasks sidebar", body: "Deadline D-day, progress and survey status pinned on the right of every screen" }
         ]
       },
       {
         eyebrow: "Core feature 02",
-        title: "Personalization",
-        summary:
-          "A different home for each person, from HR job and department plus recently viewed and liked agents",
+        title: "Web-app registration and monthly submission",
+        summary: "A form that states what changed in numbers, plus monthly results; the source data for evaluation and the talent pool",
         items: [
-          { title: "Recommended for you", body: "Colleagues' agents suggested by job, brand, and categories I viewed or liked" },
-          { title: "Agent of the day", body: "One agent per day by Seoul date, the same for everyone, with a countdown to midnight" },
+          { title: "4-part form", body: "① Description ② Usage guide ③ What changed (hours saved, KPI) ④ Access. Missing fields listed with reasons" },
+          { title: "Usage-guide prompt: eight items that capture know-how", body: "Paste the prompt into the AI for a 1,500+ character guide; operating logic and work tips matter most" }
         ]
       },
       {
         eyebrow: "Core feature 03",
-        title: "Agent registration and monthly submission",
-        summary:
-          "A form that states what changed in numbers, plus monthly results; the source data for evaluation and the talent pool",
-        items: [
-          { title: "4-part form", body: "① Description ② Usage guide ③ What changed (hours saved, KPI) ④ Access. Missing fields listed with reasons" },
-          { title: "Usage-guide prompt: eight items that capture know-how", body: "Paste the prompt into the AI agent for a 1,500+ character guide; operating logic and work tips matter most" },
-
-          { title: "Monthly submission", body: "The month's survey comes first. Version-ups restate changes, hours saved and KPIs" },
-        ]
-      },
-      {
-        eyebrow: "Core feature 04",
         title: "Requests and inquiries that accumulate automatically",
-        summary:
-          "Missing data or stuck on usage? Request or ask in the platform; recurring questions become FAQ",
+        summary: "Missing data or stuck on usage? Request or ask in the platform; recurring questions become FAQ",
         items: [
-          {
-            title: "Data requests",
-            body: "Request what data is needed and why; tracked by status and turned into DW and graph tasks"
-          },
-          {
-            title: "FAQ that builds itself",
-            body: "Answers to recurring questions go to the FAQ on home and Help, so repeats fall"
-          },
-          {
-            title: "Admin morning digest email",
-            body: "Every day at 8 a.m., new accounts, submissions, uploads and survey responses emailed to admins"
-          }
+          { title: "Data requests", body: "Request what data is needed and why; tracked by status and turned into DW and graph tasks" },
+          { title: "FAQ that builds itself", body: "Answers to recurring questions go to the FAQ on home and Help, so repeats fall" },
+          { title: "Admin morning digest email", body: "Every day at 8 a.m., new accounts, submissions, uploads and survey responses emailed to admins" }
         ]
       }
     ],
-    insightsLabel: "Design principles",
-    insights: [
-      { title: "Show reasons, not ranks", body: "No rankings; each recommendation shows a one-line reason, so no one feels lined up" },
-      { title: "Minimal personal data", body: "Only name, employee no., department, email and job from the HR DB; fashion staff only, after login" },
-      { title: "Tie data collection to the submission flow", body: "The survey comes before each monthly submission, so satisfaction, hours saved and needs build up monthly" }
-    ],
     image: {
       src: "/projects/fashion-ai-platform.png",
-      alt: "Fashion AI Platform home: best-agent banner, category icons, personalized recommendations and the monthly to-do sidebar",
-      caption: "Fashion AI Platform home: best-agent banner · categories · personalized recommendations · monthly to-do sidebar",
+      alt: "Fashion AI Platform home: best web-app banner, category icons, personalized recommendations and the monthly to-do sidebar",
+      caption: "Fashion AI Platform home: best web-app banner · categories · personalized recommendations · monthly to-do sidebar",
       width: 1777,
       height: 1341
     },
@@ -687,7 +660,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       width: 1000,
       height: 1000
     },
-    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Prisma", "Snowflake DaaS", "Redis", "Vitest"],
+    stack: ["-"],
     tags: ["Personalization", "Registration & submission", "Next.js"]
   },
   "enterprise-agent-integration": {

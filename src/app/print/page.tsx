@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 import { PartIcon } from "@/components/part-icon";
 import { PrintButton } from "@/components/print-button";
-import { ProjectFigures, ProjectInfoTable, ProjectSections, ProjectSummary } from "@/components/project-body";
+import { ProjectFigures, ProjectInfoTable, ProjectSections, ProjectSummary, withAdminRoles } from "@/components/project-body";
 import { summaryOf } from "@/data/summaries";
 import { byPart, getContent, statusOf, visibleProjects } from "@/data/content";
 import { t } from "@/data/i18n";
@@ -175,7 +175,7 @@ export default async function PrintPage() {
               <ProjectFigures project={project} />
               <ProjectInfoTable project={project} P={ui.project} />
             </header>
-            <ProjectSections project={project} ui={ui} lang={lang} />
+            <ProjectSections project={withAdminRoles(project, admin)} ui={ui} lang={lang} />
           </article>
         );
       })}
