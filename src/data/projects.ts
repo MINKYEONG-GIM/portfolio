@@ -276,6 +276,13 @@ export const PROJECTS: Project[] = [
     },
     images: [
       {
+        "src": "/projects/platform-snowflake-link.png",
+        "alt": "이어서 Snowflake 실데이터 연동을 요청하자 쿼리 오류를 스스로 고치고 실데이터 대시보드로 교체하는 화면. 사내 도구명, 테이블·컬럼명, 브랜드명, 금액은 가림",
+        "caption": "‘연동해줘’ 한 마디로 Snowflake 실데이터에 연결해 대시보드를 교체 (도구명·테이블/컬럼명·금액은 가림)",
+        "width": 1255,
+        "height": 1576
+      },
+      {
         "src": "/projects/agent-kpi-demo.png",
         "alt": "kpi-query 스킬로 A브랜드 강남점 5월 매출을 자연어로 질문하자 지식그래프에서 지표 정의를 찾고 DW를 조회해 답하는 화면",
         "caption": "kpi-query 스킬: 자연어 질문 → 지식그래프에서 지표 정의 확인 → DW 조회 → 출처와 함께 답변",

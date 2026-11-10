@@ -571,6 +571,13 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     },
     images: [
       {
+        "src": "/projects/platform-snowflake-link.png",
+        "alt": "Next, asking to connect live Snowflake data: the agent fixes a query error itself and swaps in a real-data dashboard; internal tool names, table and column names, the brand name and amounts are blurred",
+        "caption": "One more request connects it to live Snowflake data and swaps in the real-data dashboard (tool names, table/column names and amounts blurred)",
+        "width": 1255,
+        "height": 1576
+      },
+      {
         "src": "/projects/agent-kpi-demo.png",
         "alt": "Asking Brand A Gangnam's May sales in natural language with the kpi-query skill: the metric definition is resolved from the knowledge graph, the DW is queried and the answer cites its sources",
         "caption": "kpi-query skill: natural-language question → metric definition resolved from the knowledge graph → DW query → answer with sources",
