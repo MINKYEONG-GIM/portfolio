@@ -87,7 +87,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     subtitle: "Unified management of every image in the company, with a flow built from image registration to delivery to online channels",
     period: "2025.09 – 2026.03",
     purpose:
-      "Upload product information once into PIM: product name, price, materials, model shots, flat-lay shots, thumbnails. AI then adapts it to each online channel's listing rules (naming conventions, promotional copy, categories, image specs) and publishes through the OMS. The goal is to end re-entering the same product data channel by channel.",
+      "Manage every product image in the company (model shots, flat-lay shots, thumbnails) in one image hub, and let AI adapt registered images and product data to each channel's specs and send them straight to online channels. The goal is to end re-entering the same information channel by channel.",
     metrics: [
       {"value":"6 days → 1 hour","label":"Listing lead time","note":"from receiving to on sale"},
       {"value":"100%","label":"Standard listings automated","note":"only events and promotions remain: 80% of time saved"}
@@ -101,6 +101,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     background:
       "Interviewing MD and AMD staff for three weeks and surveying their work showed that 54% of simple, repetitive work was ‘product listing and management’ (1,865 hours per month). The core bugs were ① product data scattered across SAP, BI, local folders, drives and email, and ② manual adjustment to each channel's different specs.\nTo solve this, a PIM (Product Information Management) system was built.",
     system: {
+      flowTitle: "Product listing flow",
       intro:
         "PIM completes the product flow after receiving in one line. When merchandising registers a product in PLM, receiving and inventory registration trigger a new-product alert; photographed (later 3D-generated) images enter the image hub via hub upload or API. AI builds the detail page (AI) and thumbnails, a per-channel data-optimization agent fits each channel's format, and the listing hub sends to every channel. The six layers below are the image hub's structure.",
       figures: [
@@ -538,7 +539,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
             { label: "Snowflake DW", note: "standard data models (aggregate tables) — only the tables and columns the knowledge graph points to are queried" },
             { label: "M365 Graph", note: "mail and calendar" },
             { label: "HR system", note: "attendance and approvals" },
-            { label: "the in-house PaaS (PaaS)", note: "one-click deployment of employee-built apps" }
+            { label: "the in-house PaaS", note: "one-click deployment of employee-built apps" }
           ]
         }
       ],

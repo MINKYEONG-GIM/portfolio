@@ -7,6 +7,8 @@ export type Vision = { lead: string; note: string; steps: VisionStep[]; jobs: st
 export type SystemLayer = { name: string; role: string; items: { label: string; note?: string }[]; /** true 인 층을 색 바탕으로 강조 (없으면 마지막 층) */ tint?: boolean };
 export type SystemArchitecture = {
   intro: string;
+  /** 처리 흐름 소제목을 프로젝트별로 바꿀 때 (없으면 "질문 처리 과정") */
+  flowTitle?: string;
   layers: SystemLayer[];
   /** 질문 한 번이 처리되는 순서 */
   flow: { title: string; body: string }[];
@@ -93,7 +95,7 @@ export const PARTS: Part[] = [
     question: "사내 AI 에이전트 통합 플랫폼이 무엇이고 어떻게 만들어졌는지",
     tagline: "Snowflake → 지식그래프 → MCP / 스킬 → 에이전트 플랫폼",
     summary:
-      "사내 AI 에이전트 통합 플랫폼는 DW·M365·HR·지식그래프를 MCP 서버로 표준화해 Claude에 연결하고, 잘 쓰는 사람의 방법을 스킬로 만들어 전원에게 배포하는 플랫폼. 직원은 평소 말로 묻고, 자기 업무 Agent를 만들어 올리고, 매달 성과 제출. 2026년 9월 기준 Agent 116개, 월 8,180시간 절감. 아래 프로젝트들이 인프라부터 전사 통합까지 이 플랫폼을 이루는 조각들.",
+      "사내 AI 에이전트 통합 플랫폼은DW·M365·HR·지식그래프를 MCP 서버로 표준화해 Claude에 연결하고, 잘 쓰는 사람의 방법을 스킬로 만들어 전원에게 배포하는 플랫폼. 직원은 평소 말로 묻고, 자기 업무 Agent를 만들어 올리고, 매달 성과 제출. 2026년 9월 기준 Agent 116개, 월 8,180시간 절감. 아래 프로젝트들이 인프라부터 전사 통합까지 이 플랫폼을 이루는 조각들.",
     visual: {
       type: "image",
       src: "/projects/agent-kpi-demo.png",
@@ -244,22 +246,22 @@ export const PROJECTS: Project[] = [
         },
         {
           name: "6. Knowledge Graph & Data Layer (사내 MCP Gateway → 지식그래프 · 사내 데이터)",
-          role: " 지식그래프 기반 DW·M365·HR를 원천으로 읽음",
+          role: "지식그래프 기반 DW·M365·HR를 원천으로 읽음",
           items: [
             { label: "Neo4j 지식그래프", note: "지표 정의·산식·조인·골든 SQL" },
             { label: "Snowflake DW", note: "표준 데이터 모델(집계 테이블)" },
             { label: "M365 Graph", note: "메일·일정" },
             { label: "인사 시스템", note: "근태·결재" },
-            { label: "사내 PaaS (PaaS)", note: "직원이 만든 앱의 원클릭 배포" }
+            { label: "사내 PaaS", note: "직원이 만든 앱의 원클릭 배포" }
           ]
         }
       ],
       flow: [
         { title: "질문", body: "“A브랜드 강남점 올해 5월 매출 알려줘”" },
-        { title: "맥락 주입", body: "UserPromptSubmit 훅이 컨텍스트 그래프에서 관련 교정(예: 26SS 시작일은 1월 25일)" },
+        { title: "맥락 주입", body: "UserPromptSubmit 훅이 컨텍스트 그래프에서 관련 교정(예: 26SS 시작일은 1월 25일)·골든 SQL·회사 결정을 찾아 질문에 붙임." },
         { title: "스킬 선택", body: "프롬프트에 따라 자동으로 스킬 매칭" },
         { title: "지식그래프 조회", body: "지식그래프 resolve 한 번으로 지표 정의" },
-        { title: "SQL 작성", body: " " },
+        { title: "SQL 작성", body: "그래프가 돌려준 지표 정의·조인으로만 SQL 작성. 날짜·시즌은 주입된 교정을 우선 적용." },
         { title: "읽기 전용 실행", body: "dw-mcp가 본인 권한으로 DW를 조회." },
         { title: "출처와 함께 답변", body: "정의·범위·출처(테이블, 산식의 그래프 노드)를 답에 붙여 숫자를 검증할 수 있게 함." },
         { title: "교정 학습", body: "사용자가 “아니, 1월 25일부터”처럼 고치면 컨텍스트 그래프에 교정으로 남아 다음 질문부터 자동 적용됨. 정의 자체가 바뀌어야 하면 지식그래프 등록 권고." }
@@ -395,7 +397,7 @@ export const PROJECTS: Project[] = [
     group: "③ 인프라",
     title: "PaaS 기반 서비스 운영체계",
     short: "PaaS 운영체계",
-    subtitle: "비개발자가 만든 앱의 배포 및 DB·파일 스토리지, 스케쥴을 지원하는 사내 PaaS",
+    subtitle: "비개발자가 만든 앱의 배포 및 DB·파일 스토리지, 스케줄을 지원하는 사내 PaaS",
     period: "2026.03 ~ 진행 중",
     purpose:
       "현업이 직접 만든 웹도구를 개발자 도움 없이 배포하고 운영 지원하는 사내 PaaS. 전체 배포현황 및 웹별 MAU·호출 수, 배포 도메인 통합 관리",
@@ -699,7 +701,7 @@ export const PROJECTS: Project[] = [
         items: [
           {
             title: "○○님을 위한 추천",
-            body: "직무, 브랜드 분류, 최근 본·좋아요한 Agent와 같은 카테고리면 기반으로 관심있을 만한 타 직원 제출 도구를 추천"
+            body: "직무, 브랜드 분류, 최근 본·좋아요한 Agent와 같은 카테고리를 기준으로 관심 있을 만한 다른 직원의 제출 도구를 추천"
           },    
           {
             title: "오늘의 Agent · 우수 Agent 쇼케이스",
@@ -956,7 +958,7 @@ export const PROJECTS: Project[] = [
     subtitle: "법인 내 모든 이미지 통합관리 및 이미지 등록부터 온라인 채널 송신까지 FLOW 구축",
     period: "2025.09 ~ 2026.03",
     purpose:
-      "상품명·판매가·소재 정보·모델컷·바닥컷·썸네일 같은 상품 정보를 PIM 한곳에 올리면, AI가 온라인 채널마다 다른 등록 규격(상품명 규칙·프로모션 문구·카테고리·이미지 규격)에 맞게 가공해 OMS를 거쳐 채널에 바로 등록되게 함. 채널마다 사람이 같은 정보를 다시 입력하던 일을 없애는 것이 목표.",
+      "모델컷·바닥컷·썸네일 등 법인 내 모든 상품 이미지를 이미지 허브 한곳에서 관리하고, 등록된 이미지와 상품 정보를 AI가 채널별 규격에 맞게 가공해 온라인 채널까지 바로 송신. 채널마다 같은 정보를 다시 입력하던 일을 없애는 것이 목표.",
     metrics: [
       {"value":"6일 → 최대 1시간","label":"상품등록 리드타임","note":"입고부터 판매까지"},
       {"value":"100%","label":"일반상품등록 자동화","note":"기획전·프로모션만 남아 시간 80% 절감"}
@@ -970,6 +972,7 @@ export const PROJECTS: Project[] = [
     background:
       "3주간 MD·AMD를 만나 업무를 전수조사 통해 단순반복 업무의 54%가 ‘상품등록·관리’였음(월 1,865시간). 핵심 버그는 ① 상품 데이터가 SAP·BI·로컬 폴더·드라이브·메일에 흩어져 있었고 ② 채널마다 다른 규격에 맞춰 ‘수기로’ 조정해야 했음.\n이를 해결하고자 PIM(Product Information Management) 구축하여 해결하고자 함",
     system: {
+      flowTitle: "상품 등록 흐름",
       intro:
         "PIM은 입고 이후 상품 흐름을 한 줄로 완성. 상품기획이 PLM에 상품을 등록하면 입고·재고 등록과 함께 신상 등록 알림이 가고, 촬영(또는 3D 생성)한 이미지는 허브 업로드·API로 이미지 허브에 들어옴. AI가 상품페이지(AI)와 썸네일을 만들고, 채널별 데이터 최적화 Agent가 규격을 맞춘 뒤 통합 등록 허브에서 전 채널로 송신. 아래 여섯 층은 이미지 허브의 구조임.",
       figures: [

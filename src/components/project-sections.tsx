@@ -223,7 +223,7 @@ export function SystemDiagram({ system, ui, showPrinciples = true }: { system: S
       </div>
 
       <div className="grid gap-4">
-        <h3 className="ko-keep text-xl font-extrabold text-ink">{ui.project.flowTitle}</h3>
+        <h3 className="ko-keep text-xl font-extrabold text-ink">{system.flowTitle ?? ui.project.flowTitle}</h3>
         <ol className="oy-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           {system.flow.map((step, index) => (
             <li key={step.title} className="bg-paper p-4">
