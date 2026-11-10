@@ -1,5 +1,6 @@
 import type { Project } from "@/data/projects";
 import type { UIStrings } from "@/data/i18n";
+import type { ProjectSummaryText } from "@/data/summaries";
 import type { Lang } from "@/lib/lang";
 import { ArchitectureDiagram, Block, CatalogList, FeatureSections, Figure, MetricGrid, SectionTitle, StepFlow, SystemDiagram, VisionSteps } from "@/components/project-sections";
 import { HarnessDiagram } from "@/components/harness-diagram";
@@ -8,6 +9,47 @@ import { HarnessDiagram } from "@/components/harness-diagram";
  * 프로젝트 본문. 상세 페이지(/projects/[slug])와 PDF 페이지(/print)가 같은 컴포넌트를 써서
  * 두 화면의 내용이 항상 같습니다.
  */
+
+/** 맨 위 한눈 요약: 문제 → 한 일 → 결과 세 칸과 용어 풀이 */
+export function ProjectSummary({ summary, P }: { summary: ProjectSummaryText | null; P: UIStrings["project"] }) {
+  if (!summary) return null;
+  const rows = [
+    { key: "problem", label: P.summaryLabels.problem, text: summary.problem },
+    { key: "action", label: P.summaryLabels.action, text: summary.action },
+    { key: "result", label: P.summaryLabels.result, text: summary.result }
+  ];
+  return (
+    <div className="grid gap-3">
+      <ol className="grid overflow-hidden rounded-2xl border border-line bg-paper sm:grid-cols-3">
+        {rows.map((row, index) => (
+          <li
+            key={row.key}
+            className={`grid content-start gap-1.5 p-5 ${index < rows.length - 1 ? "border-b border-line sm:border-b-0 sm:border-r" : ""} ${row.key === "result" ? "tone-soft" : ""}`}
+          >
+            <span className="flex items-center gap-2 text-xs font-black text-muted">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-ink text-[11px] text-paper">{index + 1}</span>
+              {row.label}
+            </span>
+            <p className="ko-keep text-base font-extrabold leading-7 text-ink">{row.text}</p>
+          </li>
+        ))}
+      </ol>
+      {summary.glossary.length ? (
+        <div className="rounded-2xl bg-surface px-5 py-4">
+          <p className="text-xs font-black text-muted">{P.glossaryTitle}</p>
+          <dl className="mt-2 grid gap-x-8 gap-y-1.5 sm:grid-cols-2">
+            {summary.glossary.map((item) => (
+              <div key={item.term} className="ko-keep text-sm leading-6">
+                <dt className="inline font-extrabold text-ink">{item.term}</dt>
+                <dd className="inline text-muted"> · {item.desc}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ) : null}
+    </div>
+  );
+}
 
 /** 프로젝트마다 다른 내용(시스템 구조·스킬 목록·진행·비전)이 하나라도 있는지 */
 export function hasContentsOf(project: Project) {

@@ -56,6 +56,8 @@ const UI = {
         stack: "기술과 도구"
       },
       flowTitle: "질문 처리 과정",
+      summaryLabels: { problem: "문제", action: "한 일", result: "결과" },
+      glossaryTitle: "용어 풀이",
       principlesTitle: "구조를 지키는 원칙",
       dataFlow: "↓ 데이터 흐름 ↓",
       trigger: "호출:",
@@ -159,6 +161,8 @@ const UI = {
         stack: "Stack & tools"
       },
       flowTitle: "How a question is processed",
+      summaryLabels: { problem: "Problem", action: "What I did", result: "Result" },
+      glossaryTitle: "Glossary",
       principlesTitle: "Principles that hold the structure",
       dataFlow: "↓ data flow ↓",
       trigger: "Trigger:",

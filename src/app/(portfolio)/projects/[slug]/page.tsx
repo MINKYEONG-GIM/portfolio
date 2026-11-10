@@ -2,7 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
-import { ProjectFigures, ProjectInfoTable, ProjectSections, hasContentsOf } from "@/components/project-body";
+import { ProjectFigures, ProjectInfoTable, ProjectSections, ProjectSummary, hasContentsOf } from "@/components/project-body";
+import { summaryOf } from "@/data/summaries";
 import { getContent, neighborsOf, statusOf, visibleProjects } from "@/data/content";
 import { isAdmin } from "@/lib/hub-auth";
 import { t } from "@/data/i18n";
@@ -66,6 +67,8 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
           <h1 className="ko-keep mt-3 text-3xl font-black leading-tight text-ink sm:text-4xl">{project.title}</h1>
           <p className="ko-keep mt-3 max-w-3xl text-lg font-semibold leading-8 text-ink">{project.subtitle}</p>
         </div>
+
+        <ProjectSummary summary={summaryOf(project.slug, lang)} P={P} />
 
         <ProjectFigures project={project} priority />
 

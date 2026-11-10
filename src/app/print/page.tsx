@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 import { PartIcon } from "@/components/part-icon";
 import { PrintButton } from "@/components/print-button";
-import { ProjectFigures, ProjectInfoTable, ProjectSections } from "@/components/project-body";
+import { ProjectFigures, ProjectInfoTable, ProjectSections, ProjectSummary } from "@/components/project-body";
+import { summaryOf } from "@/data/summaries";
 import { byPart, getContent, statusOf, visibleProjects } from "@/data/content";
 import { t } from "@/data/i18n";
 import { isAdmin } from "@/lib/hub-auth";
@@ -170,6 +171,7 @@ export default async function PrintPage() {
                 <h2 className="ko-keep mt-3 text-3xl font-black leading-tight text-ink">{project.title}</h2>
                 <p className="ko-keep mt-3 max-w-3xl text-lg font-semibold leading-8 text-ink">{project.subtitle}</p>
               </div>
+              <ProjectSummary summary={summaryOf(project.slug, lang)} P={ui.project} />
               <ProjectFigures project={project} />
               <ProjectInfoTable project={project} P={ui.project} />
             </header>
