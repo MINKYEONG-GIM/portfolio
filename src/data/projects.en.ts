@@ -495,7 +495,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     group: "① Agent platform",
     title: "Knowledge Graph-based Enterprise AI Agent Platform",
     short: "AI agent platform (the in-house AI agent)",
-    subtitle: "An enterprise AI agent platform where internal data, metrics and business rules are defined as an knowledge graph and every MCP server runs on that knowledge graph",
+    subtitle: "An enterprise AI agent platform where internal data, metrics and business rules are defined as a knowledge graph and every MCP server runs on that knowledge graph",
     period: "2025.11 – ongoing",
     purpose: 
       "Load the company's metric definitions and business rules into a Neo4j knowledge graph so that LLM agents answer against that graph, giving every employee a work environment where they can build job-specific agents grounded in company data.",
