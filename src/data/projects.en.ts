@@ -228,7 +228,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     purpose:
       "Extends the range of answers to judgment questions by building an ontology that holds business know-how on top of the existing data catalog (semantic layer)",
     metrics: [
-      { value: "markdown rate · reorder quantity · reorder timing · allocation · main sales channel", label: "Wider question scope" }
+      { value: "markdown rate · reorder quantity · reorder timing · allocation · main sales channel", label: "Wider answer scope (judgment questions)" }
     ],
     roles: [
       "As a former merchandiser, drew out the five weekly decisions in interview form, without looking at tables, and organized business concepts and causal relations first",
