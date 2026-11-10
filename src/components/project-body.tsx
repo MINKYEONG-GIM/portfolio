@@ -14,8 +14,26 @@ export function hasContentsOf(project: Project) {
   return Boolean(project.system || project.architecture || project.catalog || project.steps || project.vision);
 }
 
-/** 대표 이미지와 추가 이미지 */
+const GROUP_COLS: Record<number, string> = { 1: "", 2: "md:grid-cols-2", 3: "md:grid-cols-3" };
+
+/** 대표 이미지와 추가 이미지. 묶음이 있으면 제목을 붙여 가로로 나란히 보여 줍니다. */
 export function ProjectFigures({ project, priority = false }: { project: Project; priority?: boolean }) {
+  if (project.figureGroups?.length) {
+    return (
+      <>
+        {project.figureGroups.map((group, groupIndex) => (
+          <section key={group.title} className="grid gap-3">
+            <h3 className="ko-keep border-l-4 border-ink pl-3 text-lg font-extrabold text-ink">{group.title}</h3>
+            <div className={`grid items-start gap-4 ${GROUP_COLS[Math.min(group.images.length, 3)] ?? ""}`}>
+              {group.images.map((image, imageIndex) => (
+                <Figure key={image.src} image={image} priority={priority && groupIndex === 0 && imageIndex === 0} />
+              ))}
+            </div>
+          </section>
+        ))}
+      </>
+    );
+  }
   return (
     <>
       {project.image ? <Figure image={project.image} priority={priority} /> : null}

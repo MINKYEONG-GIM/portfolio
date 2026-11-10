@@ -62,10 +62,10 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
     }
   },
   4: {
-    title: "Customer & Market Insight",
-    short: "Customer & Market",
+    title: "Strategy Projects (Internal Consulting)",
+    short: "Strategy Projects",
     question: "How analysis changed sales",
-    tagline: "Changing sales through analysis",
+    tagline: "Customer and market insight",
     summary:
       "Cross-validating data against the field, I reframed sales problems as customer-structure problems and delivered results through channel and product strategy.",
     visual: {
@@ -84,15 +84,13 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     group: "Data hub",
     title: "PIM Data Integration System",
     short: "PIM",
-    subtitle: "A product-information hub that manages every product attribute in one place and lets AI generate channel-ready listings published straight to online channels",
+    subtitle: "Unified management of every image in the company, with a flow built from image registration to delivery to online channels",
     period: "2025.09 – 2026.03",
     purpose:
       "Upload product information once into PIM: product name, price, materials, model shots, flat-lay shots, thumbnails. AI then adapts it to each online channel's listing rules (naming conventions, promotional copy, categories, image specs) and publishes through the OMS. The goal is to end re-entering the same product data channel by channel.",
     metrics: [
       {"value":"6 days → 1 hour","label":"Listing lead time","note":"from receiving to on sale"},
-      {"value":"100%","label":"Standard listings automated","note":"only events and promotions remain: 80% of time saved"},
-      {"value":"54%","label":"Non-value work spent on listing","note":"3-week MD/AMD census, 1,865 h per month"},
-      {"value":"30% → 70%","label":"Structure that enables staffing efficiency"}
+      {"value":"100%","label":"Standard listings automated","note":"only events and promotions remain: 80% of time saved"}
     ],
     roles: [
       "Defined what PIM manages: product code, name, material, color, size, price, inventory and images (model, flat-lay, thumbnail) as the single source of product truth",
@@ -100,8 +98,8 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Designed the generative-AI workflow: per-item keyword extraction, channel-specific names and promotional copy, image spec adaptation",
       "Turned interviews with MD, photo and ops teams into requirements for listing procedures and per-channel rules"
     ],
-    background: 
-      "Three weeks of shadowing MDs and AMDs and doing their work showed that 54% of non-value-adding work was ‘product listing and management’ (1,865 hours a month). Three core bugs: ① product data was scattered across SAP, BI, local folders, drives and email; ② the process ran on habit; ③ every channel needed manual adjustment to its own format.\nSo a PIM (Product Information Management) system managing all product data in one place was needed. Global SPA brands and leading fashion companies already used one; the company had partial functions in the company mall's back office and the old hub, but nothing complete, so no process had ever been established.",
+    background:
+      "Interviewing MD and AMD staff for three weeks and surveying their work showed that 54% of simple, repetitive work was ‘product listing and management’ (1,865 hours per month). The core bugs were ① product data scattered across SAP, BI, local folders, drives and email, and ② manual adjustment to each channel's different specs.\nTo solve this, a PIM (Product Information Management) system was built.",
     system: {
       intro:
         "PIM completes the product flow after receiving in one line. When merchandising registers a product in PLM, receiving and inventory registration trigger a new-product alert; photographed (later 3D-generated) images enter the image hub via hub upload or API. AI builds the detail page (AI) and thumbnails, a per-channel data-optimization agent fits each channel's format, and the listing hub sends to every channel. The six layers below are the image hub's structure.",
@@ -203,11 +201,11 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         }
       ]
     },
-    steps: ["3-week MD/AMD work census","Define the three core bugs","PIM attributes and data flow","AI detail pages and channel-optimization agent","the listing hub → all channels automatically"],
+    steps: ["3-week MD/AMD work census","Define the two core bugs","PIM attributes and data flow","AI detail pages and channel-optimization agent","the listing hub → all channels automatically"],
     images: [
       { src: "/projects/pim-image-hub-home.png", alt: "Image hub home: left menu (work status, style information, image information, detail pages, My Pocket, other materials, per-channel information, master data, permissions, trash, AI search), filters for upload date, uploader, brand and color with a registration-error badge, and a grid of 34,031 images", caption: "Image hub home: upload date, uploader, brand and color filters plus a ‘registration error’ badge locate any of tens of thousands of images in the grid", width: 1197, height: 903 },
-      { src: "/projects/pim-image-detail.png", alt: "List view with the image detail panel on the right: file name, brand, style code, colors, cut type, search keywords, size, uploader, upload time, and edit/download buttons", caption: "Image details: the file-name rule (style code_color_cut type) auto-matches style code, colors and cut type, with search keywords viewed and edited in one panel", width: 1197, height: 883 },
-      { src: "/projects/pim-style-status.png", alt: "Style status for one style code: style information review (pending) → image upload (2 flat-lay, 1 campaign, done) → channel image generation (done) → detail page generation (pending), with per-color detail-page status and retry buttons for failures", caption: "Style status: review → image upload → channel image generation → detail page generation per style on one screen, with ‘retry’ for colors whose page failed", width: 1381, height: 875 }
+      { src: "/projects/pim-image-detail.png", alt: "List view with the image detail panel on the right: file name, brand, style code, colors, cut type, search keywords, size, uploader, upload time, and edit/download buttons", caption: "Image registration review and detail check", width: 1197, height: 883 },
+      { src: "/projects/pim-style-status.png", alt: "Style status for one style code: style information review (pending) → image upload (2 flat-lay, 1 campaign, done) → channel image generation (done) → detail page generation (pending), with per-color detail-page status and retry buttons for failures", caption: "Style status: image upload → automatic per-channel image editing → review of the detail-page generation stage", width: 1381, height: 875 }
     ],
     thumb: {
       src: "/projects/pim-thumb.png",
@@ -460,10 +458,10 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     group: "① Agent platform",
     title: "Knowledge Graph-based Enterprise AI Agent Platform",
     short: "AI agent platform (the in-house AI agent)",
-    subtitle: "A knowledge-graph-based enterprise AI agent platform where a plain-language request is enough to build a web app connected straight to the company EDW",
+    subtitle: "A knowledge-graph-based enterprise AI agent platform where a plain-language request is enough to build a web app connected straight to the company DW",
     period: "2025.11 – ongoing",
     purpose:
-      "Build an environment where a plain-language request is enough to create a web dashboard connected directly to the company EDW. Metric definitions and business rules are loaded into a Neo4j knowledge graph and LLM agents answer against it, so every employee can build job-specific agents and web tools grounded in company data.",
+      "Build an environment where a plain-language request is enough to create a web dashboard connected directly to the company DW. Metric definitions and business rules are loaded into a Neo4j knowledge graph and LLM agents answer against it, so every employee can build job-specific agents and web tools grounded in company data.",
     metrics: [
       { value: "116", label: "Agents completed", note: "as of Sept 2026" },
       { value: "8,180 h / month", label: "Work hours saved by agents", note: "as of Sept 2026" }
@@ -477,7 +475,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Even after connecting AI agents to internal data, the same 'sales' figure was computed differently by brand and by person, because the model guessed tables and formulas. After two or three wrong sales or profit numbers, trust collapsed and usage dropped.\nWhat was needed before more connections was a meaning the company had agreed on. Metric definitions, formulas, joins, season rules and unwritten rules were loaded into one knowledge graph, and the structure was changed so that every agent queries that graph before writing any SQL.",
     system: {
       intro:
-        "This platform puts agents on top of a knowledge graph. A Neo4j knowledge graph sits in the middle; hooks, skills and MCP tools all query it before they act. Users only ask questions in Claude Desktop or Code, and the six layers below take the question through org instructions → hooks → skills → MCP tools → gateway → knowledge graph and internal data. Every layer keeps the read-only and own-permissions principles.",
+        "This platform puts agents on top of a knowledge graph. Built on a Neo4j knowledge graph, it processes each question in the order organization instructions → hooks → skills → MCP tools → gateway → knowledge graph and internal data.",
       layers: [
         {
           name: "1. Client Layer",
@@ -562,27 +560,37 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       ]
     },
     steps: ["Knowledge graph design and build", "MCP servers connecting the graph and the DW", "Skills and hooks", "Plugin rollout and offline training", "Weekly use-case broadcasts across affiliates"],
-    image: {
-      "src": "/projects/platform-edw-web-demo.png",
-      "alt": "A store-sales dashboard web app is created from one plain-language request and runs on a local server; the brand name and internal system name are blurred",
-      "caption": "One plain-language request creates a store-sales dashboard web app (brand and system names blurred)",
-      "width": 1374,
-      "height": 1942
-    },
-    images: [
+    figureGroups: [
       {
-        "src": "/projects/platform-snowflake-link.png",
-        "alt": "Next, asking to connect live Snowflake data: the agent fixes a query error itself and swaps in a real-data dashboard; internal tool names, table and column names, the brand name and amounts are blurred",
-        "caption": "One more request connects it to live Snowflake data and swaps in the real-data dashboard (tool names, table/column names and amounts blurred)",
-        "width": 1255,
-        "height": 1576
+        "title": "Screens showing that vibe coding works",
+        "images": [
+          {
+            "src": "/projects/platform-dw-web-demo.png",
+            "alt": "A store-sales dashboard web app is created from one plain-language request and runs on a local server; the brand name and internal system name are blurred",
+            "caption": "One plain-language request creates a store-sales dashboard web app (brand and system names blurred)",
+            "width": 1374,
+            "height": 1942
+          },
+          {
+            "src": "/projects/platform-snowflake-link.png",
+            "alt": "Next, asking to connect live Snowflake data: the agent fixes a query error itself and swaps in a real-data dashboard; internal tool names, table and column names, the brand name and amounts are blurred",
+            "caption": "One word, ‘connect it’, links the dashboard to live Snowflake data",
+            "width": 1255,
+            "height": 1576
+          }
+        ]
       },
       {
-        "src": "/projects/agent-kpi-demo.png",
-        "alt": "Asking Brand A Gangnam's May sales in natural language with the kpi-query skill: the metric definition is resolved from the knowledge graph, the DW is queried and the answer cites its sources",
-        "caption": "kpi-query skill: natural-language question → metric definition resolved from the knowledge graph → DW query → answer with sources",
-        "width": 1226,
-        "height": 1051
+        "title": "Screen showing that simple lookups can be done quickly",
+        "images": [
+          {
+            "src": "/projects/agent-kpi-demo.png",
+            "alt": "Asking Brand A Gangnam's May sales in natural language with the kpi-query skill: the metric definition is resolved from the knowledge graph, the DW is queried and the answer cites its sources",
+            "caption": "kpi-query skill: natural-language question → metric definition resolved from the knowledge graph → DW query → answer with sources",
+            "width": 1226,
+            "height": 1051
+          }
+        ]
       }
     ],
     thumb: {

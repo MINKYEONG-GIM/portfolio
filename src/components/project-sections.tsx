@@ -209,7 +209,6 @@ export function SystemDiagram({ system, ui, showPrinciples = true }: { system: S
             <div>
               <h3 className="ko-keep text-lg font-black text-ink">{layer.name}</h3>
               <p className="ko-keep mt-1 text-sm font-semibold leading-6 text-muted">{layer.role}</p>
-              {index < system.layers.length - 1 ? <p className="mt-2 hidden text-xs font-black text-muted lg:block">{ui.project.nextLayer}</p> : null}
             </div>
             <ul className="grid gap-2 sm:grid-cols-2">
               {layer.items.map((item) => (

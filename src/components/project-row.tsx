@@ -31,11 +31,10 @@ export function Thumb({ project, index, className = "" }: { project: Project; in
 }
 
 /**
- * 가로 행: 썸네일 | 중분류 · 제목 · 설명 · 태그 | 핵심 수치 · 기간 · 상태.
+ * 가로 행: 썸네일 | 중분류 · 제목 · 설명 · 태그 | 기간 · 상태.
  * 파트에 프로젝트가 하나뿐이어도 폭이 같아 어색하지 않습니다.
  */
 export function ProjectRow({ project, index, ui }: { project: Project; index: number; ui: UIStrings }) {
-  const lead = project.metrics[0];
   const status = statusOf(project, ui.status);
   return (
     <Link
@@ -61,15 +60,9 @@ export function ProjectRow({ project, index, ui }: { project: Project; index: nu
       </div>
       <div className="col-span-2 flex items-center justify-between gap-4 sm:col-span-1 sm:w-56 sm:flex-col sm:items-end sm:justify-center sm:text-right">
         <div>
-          {lead ? (
-            <>
-              <p className="text-2xl font-black leading-none text-[color:var(--price)]">{lead.value}</p>
-              <p className="ko-keep mt-1 text-sm font-bold text-ink">{lead.label}</p>
-            </>
-          ) : (
-            <span className={`pill ${status === ui.status.planned ? "pill-gray" : "pill-green"}`}>{status}</span>
-          )}
-          {project.period !== status ? <p className="mt-1 text-xs font-bold text-muted">{project.period}</p> : null}
+          {/* 성과 수치는 카드에서 보여 주지 않고, 준비 중 표시와 기간만 둡니다. */}
+          {project.draft ? <span className={`pill ${status === ui.status.planned ? "pill-gray" : "pill-green"}`}>{status}</span> : null}
+          {project.period !== status ? <p className={`${project.draft ? "mt-1 " : ""}text-sm font-bold text-muted`}>{project.period}</p> : null}
         </div>
         <ChevronRight className="h-5 w-5 shrink-0 text-muted group-hover:text-ink" />
       </div>
