@@ -148,7 +148,11 @@ export function ProjectSections({ project, ui, lang }: { project: Project; ui: U
 
       {project.features ? (
         <Block>
-          <SectionTitle id="features" eyebrow={eb("CORE FEATURES")} title={P.titles.features} />
+          <SectionTitle
+            id="features"
+            eyebrow={eb(project.featuresTitle ? project.featuresTitle.toUpperCase() : "CORE FEATURES")}
+            title={project.featuresTitle ?? P.titles.features}
+          />
           <FeatureSections features={project.features} />
         </Block>
       ) : null}

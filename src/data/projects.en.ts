@@ -102,41 +102,6 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     ],
     background: 
       "Three weeks of shadowing MDs and AMDs and doing their work showed that 54% of non-value-adding work was ‘product listing and management’ (1,865 hours a month). Three core bugs: ① product data was scattered across SAP, BI, local folders, drives and email; ② the process ran on habit; ③ every channel needed manual adjustment to its own format.\nSo a PIM (Product Information Management) system managing all product data in one place was needed. Global SPA brands and leading fashion companies already used one; the company had partial functions in the company mall's back office and the old hub, but nothing complete, so no process had ever been established.",
-    features: [
-      {
-        eyebrow: "Core feature 01",
-        title: "Single source of product information",
-        summary: "Everything about a product lives in PIM. Entered once, the same values feed every channel.",
-        items: [
-          { title: "Core attributes", body: "Product code, name, material, color, size and other base attributes, standardized across brands that used to differ." },
-          { title: "Price and inventory", body: "List price, discount price and stock synced from SAP and BI so nothing is edited per channel." },
-          { title: "Image assets", body: "Model shots, flat-lay shots, thumbnails and detail images managed by purpose and spec. The photo team uploads once; channel-specific versions are derived." },
-          { title: "10+ brands unified", body: "Product data scattered across brand folders, sheets and email brought into one structure." }
-        ]
-      },
-      {
-        eyebrow: "Core feature 02",
-        title: "AI-powered channel listing",
-        summary: "Once product data is in, AI produces each channel's listing and publishes it through the OMS.",
-        items: [
-          { title: "Per-item keyword extraction", body: "Keywords for search and classification extracted from product data and images, usable inside PIM." },
-          { title: "Channel-specific listing copy", body: "Product names, promotional copy and categories generated to each platform's rules." },
-          { title: "Automatic image specs", body: "Images converted to each channel's thumbnail ratio, file size and background requirements." },
-          { title: "OMS-linked publishing", body: "Processed listings flow through the in-house OMS to each online channel, with no manual re-entry on channel screens." }
-        ]
-      },
-      {
-        eyebrow: "Core feature 03",
-        title: "Image hub UI: once a photo comes in, the product reaches the channels",
-        summary: "Images uploaded by the photo team are matched to style codes automatically, and each style's progress from review to channel images to detail pages is visible on one screen.",
-        items: [
-          { title: "Home: image grid and filters", body: "Upload date, uploader, brand (five brands), color filters and a ‘registration error’ badge locate any of tens of thousands of images (e.g. 34,031) at once. Grid and list views, drag-and-drop bulk upload." },
-          { title: "Image details", body: "File name, brand, style code, colors (multiple), cut type (campaign, tag/inner tag, flat-lay detail/front, model), search keywords, size, uploader and upload time in one panel, with edit and download. Files are matched automatically by the naming rule style code_color_cut type." },
-          { title: "Style status", body: "Search one style code to see each stage with its last update: style information review (pending/done) → image upload (count per cut type) → channel image generation → detail page generation. Colors whose detail page failed get a ‘retry’ button." },
-          { title: "Menu", body: "Work status, style information, image information, detail pages, My Pocket, other materials, per-channel information, master data, permissions, trash and AI search. Role-based permissions let the photo, listing and e-commerce teams use the same screens differently." }
-        ]
-      }
-    ],
     system: {
       intro:
         "PIM completes the product flow after receiving in one line. When merchandising registers a product in PLM, receiving and inventory registration trigger a new-product alert; photographed (later 3D-generated) images enter the image hub via hub upload or API. AI builds the detail page (AI) and thumbnails, a per-channel data-optimization agent fits each channel's format, and the listing hub sends to every channel. The six layers below are the image hub's structure.",
@@ -953,20 +918,54 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     metrics: [{ value: "~500", label: "People trained in AI agents" }],
     roles: [
       "Designed the curriculum and job-specific hands-on exercises",
-      "Built the platform's learning features: AI literacy slides, leveled video lessons, 6-step build practice, training decks for the in-house AI agent platform, vibe-coding guide"
+      "Built the training content: level-based concept training (AI literacy slides, in-house AI agent 2.0 decks, connector deck) and hands-on sessions (6-step build practice, vibe-coding guide)"
     ],
+    featuresTitle: "Training content",
     features: [
       {
-        eyebrow: "Platform learning features",
-        title: "Learning inside the platform",
-        summary: "Not lecture-only training: completion means a first-time employee turns a problem from their own work into one agent and publishes it. Basics → videos → practice → deployment in one flow.",
-        items: [
-          { title: "AI literacy basics", body: "Fourteen slides on AI fundamentals and what matters at work. Security principles and one-click deployment guardrails rewritten in plain company language." },
-          { title: "Leveled video lessons", body: "AI trends · common · sprout · basic · intermediate · advanced · applied, so people pick lessons at their level. Required videos are badged and play inside the platform." },
-          { title: "6-step agent-building practice", body: "Understand AI → define the work problem → write a prompt spec → prototype with Claude Code → security check → prepare to share and deploy. Each step has an output and check questions, with first-agent scenarios for MD, sales, design and CS." },
-          { title: "in-house AI agent 2.0 training decks", body: "Session 1 (concepts, 41 slides) and session 2 (hands-on, 30 slides) available in the platform by course. Attendance counts toward the participation score." },
-          { title: "5-step vibe-coding guide", body: "Decide what to build → build screens by vibe coding → connect BI data → prepare code for deployment → deploy. A usage-guide prompt makes the builder state operating logic, team tacit rules and KPIs first." },
-          { title: "Getting-started checklist and help", body: "Account request → AI-agent access → DaaS token → first agent → this month's survey and submission, judged automatically. FAQ, 1:1 inquiries, data requests and offline help sign-up sit alongside." }
+        "eyebrow": "Part 1",
+        "title": "Level-based concept training",
+        "summary": "Because skill levels differ widely, one lecture is too hard for beginners and dull for experienced staff, so classes are split by level and kept small. Concept training is the preparation for the hands-on session that follows.",
+        "items": [
+          {
+            "title": "AI literacy basics",
+            "body": "Fourteen slides on AI fundamentals and what matters at work. Security principles and one-click deployment guardrails rewritten in plain company language."
+          },
+          {
+            "title": "Classes by level",
+            "body": "Beginner, intermediate and advanced classes teach concepts at the right level, removing the problem of a single lecture being hard for beginners and dull for experienced staff."
+          },
+          {
+            "title": "in-house AI agent 2.0 training decks",
+            "body": "Classroom decks in two sessions: session 1 (concepts, 41 slides) and session 2 (hands-on, 30 slides)."
+          },
+          {
+            "title": "Connector concept",
+            "body": "Explains connectors with a power-outlet analogy instead of developer terms, covering four things to know and the four connections inside a connector."
+          }
+        ]
+      },
+      {
+        "eyebrow": "Part 2",
+        "title": "Hands-on sessions",
+        "summary": "Right after concept training, even first-time attendees turn a problem from their own work into one agent and publish it. Completion means one web-based tool of their own by the end of every session.",
+        "items": [
+          {
+            "title": "6-step agent-building practice",
+            "body": "Understand AI → define the work problem → write a prompt spec → prototype with Claude Code → security check → prepare to share and deploy. Each step has an output and check questions, with first-agent scenarios for MD, sales, design and CS."
+          },
+          {
+            "title": "5-step vibe-coding guide",
+            "body": "Decide what to build → build screens by vibe coding → connect BI data → prepare code for deployment → deploy. A usage-guide prompt makes the builder state operating logic, team tacit rules and KPIs first."
+          },
+          {
+            "title": "One-click deployment",
+            "body": "The finished tool is deployed to the in-house PaaS in one click, with a deployment guide session covering guardrail rules and the deployment procedure."
+          },
+          {
+            "title": "Build and deploy support after the session",
+            "body": "FAQ, 1:1 inquiries, data requests and offline help sign-up resolve whatever blocks people after the session."
+          }
         ]
       }
     ],

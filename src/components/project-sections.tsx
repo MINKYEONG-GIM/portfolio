@@ -1,3 +1,4 @@
+import { ChevronRight } from "lucide-react";
 import type { ReactNode } from "react";
 import { Figure } from "@/components/figure";
 import type { CatalogItem, FeatureSection, Insight, Metric, SystemArchitecture, VisionStep } from "@/data/projects";
@@ -127,24 +128,31 @@ export function CatalogList({ items, triggerLabel }: { items: CatalogItem[]; tri
               <td colSpan={2} className="!p-0">
                 <div className="grid gap-4 p-5">
                   <h4 className="ko-keep text-lg font-extrabold text-ink">{item.name}</h4>
-                  <ol className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
-                    {item.steps.map((step, index) => (
-                      <li
-                        key={`${index}-${step.text}`}
-                        className={`flex items-start gap-2.5 border px-3 py-2.5 ${step.flag ? "border-[color:var(--price)] bg-paper" : "border-line bg-paper"}`}
-                      >
-                        <span
-                          className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-black text-paper ${step.flag ? "bg-[color:var(--price)]" : "bg-ink"}`}
-                        >
-                          {index + 1}
-                        </span>
-                        <span className="ko-keep min-w-0 text-sm font-bold leading-6 text-ink">
-                          {step.text}
-                          {step.flag ? <span className="pill pill-red ml-1.5 align-middle">{step.flag}</span> : null}
-                        </span>
-                      </li>
-                    ))}
-                  </ol>
+                  {/* 한 줄로 길게 이어 순서가 한눈에 보이게 하고, 화면보다 길면 좌우로 넘겨 봅니다. */}
+                  <div className="overflow-x-auto pb-3">
+                    <ol className="flex w-max min-w-full items-stretch">
+                      {item.steps.map((step, index) => (
+                        <li key={`${index}-${step.text}`} className="flex items-stretch">
+                          <div
+                            className={`flex w-44 flex-col gap-2 border px-3 py-3 ${step.flag ? "border-[color:var(--price)] bg-paper" : "border-line bg-paper"}`}
+                          >
+                            <span
+                              className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-black text-paper ${step.flag ? "bg-[color:var(--price)]" : "bg-ink"}`}
+                            >
+                              {index + 1}
+                            </span>
+                            <span className="ko-keep text-sm font-bold leading-6 text-ink">{step.text}</span>
+                            {step.flag ? <span className="pill pill-red mt-auto self-start">{step.flag}</span> : null}
+                          </div>
+                          {index < item.steps!.length - 1 ? (
+                            <span className="flex w-7 shrink-0 items-center justify-center text-muted">
+                              <ChevronRight className="h-5 w-5" aria-hidden="true" />
+                            </span>
+                          ) : null}
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
                   <p className="ko-keep whitespace-pre-line bg-surface px-4 py-3 text-base font-semibold leading-7 text-ink">{item.body}</p>
                 </div>
               </td>

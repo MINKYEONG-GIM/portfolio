@@ -41,7 +41,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
     { id: "background", label: P.tabs.background, show: Boolean(project.background) },
     { id: "contents", label: P.tabs.contents, show: hasContents },
     { id: "role", label: P.tabs.role, show: true },
-    { id: "features", label: P.tabs.features, show: Boolean(project.features) }
+    { id: "features", label: project.featuresTitle ?? P.tabs.features, show: Boolean(project.features) }
   ].filter((tab) => tab.show);
 
   return (
