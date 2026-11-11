@@ -649,8 +649,8 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     ],
     image: {
       src: "/projects/fashion-ai-platform.png",
-      alt: "Fashion AI Platform home: best web-app banner, category icons, personalized recommendations and the monthly to-do sidebar",
-      caption: "Fashion AI Platform home: best web-app banner · categories · personalized recommendations · monthly to-do sidebar",
+      alt: "Fashion AI Platform home: best web-app banner, category icons and the monthly to-do sidebar",
+      caption: "Fashion AI Platform home: best web-app banner · categories · monthly to-do sidebar",
       width: 1777,
       height: 1341
     },
@@ -661,7 +661,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       height: 1000
     },
     stack: ["-"],
-    tags: ["Personalization", "Registration & submission", "Next.js"]
+    tags: ["Registration & submission", "Next.js"]
   },
   "enterprise-agent-integration": {
     group: "④ Enterprise integration",

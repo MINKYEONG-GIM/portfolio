@@ -709,8 +709,8 @@ export const PROJECTS: Project[] = [
     ],
     image: {
       src: "/projects/fashion-ai-platform.png",
-      alt: "패션 AI 플랫폼 홈: 우수 웹앱 배너, 카테고리 아이콘, 개인화 추천, 오른쪽 사이드바의 이번 달 할 일",
-      caption: "패션 AI 플랫폼 홈: 우수 웹앱 배너 · 카테고리 · 개인화 추천 · 이번 달 할 일 사이드바",
+      alt: "패션 AI 플랫폼 홈: 우수 웹앱 배너, 카테고리 아이콘, 오른쪽 사이드바의 이번 달 할 일",
+      caption: "패션 AI 플랫폼 홈: 우수 웹앱 배너 · 카테고리 · 이번 달 할 일 사이드바",
       width: 1777,
       height: 1341
     },
@@ -721,7 +721,7 @@ export const PROJECTS: Project[] = [
       height: 1000
     },
     stack: ["-"],
-    tags: ["개인화", "등록·제출", "Next.js"]
+    tags: ["등록·제출", "Next.js"]
   },
   {
     slug: "ai-talent-pool",
