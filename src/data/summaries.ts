@@ -154,7 +154,7 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
   "pim-data-integration": {
     "ko": {
       "problem": "흩어진 상품 데이터를 채널마다 수기 등록, 단순반복 업무의 54% 차지",
-      "action": "이미지 허브와 AI 가공으로 전 채널에 자동 송신하는 PIM 설계",
+      "action": "전사 통합 Image 플랫폼과 AI 가공으로 전 채널에 자동 송신하는 PIM 설계",
       "result": "상품등록 리드타임 6일→최대 1시간, 일반상품등록 100% 자동화",
       "glossary": [
         {
@@ -169,7 +169,7 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
     },
     "en": {
       "problem": "Scattered product data was re-keyed by hand per channel: 54% of repetitive work.",
-      "action": "Designed a PIM where an image hub and AI format listings and send them to every channel.",
+      "action": "Designed a PIM where a company-wide integrated image platform and AI format listings and send them to every channel.",
       "result": "Listing lead time cut from 6 days to 1 hour; standard listings 100% automated.",
       "glossary": [
         {

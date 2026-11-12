@@ -58,7 +58,7 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
       alt: "Pipeline design: SAP BI → Snowflake → PIM DB → PIM system → in-house OMS → online channels, with generative AI preprocessing",
       width: 1667,
       height: 784,
-      caption: "PIM data integration: generative-AI preprocessing and OMS integration pipeline"
+      caption: "Company-wide Integrated Image Platform: generative-AI preprocessing and OMS integration pipeline"
     }
   },
   4: {
@@ -82,12 +82,12 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
 export const PROJECTS_EN: Record<string, Partial<Project>> = {
   "pim-data-integration": {
     group: "Data hub",
-    title: "PIM Data Integration System",
-    short: "PIM",
+    title: "Company-wide Integrated Image Platform",
+    short: "Image Platform",
     subtitle: "Unified management of every image in the company, with a flow built from image registration to delivery to online channels",
     period: "2025.09 – 2026.03",
     purpose:
-      "Manage every product image in the company (model shots, flat-lay shots, thumbnails) in one image hub, and let AI adapt registered images and product data to each channel's specs and send them straight to online channels. The goal is to end re-entering the same information channel by channel.",
+      "Manage every product image in the company (model shots, flat-lay shots, thumbnails) in one company-wide integrated image platform, and let AI adapt registered images and product data to each channel's specs and send them straight to online channels. The goal is to end re-entering the same information channel by channel.",
     metrics: [
       {"value":"6 days → 1 hour","label":"Listing lead time","note":"from receiving to on sale"},
       {"value":"100%","label":"Standard listings automated","note":"only events and promotions remain: 80% of time saved"}
@@ -103,7 +103,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     system: {
       flowTitle: "Product listing flow",
       intro:
-        "Listing after receiving runs as one flow: images enter the hub, AI builds detail pages, per-channel agents fit each format and every channel receives the listing. Below: the image hub's six layers.",
+        "Listing after receiving runs as one flow: images enter the platform, AI builds detail pages, per-channel agents fit each format and every channel receives the listing. Below: the integrated image platform's six layers.",
       figures: [
         {
           src: "/projects/pim-pipeline.png",
@@ -124,7 +124,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       flow: [
         { title: "PLM product registration", body: "Base data registered in PLM flows into PIM automatically." },
         { title: "Receiving and inventory → new-product alert", body: "Receiving triggers an automatic new-product alert to the listing team." },
-        { title: "Shooting · 3D generation → hub upload / API", body: "Shots (later 3D renders) go straight to the hub; no more Google upload or email." },
+        { title: "Shooting · 3D generation → integrated image platform upload / API", body: "Shots (later 3D renders) go straight to the integrated image platform; no more Google upload or email." },
         { title: "Detail page production (AI)", body: "AI generates models, sales copy, detail pages and SEO tags." },
         { title: "Thumbnail and detail-page upload", body: "Thumbnails and detail pages attach to the style code automatically." },
         { title: "Per-channel data-optimization agent", body: "An agent converts names, categories and image specs for each channel." },
@@ -171,7 +171,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
             { text: "PLM product registration" },
             { text: "New-product alert as soon as receiving and inventory are registered" },
             { text: "Shooting / 3D generation" },
-            { text: "Hub upload / API" },
+            { text: "Integrated image platform upload / API" },
             { text: "Detail page production (AI)" },
             { text: "Automatic thumbnail and detail upload" },
             { text: "Per-channel data optimization agent" },
@@ -204,13 +204,13 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     },
     steps: ["3-week MD/AMD work census","Define the two core bugs","PIM attributes and data flow","AI detail pages and channel-optimization agent","the listing hub → all channels automatically"],
     images: [
-      { src: "/projects/pim-image-hub-home.png", alt: "Image hub home: left menu (work status, style information, image information, detail pages, My Pocket, other materials, per-channel information, master data, permissions, trash, AI search), filters for upload date, uploader, brand and color with a registration-error badge, and a grid of 34,031 images", caption: "Image hub home: upload date, uploader, brand and color filters plus a ‘registration error’ badge locate any of tens of thousands of images in the grid", width: 1197, height: 903 },
+      { src: "/projects/pim-image-hub-home.png", alt: "Integrated image platform home: left menu (work status, style information, image information, detail pages, My Pocket, other materials, per-channel information, master data, permissions, trash, AI search), filters for upload date, uploader, brand and color with a registration-error badge, and a grid of 34,031 images", caption: "Integrated image platform home: upload date, uploader, brand and color filters plus a ‘registration error’ badge locate any of tens of thousands of images in the grid", width: 1197, height: 903 },
       { src: "/projects/pim-image-detail.png", alt: "List view with the image detail panel on the right: file name, brand, style code, colors, cut type, search keywords, size, uploader, upload time, and edit/download buttons", caption: "Image registration review and detail check", width: 1197, height: 883 },
       { src: "/projects/pim-style-status.png", alt: "Style status for one style code: style information review (pending) → image upload (2 flat-lay, 1 campaign, done) → channel image generation (done) → detail page generation (pending), with per-color detail-page status and retry buttons for failures", caption: "Style status: image upload → automatic per-channel image editing → review of the detail-page generation stage", width: 1381, height: 875 }
     ],
     thumb: {
       src: "/projects/pim-thumb.png",
-      alt: "Image hub home: filters and image grid",
+      alt: "Integrated image platform home: filters and image grid",
       width: 1000,
       height: 1000
     },
