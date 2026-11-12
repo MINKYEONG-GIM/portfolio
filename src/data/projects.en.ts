@@ -454,7 +454,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     stack: ["OCR", "Vector DB", "GPT API"],
     tags: ["RAG", "Vector search", "Knowledge management"]
   },
-  "ontology-agent-platform": {
+  "agent-platform": {
     group: "① Agent platform",
     title: "Knowledge Graph-based Enterprise AI Agent Platform",
     short: "AI agent platform (the in-house AI agent)",
@@ -468,12 +468,12 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       { value: "85% less", label: "Time to query in-house (BI) data", note: "AS-IS 27 min → TO-BE 4 min" }
     ],
     roles: [
-      "Knowledge graph design: designed the schema from business-domain information and defined official metric definitions and golden SQL",
-      "Skill procedure planning: designed the 'one graph lookup → SQL → read-only run' procedure",
-      "Employee training design and delivery"
+      "Built a mapping dictionary between business terms (brand, season, store) and DW tables and columns: organized synonyms and reference values so the same question gets the same answer",
+      "Defined requirements for the MCP server linking the graph and the DW: agreed the tool list, input/output formats and read-only permission scope with developers",
+      "Designed the plugin rollout process: wrote the install guide, connector setup steps and a troubleshooting guide for common errors"
     ],
     background:
-      "The in-house AI agent didn't know metric definitions and rules that differ by brand and person, so it got sales and profit numbers wrong two or three times. Once the numbers couldn't be trusted, trust collapsed and usage dropped.\nThe AI needed one reference point for the company's agreed metric definitions and business rules, used the same way every time.",
+      "1. Web apps built by employees could not connect to the company DW, so they saved little real time; the aim was to connect individually built web apps to in-house data while keeping security issues to a minimum.\n2. Querying in-house BI data took 27 minutes on average; the aim was to cut that time by 75% with AI.",
     system: {
       intro:
         "This platform puts agents on top of a knowledge graph. Built on a Neo4j knowledge graph, it processes each question in the order organization instructions → hooks → skills → MCP tools → gateway → knowledge graph and internal data.",
