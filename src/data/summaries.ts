@@ -13,13 +13,13 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
     "ko": {
       "problem": "AI 에이전트가 매출·이익 숫자를 틀려 신뢰와 사용률이 급락함",
       "action": "지표 정의를 지식그래프로 적재, 말로 사내 DW 연결 웹을 만드는 환경 구축",
-      "result": "에이전트 116개 생성, 월 8,180시간 업무 절감(2026년 9월 기준)",
+      "result": "에이전트 160개 생성, 월 8,180시간 업무 절감(2026년 9월 기준)",
       "glossary": []
     },
     "en": {
       "problem": "The in-house AI agent got sales and profit numbers wrong, and trust and usage collapsed.",
       "action": "Put metric definitions in a knowledge graph so a plain request builds a DW-linked web app.",
-      "result": "116 agents built and 8,180 work hours saved per month (Sept 2026).",
+      "result": "160 agents built and 8,180 work hours saved per month (Sept 2026).",
       "glossary": []
     }
   },
@@ -154,7 +154,7 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
   "pim-data-integration": {
     "ko": {
       "problem": "흩어진 상품 데이터를 채널마다 수기 등록, 단순반복 업무의 54% 차지",
-      "action": "전사 통합 Image 플랫폼과 AI 가공으로 전 채널에 자동 송신하는 PIM 설계",
+      "action": "전사 통합 Image 플랫폼과 AI 가공으로 전 채널에 자동 송신하는 흐름 설계",
       "result": "상품등록 리드타임 6일→최대 1시간, 일반상품등록 100% 자동화",
       "glossary": [
         {
@@ -169,7 +169,7 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
     },
     "en": {
       "problem": "Scattered product data was re-keyed by hand per channel: 54% of repetitive work.",
-      "action": "Designed a PIM where a company-wide integrated image platform and AI format listings and send them to every channel.",
+      "action": "Designed a flow where a company-wide integrated image platform and AI format listings and send them to every channel.",
       "result": "Listing lead time cut from 6 days to 1 hour; standard listings 100% automated.",
       "glossary": [
         {
@@ -214,10 +214,6 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
         {
           "term": "진입 동기",
           "desc": "고객이 채널에 들어온 이유"
-        },
-        {
-          "term": "전략 상품",
-          "desc": "마케팅 예산을 집중한 핵심 판매 상품"
         }
       ]
     },
@@ -237,10 +233,6 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
         {
           "term": "Entry motive",
           "desc": "Why a customer came into the channel"
-        },
-        {
-          "term": "Strategic products",
-          "desc": "Key products that get concentrated marketing budget"
         }
       ]
     }

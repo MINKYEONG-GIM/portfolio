@@ -19,7 +19,7 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
     question: "What the in-house AI agent platform is and how it was built",
     tagline: "Snowflake → Knowledge graph → MCP / Skills → Agent platform",
     summary:
-      "Connects the DW, M365, HR and the knowledge graph to Claude via MCP and ships work know-how to everyone as skills. As of September 2026: 116 agents, 8,180 hours saved per month.",
+      "Connects the DW, M365, HR and the knowledge graph to Claude via MCP and ships work know-how to everyone as skills. As of September 2026: 160 agents, 8,180 hours saved per month.",
     visual: {
       type: "image",
       src: "/projects/agent-kpi-demo.png",
@@ -51,11 +51,11 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
     question: "Services I planned, built and operated end to end",
     tagline: "Problem definition → Data structure design → Build → Operate & improve",
     summary:
-      "Services I designed, built and ran myself: PIM, one hub for product data, and RAG search that made strategy decks searchable.",
+      "Services I designed, built and ran myself: the company-wide integrated image platform, one hub for product data, and RAG search that made strategy decks searchable.",
     visual: {
       type: "image",
       src: "/projects/pim-pipeline.png",
-      alt: "Pipeline design: SAP BI → Snowflake → PIM DB → PIM system → in-house OMS → online channels, with generative AI preprocessing",
+      alt: "Pipeline design: SAP BI → Snowflake → image platform DB → image platform → in-house OMS → online channels, with generative AI preprocessing",
       width: 1667,
       height: 784,
       caption: "Company-wide Integrated Image Platform: generative-AI preprocessing and OMS integration pipeline"
@@ -93,13 +93,13 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       {"value":"100%","label":"Standard listings automated","note":"only events and promotions remain: 80% of time saved"}
     ],
     roles: [
-      "Defined what PIM manages: product code, name, material, color, size, price, inventory and images (model, flat-lay, thumbnail) as the single source of product truth",
+      "Defined what the integrated image platform manages: product code, name, material, color, size, price, inventory and images (model, flat-lay, thumbnail) as the single source of product truth",
       "Mapped where data is created and how it flows across SAP, BI, local storage, Google Drive and email",
       "Designed the generative-AI workflow: per-item keyword extraction, channel-specific names and promotional copy, image spec adaptation",
       "Turned interviews with MD, photo and ops teams into requirements for listing procedures and per-channel rules"
     ],
     background:
-      "Interviewing MD and AMD staff for three weeks and surveying their work showed that 54% of simple, repetitive work was ‘product listing and management’ (1,865 hours per month). The core bugs were ① product data scattered across SAP, BI, local folders, drives and email, and ② manual adjustment to each channel's different specs.\nTo solve this, a PIM (Product Information Management) system was built.",
+      "Interviewing MD and AMD staff for three weeks and surveying their work showed that 54% of simple, repetitive work was ‘product listing and management’ (1,865 hours per month). The core bugs were ① product data scattered across SAP, BI, local folders, drives and email, and ② manual adjustment to each channel's different specs.\nThe project set out to solve this.",
     system: {
       flowTitle: "Product listing flow",
       intro:
@@ -107,22 +107,22 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       figures: [
         {
           src: "/projects/pim-pipeline.png",
-          alt: "Pipeline design: SAP BI → Snowflake → PIM DB → PIM system → in-house OMS → online channels, with AI handling keyword extraction and channel-specific listing copy",
-          caption: "PIM pipeline: product data in → AI processing (keywords, channel listings) → OMS → online channels",
+          alt: "Pipeline design: SAP BI → Snowflake → image platform DB → image platform → in-house OMS → online channels, with AI handling keyword extraction and channel-specific listing copy",
+          caption: "Integrated image platform pipeline: product data in → AI processing (keywords, channel listings) → OMS → online channels",
           width: 1667,
           height: 784
         }
       ],
       layers: [
         { name: "1. Bulk upload", role: "Drag-and-drop bulk upload; re-uploads notify the detail-page AI.", items: [{ label: "Drag-and-drop bulk upload", note: "style code, color and cut type recognized from the file name" }, { label: "Re-upload", note: "added model shots etc. → the page-generation AI notified" }, { label: "Error badge", note: "unmatched files flagged on the home screen" }] },
-        { name: "2. Image management", role: "Type, traits and product data turn each image into a searchable asset.", items: [{ label: "① Image type", note: "front/back/detail, product/model/concept shot" }, { label: "② Product traits", note: "material · mood" }, { label: "③ Style-code link", note: "SAP data (name, price) joined with PIM disclosure data" }] },
+        { name: "2. Image management", role: "Type, traits and product data turn each image into a searchable asset.", items: [{ label: "① Image type", note: "front/back/detail, product/model/concept shot" }, { label: "② Product traits", note: "material · mood" }, { label: "③ Style-code link", note: "SAP data (name, price) joined with image platform disclosure data" }] },
         { name: "3. Auto-editing", role: "Images are adjusted automatically to channel specs.", items: [{ label: "① Resizing", note: "size · ratio" }, { label: "② Retouching", note: "brand logo removal, background removal and more" }] },
         { name: "4. Search", role: "Search by product data, similar image or plain language.", items: [{ label: "Product-information search", note: "style code · item name · color" }, { label: "Similar-image search", note: "find images with an image" }, { label: "AI search", note: "natural-language search for product images" }] },
         { name: "5. Download", role: "Select the images you need and download them in bulk.", items: [{ label: "Select and bulk download", note: undefined }, { label: "My Pocket", note: "keep frequently used images" }] },
         { name: "6. Share", role: "Bundle only the images you want to share and edit.", items: [{ label: "Shared image bundles", note: undefined }, { label: "Edit inside a shared bundle", note: undefined }] }
       ],
       flow: [
-        { title: "PLM product registration", body: "Base data registered in PLM flows into PIM automatically." },
+        { title: "PLM product registration", body: "Base data registered in PLM flows into the image platform automatically." },
         { title: "Receiving and inventory → new-product alert", body: "Receiving triggers an automatic new-product alert to the listing team." },
         { title: "Shooting · 3D generation → integrated image platform upload / API", body: "Shots (later 3D renders) go straight to the integrated image platform; no more Google upload or email." },
         { title: "Detail page production (AI)", body: "AI generates models, sales copy, detail pages and SEO tags." },
@@ -132,17 +132,17 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         { title: "Monitoring dashboard", body: "Blocks ‘received but never on sale’ errors; people only review." }
       ],
       principles: [
-        { title: "One source for product information", body: "Names, prices, materials, disclosure data and images originate only in PIM; channels consume them. Scattered data was core bug no. 1." },
+        { title: "One source for product information", body: "Names, prices, materials, disclosure data and images originate only in the image platform; channels consume them. Scattered data was core bug no. 1." },
         { title: "Agents, not people, fit channel formats", body: "Per-channel rules live in the data-optimization agent; when a rule changes, only the agent changes. This removes core bug no. 3, manual adjustment." },
         { title: "People supervise, they do not operate", body: "Standard listings are 100% automated. People review and feed back better AI logic, and only work that needs a platform MD, such as event listings and promotions, remains." },
-        { title: "Linked to PLM, from production to after-sales", body: "Connected with PLM, PIM gives integrated product analysis from production to post-sale service and becomes the system base for global channel expansion." }
+        { title: "Linked to PLM, from production to after-sales", body: "Connected with PLM, the image platform gives integrated product analysis from production to post-sale service and becomes the system base for global channel expansion." }
       ]
     },
     catalog: {
       title: "Business process: AS-IS → TO-BE, and the five changes",
       figures: [
         { src: "/projects/pim-asis-process.png", alt: "AS-IS listing process: merchandising (SAP registration) → logistics (receiving, inventory) → photo team (shooting, Google upload and email) → listing team (spotting new products from inventory, listing, sample requests, measuring and inner-tag checks, disclosure images, detail pages, thumbnails, the company mall image upload) → e-commerce team (the company mall, Sabangnet and the listing hub listings → Cafe24, Naver, Musinsa, Zigzag). Seven red boxes are the core bugs", caption: "[AS-IS] The old listing process: the same information re-typed by people across five teams. The seven red boxes are the core bugs", width: 1684, height: 1150 },
-        { src: "/projects/pim-tobe-process.png", alt: "TO-BE big picture after PLM: inside PIM, merchandising (PLM registration) → logistics (receiving, inventory) → listing team (new-product alert, listing) → photo team (shooting, 3D generation, hub upload / API) → detail page production (AI) → thumbnail and page upload → per-channel data-optimization agent → the listing hub listing → all channels", caption: "[TO-BE] The PIM flow after PLM: new-product alerts go out automatically, shots and 3D renders enter through the hub, AI builds the pages, a per-channel agent fits each format and the listing hub sends to every channel. Every red box (core bug) is gone", width: 1720, height: 1204 }
+        { src: "/projects/pim-tobe-process.png", alt: "TO-BE big picture after PLM: inside the image platform, merchandising (PLM registration) → logistics (receiving, inventory) → listing team (new-product alert, listing) → photo team (shooting, 3D generation, hub upload / API) → detail page production (AI) → thumbnail and page upload → per-channel data-optimization agent → the listing hub listing → all channels", caption: "[TO-BE] The the image platform flow after PLM: new-product alerts go out automatically, shots and 3D renders enter through the hub, AI builds the pages, a per-channel agent fits each format and the listing hub sends to every channel. Every red box (core bug) is gone", width: 1720, height: 1204 }
       ],
       items: [
         {
@@ -166,7 +166,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
           body: "Five teams passed the same information along, re-typing it each time."
         },
         {
-          name: "[TO-BE] After the system — one PIM flow",
+          name: "[TO-BE] After the system — one image platform flow",
           steps: [
             { text: "PLM product registration" },
             { text: "New-product alert as soon as receiving and inventory are registered" },
@@ -202,7 +202,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         }
       ]
     },
-    steps: ["3-week MD/AMD work census","Define the two core bugs","PIM attributes and data flow","AI detail pages and channel-optimization agent","the listing hub → all channels automatically"],
+    steps: ["3-week MD/AMD work census","Define the two core bugs","Image platform attributes and data flow","AI detail pages and channel-optimization agent","the listing hub → all channels automatically"],
     images: [
       { src: "/projects/pim-image-hub-home.png", alt: "Integrated image platform home: left menu (work status, style information, image information, detail pages, My Pocket, other materials, per-channel information, master data, permissions, trash, AI search), filters for upload date, uploader, brand and color with a registration-error badge, and a grid of 34,031 images", caption: "Integrated image platform home: upload date, uploader, brand and color filters plus a ‘registration error’ badge locate any of tens of thousands of images in the grid", width: 1197, height: 903 },
       { src: "/projects/pim-image-detail.png", alt: "List view with the image detail panel on the right: file name, brand, style code, colors, cut type, search keywords, size, uploader, upload time, and edit/download buttons", caption: "Image registration review and detail check", width: 1197, height: 883 },
@@ -215,7 +215,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       height: 1000
     },
     stack: ["Snowflake", "SAP", "OMS", "Generative AI"],
-    tags: ["PIM", "Product information", "AI channel listing"]
+    tags: ["Integrated image platform", "Product information", "AI channel listing"]
   },
   "md-ontology-design": {
     group: "② Ontology",
@@ -370,14 +370,15 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       { value: "98%", label: "Budget saved", note: "Self-built vector DB vs. allocated budget" },
       { value: "90%+", label: "Search accuracy" },
       { value: "4.9 / 5", label: "Satisfaction", note: "N=68" },
-      { value: "6.8× / week", label: "Usage in core teams", note: "N=68" }
+      { value: "7× / week", label: "Usage in core teams", note: "N=68" }
     ],
     roles: [
-      "Iterated on preprocessing and retrieval logic through repeated user tests",
-      "Expanded to the main screen of the group-wide training program"
+      "Converted strategy documents into JSON",
+      "Planned the UI/UX of the search screen",
+      "Iterated on preprocessing and retrieval logic through repeated user tests"
     ],
     background:
-      "An asset without a way to use it: fifteen years of high-quality strategy material had accumulated, but image-heavy PPTs and file-level storage left it unsearchable.",
+      "An asset without a way to use it: fifteen years of high-quality strategy material had accumulated, but image-heavy PPTs and file-level storage made it hard to search and use.",
     system: {
       intro:
         "Internal documents become JSON, vectorized with the OpenAI Embeddings API into a self-built vector DB. Only chunks close to the question go to the GPT API, which answers with sources.",
@@ -446,15 +447,6 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       width: 1871,
       height: 1245
     },
-    images: [
-      {
-        "src": "/projects/rag-search-architecture.png",
-        "alt": "Six-step structure: source files, OCR, splitting into search units, embeddings and vector DB, similar-document search, GPT answer with sources, plus result numbers",
-        "caption": "Search structure at a glance: source files → OCR → chunks → vector DB → similar-document search → answer with sources",
-        "width": 1800,
-        "height": 700
-      }
-    ],
     thumb: {
       src: "/projects/rag-search-thumb.png",
       alt: "The assistant character searching the knowledge bank",
@@ -471,10 +463,11 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     subtitle: "A knowledge-graph-based enterprise AI agent platform where a plain-language request is enough to build a web app connected straight to the company DW",
     period: "2025.11 – ongoing",
     purpose:
-      "With plain-language requests alone:\n1. Build web apps connected straight to the company DW\n2. Query BI data",
+      "1. Build web apps connected to the company DW with plain-language requests alone\n2. Query BI data in plain language",
     metrics: [
-      { value: "116", label: "Agents completed", note: "as of Sept 2026" },
-      { value: "8,180 h / month", label: "Work hours saved by agents", note: "as of Sept 2026" }
+      { value: "160", label: "Agents completed", note: "as of Sept 2026 (first month after launch)" },
+      { value: "8,180 h / month", label: "Work hours saved by agents", note: "as of Sept 2026 (first month after launch)" },
+      { value: "85% less", label: "Time to query in-house (BI) data", note: "AS-IS 27 min → TO-BE 4 min" }
     ],
     roles: [
       "Knowledge graph design: designed the schema from business-domain information and defined official metric definitions and golden SQL",
@@ -560,6 +553,15 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       ]
     },
     steps: ["Knowledge graph design and build", "MCP servers connecting the graph and the DW", "Skills and hooks", "Plugin rollout and offline training", "Weekly use-case broadcasts across affiliates"],
+    stepFigures: [
+      {
+        src: "/projects/agent-case-broadcast.png",
+        alt: "A use-case video for the in-house AI agent playing on an office elevator screen: 206 reviews analyzed automatically, with positive and negative factors summarized by channel",
+        caption: "Step 5 in practice: a weekly use-case video broadcast on office elevator screens (automatic positive/negative review analysis by channel)",
+        width: 1723,
+        height: 889
+      }
+    ],
     figureGroups: [
       {
         "title": "Building a dashboard by vibe coding with this tool",
@@ -593,7 +595,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "height": 1051
     },
     stack: ["MCP", "Claude Code Skill", "Snowflake", "Neo4j", "Cypher queries"],
-    tags: ["Knowledge graph", "MCP"]
+    tags: ["Knowledge graph", "MCP", "Text to SQL"]
   },
   "fashion-ai-platform": {
     group: "② AI Platform",
@@ -673,7 +675,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     purpose:
       "Agents built separately by brands such as seven brands are grouped into brand-level agents, standardized with a common contract, knowledge graph and evaluation gate, and finally integrated into one company-wide agent.",
     metrics: [
-      { value: "116", label: "Agents to integrate", note: "as of Sept 2026" },
+      { value: "160", label: "Agents to integrate", note: "as of Sept 2026" },
       { value: "9", label: "Job functions to connect" },
       { value: "3 phases", label: "Integration roadmap", note: "brand → division → company" }
     ],
@@ -936,7 +938,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     period: "2024.01 – 2024.02",
     purpose: "Redesigned product, content and channel messaging from an analysis of each customer group's entry motives, lifting channel sales.",
     background:
-      "The Naver channel was run on the assumption that more channels meant more sales, but growth had stalled. Live broadcasts stayed around 100 million KRW per show with a 0.8% purchase conversion rate, and exposure kept growing without anyone looking at who came in and why they left without buying.\nCustomer segments' entry motives and buying criteria had to come first, with products, content and pricing redesigned around them.",
+      "Growing online sales called for expanding into new online channels with a strategy to match. Online sales had been concentrated among customers aged 20–35, so a strategy to broaden both online channels and online customers was needed.",
     metrics: [
       { value: "137%", label: "Live-commerce conversion growth", note: "YoY, 0.8% → 1.9%" },
       { value: "190%", label: "Live-commerce sales per show", note: "YoY, ₩100M → ₩290M" }
@@ -944,7 +946,6 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     roles: [
       "Reinterpreted the limits of platform-led growth as a customer-structure problem",
       "Analyzed purchase criteria and entry motives of customers in their 40s",
-      "Concentrated marketing budget on strategic products",
       "Redesigned content messaging, review strategy and pricing around customers' purchase criteria"
     ],
     image: {
@@ -974,7 +975,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     purpose: "Redefined product strategy and marketing messages from sales, review and platform data by age group.",
     background:
       "Customers wanted better value for the same money, and padded jackets were shifting from natural to synthetic fill.\nOur planning carried over last year's top styles, missing customers under 30 and men in their 30s.",
-    metrics: [{ value: "100%", label: "Sales growth among customers under 30" }],
+    metrics: [{ value: "100%", label: "Sales growth among customers under 30", note: "25FW vs. 24FW" }],
     roles: ["Analyzed men's and women's needs for padding items", "Analyzed three years of our own padding sales by item", "Analyzed reviews of top-selling items on the three key platforms"],
     image: {
       src: "/projects/padding-search.png",
@@ -1012,7 +1013,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     metrics: [
       { value: "+8%", label: "Sales growth vs. same month last year", note: "from decline to growth" },
       { value: "▲320%", label: "FW denim order value", note: "4 styles added" },
-      { value: "6", label: "Customer-research methods run from zero", note: "46 interviews · 11 shop-alongs · 98 surveys · 177 garments · 2,100 outfits · review big data" }
+      { value: "6", label: "Customer-research methods run from zero", note: "46 interviews · 11 shop-alongs · 98 surveys · 177 garments · 2,013 outfits · review big data" }
     ],
     roleLead: "Proposed cutting formal-led products and rebuilding around shirts, denim and business casual.",
     roles: [

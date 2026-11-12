@@ -180,6 +180,9 @@ export function ProjectSections({ project, ui, lang }: { project: Project; ui: U
             <section className="grid gap-5">
               <h3 className="ko-keep border-l-4 border-ink pl-3 text-xl font-extrabold text-ink">{P.titles.process}</h3>
               <StepFlow steps={project.steps} />
+              {project.stepFigures?.map((figure) => (
+                <Figure key={figure.src} image={figure} />
+              ))}
             </section>
           ) : null}
 
