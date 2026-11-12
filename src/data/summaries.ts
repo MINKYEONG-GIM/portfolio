@@ -199,8 +199,8 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
   },
   "naver-channel-strategy": {
     "ko": {
-      "problem": "노출만 늘려 라이브 방송 구매전환율이 0.8%에 정체",
-      "action": "40대 고객 진입 동기 분석으로 상품·콘텐츠·가격 재설계",
+      "problem": "온라인 매출 성장을 위한 브랜드 신규 온라인 채널 확장 전략 필요",
+      "action": "40대 온라인 고객 구매 동기 분석으로 상품·콘텐츠·가격 재설계",
       "result": "라이브 구매전환율 0.8%→1.9%, 회당 매출 1억→2.9억",
       "glossary": [
         {
@@ -218,8 +218,8 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
       ]
     },
     "en": {
-      "problem": "Exposure kept growing, but live-commerce conversion stalled at 0.8%.",
-      "action": "Analyzed why customers in their 40s came in; redesigned products, content and pricing.",
+      "problem": "Growing online sales called for a strategy to expand the brand into a new online channel.",
+      "action": "Analyzed why online customers in their 40s buy; redesigned products, content and pricing.",
       "result": "Live conversion rose from 0.8% to 1.9%; sales per show from ₩100M to ₩290M.",
       "glossary": [
         {
@@ -240,8 +240,8 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
   "padding-rebranding-strategy": {
     "ko": {
       "problem": "전년 상위 품번만 이어 가 젊은 고객의 패딩 구매 이유를 놓침",
-      "action": "3년 매출·리뷰·검색 데이터로 핵심 상품과 마케팅 메시지 재정의",
-      "result": "20대 이하 고객 매출 100% 성장",
+      "action": "경쟁사 3개년 매출·리뷰 데이터 분석통해 핵심 상품과 마케팅 메시지 재정의",
+      "result": "20대 이하 고객 매출 100% 성장 (전년 대비)",
       "glossary": [
         {
           "term": "BP",
@@ -267,8 +267,8 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
     },
     "en": {
       "problem": "Planning repeated last year's best-sellers and missed why young buyers chose jackets.",
-      "action": "Read 3 years of sales, review and search data to redefine core products and messaging.",
-      "result": "Sales among customers under 30 grew 100%.",
+      "action": "Analyzed 3 years of competitor sales and review data to redefine core products and messaging.",
+      "result": "Sales among customers under 30 grew 100% (year on year).",
       "glossary": [
         {
           "term": "Benchmark",
@@ -291,9 +291,9 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
   },
   "china-brand-churn-analysis": {
     "ko": {
-      "problem": "격식 위주 상품을 유지해 매년 매출이 27%씩 감소",
+      "problem": "2년 연속 브랜드 매출이 27%씩 감소",
       "action": "비고객 인터뷰 등 6가지 고객조사로 원인 진단, 상품 현지화",
-      "result": "전년 동월 대비 매출 +8% 전환, FW 청바지 발주액 320% 증가",
+      "result": "전년 동월 대비 매출 +8% 로 성장 전환",
       "glossary": [
         {
           "term": "비고객 조사",
@@ -322,9 +322,9 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
       ]
     },
     "en": {
-      "problem": "The brand kept its formal-heavy lineup, and sales fell 27% every year.",
+      "problem": "Brand sales fell 27% for two years in a row.",
       "action": "Ran six customer studies, including non-customer interviews, and localized the products.",
-      "result": "Sales up 8% year on year, from decline to growth; FW denim order value up 320%.",
+      "result": "Sales turned to growth, up 8% on the same month last year.",
       "glossary": [
         {
           "term": "Non-customer research",
