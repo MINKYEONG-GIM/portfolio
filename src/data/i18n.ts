@@ -70,7 +70,7 @@ const UI = {
     pdf: {
       title: "포트폴리오 PDF",
       button: "PDF로 저장",
-      hint: "버튼을 누르면 인쇄 창이 열림. 대상(프린터)을 ‘PDF로 저장’으로 고르면 파일로 저장됨. 표지 → 목차 → 전체 요약 → 프로젝트별 상세 순서.",
+      hint: "버튼을 누르면 PDF 파일이 바로 저장됨. 표지 → 목차 → 전체 요약 → 프로젝트별 상세 순서.",
       back: "사이트로 돌아가기",
       cover: "서비스기획 포트폴리오",
       contents: "목차",
@@ -175,7 +175,7 @@ const UI = {
     pdf: {
       title: "Portfolio PDF",
       button: "Save as PDF",
-      hint: "The button opens the print dialog. Choose ‘Save as PDF’ as the destination to download a file. Order: cover → contents → summary → project details.",
+      hint: "The button downloads the PDF file directly. Order: cover → contents → summary → project details.",
       back: "Back to site",
       cover: "Service Planning Portfolio",
       contents: "Contents",

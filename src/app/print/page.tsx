@@ -8,7 +8,7 @@ import { summaryOf } from "@/data/summaries";
 import { byPart, getContent, statusOf, visibleProjects } from "@/data/content";
 import { t } from "@/data/i18n";
 import { isAdmin } from "@/lib/hub-auth";
-import { getLang } from "@/lib/lang";
+import { getLang, parseLang } from "@/lib/lang";
 
 /** 언어·관리자 쿠키를 읽으므로 요청마다 그립니다. */
 export const dynamic = "force-dynamic";
@@ -24,8 +24,10 @@ export async function generateMetadata(): Promise<Metadata> {
  * PDF 용 한 장짜리 문서: 표지 → 목차 → 전체 요약 → 프로젝트별 상세.
  * 화면에서는 위에 "PDF로 저장" 버튼이 보이고, 인쇄할 때는 버튼이 빠지고 섹션마다 새 페이지에서 시작합니다.
  */
-export default async function PrintPage() {
-  const [lang, admin] = await Promise.all([getLang(), isAdmin()]);
+export default async function PrintPage({ searchParams }: { searchParams: Promise<{ lang?: string }> }) {
+  // PDF 파일을 만들 때는 ?lang=en 처럼 주소로 언어를 지정합니다 (scripts/make-pdf.mjs)
+  const [cookieLang, admin, query] = await Promise.all([getLang(), isAdmin(), searchParams]);
+  const lang = query.lang ? parseLang(query.lang) : cookieLang;
   const ui = t(lang);
   const D = ui.pdf;
   const { profile, parts, projects: allProjects } = getContent(lang);
@@ -45,7 +47,7 @@ export default async function PrintPage() {
           <Link href="/" className="inline-flex items-center gap-1 text-sm font-bold text-muted hover:text-ink">
             <ArrowLeft className="h-4 w-4" /> {D.back}
           </Link>
-          <PrintButton label={D.button} />
+          <PrintButton label={D.button} lang={lang} />
         </div>
       </div>
 
@@ -183,7 +185,7 @@ export default async function PrintPage() {
       })}
 
       <div className="no-print mt-10 flex justify-center">
-        <PrintButton label={D.button} />
+        <PrintButton label={D.button} lang={lang} />
       </div>
     </div>
   );
