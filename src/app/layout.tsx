@@ -23,6 +23,8 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
         />
+        {/* PDF 저장용 인쇄 규칙 */}
+        <link rel="stylesheet" href="/print-layout.css" media="print" />
       </head>
       <body className="min-h-screen font-sans">{children}</body>
     </html>

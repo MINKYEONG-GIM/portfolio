@@ -16,7 +16,7 @@ export function withAdminRoles(project: Project, admin: boolean): Project {
 }
 
 /** 맨 위 한눈 요약: 문제 → 한 일 → 결과 세 칸과 용어 풀이 */
-export function ProjectSummary({ summary, P }: { summary: ProjectSummaryText | null; P: UIStrings["project"] }) {
+export function ProjectSummary({ summary, P, show = "all" }: { summary: ProjectSummaryText | null; P: UIStrings["project"]; show?: "all" | "steps" | "glossary" }) {
   if (!summary) return null;
   const rows = [
     { key: "problem", label: P.summaryLabels.problem, text: summary.problem },
@@ -25,6 +25,7 @@ export function ProjectSummary({ summary, P }: { summary: ProjectSummaryText | n
   ];
   return (
     <div className="grid gap-3">
+      {show !== "glossary" ? (
       <ol className="grid overflow-hidden rounded-2xl border border-line bg-paper sm:grid-cols-3">
         {rows.map((row, index) => (
           <li
@@ -39,7 +40,8 @@ export function ProjectSummary({ summary, P }: { summary: ProjectSummaryText | n
           </li>
         ))}
       </ol>
-      {summary.glossary.length ? (
+      ) : null}
+      {show !== "steps" && summary.glossary.length ? (
         <div className="rounded-2xl bg-surface px-5 py-4">
           <p className="text-xs font-black text-muted">{P.glossaryTitle}</p>
           <dl className="mt-2 grid gap-x-8 gap-y-1.5 sm:grid-cols-2">
@@ -71,7 +73,7 @@ export function ProjectFigures({ project, priority = false }: { project: Project
         {project.figureGroups.map((group, groupIndex) => (
           <section key={group.title} className="grid gap-3">
             <h3 className="ko-keep border-l-4 border-ink pl-3 text-lg font-extrabold text-ink">{group.title}</h3>
-            <div className={`grid items-start gap-4 ${GROUP_COLS[Math.min(group.images.length, 3)] ?? ""}`}>
+            <div className={`grid items-start gap-4 ${GROUP_COLS[Math.min(group.images.length, 3)] ?? ""} ${group.images.length > 1 ? "print-figures-2" : ""}`}>
               {group.images.map((image, imageIndex) => (
                 <Figure key={image.src} image={image} priority={priority && groupIndex === 0 && imageIndex === 0} />
               ))}

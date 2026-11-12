@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 import { PartIcon } from "@/components/part-icon";
+import { Figure } from "@/components/figure";
+import { PdfFit } from "@/components/pdf-fit";
 import { PrintButton } from "@/components/print-button";
 import { ProjectFigures, ProjectInfoTable, ProjectSections, ProjectSummary, withAdminRoles } from "@/components/project-body";
 import { summaryOf } from "@/data/summaries";
@@ -24,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
  * PDF 용 한 장짜리 문서: 표지 → 목차 → 전체 요약 → 프로젝트별 상세.
  * 화면에서는 위에 "PDF로 저장" 버튼이 보이고, 인쇄할 때는 버튼이 빠지고 섹션마다 새 페이지에서 시작합니다.
  */
-export default async function PrintPage({ searchParams }: { searchParams: Promise<{ lang?: string }> }) {
+export default async function PrintPage({ searchParams }: { searchParams: Promise<{ lang?: string; pdf?: string }> }) {
   // PDF 파일을 만들 때는 ?lang=en 처럼 주소로 언어를 지정합니다 (scripts/make-pdf.mjs)
   const [cookieLang, admin, query] = await Promise.all([getLang(), isAdmin(), searchParams]);
   const lang = query.lang ? parseLang(query.lang) : cookieLang;
@@ -37,6 +39,13 @@ export default async function PrintPage({ searchParams }: { searchParams: Promis
 
   return (
     <div className="print-root mx-auto max-w-[1120px] px-4 py-6 text-ink sm:px-6">
+      {/* PDF 파일을 만들 때: 인쇄 규칙을 화면에도 적용하고 쪽 배치를 맞춥니다 */}
+      {query.pdf === "1" ? (
+        <>
+          <link rel="stylesheet" href="/print-layout.css" />
+          <PdfFit />
+        </>
+      ) : null}
       {/* 화면에서만 보이는 안내 막대 */}
       <div className="no-print mb-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-line bg-surface px-5 py-4">
         <div>
@@ -113,7 +122,14 @@ export default async function PrintPage({ searchParams }: { searchParams: Promis
           <h2 className="mt-2 text-3xl font-black text-ink">{D.summary}</h2>
           <p className="ko-keep mt-3 max-w-3xl text-base leading-8 text-ink">{profile.intro}</p>
         </div>
-        <table className="oy-table text-sm">
+        <table className="oy-table print-summary-table text-sm">
+          <colgroup>
+            <col style={{ width: "5%" }} />
+            <col style={{ width: "13%" }} />
+            <col style={{ width: "45%" }} />
+            <col style={{ width: "14%" }} />
+            <col style={{ width: "23%" }} />
+          </colgroup>
           <thead>
             <tr>
               <th scope="col">{D.colNo}</th>
@@ -156,9 +172,15 @@ export default async function PrintPage({ searchParams }: { searchParams: Promis
       {projects.map((project) => {
         const part = parts[project.part - 1];
         const status = statusOf(project, ui.status);
+        // 대표 이미지가 따로 없으면 첫 번째 추가 이미지를 첫머리 오른쪽 단에 둡니다
+        const hero = project.figureGroups?.length ? undefined : project.image ?? project.images?.[0];
+        const restImages = (project.image ? project.images : project.images?.slice(1)) ?? [];
+        const heroInColumn = Boolean(hero);
         return (
           <article key={project.slug} className={`print-page part-${project.part} mt-10 grid gap-10 border border-line bg-paper p-8 sm:p-12`}>
-            <header className="grid gap-5">
+            <header className="print-header grid gap-5">
+              {/* 제목은 전체 너비, 그 아래는 왼쪽 요약 · 오른쪽 대표 이미지, 맨 아래는 기간·분야·기술 한 줄 */}
+              <div className="print-header-title grid gap-3">
               <div className="flex flex-wrap items-center gap-2 text-sm font-bold text-muted">
                 <span className="text-base font-black text-ink">No. {numberOf(project.slug)}</span>
                 <span>·</span>
@@ -174,10 +196,39 @@ export default async function PrintPage({ searchParams }: { searchParams: Promis
                 <h2 className="ko-keep mt-3 text-3xl font-black leading-tight text-ink">{project.title}</h2>
                 <p className="ko-keep mt-3 max-w-3xl text-lg font-semibold leading-8 text-ink">{project.subtitle}</p>
               </div>
-              <ProjectSummary summary={summaryOf(project.slug, lang)} P={ui.project} />
-              <ProjectFigures project={project} />
-              <ProjectInfoTable project={project} P={ui.project} />
+              </div>
+              <div className={`grid gap-5 ${heroInColumn ? "print-header-2" : ""}`}>
+                <div className="print-header-text grid gap-3">
+                  <ProjectSummary summary={summaryOf(project.slug, lang)} P={ui.project} show={heroInColumn ? "steps" : "all"} />
+                </div>
+                {hero ? (
+                  <div className="print-header-figure">
+                    <Figure image={hero} />
+                  </div>
+                ) : null}
+              </div>
+              {heroInColumn ? (
+                <div className="print-glossary">
+                  <ProjectSummary summary={summaryOf(project.slug, lang)} P={ui.project} show="glossary" />
+                </div>
+              ) : null}
+              <div className="print-info">
+                <ProjectInfoTable project={project} P={ui.project} />
+              </div>
             </header>
+            {heroInColumn ? (
+              restImages.length ? (
+                <div className={`grid items-start gap-4 ${restImages.length > 1 ? "print-figures-2" : ""}`}>
+                  {restImages.map((extra) => (
+                    <Figure key={extra.src} image={extra} />
+                  ))}
+                </div>
+              ) : null
+            ) : (
+              <div className={`grid gap-5 ${(project.figureGroups?.length ?? 0) > 1 ? "print-groups-2" : ""}`}>
+                <ProjectFigures project={project} />
+              </div>
+            )}
             <ProjectSections project={withAdminRoles(project, admin)} ui={ui} lang={lang} />
             <p className="ko-keep mt-6 text-xs font-semibold text-muted">{ui.footer.dataNotice}</p>
           </article>

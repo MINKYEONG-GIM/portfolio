@@ -17,10 +17,11 @@ for (const lang of ["ko", "en"]) {
   execFileSync(browser, [
     "--headless=new",
     "--disable-gpu",
+    "--window-size=1039,900",
     "--no-pdf-header-footer",
     "--virtual-time-budget=60000",
     `--print-to-pdf=${out}`,
-    `${BASE}/print?lang=${lang}`
+    `${BASE}/print?pdf=1&lang=${lang}`
   ], { stdio: "ignore" });
   console.log(out, Math.round(statSync(out).size / 1024) + " KB");
 }
