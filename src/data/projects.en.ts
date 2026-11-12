@@ -214,7 +214,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       width: 1000,
       height: 1000
     },
-    stack: ["Snowflake", "SAP", "OMS", "Generative AI"],
+    stack: ["-"],
     tags: ["Integrated image platform", "Product information", "AI channel listing"]
   },
   "md-ontology-design": {
@@ -230,10 +230,8 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       { value: "markdown rate · reorder quantity · reorder timing · allocation · main sales channel", label: "Wider answer scope (judgment questions)" }
     ],
     roles: [
-      "As a former merchandiser, drew out the five weekly decisions in interview form, without looking at tables, and organized business concepts and causal relations first",
-      "Re-positioned the existing knowledge graph as the lower data-link layer and designed the two-layer structure joined by ‘seen in data as’ relations",
-      "Defined the concept-table and relation-table formats (direction, attributes, exceptions)",
-      "Recorded thresholds as attributes rather than nodes, together with their scope (brand)"
+      "Organized business concepts and causal relations through interviews with practitioners",
+      "Defined the concept-table and relation-table formats (direction, attributes, exceptions)"
     ],
     background:
       "The company's unwritten rules and ways of working were not in it, so even with a semantic layer, users had to enter the company's judgment criteria again in every session.",
@@ -602,11 +600,11 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     title: "Fashion AI Platform: Web-App Sharing, Recommendation & Submission Portal",
     short: "Fashion AI platform",
     subtitle: "Where employees publish business web apps built with the in-house AI platform, get similar apps recommended by job, and submit results",
-    period: "2026 – in operation",
+    period: "2026.08 – in operation",
     purpose:
-      "Employees upload the business web apps they built with the in-house AI platform and browse apps from the same job\nCheck AI learning materials\nCheck their own AI capability level",
+      "Employees upload the business web apps they built with the in-house AI platform and browse apps from the same job, and check their own AI capability level",
     metrics: [
-      { value: "119 / month", label: "Web apps uploaded (monthly average)" }
+      { value: "119 / month", label: "Web apps uploaded (monthly average)", note: "since 2026.09" }
     ],
     roles: [
       "Service planning and information architecture",
@@ -621,8 +619,8 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     features: [
       {
         eyebrow: "Core feature 01",
-        title: "Home: tasks and recommendations the moment you arrive",
-        summary: "The first screen shows this month's tasks and the web apps that fit me, together",
+        title: "Home: tasks and recommended reference agents the moment you arrive",
+        summary: "The first screen shows this month's tasks together with web apps built by colleagues in the same job that fit me",
         items: [
           { title: "Best web-app banner", body: "Web apps with the BEST badge rotate in a six-slide banner with monthly hours saved and users" },
           { title: "Job and category icon filter", body: "One row of job icons (Fashion, Dashboard, Merchandising, Production…); tap to filter web apps" },
@@ -862,11 +860,11 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     period: "2026.02 – ongoing",
     purpose: "Designed training, onboarding and operational support to reach a 20% AX conversion rate across the organization.",
     background:
-      "To reach 20% AX adoption in-house, small-group, level-based offline training is repeated for employees who do not know where to start. Employees sign up per session to attend, and by the end of every session each person completes one web-based tool of their own.",
-    metrics: [{ value: "~500", label: "People trained in AI agents" }],
+      "To reach 20% AX adoption in-house, small-group, level-based offline training is repeated for employees who do not know where to start.",
+    metrics: [{ value: "500 in total", label: "AI agent training attendees" }, { value: "1 per session", label: "Each attendee finishes one web-based tool of their own by the end of every session" }],
     roles: [
       "Designed the curriculum and job-specific hands-on exercises",
-      "Built the training content: level-based concept training (AI literacy slides, in-house AI agent 2.0 decks, connector deck) and hands-on sessions (6-step build practice, vibe-coding guide)"
+      "Built the training content: level-based concept training and hands-on sessions (building a web dashboard)"
     ],
     featuresTitle: "Training content",
     features: [

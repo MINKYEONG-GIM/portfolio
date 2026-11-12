@@ -66,7 +66,10 @@ export default async function PortfolioLayout({ children }: { children: ReactNod
             <SideTabs parts={navParts} timeline={timeline} labels={labels} />
           </div>
         </aside>
-        <main className="min-w-0">{children}</main>
+        <main className="min-w-0">
+          {children}
+          <p className="ko-keep mt-10 text-xs font-semibold text-muted">{ui.footer.dataNotice}</p>
+        </main>
       </div>
       <SiteFooter lang={lang} profileName={profile.name} tagline={profile.tagline} />
     </>

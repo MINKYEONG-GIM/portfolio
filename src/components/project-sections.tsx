@@ -176,9 +176,19 @@ export function CatalogList({ items, triggerLabel }: { items: CatalogItem[]; tri
   );
 }
 
+/** 칸 수에 맞춰 마지막 줄까지 가로를 꽉 채우는 열 수 (넓은 화면 기준) */
+const FILL_COLS: Record<number, string> = { 1: "lg:grid-cols-1", 2: "lg:grid-cols-2", 3: "lg:grid-cols-3", 4: "lg:grid-cols-4", 5: "lg:grid-cols-5" };
+function fillCols(count: number) {
+  if (count <= 5) return FILL_COLS[Math.max(count, 1)];
+  if (count % 4 === 0) return FILL_COLS[4];
+  if (count % 3 === 0) return FILL_COLS[3];
+  if (count % 5 === 0) return FILL_COLS[5];
+  return FILL_COLS[4];
+}
+
 export function VisionSteps({ steps }: { steps: VisionStep[] }) {
   return (
-    <ol className="oy-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <ol className={`oy-grid grid-cols-1 md:grid-cols-2 ${fillCols(steps.length)}`}>
       {steps.map((step, index) => (
         <li key={step.title} className="bg-paper p-5">
           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[color:var(--accent)] text-sm font-black text-ink">{index + 1}</span>
@@ -224,7 +234,7 @@ export function SystemDiagram({ system, ui, showPrinciples = true }: { system: S
 
       <div className="grid gap-4">
         <h3 className="ko-keep text-xl font-extrabold text-ink">{system.flowTitle ?? ui.project.flowTitle}</h3>
-        <ol className="oy-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        <ol className={`oy-grid grid-cols-1 md:grid-cols-2 ${fillCols(system.flow.length)}`}>
           {system.flow.map((step, index) => (
             <li key={step.title} className="bg-paper p-4">
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-sm font-black text-paper">{index + 1}</span>

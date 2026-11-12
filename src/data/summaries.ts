@@ -11,13 +11,13 @@ export type ProjectSummaryText = {
 export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>> = {
   "ontology-agent-platform": {
     "ko": {
-      "problem": "AI 에이전트가 매출·이익 숫자를 틀려 신뢰와 사용률이 급락함",
+      "problem": "1. 사내 직원들이 만든 웹앱 도구에 회사 DW 데이터 연결이 안되니 도구를 제작해도 실제 시간 절감 효과가 미미하여 보안 이슈 최소화하며 개별 인원이 제작한 웹앱 도구에 사내 데이터를 연결 지원하고자 함\n2. 사내 BI 데이터 조회시 평균 소요시간 27분으로 BI 소요시간을 AI 통해 75% 절감하고자 함.",
       "action": "지표 정의를 지식그래프로 적재, 말로 사내 DW 연결 웹을 만드는 환경 구축",
       "result": "에이전트 160개 생성, 월 8,180시간 업무 절감(2026년 9월 기준)",
       "glossary": []
     },
     "en": {
-      "problem": "The in-house AI agent got sales and profit numbers wrong, and trust and usage collapsed.",
+      "problem": "1. Web apps built by employees could not connect to the company DW, so they saved little real time; the aim was to connect individually built web apps to in-house data while keeping security issues to a minimum.\n2. Querying in-house BI data took 27 minutes on average; the aim was to cut that time by 75% with AI.",
       "action": "Put metric definitions in a knowledge graph so a plain request builds a DW-linked web app.",
       "result": "160 agents built and 8,180 work hours saved per month (Sept 2026).",
       "glossary": []
@@ -99,7 +99,7 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
     "ko": {
       "problem": "AX 전환 20% 목표에도 직원 대부분이 어디서 시작할지 모름",
       "action": "수준별 소규모 반복 교육과 6단계 Agent 제작 실습 설계",
-      "result": "약 500명 교육, 세션마다 본인 웹 도구 1개씩 완성",
+      "result": "누적 500명 교육, 세션마다 본인 웹 도구 1개씩 완성",
       "glossary": [
         {
           "term": "AX",
@@ -114,7 +114,7 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
     "en": {
       "problem": "The goal was 20% AX adoption, but most employees didn't know where to start.",
       "action": "Designed small, level-based, repeated classes and a 6-step agent-building practice.",
-      "result": "About 500 people trained, each finishing one web tool of their own per session.",
+      "result": "500 people trained in total, each finishing one web tool of their own per session.",
       "glossary": [
         {
           "term": "AX",

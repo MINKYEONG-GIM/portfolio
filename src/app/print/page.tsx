@@ -56,6 +56,7 @@ export default async function PrintPage() {
           <h1 className="mt-6 text-5xl font-black leading-none tracking-tight text-ink sm:text-6xl">{profile.name}</h1>
           <p className="ko-keep mt-4 text-2xl font-extrabold leading-snug text-ink">{D.cover}</p>
           <p className="ko-keep mt-3 max-w-2xl text-base font-semibold leading-8 text-muted">{profile.tagline}</p>
+          <p className="ko-keep mt-3 text-xs font-semibold text-muted">{ui.footer.dataNotice}</p>
         </div>
         <ol className="grid gap-3 sm:grid-cols-2">
           {parts.map((part) => (
@@ -176,6 +177,7 @@ export default async function PrintPage() {
               <ProjectInfoTable project={project} P={ui.project} />
             </header>
             <ProjectSections project={withAdminRoles(project, admin)} ui={ui} lang={lang} />
+            <p className="ko-keep mt-6 text-xs font-semibold text-muted">{ui.footer.dataNotice}</p>
           </article>
         );
       })}

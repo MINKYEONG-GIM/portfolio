@@ -66,7 +66,7 @@ const UI = {
       prev: "이전 프로젝트",
       next: "다음 프로젝트"
     },
-    footer: { note: "각 프로젝트의 수치는 당시 기준." },
+    footer: { note: "각 프로젝트의 수치는 당시 기준.", dataNotice: "※ 이 포트폴리오에 표기된 모든 데이터는 예시 숫자입니다." },
     pdf: {
       title: "포트폴리오 PDF",
       button: "PDF로 저장",
@@ -171,7 +171,7 @@ const UI = {
       prev: "Previous project",
       next: "Next project"
     },
-    footer: { note: "Figures are as of each project's period." },
+    footer: { note: "Figures are as of each project's period.", dataNotice: "※ All data shown in this portfolio are example figures." },
     pdf: {
       title: "Portfolio PDF",
       button: "Save as PDF",

@@ -35,7 +35,7 @@ export function ProjectSummary({ summary, P }: { summary: ProjectSummaryText | n
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-ink text-[11px] text-paper">{index + 1}</span>
               {row.label}
             </span>
-            <p className="ko-keep text-base font-extrabold leading-7 text-ink">{row.text}</p>
+            <p className="ko-keep whitespace-pre-line text-base font-extrabold leading-7 text-ink">{row.text}</p>
           </li>
         ))}
       </ol>
