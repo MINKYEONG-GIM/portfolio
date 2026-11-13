@@ -131,7 +131,7 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
     "ko": {
       "problem": "직원이 만든 업무용 웹앱과 성과 정보가 여기저기 흩어져 있었음",
       "action": "웹앱 등록·월별 성과 제출을 잇는 사내 포털과 사용자 플로우 기획",
-      "result": "월 평균 119개 웹앱 업로드, 사내 AX 현황 데이터 자동 축적",
+      "result": "누적 160개 웹앱 업로드, 사내 AX 현황 데이터 자동 축적",
       "glossary": [
         {
           "term": "AX",
@@ -142,7 +142,7 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
     "en": {
       "problem": "Business web apps built by employees, and their results, were scattered.",
       "action": "Planned an in-house portal and user flow for web-app registration and monthly results.",
-      "result": "119 web apps uploaded per month on average, with AX data building up automatically.",
+      "result": "160 web apps uploaded in total, with AX data building up automatically.",
       "glossary": [
         {
           "term": "AX",

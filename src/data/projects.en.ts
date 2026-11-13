@@ -99,11 +99,11 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Turned interviews with MD, photo and ops teams into requirements for listing procedures and per-channel rules"
     ],
     background:
-      "Interviewing MD and AMD staff for three weeks and surveying their work showed that 54% of simple, repetitive work was ‘product listing and management’ (1,865 hours per month). The core bugs were ① product data scattered across SAP, BI, local folders, drives and email, and ② manual adjustment to each channel's different specs.\nThe project set out to solve this.",
+      "Interviewing MD and AMD staff for three weeks and surveying their work showed that 54% of simple, repetitive work was ‘product listing and management’ (1,865 hours per month). The core bugs were ① product data scattered across SAP, BI, local folders, drives and email, and ② manual adjustment to each channel's different specs.",
     system: {
       flowTitle: "Product listing flow",
       intro:
-        "Listing after receiving runs as one flow: images enter the platform, AI builds detail pages, per-channel agents fit each format and every channel receives the listing. Below: the integrated image platform's six layers.",
+        "Listing after receiving runs as one flow: images enter the platform, AI builds detail pages, per-channel agents fit each format and every channel receives the listing.",
       figures: [
         {
           src: "/projects/pim-pipeline.png",
@@ -604,7 +604,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     purpose:
       "Employees upload the business web apps they built with the in-house AI platform and browse apps from the same job, and check their own AI capability level",
     metrics: [
-      { value: "119 / month", label: "Web apps uploaded (monthly average)", note: "since 2026.09" }
+      { value: "160 total", label: "Web apps uploaded", note: "since 2026.09" }
     ],
     roles: [
       "Service planning and information architecture",
@@ -1010,8 +1010,6 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Cross-checked non-customer interviews, street-style surveys, review big data and social media to find why sales fell and whom to win, carried through to SS and FW product input.",
     metrics: [
       { value: "+8%", label: "Sales growth vs. same month last year", note: "from decline to growth" },
-      { value: "▲320%", label: "FW denim order value", note: "4 styles added" },
-      { value: "6", label: "Customer-research methods run from zero", note: "46 interviews · 11 shop-alongs · 98 surveys · 177 garments · 2,013 outfits · review big data" }
     ],
     roleLead: "Proposed cutting formal-led products and rebuilding around shirts, denim and business casual.",
     roles: [
