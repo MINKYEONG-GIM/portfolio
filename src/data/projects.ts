@@ -94,8 +94,8 @@ export const PARTS: Part[] = [
   {
     no: 1,
     code: "Part 01",
-    title: "전사 AI 플랫폼",
-    short: "전사 AI 플랫폼",
+    title: "전사 AI 인프라",
+    short: "전사 AI 인프라",
     question: "사내 AI 에이전트 통합 플랫폼이 무엇이고 어떻게 만들어졌는지",
     tagline: "Snowflake → 지식그래프 → MCP / 스킬 → 에이전트 플랫폼",
     summary:

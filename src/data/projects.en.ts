@@ -14,8 +14,8 @@ export const PROFILE_EN = {
 
 export const PARTS_EN: Record<number, Partial<Part>> = {
   1: {
-    title: "Enterprise AI Platform",
-    short: "Enterprise AI Platform",
+    title: "Enterprise AI Infrastructure",
+    short: "Enterprise AI Infrastructure",
     question: "What the in-house AI agent platform is and how it was built",
     tagline: "Snowflake → Knowledge graph → MCP / Skills → Agent platform",
     summary:
