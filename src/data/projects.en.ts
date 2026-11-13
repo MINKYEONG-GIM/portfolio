@@ -16,14 +16,14 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
   1: {
     title: "Enterprise AI Infrastructure",
     short: "Enterprise AI Infrastructure",
-    question: "What the in-house AI agent platform is and how it was built",
-    tagline: "Snowflake → Knowledge graph → MCP / Skills → Agent platform",
+    question: "What the in-house AI agent connection hub is and how it was built",
+    tagline: "Snowflake → Knowledge graph → MCP / Skills → Agent connection hub",
     summary:
       "Connects the DW, M365, HR and the knowledge graph to Claude via MCP and ships work know-how to everyone as skills. As of September 2026: 160 agents, 8,180 hours saved per month.",
     visual: {
       type: "image",
       src: "/projects/agent-kpi-demo.png",
-      alt: "Asking the in-house AI agent platform for a store's monthly sales in plain language; it looks up the metric definition in the knowledge graph, queries the DW and answers with sources",
+      alt: "Asking the in-house AI agent connection hub for a store's monthly sales in plain language; it looks up the metric definition in the knowledge graph, queries the DW and answers with sources",
       width: 1226,
       height: 1051,
       caption: "the in-house AI agent kpi-query skill: question → knowledge graph → DW query → sourced answer"
@@ -455,10 +455,10 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     tags: ["RAG", "Vector search", "Knowledge management"]
   },
   "agent-platform": {
-    group: "① Agent platform",
-    title: "Knowledge Graph-based Enterprise AI Agent Platform",
-    short: "AI agent platform (the in-house AI agent)",
-    subtitle: "A knowledge-graph-based enterprise AI agent platform where a plain-language request is enough to build a web app connected straight to the company DW",
+    group: "① Agent connection hub",
+    title: "Knowledge Graph-based Enterprise AI Agent Connection Hub",
+    short: "AI agent connection hub",
+    subtitle: "A knowledge-graph-based enterprise AI agent connection hub where a plain-language request is enough to build a web app connected straight to the company DW",
     period: "2025.11 – ongoing",
     purpose:
       "1. Build web apps connected to the company DW with plain-language requests alone\n2. Query BI data in plain language",
@@ -476,7 +476,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "1. Web apps built by employees could not connect to the company DW, so they saved little real time; the aim was to connect individually built web apps to in-house data while keeping security issues to a minimum.\n2. Querying in-house BI data took 27 minutes on average; the aim was to cut that time by 75% with AI.",
     system: {
       intro:
-        "This platform puts agents on top of a knowledge graph. Built on a Neo4j knowledge graph, it processes each question in the order organization instructions → hooks → skills → MCP tools → gateway → knowledge graph and internal data.",
+        "This hub puts agents on top of a knowledge graph. Built on a Neo4j knowledge graph, it processes each question in the order organization instructions → hooks → skills → MCP tools → gateway → knowledge graph and internal data.",
       layers: [
         {
           name: "1. Client Layer",
@@ -684,7 +684,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Promotion gate: only agents that pass evaluation become skills the central harness can call"
     ],
     background:
-      "More than 100 per-brand, per-job agents were built on the in-house AI agent platform but the same sales metric came to be defined differently by brand and the same task was built separately per brand. To merge scattered agents into one, rules and metrics must be standardized first.",
+      "More than 100 per-brand, per-job agents were built on the in-house AI agent connection hub but the same sales metric came to be defined differently by brand and the same task was built separately per brand. To merge scattered agents into one, rules and metrics must be standardized first.",
     features: [
       {
         eyebrow: "Phase 1",

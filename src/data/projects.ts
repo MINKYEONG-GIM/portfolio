@@ -96,14 +96,14 @@ export const PARTS: Part[] = [
     code: "Part 01",
     title: "전사 AI 인프라",
     short: "전사 AI 인프라",
-    question: "사내 AI 에이전트 통합 플랫폼이 무엇이고 어떻게 만들어졌는지",
-    tagline: "Snowflake → 지식그래프 → MCP / 스킬 → 에이전트 플랫폼",
+    question: "사내 AI 에이전트 연결 허브가 무엇이고 어떻게 만들어졌는지",
+    tagline: "Snowflake → 지식그래프 → MCP / 스킬 → 에이전트 연결 허브",
     summary:
       "사내 데이터를 MCP로 Claude에 연결하고 노하우를 스킬로 전원 배포. 2026년 9월 기준 Agent 160개, 월 8,180시간 절감.",
     visual: {
       type: "image",
       src: "/projects/agent-kpi-demo.png",
-      alt: "사내 AI 에이전트 플랫폼에서 자연어로 매장 매출을 물으면 지식그래프에서 지표 정의를 찾고 DW를 조회해 출처와 함께 답하는 화면",
+      alt: "사내 AI 에이전트 연결 허브에서 자연어로 매장 매출을 물으면 지식그래프에서 지표 정의를 찾고 DW를 조회해 출처와 함께 답하는 화면",
       width: 1226,
       height: 1051,
       caption: "사내 AI 에이전트 kpi-query 스킬: 질문 → 지식그래프 → DW 조회 → 출처 있는 답"
@@ -176,10 +176,10 @@ export const PROJECTS: Project[] = [
   {
     slug: "agent-platform",
     part: 1,
-    group: "① 에이전트 플랫폼",
-    title: "지식그래프 기반 사내 AI 에이전트 통합 플랫폼",
-    short: "AI 에이전트 플랫폼(사내 AI 에이전트)",
-    subtitle: "자연어 요청만으로 사내 DW에 바로 연결된 웹을 만들 수 있는, 지식그래프 기반 엔터프라이즈 AI 에이전트 플랫폼",
+    group: "① 에이전트 연결 허브",
+    title: "지식그래프 기반 사내 AI 에이전트 연결 허브",
+    short: "AI 에이전트 연결 허브",
+    subtitle: "자연어 요청만으로 사내 DW에 바로 연결된 웹을 만들 수 있는, 지식그래프 기반 사내 AI 에이전트 연결 허브",
     period: "2025.11 ~ 진행 중",
     purpose:
       "1. 자연어 요청만으로 사내 DW에 연결된 웹앱 제작\n2. 자연어로 BI 데이터 조회 가능한 환경 구축",
@@ -469,7 +469,7 @@ export const PROJECTS: Project[] = [
       "승격 게이트 운영: 평가를 통과한 Agent만 중심 하네스가 호출하는 스킬로 올림"
     ],
     background:
-      "사내 AI 에이전트 통합 플랫폼 위에서 브랜드별 직무별 Agent가 100개 넘게 만들어졌지만, 같은 매출 지표를 브랜드마다 다르게 정의하고 같은 업무를 브랜드마다 따로 만든 경우가 생김. 흩어진 Agent를 묶어 하나로 가려면 규칙과 지표를 먼저 표준화 필요.",
+      "사내 AI 에이전트 연결 허브 위에서 브랜드별 직무별 Agent가 100개 넘게 만들어졌지만, 같은 매출 지표를 브랜드마다 다르게 정의하고 같은 업무를 브랜드마다 따로 만든 경우가 생김. 흩어진 Agent를 묶어 하나로 가려면 규칙과 지표를 먼저 표준화 필요.",
     features: [
       {
         eyebrow: "1단계",
