@@ -26,16 +26,16 @@ export const PARTS_EN: Record<number, Partial<Part>> = {
       alt: "Asking the in-house AI agent connection hub for a store's monthly sales in plain language; it looks up the metric definition in the knowledge graph, queries the DW and answers with sources",
       width: 1226,
       height: 1051,
-      caption: "the in-house AI agent kpi-query skill: question → knowledge graph → DW query → sourced answer"
+      caption: "The in-house AI agent kpi-query skill: question → knowledge graph → DW query → sourced answer"
     }
   },
   2: {
     title: "AI Talent Management",
     short: "AI Talent Management",
-    question: "How people were trained, gathered and evaluated",
-    tagline: "Training → AI talent development platform → AI talent evaluation",
+    question: "How people were trained and how their work was gathered",
+    tagline: "Training → Fashion AI Platform → monthly results",
     summary:
-      "Training builds agent makers, the AI platform gathers their work, and a 100-point system evaluates it to build the AI talent pool: the basis for rewards, funding and placement.",
+      "Training builds agent makers, and the Fashion AI Platform gathers their work and monthly results so the company's AX status builds up automatically.",
     visual: {
       type: "image",
       src: "/projects/ax-training.jpg",
@@ -89,7 +89,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     purpose:
       "Manage every product image in the company (model shots, flat-lay shots, thumbnails) in one company-wide integrated image platform, and let AI adapt registered images and product data to each channel's specs and send them straight to online channels. The goal is to end re-entering the same information channel by channel.",
     metrics: [
-      {"value":"6 days → 1 hour","label":"Listing lead time","note":"from receiving to on sale"},
+      {"value":"6 days → ≤1 hour","label":"Listing lead time","note":"from receiving to on sale"},
       {"value":"100%","label":"Standard listings automated","note":"only events and promotions remain: 80% of time saved"}
     ],
     roles: [
@@ -99,7 +99,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Turned interviews with MD, photo and ops teams into requirements for listing procedures and per-channel rules"
     ],
     background:
-      "Interviewing MD and AMD staff for three weeks and surveying their work showed that 54% of simple, repetitive work was ‘product listing and management’ (1,865 hours per month). The core bugs were ① product data scattered across SAP, BI, local folders, drives and email, and ② manual adjustment to each channel's different specs.",
+      "Interviewing MD and AMD staff for three weeks and surveying their work showed that 54% of simple, repetitive work was ‘product listing and management’ (1,865 hours per month). The two root causes were ① product data scattered across SAP, BI, local folders, drives and email, and ② manual adjustment to each channel's different specs.",
     system: {
       flowTitle: "Product listing flow",
       intro:
@@ -128,12 +128,12 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         { title: "Detail page production (AI)", body: "AI generates models, sales copy, detail pages and SEO tags." },
         { title: "Thumbnail and detail-page upload", body: "Thumbnails and detail pages attach to the style code automatically." },
         { title: "Per-channel data-optimization agent", body: "An agent converts names, categories and image specs for each channel." },
-        { title: "the listing hub listing → all channels", body: "One listing goes to every channel: the company mall, Naver, Musinsa and more." },
+        { title: "Listing-hub registration → all channels", body: "One listing goes to every channel: the company mall, Naver, Musinsa and more." },
         { title: "Monitoring dashboard", body: "Blocks ‘received but never on sale’ errors; people only review." }
       ],
       principles: [
-        { title: "One source for product information", body: "Names, prices, materials, disclosure data and images originate only in the image platform; channels consume them. Scattered data was core bug no. 1." },
-        { title: "Agents, not people, fit channel formats", body: "Per-channel rules live in the data-optimization agent; when a rule changes, only the agent changes. This removes core bug no. 3, manual adjustment." },
+        { title: "One source for product information", body: "Names, prices, materials, disclosure data and images originate only in the image platform; channels consume them. Scattered data was root cause ①." },
+        { title: "Agents, not people, fit channel formats", body: "Per-channel rules live in the data-optimization agent; when a rule changes, only the agent changes. This removes root cause ②, manual per-channel adjustment." },
         { title: "People supervise, they do not operate", body: "Standard listings are 100% automated. People review and feed back better AI logic, and only work that needs a platform MD, such as event listings and promotions, remains." },
         { title: "Linked to PLM, from production to after-sales", body: "Connected with PLM, the image platform gives integrated product analysis from production to post-sale service and becomes the system base for global channel expansion." }
       ]
@@ -141,12 +141,12 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     catalog: {
       title: "Business process: AS-IS → TO-BE, and the five changes",
       figures: [
-        { src: "/projects/pim-asis-process.png", alt: "AS-IS listing process: merchandising (SAP registration) → logistics (receiving, inventory) → photo team (shooting, Google upload and email) → listing team (spotting new products from inventory, listing, sample requests, measuring and inner-tag checks, disclosure images, detail pages, thumbnails, the company mall image upload) → e-commerce team (the company mall, Sabangnet and the listing hub listings → Cafe24, Naver, Musinsa, Zigzag). Seven red boxes are the core bugs", caption: "[AS-IS] The old listing process: the same information re-typed by people across five teams. The seven red boxes are the core bugs", width: 1684, height: 1150 },
-        { src: "/projects/pim-tobe-process.png", alt: "TO-BE big picture after PLM: inside the image platform, merchandising (PLM registration) → logistics (receiving, inventory) → listing team (new-product alert, listing) → photo team (shooting, 3D generation, hub upload / API) → detail page production (AI) → thumbnail and page upload → per-channel data-optimization agent → the listing hub listing → all channels", caption: "[TO-BE] The the image platform flow after PLM: new-product alerts go out automatically, shots and 3D renders enter through the hub, AI builds the pages, a per-channel agent fits each format and the listing hub sends to every channel. Every red box (core bug) is gone", width: 1720, height: 1204 }
+        { src: "/projects/pim-asis-process.png", alt: "AS-IS listing process: merchandising (SAP registration) → logistics (receiving, inventory) → photo team (shooting, Google upload and email) → listing team (spotting new products from inventory, listing, sample requests, measuring and inner-tag checks, disclosure images, detail pages, thumbnails, the company mall image upload) → e-commerce team (the company mall, Sabangnet and the listing hub listings → Cafe24, Naver, Musinsa, Zigzag). Seven red boxes are the bug points", caption: "[AS-IS] The old listing process: the same information re-typed by people across five teams. The seven red boxes are the bug points", width: 1684, height: 1150 },
+        { src: "/projects/pim-tobe-process.png", alt: "TO-BE big picture after PLM: inside the image platform, merchandising (PLM registration) → logistics (receiving, inventory) → listing team (new-product alert, listing) → photo team (shooting, 3D generation, hub upload / API) → detail page production (AI) → thumbnail and page upload → per-channel data-optimization agent → listing-hub registration → all channels", caption: "[TO-BE] The image platform flow after PLM: new-product alerts go out automatically, shots and 3D renders enter through the hub, AI builds the pages, a per-channel agent fits each format and the listing hub sends to every channel. Every red box (bug point) is gone", width: 1720, height: 1204 }
       ],
       items: [
         {
-          name: "[AS-IS] The previous business process — seven core bugs",
+          name: "[AS-IS] The previous business process — seven bug points",
           steps: [
             { text: "Merchandising registers the product in SAP" },
             { text: "Logistics registers receiving and inventory" },
@@ -202,7 +202,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
         }
       ]
     },
-    steps: ["3-week MD/AMD work census","Define the two core bugs","Image platform attributes and data flow","AI detail pages and channel-optimization agent","the listing hub → all channels automatically"],
+    steps: ["3-week MD/AMD work census","Define the two root causes","Image platform attributes and data flow","AI detail pages and channel-optimization agent","Listing hub → all channels automatically"],
     images: [
       { src: "/projects/pim-image-hub-home.png", alt: "Integrated image platform home: left menu (work status, style information, image information, detail pages, My Pocket, other materials, per-channel information, master data, permissions, trash, AI search), filters for upload date, uploader, brand and color with a registration-error badge, and a grid of 34,031 images", caption: "Integrated image platform home: upload date, uploader, brand and color filters plus a ‘registration error’ badge locate any of tens of thousands of images in the grid", width: 1197, height: 903 },
       { src: "/projects/pim-image-detail.png", alt: "List view with the image detail panel on the right: file name, brand, style code, colors, cut type, search keywords, size, uploader, upload time, and edit/download buttons", caption: "Image registration review and detail check", width: 1197, height: 883 },
@@ -214,7 +214,6 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       width: 1000,
       height: 1000
     },
-    stack: ["-"],
     tags: ["Integrated image platform", "Product information", "AI channel listing"]
   },
   "md-ontology-design": {
@@ -223,7 +222,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     short: "MD business ontology",
     subtitle: "From a semantic layer centered on DW tables and columns to a business ontology with business-judgment concepts added",
     period: "2026.11 – ongoing",
-    status: "ongoing",
+    status: "Ongoing",
     purpose:
       "Extends the range of answers to judgment questions by building an ontology that holds business know-how on top of the existing data catalog (semantic layer)",
     metrics: [
@@ -463,7 +462,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     purpose:
       "1. Build web apps connected to the company DW with plain-language requests alone\n2. Query BI data in plain language",
     metrics: [
-      { value: "160", label: "Agents completed", note: "as of Sept 2026 (first month after launch)" },
+      { value: "160", label: "Agents (business web apps) completed", note: "as of Sept 2026 (first month after launch)" },
       { value: "8,180 h / month", label: "Work hours saved by agents", note: "as of Sept 2026 (first month after launch)" },
       { value: "85% less", label: "Time to query in-house (BI) data", note: "AS-IS 27 min → TO-BE 4 min" }
     ],
@@ -483,7 +482,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
           role: "The company plugin in Claude Desktop, Claude Code or Cowork",
           items: [
             { label: "Claude Desktop · Code · Cowork" },
-            { label: "company plugin", note: "bundle of skills, hooks and MCP connectors" },
+            { label: "Company plugin", note: "bundle of skills, hooks and MCP connectors" },
             { label: "Org connector registration", note: "deployed per organization by admins" },
             { label: "SSO login", note: "queries run with the user's own permissions" }
           ]
@@ -534,7 +533,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
             { label: "Neo4j knowledge graph", note: "metric definitions, formulas, joins, golden SQL" },
             { label: "Snowflake DW", note: "standard data models (aggregate tables)" },
             { label: "M365 Graph", note: "mail and calendar" },
-            { label: "the in-house PaaS", note: "one-click deployment of employee-built apps" }
+            { label: "In-house PaaS", note: "one-click deployment of employee-built apps" }
           ]
         }
       ],
@@ -579,7 +578,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
           {
             "src": "/projects/agent-kpi-demo.png",
             "alt": "Asking Brand A Gangnam's May sales in natural language with the kpi-query skill: the metric definition is resolved from the knowledge graph, the DW is queried and the answer cites its sources",
-            "caption": "kpi-query skill: natural-language question → metric definition resolved from the knowledge graph → DW query → answer with sources",
+            "caption": "The kpi-query skill: natural-language question → metric definition resolved from the knowledge graph → DW query → answer with sources",
             "width": 1226,
             "height": 1051
           }
@@ -604,7 +603,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     purpose:
       "Employees upload the business web apps they built with the in-house AI platform and browse apps from the same job, and check their own AI capability level",
     metrics: [
-      { value: "160 total", label: "Web apps uploaded", note: "since 2026.09" }
+      { value: "160 total", label: "Agents (web apps) uploaded", note: "since 2026.09" }
     ],
     roles: [
       "Service planning and information architecture",
@@ -660,7 +659,6 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       width: 1000,
       height: 1000
     },
-    stack: ["-"],
     tags: ["Registration & submission", "Next.js"]
   },
   "enterprise-agent-integration": {
@@ -671,7 +669,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     period: "2026 – ongoing",
     status: "Ongoing",
     purpose:
-      "Agents built separately by brands such as seven brands are grouped into brand-level agents, standardized with a common contract, knowledge graph and evaluation gate, and finally integrated into one company-wide agent.",
+      "Agents built separately by seven brands are grouped into brand-level agents, standardized with a common contract, knowledge graph and evaluation gate, and finally integrated into one company-wide agent.",
     metrics: [
       { value: "160", label: "Agents to integrate", note: "as of Sept 2026" },
       { value: "9", label: "Job functions to connect" },
@@ -882,7 +880,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
             "body": "Beginner, intermediate and advanced classes teach concepts at the right level, removing the problem of a single lecture being hard for beginners and dull for experienced staff."
           },
           {
-            "title": "in-house AI agent 2.0 training decks",
+            "title": "In-house AI agent 2.0 training decks",
             "body": "Classroom decks in two sessions: session 1 (concepts, 41 slides) and session 2 (hands-on, 30 slides)."
           },
           {
@@ -966,7 +964,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
   },
   "padding-rebranding-strategy": {
     group: "Product portfolio strategy",
-    title: "the sports brand Padding Rebranding Strategy",
+    title: "Sports Brand Padded-Jacket Rebranding Strategy",
     short: "Padded-jacket rebranding",
     subtitle: "Designing core products from big data",
     period: "2024.11 – 2024.12",
@@ -1020,7 +1018,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
       "Decided SS and FW inputs (type, fit, color, fabric) with the local merchandising team"
     ],
     background:
-      "The brand kept decade-old hits such as glossy colored blouses, and sales fell 27% a year.\nOffice dress had gone casual, but only formal suiting remained: clothes ‘worn one day a week’.",
+      "The brand kept decade-old hits such as glossy colored blouses, and sales fell 27% for two years in a row.\nOffice dress had gone casual, but only formal suiting remained: clothes ‘worn one day a week’.",
     catalog: {
       title: "Findings and strategy",
       items: [
@@ -1036,7 +1034,7 @@ export const PROJECTS_EN: Record<string, Partial<Project>> = {
     steps: ["Six non-customer studies", "Diagnosis: once-a-week wear · customer mismatch", "PART ① brand casual principles", "PART ② Localizing to white-collar needs", "Basics and differentiators per item", "SS · FW product input"],
     image: {
       src: "/projects/scofield-store.png",
-      alt: "A the brand store inside a department store in China",
+      alt: "A brand store inside a department store in China",
       caption: "Store in China",
       width: 897,
       height: 581

@@ -102,10 +102,6 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
       "result": "누적 500명 교육, 세션마다 본인 웹 도구 1개씩 완성",
       "glossary": [
         {
-          "term": "AX",
-          "desc": "AI로 일하는 방식을 바꾸는 AI 전환"
-        },
-        {
           "term": "핸즈온 세션",
           "desc": "직접 만들어 보는 실습형 교육"
         }
@@ -117,10 +113,6 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
       "result": "500 people trained in total, each finishing one web tool of their own per session.",
       "glossary": [
         {
-          "term": "AX",
-          "desc": "AI transformation: changing how work is done with AI"
-        },
-        {
           "term": "Hands-on session",
           "desc": "A practice class where people build things themselves"
         }
@@ -131,24 +123,14 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
     "ko": {
       "problem": "직원이 만든 업무용 웹앱과 성과 정보가 여기저기 흩어져 있었음",
       "action": "웹앱 등록·월별 성과 제출을 잇는 사내 포털과 사용자 플로우 기획",
-      "result": "누적 160개 웹앱 업로드, 사내 AX 현황 데이터 자동 축적",
-      "glossary": [
-        {
-          "term": "AX",
-          "desc": "AI로 일하는 방식을 바꾸는 AI 전환"
-        }
-      ]
+      "result": "누적 160개 에이전트(웹앱) 업로드, 사내 AX 현황 데이터 자동 축적",
+      "glossary": []
     },
     "en": {
       "problem": "Business web apps built by employees, and their results, were scattered.",
       "action": "Planned an in-house portal and user flow for web-app registration and monthly results.",
-      "result": "160 web apps uploaded in total, with AX data building up automatically.",
-      "glossary": [
-        {
-          "term": "AX",
-          "desc": "AI transformation: changing how work is done with AI"
-        }
-      ]
+      "result": "160 agents (web apps) uploaded in total, with AX data building up automatically.",
+      "glossary": []
     }
   },
   "pim-data-integration": {
@@ -170,7 +152,7 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
     "en": {
       "problem": "Scattered product data was re-keyed by hand per channel: 54% of repetitive work.",
       "action": "Designed a flow where a company-wide integrated image platform and AI format listings and send them to every channel.",
-      "result": "Listing lead time cut from 6 days to 1 hour; standard listings 100% automated.",
+      "result": "Listing lead time cut from 6 days to at most 1 hour; standard listings 100% automated.",
       "glossary": [
         {
           "term": "Lead time",
@@ -240,7 +222,7 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
   "padding-rebranding-strategy": {
     "ko": {
       "problem": "전년 상위 품번만 이어 가 젊은 고객의 패딩 구매 이유를 놓침",
-      "action": "경쟁사 3개년 매출·리뷰 데이터 분석통해 핵심 상품과 마케팅 메시지 재정의",
+      "action": "자사 3개년 매출과 경쟁사·플랫폼 리뷰 데이터를 분석해 핵심 상품과 마케팅 메시지 재정의",
       "result": "20대 이하 고객 매출 100% 성장 (전년 대비)",
       "glossary": [
         {
@@ -267,7 +249,7 @@ export const SUMMARIES: Record<string, Partial<Record<Lang, ProjectSummaryText>>
     },
     "en": {
       "problem": "Planning repeated last year's best-sellers and missed why young buyers chose jackets.",
-      "action": "Analyzed 3 years of competitor sales and review data to redefine core products and messaging.",
+      "action": "Analyzed 3 years of our own sales plus competitor and platform review data to redefine core products and messaging.",
       "result": "Sales among customers under 30 grew 100% (year on year).",
       "glossary": [
         {

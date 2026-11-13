@@ -1,58 +1,103 @@
 /**
- * /deck 슬라이드에 프로젝트 내용을 순서대로 채우는 인라인 스크립트.
+ * /deck 슬라이드에 프로젝트 내용을 채우는 인라인 스크립트.
  * (React 하이드레이션을 기다리지 않고 페이지가 다 불러와지면 바로 실행되도록 일반 <script> 로 넣습니다)
  *
- * 프로젝트마다 숨겨 둔 덩어리(.dk-blk)를 1장 → 2장의 오른쪽 칸(.dk-flow)에 차례로 넣고,
- * 칸이 차면 같은 머리글을 단 다음 장(전체 폭)을 만들어 이어 넣습니다.
- *  - data-wide 덩어리(그림·표·도식)는 좁은 오른쪽 칸에 넣지 않고 전체 폭 장으로 넘깁니다.
- *  - data-head 덩어리(소제목)는 바로 뒤 덩어리와 같은 장에 있도록 함께 넘깁니다.
+ * 모든 프로젝트가 같은 순서: 표지 → 개요 → 상세 내용(최대 DETAIL_LIMIT 장) → 부록
+ *  - 개요: .dk-pool-ov 덩어리를 개요 장 오른쪽 칸에 넣고, 넘치면 글자를 조금씩 줄입니다.
+ *  - 상세 내용: .dk-pool-detail 덩어리를 2단(왼쪽 → 오른쪽) 장에 차례로 넣고, 칸이 차면 다음 장을 만듭니다.
+ *    data-head 덩어리(소제목)는 바로 뒤 덩어리와 같은 칸에 있도록 함께 넘깁니다.
+ *    장 수가 넘치면 data-fit 단계를 올려(그림·간격·글자를 줄여) 처음부터 다시 배치합니다.
  * 끝나면 쪽 번호를 매기고 <html data-pdf-ready="1"> 을 붙입니다.
  */
 function layoutDeck() {
+  const DETAIL_LIMIT = 2;
+  const LEVELS = 6;
   const overflows = (region: HTMLElement) => region.scrollHeight > region.clientHeight + 1;
-  const isWide = (region: HTMLElement) => region.classList.contains("dk-flow-wide");
 
+  const fits: string[] = [];
   document.querySelectorAll<HTMLElement>(".dk-project").forEach((project) => {
-    const pool = project.querySelector<HTMLElement>(".dk-pool");
     const proto = project.querySelector<HTMLElement>(".dk-proto");
-    if (!pool || !proto) return;
-    const regions = Array.from(project.querySelectorAll<HTMLElement>(".dk-slide:not(.dk-proto) .dk-flow"));
-    let lastSlide = (regions[regions.length - 1]?.closest(".dk-slide") as HTMLElement) ?? proto;
-    let current = 0;
-    const newRegion = () => {
-      const slide = proto.cloneNode(true) as HTMLElement;
-      slide.classList.remove("dk-proto");
-      lastSlide.after(slide);
-      lastSlide = slide;
-      const region = slide.querySelector<HTMLElement>(".dk-flow")!;
-      regions.push(region);
-      return region;
-    };
-    const regionAt = (index: number) => regions[index] ?? newRegion();
+    const overview = project.querySelector<HTMLElement>(".dk-slide:not(.dk-pcover):not(.dk-proto):not(.dk-appendix)");
+    const ovPool = project.querySelector<HTMLElement>(".dk-pool-ov");
+    const pool = project.querySelector<HTMLElement>(".dk-pool-detail");
+    if (!proto || !overview || !ovPool || !pool) return;
 
-    (Array.from(pool.children) as HTMLElement[]).forEach((block) => {
-      const wide = block.hasAttribute("data-wide");
-      while (wide && !isWide(regionAt(current))) current++;
-      let region = regionAt(current);
-      region.appendChild(block);
-      if (!overflows(region) || region.children.length === 1) return;
-      // 다음 장으로: 바로 앞 소제목도 함께
-      const carry: HTMLElement[] = [block];
-      let prev = block.previousElementSibling as HTMLElement | null;
-      while (prev && prev.hasAttribute("data-head") && region.children.length > carry.length) {
-        carry.unshift(prev);
-        prev = prev.previousElementSibling as HTMLElement | null;
+    // 상세 내용
+    const blocks = Array.from(pool.children) as HTMLElement[];
+    const layout = () => {
+      blocks.forEach((block) => pool.appendChild(block));
+      project.querySelectorAll(".dk-clone").forEach((slide) => slide.remove());
+      const regions: HTMLElement[] = [];
+      let lastSlide = overview;
+      let current = 0;
+      const regionAt = (index: number) => {
+        while (!regions[index]) {
+          const slide = proto.cloneNode(true) as HTMLElement;
+          slide.classList.remove("dk-proto");
+          slide.classList.add("dk-clone");
+          lastSlide.after(slide);
+          lastSlide = slide;
+          regions.push(...Array.from(slide.querySelectorAll<HTMLElement>(".dk-flow")));
+        }
+        return regions[index];
+      };
+      blocks.forEach((block) => {
+        let region = regionAt(current);
+        region.appendChild(block);
+        if (!overflows(region) || region.children.length === 1) return;
+        // 다음 칸으로: 바로 앞 소제목도 함께
+        const carry: HTMLElement[] = [block];
+        let prev = block.previousElementSibling as HTMLElement | null;
+        while (prev && prev.hasAttribute("data-head") && region.children.length > carry.length) {
+          carry.unshift(prev);
+          prev = prev.previousElementSibling as HTMLElement | null;
+        }
+        current++;
+        region = regionAt(current);
+        carry.forEach((item) => region.appendChild(item));
+      });
+      project.querySelectorAll<HTMLElement>(".dk-clone").forEach((slide) => {
+        if (!Array.from(slide.querySelectorAll(".dk-flow")).some((flow) => flow.children.length)) slide.remove();
+      });
+      return project.querySelectorAll(".dk-clone").length;
+    };
+    // 가장 적게 줄여서 DETAIL_LIMIT 장 안에 드는 단계를 찾고, 끝까지 안 되면 장 수가 가장 적은 단계 중 가장 덜 줄인 단계로
+    const counts: number[] = [];
+    let chosen = -1;
+    for (let level = 0; level <= LEVELS; level++) {
+      project.dataset.fit = String(level);
+      counts.push(layout());
+      if (counts[level] <= DETAIL_LIMIT) {
+        chosen = level;
+        break;
       }
-      current++;
-      while (wide && !isWide(regionAt(current))) current++;
-      region = regionAt(current);
-      carry.forEach((item) => region.appendChild(item));
-    });
-    project.querySelectorAll<HTMLElement>(".dk-slide.dk-cont:not(.dk-proto)").forEach((slide) => {
-      if (!slide.querySelector(".dk-flow")?.children.length) slide.remove();
-    });
+    }
+    if (chosen < 0) {
+      chosen = counts.indexOf(Math.min(...counts));
+      project.dataset.fit = String(chosen);
+      layout();
+    }
+
+    // 개요
+    const ovRegions = Array.from(overview.querySelectorAll<HTMLElement>(".dk-flow"));
+    const ovBlocks = Array.from(ovPool.children) as HTMLElement[];
+    for (const zoom of [1, 0.95, 0.9, 0.86, 0.82, 0.78]) {
+      ovBlocks.forEach((block) => {
+        block.style.zoom = String(zoom);
+        ovPool.appendChild(block);
+      });
+      let current = 0;
+      ovBlocks.forEach((block) => {
+        ovRegions[current].appendChild(block);
+        if (overflows(ovRegions[current]) && current < ovRegions.length - 1 && ovRegions[current].children.length > 1) ovRegions[++current].appendChild(block);
+      });
+      if (!ovRegions.some(overflows)) break;
+    }
+
+    fits.push(project.dataset.fit + "/" + project.querySelectorAll(".dk-clone").length);
     proto.remove();
     pool.remove();
+    ovPool.remove();
   });
 
   document.querySelectorAll<HTMLElement>(".dk-slide").forEach((slide, index) => {
@@ -61,6 +106,7 @@ function layoutDeck() {
   });
   const over = Array.from(document.querySelectorAll<HTMLElement>(".dk-flow")).filter(overflows);
   document.documentElement.dataset.deckOverflow = String(over.length);
+  document.documentElement.dataset.deckFit = fits.join(" ");
   document.documentElement.dataset.pdfReady = "1";
 }
 

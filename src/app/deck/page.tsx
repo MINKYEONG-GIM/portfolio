@@ -15,10 +15,11 @@ import { getLang, parseLang } from "@/lib/lang";
  * 다운로드용 PDF 를 만드는 슬라이드형 문서 (16:9, 한 장 = PDF 한 쪽).
  * 표지(남색) → 목차 → 전체 요약 → 프로젝트별 슬라이드.
  * 프로젝트 슬라이드에는 웹사이트 상세 페이지의 내용을 빠짐없이, 웹사이트에 없는 내용은 넣지 않습니다.
- *   1장: 대표 이미지 | 기간 · 분야·기술 · 목적 · 역할과 기여 · 성과 …
- *   2장: 두 번째 이미지 | 이어지는 글
- *   다음 장부터: 전체 폭으로 나머지 (한눈 요약, 배경, 시스템 구조, 진행, 핵심 기능, 화면 등)
- * 칸이 차면 DeckFlow 가 같은 머리글의 다음 장을 만들어 이어 넣습니다.
+ *   표지(남색): 번호 · 제목 · 부제 · 기간 · 분야
+ *   개요: 대표 이미지 | 기간 · 분야·기술 · 목적 · 역할과 기여 · 성과
+ *   상세 내용(최대 2장, 2단): 한눈 요약, 배경, 시스템 구조, 진행, 핵심 기능, 화면(작게) 등
+ *   부록: 도식을 한 장에 하나씩 크게 (본문에는 '부록 n' 표시)
+ * 모든 프로젝트가 같은 순서입니다. 넘치면 DeckFlow 가 그림·간격·글자를 줄여 장 수를 맞춥니다.
  * scripts/make-pdf.mjs 가 /deck?lang=ko|en 을 PDF 로 저장합니다.
  */
 
@@ -45,17 +46,20 @@ function Picture({ image }: { image: Shot }) {
       {image.group ? <p className="dk-shot-group">{image.group}</p> : null}
       <div className="dk-shot-frame">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={image.src} alt={image.alt} />
+        <img src={image.src} alt={image.alt} width={image.width} height={image.height} />
       </div>
       {image.caption ? <figcaption>{image.caption}</figcaption> : null}
     </figure>
   );
 }
 
-function Head({ label, title, subtitle }: { label: string; title: string; subtitle?: string }) {
+function Head({ label, title, subtitle, section, appendix }: { label: string; title: string; subtitle?: string; section?: string; appendix?: boolean }) {
   return (
     <header className="dk-head">
-      <p className="dk-label">{label}</p>
+      <p className="dk-label">
+        {section ? <span className={`dk-sec ${appendix ? "dk-sec-app" : ""}`}>{section}</span> : null}
+        {label}
+      </p>
       <h2 className="dk-title">{title}</h2>
       {subtitle ? <p className="dk-sub">{subtitle}</p> : null}
     </header>
@@ -71,10 +75,10 @@ function Foot({ name }: { name: string }) {
   );
 }
 
-/** 흘려 넣을 덩어리 하나. wide 면 전체 폭 장에만, head 면 다음 덩어리와 같은 장에 */
-function B({ children, wide, head, className = "" }: { children: ReactNode; wide?: boolean; head?: boolean; className?: string }) {
+/** 흘려 넣을 덩어리 하나. 면 전체 폭 장에만, head 면 다음 덩어리와 같은 장에 */
+function B({ children, head, className = "" }: { children: ReactNode; head?: boolean; className?: string }) {
   return (
-    <div className={`dk-blk ${className}`} data-wide={wide ? "" : undefined} data-head={head ? "" : undefined}>
+    <div className={`dk-blk ${className}`} data-head={head ? "" : undefined}>
       {children}
     </div>
   );
@@ -104,6 +108,7 @@ export default async function DeckPage({ searchParams }: { searchParams: Promise
   const P = ui.project;
   const { profile, parts, projects: allProjects } = getContent(lang);
   const projects = visibleProjects(allProjects, admin);
+  const SEC = lang === "en" ? { overview: "Overview", detail: "Details", appendix: "Appendix" } : { overview: "개요", detail: "상세 내용", appendix: "부록" };
   const numberOf = (slug: string) => String(projects.findIndex((item) => item.slug === slug) + 1).padStart(2, "0");
 
   return (
@@ -200,49 +205,82 @@ export default async function DeckPage({ searchParams }: { searchParams: Promise
         const summary = summaryOf(project.slug, lang);
         const tops = topImagesOf(project);
         const [first, second, ...rest] = tops;
-        const head = <Head label={label} title={project.title} subtitle={project.subtitle} />;
         const system = project.system;
+        // 크게 봐야 하는 도식은 본문에 '부록 n' 표시만 남기고 프로젝트 끝 부록 장에 크게 넣습니다
+        const appendix = [...(system?.figures ?? []), ...(project.catalog?.figures ?? [])];
+        const appendixNo = (image: ProjectImage) => appendix.findIndex((item) => item.src === image.src) + 1;
+        const Ref = ({ image }: { image: ProjectImage }) => (
+          <B className="dk-ref">
+            <span className="dk-sec dk-sec-app">
+              {SEC.appendix} {appendixNo(image)}
+            </span>
+            <span>{image.caption ?? image.alt}</span>
+          </B>
+        );
         return (
           <div key={project.slug} className={`dk-project part-${project.part}`}>
-            {/* 1장 */}
+            {/* 프로젝트 표지 */}
+            <section className="dk-slide dk-pcover">
+              <div>
+                <p className="dk-cover-label">{label}</p>
+                <p className="dk-pcover-no">{numberOf(project.slug)}</p>
+                <h2 className="dk-pcover-title">{project.title}</h2>
+                {project.subtitle ? <p className="dk-cover-sub">{project.subtitle}</p> : null}
+              </div>
+              <div className="dk-pcover-meta">
+                <p>
+                  <b>{P.period}</b> {project.period}
+                </p>
+                <p className="dk-pcover-tags">
+                  {project.tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </p>
+              </div>
+            </section>
+
+            {/* 1장: 대표 그림 | 글 (그림이 없으면 2단) */}
             <section className="dk-slide">
-              {head}
-              <div className={`dk-body ${first ? "" : "dk-body-full"}`}>
-                {first ? (
+              <Head label={label} title={project.title} subtitle={project.subtitle} section={SEC.overview} />
+              {first ? (
+                <div className="dk-body">
                   <div className="dk-left">
                     <Picture image={first} />
                   </div>
-                ) : null}
-                <div className={`dk-flow ${first ? "" : "dk-flow-wide"}`} />
+                  <div className="dk-flow" />
+                </div>
+              ) : (
+                <div className="dk-body dk-cols">
+                  <div className="dk-flow" />
+                  <div className="dk-flow" />
+                </div>
+              )}
+              <Foot name={profile.name} />
+            </section>
+
+            {/* 이어지는 장의 틀: 2단 (DeckFlow 가 필요한 만큼 복제) */}
+            <section className="dk-slide dk-cont dk-proto">
+              <Head label={label} title={project.title} section={SEC.detail} />
+              <div className="dk-body dk-cols">
+                <div className="dk-flow" />
+                <div className="dk-flow" />
               </div>
               <Foot name={profile.name} />
             </section>
 
-            {/* 2장 (두 번째 그림이 있을 때) */}
-            {second ? (
-              <section className="dk-slide">
-                {head}
-                <div className="dk-body">
-                  <div className="dk-left">
-                    <Picture image={second} />
-                  </div>
-                  <div className="dk-flow" />
+            {/* 부록: 도식을 한 장에 하나씩 크게 */}
+            {appendix.map((image, index) => (
+              <section key={image.src} className="dk-slide dk-appendix">
+                <Head label={label} title={project.title} section={`${SEC.appendix} ${index + 1}`} appendix />
+                <div className="dk-app-body">
+                  <Picture image={image} />
                 </div>
                 <Foot name={profile.name} />
               </section>
-            ) : null}
+            ))}
 
-            {/* 이어지는 장의 틀 (DeckFlow 가 필요한 만큼 복제) */}
-            <section className="dk-slide dk-cont dk-proto">
-              {head}
-              <div className="dk-body dk-body-full">
-                <div className="dk-flow dk-flow-wide" />
-              </div>
-              <Foot name={profile.name} />
-            </section>
-
-            {/* 흘려 넣을 내용: 웹사이트 상세 페이지와 같은 내용 */}
-            <div className="dk-pool">
+            {/* 개요 장(1장 오른쪽)에 넣을 내용 */}
+            <div className="dk-pool dk-pool-ov">
               {/* 기간 · 분야 · 기술 */}
               <B className="dk-info">
                 <div>
@@ -304,7 +342,10 @@ export default async function DeckPage({ searchParams }: { searchParams: Promise
                   ))}
                 </>
               ) : null}
+            </div>
 
+            {/* 상세 장(2단)에 흘려 넣을 내용: 웹사이트 상세 페이지와 같은 내용 */}
+            <div className="dk-pool dk-pool-detail">
               {/* 한눈 요약 + 용어 풀이 */}
               {summary ? (
                 <B>
@@ -338,6 +379,12 @@ export default async function DeckPage({ searchParams }: { searchParams: Promise
                 </B>
               ) : null}
 
+              {second ? (
+                <B>
+                  <Picture image={second} />
+                </B>
+              ) : null}
+
               {/* 배경 */}
               {project.background ? (
                 <>
@@ -356,14 +403,12 @@ export default async function DeckPage({ searchParams }: { searchParams: Promise
                     <p>{system.intro}</p>
                   </B>
                   {system.figures?.map((figure) => (
-                    <B key={figure.src} wide>
-                      <Picture image={figure} />
-                    </B>
+                    <Ref key={figure.src} image={figure} />
                   ))}
                   {system.layers.map((layer, index) => {
                     const tinted = system.layers.some((l) => l.tint) ? layer.tint : index === system.layers.length - 1;
                     return (
-                      <B key={layer.name} wide className={`dk-layer ${tinted ? "dk-layer-tint" : ""}`}>
+                      <B key={layer.name} className={`dk-layer ${tinted ? "dk-layer-tint" : ""}`}>
                         <div>
                           <p className="dk-layer-name">{layer.name}</p>
                           <p className="dk-muted">{layer.role}</p>
@@ -381,7 +426,7 @@ export default async function DeckPage({ searchParams }: { searchParams: Promise
                   })}
                   <H sub>{system.flowTitle ?? P.flowTitle}</H>
                   {chunk(system.flow, 4).map((row, index) => (
-                    <B key={index} wide>
+                    <B key={index}>
                       <ol className="dk-cards" style={cols(Math.min(system.flow.length, 4))} start={index * 4 + 1}>
                         {row.map((step, i) => (
                           <li key={step.title}>
@@ -397,7 +442,7 @@ export default async function DeckPage({ searchParams }: { searchParams: Promise
               ) : project.architecture ? (
                 <>
                   <H>{P.titles.architectureSimple}</H>
-                  <B wide className="dk-arch">
+                  <B className="dk-arch">
                     {project.architecture.layers.map((layer) => (
                       <p key={layer} className="dk-arch-layer">
                         {layer}
@@ -421,13 +466,11 @@ export default async function DeckPage({ searchParams }: { searchParams: Promise
                 <>
                   <H>{project.catalog.title}</H>
                   {project.catalog.figures?.map((figure) => (
-                    <B key={figure.src} wide>
-                      <Picture image={figure} />
-                    </B>
+                    <Ref key={figure.src} image={figure} />
                   ))}
                   {project.catalog.items.map((item) =>
                     item.steps ? (
-                      <B key={item.name} wide className="dk-catalog-flow">
+                      <B key={item.name} className="dk-catalog-flow">
                         <p className="dk-item-title">{item.name}</p>
                         <ol className="dk-chain" style={cols(Math.min(item.steps.length, 7))}>
                           {item.steps.map((step, index) => (
@@ -472,7 +515,7 @@ export default async function DeckPage({ searchParams }: { searchParams: Promise
                     </ol>
                   </B>
                   {project.stepFigures?.map((figure) => (
-                    <B key={figure.src} wide>
+                    <B key={figure.src}>
                       <Picture image={figure} />
                     </B>
                   ))}
@@ -486,12 +529,12 @@ export default async function DeckPage({ searchParams }: { searchParams: Promise
                   <B>
                     <p>{project.vision.lead}</p>
                   </B>
-                  <B wide className="dk-harness">
+                  <B className="dk-harness">
                     <HarnessDiagram jobs={project.vision.jobs} lang={lang} />
                   </B>
                   <H sub>{P.titles.visionHow}</H>
                   {chunk(project.vision.steps, 4).map((row, index) => (
-                    <B key={index} wide>
+                    <B key={index}>
                       <ol className="dk-cards" style={cols(Math.min(project.vision!.steps.length, 4))}>
                         {row.map((step, i) => (
                           <li key={step.title}>
@@ -521,7 +564,7 @@ export default async function DeckPage({ searchParams }: { searchParams: Promise
                         <p>{feature.summary}</p>
                       </B>
                       {chunk(feature.items, 2).map((row, index) => (
-                        <B key={index} wide>
+                        <B key={index}>
                           <div className="dk-feature-items">
                             {row.map((item) => (
                               <div key={item.title}>
@@ -538,13 +581,9 @@ export default async function DeckPage({ searchParams }: { searchParams: Promise
               ) : null}
 
               {/* 상단 그림 중 1·2장에 쓰지 않은 나머지 */}
-              {chunk(rest, 2).map((row, index) => (
-                <B key={index} wide>
-                  <div className="dk-gallery-row" style={cols(row.length)}>
-                    {row.map((image) => (
-                      <Picture key={image.src} image={image} />
-                    ))}
-                  </div>
+              {rest.map((image) => (
+                <B key={image.src}>
+                  <Picture image={image} />
                 </B>
               ))}
             </div>
