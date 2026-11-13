@@ -230,7 +230,7 @@ export default async function PrintPage({ searchParams }: { searchParams: Promis
               </div>
             )}
             <ProjectSections project={withAdminRoles(project, admin)} ui={ui} lang={lang} />
-            <p className="ko-keep mt-6 text-xs font-semibold text-muted">{ui.footer.dataNotice}</p>
+            <p className="print-note ko-keep mt-6 text-xs font-semibold text-muted">{ui.footer.dataNotice}</p>
           </article>
         );
       })}

@@ -38,6 +38,8 @@ function visible(el: Element) {
 /** 쪽 사이에서 갈라지면 안 되는 덩어리를 문서 순서대로 모읍니다. */
 function collect(parent: Element, out: HTMLElement[]) {
   for (const child of Array.from(parent.children) as HTMLElement[]) {
+    // 표의 열 너비 정의(colgroup)는 표 전체 높이로 잡혀 표 통째로 다음 쪽으로 밀리게 하므로 건너뜁니다
+    if (child.tagName === "COLGROUP" || child.tagName === "COL") continue;
     if (!visible(child)) continue;
     const style = getComputedStyle(child);
     const multiColumn = style.display === "grid" && style.gridTemplateColumns.trim().split(/\s+/).length > 1;
@@ -169,6 +171,19 @@ function paginate(root: HTMLElement) {
       continue;
     }
     const afterCover = units[index - 1]?.matches(".print-first");
+
+    // 목차·전체 요약·프로젝트마다 새 쪽에서 시작합니다 (제목과 내용이 늘 같은 쪽에서 시작)
+    const sectionOf = (el: Element) => el.closest(".print-page");
+    if (!afterCover && sectionOf(unit) !== sectionOf(units[index - 1])) {
+      fill();
+      log.push(`p${pageNo}:${Math.round(((Math.max(...pageUnits.map((u) => box(u).bottom)) - pageTop) / PAGE) * 100)}`);
+      pageNo++;
+      const target = breakBefore(unit, root);
+      pageTop = box(target).top;
+      pageUnits = [unit];
+      continue;
+    }
+
     let fits = !afterCover && box(unit).bottom - pageTop <= PAGE;
 
     // 조금 넘치면 이 쪽의 그림들을 줄여서 같은 쪽에 넣어 봅니다
@@ -212,6 +227,11 @@ function paginate(root: HTMLElement) {
 
     // 제목만 쪽 아래에 남지 않게, 제목 앞에서 나눕니다
     let start = index;
+    // 프로젝트 끝의 한 줄 안내만 빈 쪽에 혼자 남지 않게, 바로 앞 덩어리와 함께 넘깁니다
+    if (unit.matches(".print-note") && pageUnits.length > 1 && pageUnits[pageUnits.length - 1] === units[index - 1]) {
+      pageUnits.pop();
+      start--;
+    }
     while (start > 0 && pageUnits.length > 1 && units[start - 1].matches(HEADING) && pageUnits[pageUnits.length - 1] === units[start - 1]) {
       pageUnits.pop();
       start--;
